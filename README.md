@@ -55,7 +55,7 @@ $ react-native run-ios
 
 or
 
-$ react-native run-android
+$ yarn run android
 
 ```
 
