@@ -10,6 +10,7 @@ Built with [React Native](https://facebook.github.io/react-native/)
 * [MobX](https://github.com/mobxjs/mobx) - [How to Use](https://medium.com/react-native-training/ditching-setstate-for-mobx-766c165e4578)
 * [Amazon Web Services](https://aws.amazon.com)
 * [awsmobile-cli](https://github.com/aws/awsmobile-cli)
+* [React Native Navigation v2](https://wix.github.io/react-native-navigation/v2/#/)
 
 
 ## Installation and Build
