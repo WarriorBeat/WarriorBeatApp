@@ -1,12 +1,12 @@
 // initializing.js
 
 import React from 'react';
-import { goHome } from './navigation';
+import { goHome, goToAuth } from './navigation';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default class Initializing extends React.Component {
   async componentDidMount() {
-    goHome();
+    goToAuth();
   }
 
   render() {
