@@ -17,3 +17,36 @@ export const goHome = () =>
       }
     }
   });
+
+export const goToAuth = () =>
+  Navigation.setRoot({
+    root: {
+      bottomTabs: {
+        id: 'Auth',
+        children: [
+          {
+            component: {
+              name: 'Signin',
+              options: {
+                bottomTab: {
+                  text: 'Sign In',
+                  fontSize: 12
+                }
+              }
+            }
+          },
+          {
+            component: {
+              name: 'Signup',
+              options: {
+                bottomTab: {
+                  text: 'Sign Up',
+                  fontSize: 12
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  });

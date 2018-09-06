@@ -1,28 +1,16 @@
-// Screen 2
+// home.js
 
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
+import { goHome } from './navigation';
 import { Navigation } from 'react-native-navigation';
 
-export default class Screen2 extends React.Component {
-  static get options() {
-    return {
-      topBar: {
-        title: {
-          text: 'Screen 2'
-        }
-      }
-    };
-  }
-
+export default class Signin extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Screen 2</Text>
-        <Button
-          onPress={() => Navigation.pop(this.props.componentId)}
-          title={'Go Back'}
-        />
+        <Text>Sign in</Text>
+        <Button title={'Go Home'} onPress={() => goHome()} />
       </View>
     );
   }
