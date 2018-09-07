@@ -141,6 +141,14 @@ android {
     }
 }
 
+configurations.all{
+    resolutionStrategy{
+        // JSC-Android
+        force 'org.webkit:android-jsc:r224109'
+    }
+}
+
+
 dependencies {
     implementation project(':amazon-cognito-identity-js')
     implementation fileTree(dir: "libs", include: ["*.jar"])

@@ -30,7 +30,8 @@ export const goToAuth = () =>
               options: {
                 bottomTab: {
                   text: 'Sign In',
-                  fontSize: 12
+                  fontSize: 12,
+                  icon: require('./assets/signin.png')
                 }
               }
             }
@@ -41,7 +42,8 @@ export const goToAuth = () =>
               options: {
                 bottomTab: {
                   text: 'Sign Up',
-                  fontSize: 12
+                  fontSize: 12,
+                  icon: require('./assets/signup.png')
                 }
               }
             }
