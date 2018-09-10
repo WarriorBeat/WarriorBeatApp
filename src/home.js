@@ -2,10 +2,16 @@
 
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-
+import { API } from 'aws-amplify';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 import { Navigation } from 'react-native-navigation';
+import { createFeed } from './api/feed';
 
+@observer
 export default class Home extends React.Component {
+  @observable
+  testReply = '';
   static get options() {
     return {
       topBar: {
@@ -16,20 +22,17 @@ export default class Home extends React.Component {
     };
   }
 
+  testLocal = async () => {
+    const resp = await createFeed();
+    console.log(resp);
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <Text>Home Screen</Text>
-        <Button
-          onPress={() => {
-            Navigation.push(this.props.componentId, {
-              component: {
-                name: 'Screen2'
-              }
-            });
-          }}
-          title="Go to Screen 2"
-        />
+        <Button onPress={() => this.testLocal()} title="Test Api" />
+        <Text>{this.testReply}</Text>
       </View>
     );
   }
