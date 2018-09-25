@@ -7,7 +7,7 @@ import { API } from 'aws-amplify';
 // Constants
 export const gateways = {
   local: 'local',
-  aws: 'wbapi',
+  aws: 'warriorbeat-dev',
   current: null
 };
 

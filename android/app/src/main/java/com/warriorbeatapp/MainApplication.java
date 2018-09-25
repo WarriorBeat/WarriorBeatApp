@@ -3,6 +3,7 @@ package com.warriorbeatapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.amazonaws.RNAWSCognitoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -37,7 +38,8 @@ public class MainApplication extends NavigationApplication {
 
   protected List<ReactPackage> getPackages() {
     // Additional Packages
-    return Arrays.<ReactPackage>asList(new MainReactPackage(), new RNAWSCognitoPackage());
+    return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new VectorIconsPackage(), new RNAWSCognitoPackage());
   }
 
   @Override

@@ -14,11 +14,12 @@ Amplify.configure({
       endpoints: [
         {
           name: 'local',
-          endpoint: 'http://localhost:5000'
+          endpoint: 'http://localhost:5000/api'
         },
         {
-          name: 'wbapi',
-          endpoint: 'https://4i5br05bf1.execute-api.us-east-1.amazonaws.com/dev'
+          name: 'warriorbeat-dev',
+          endpoint:
+            'https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev/api'
         }
       ]
     }
