@@ -2,10 +2,11 @@
 features:
   cloudlogic: !com.amazonaws.mobilehub.v0.CloudLogic 
     components:
-      wbapi: !com.amazonaws.mobilehub.v0.API 
+      warriorbeat-dev: !com.amazonaws.mobilehub.v0.API 
         attributes:
-          api-arn: 'arn:aws:execute-api:us-east-1:881433986874:4i5br05bf1'
-          name: wbapi
+          api-arn: 'arn:aws:execute-api:us-east-1:881433986874:ps05owvrph'
+          description: Warriorbeat Dev API
+          name: warriorbeat-dev
           sdk-generation-stage-name: dev
         paths:
           /: !com.amazonaws.mobilehub.v0.Function {}

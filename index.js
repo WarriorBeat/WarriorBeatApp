@@ -2,9 +2,29 @@
 
 import { Navigation } from 'react-native-navigation';
 import { registerScreens } from './src/screens';
-import Amplify from 'aws-amplify';
+import Amplify, { API } from 'aws-amplify';
 import config from './aws-exports';
-Amplify.configure(config);
+import 'es6-symbol/implement';
+
+// Local API for local dev
+Amplify.configure({
+  ...config,
+  ...{
+    API: {
+      endpoints: [
+        {
+          name: 'local',
+          endpoint: 'http://localhost:5000/api'
+        },
+        {
+          name: 'warriorbeat-dev',
+          endpoint:
+            'https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev/api'
+        }
+      ]
+    }
+  }
+});
 
 registerScreens();
 

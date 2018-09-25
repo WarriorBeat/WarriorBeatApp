@@ -8,5 +8,7 @@ export function registerScreens() {
     'Initializing',
     sc => require('./initializing').default
   );
-  Navigation.registerComponent('Screen2', () => require('./screen2').default);
+  Navigation.registerComponent('Signin', () => require('./signin').default);
+  Navigation.registerComponent('Signup', () => require('./signup').default);
+  Navigation.registerComponent('FeedItem', () => require('./item').default);
 }

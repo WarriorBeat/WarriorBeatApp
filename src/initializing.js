@@ -1,18 +1,20 @@
 // initializing.js
 
 import React from 'react';
-import { goHome } from './navigation';
+import { goHome, goToAuth } from './navigation';
 import { View, Text, StyleSheet } from 'react-native';
+// TODO: get images from media server
+import load_image from "./media/moksha.JPG"
 
 export default class Initializing extends React.Component {
   async componentDidMount() {
-    goHome();
+    goToAuth();
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Loading</Text>
+        <Text style={styles.welcome}>Welcome</Text>
       </View>
     );
   }

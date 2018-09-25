@@ -141,7 +141,16 @@ android {
     }
 }
 
+configurations.all{
+    resolutionStrategy{
+        // JSC-Android
+        force 'org.webkit:android-jsc:r224109'
+    }
+}
+
+
 dependencies {
+    compile project(':react-native-vector-icons')
     implementation project(':amazon-cognito-identity-js')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
