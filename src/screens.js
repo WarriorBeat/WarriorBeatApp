@@ -10,4 +10,5 @@ export function registerScreens() {
   );
   Navigation.registerComponent('Signin', () => require('./signin').default);
   Navigation.registerComponent('Signup', () => require('./signup').default);
+  Navigation.registerComponent('FeedItem', () => require('./item').default);
 }
