@@ -6,8 +6,19 @@ features:
         attributes:
           api-arn: 'arn:aws:execute-api:us-east-1:881433986874:ps05owvrph'
           description: Warriorbeat Dev API
+          disable-aws-auth: false
           name: warriorbeat-dev
+          requires-signin: false
           sdk-generation-stage-name: dev
+        paths:
+          /: !com.amazonaws.mobilehub.v0.Function {}
+          '/{proxy+}': !com.amazonaws.mobilehub.v0.Function {}
+      warriorbeat-stage: !com.amazonaws.mobilehub.v0.API 
+        attributes:
+          api-arn: 'arn:aws:execute-api:us-east-1:881433986874:m6vkw9r8ud'
+          description: Created automatically by Zappa.
+          name: warriorbeat-stage
+          sdk-generation-stage-name: stage
         paths:
           /: !com.amazonaws.mobilehub.v0.Function {}
           '/{proxy+}': !com.amazonaws.mobilehub.v0.Function {}

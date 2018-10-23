@@ -21,7 +21,7 @@
     "react": "16.4.1",
     "react-native": "0.56.0",
     "react-native-elements": "^0.19.1",
-    "react-native-navigation": "^2.0.2525",
+    "react-native-navigation": "^2.0.2608",
     "react-native-vector-icons": "^5.0.0"
   },
   "devDependencies": {

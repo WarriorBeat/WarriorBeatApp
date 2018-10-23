@@ -14,7 +14,7 @@ Amplify.configure({
       endpoints: [
         {
           name: 'local',
-          endpoint: 'http://localhost:5000/api'
+          endpoint: 'http://localhost:5000'
         },
         {
           name: 'warriorbeat-dev',

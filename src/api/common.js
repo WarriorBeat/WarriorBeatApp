@@ -34,7 +34,7 @@ getGateway().then(resp => {
 export const getPaths = config => {
   let { parent, paths } = config;
   let tree = {};
-  parent = `/${parent}`;
+  parent = `/api/${parent}`;
   tree['parent'] = parent;
   paths.forEach(p => {
     let path = `${parent}/${p}`;

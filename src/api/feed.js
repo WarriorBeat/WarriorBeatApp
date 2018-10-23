@@ -6,7 +6,7 @@ import { getPaths, getGateway } from './common';
 
 // API Paths
 const config = {
-  parent: 'feed',
+  parent: 'posts',
   paths: ['']
 };
 
