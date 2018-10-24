@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { goHome } from './navigation';
+import { goHome } from '../actions/navigation';
 import { Navigation } from 'react-native-navigation';
 
 export default class Signin extends React.Component {

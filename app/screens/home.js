@@ -7,8 +7,8 @@ import { API } from 'aws-amplify';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { Navigation } from 'react-native-navigation';
-import { openFeed } from './navigation';
-import { fetchFeed } from './api/feed';
+import { openFeed } from '../actions/navigation';
+import { fetchFeed } from '../api/feed';
 
 @observer
 export default class Home extends React.Component {
