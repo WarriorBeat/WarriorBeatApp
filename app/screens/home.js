@@ -2,18 +2,12 @@
 
 import React from 'react';
 import { View, Button, StyleSheet, ScrollView } from 'react-native';
-import { List, Text, ListItem } from 'react-native-elements';
-import { API } from 'aws-amplify';
+import { List, Text } from 'react-native-elements';
 import { observer } from 'mobx-react';
-import { observable } from 'mobx';
-import { Navigation } from 'react-native-navigation';
-import { openFeed } from '../actions/navigation';
-import { fetchFeed } from '../api/feed';
+import NewsBlock from '../components/NewsBlock/index';
 
 @observer
 export default class Home extends React.Component {
-  @observable
-  feedItems = [];
   static get options() {
     return {
       topBar: {
@@ -24,37 +18,17 @@ export default class Home extends React.Component {
     };
   }
 
-  // Test function for grabbing feed from api
-  testFeed = async () => {
-    const resp = await fetchFeed();
-    this.feedItems = resp;
-  };
-
-  // Test opening feed
-  openFeed = feed_item => {
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: 'FeedItem',
-        passProps: {
-          item: feed_item
-        },
-        options: {
-          topBar: {
-            title: {
-              text: feed_item.title
-            }
-          }
-        }
-      }
-    });
-  };
+  componentDidMount() {
+    const { store } = this.props;
+    store.fetchPosts();
+  }
 
   render() {
+    const { store } = this.props;
+
     return (
       <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Button onPress={() => this.testFeed()} title="Test Api" />
-        <Text>Feed Items</Text>
+        <Text h3>Posts</Text>
         <ScrollView
           style={{
             flex: 2,
@@ -65,20 +39,13 @@ export default class Home extends React.Component {
           <List
             containerStyle={{
               flex: 1,
-              marginTop: 20,
-              marginBottom: 20
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: 20
             }}
           >
-            {this.feedItems.map(f => {
-              console.log('F Item', f.feedId);
-              return (
-                <ListItem
-                  key={f.feedId}
-                  title={f.title}
-                  subtitle={`${f.author} ${f.date}`}
-                  onPress={() => this.openFeed(f)}
-                />
-              );
+            {store.posts.map(p => {
+              return <NewsBlock key={p.postId} post={p} />;
             })}
           </List>
         </ScrollView>
@@ -91,6 +58,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    alignContent: 'center'
   }
 });
