@@ -66,3 +66,4 @@ awsmobilejs/\#current-backend-info
 
 # Vscode
 /.vscode
+\.env

@@ -17,9 +17,13 @@ Amplify.configure({
           endpoint: 'http://localhost:5000'
         },
         {
-          name: 'warriorbeat-dev',
+          name: 'warriorbeat-stage',
           endpoint:
-            'https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev/api'
+            'https://m6vkw9r8ud.execute-api.us-east-1.amazonaws.com/stage'
+        },
+        {
+          name: 'warriorbeat-dev',
+          endpoint: 'https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev'
         }
       ]
     }

@@ -3,16 +3,23 @@
 
 import * as log from 'loglevel';
 import { API } from 'aws-amplify';
+import { API_DEV } from 'react-native-dotenv';
 
 // Constants
 export const gateways = {
   local: 'local',
-  aws: 'warriorbeat-dev',
+  aws: 'warriorbeat-stage',
+  aws_dev: 'warriorbeat-dev',
   current: null
 };
 
 // Get Current Gateway
 export const getGateway = async () => {
+  console.log('DEV ENV: ', API_DEV);
+  if (API_DEV === 'true') {
+    log.warn('CONNECTED TO AWS DEV API');
+    return gateways.aws_dev;
+  }
   if (gateways.current !== null) {
     return gateways.current;
   }
