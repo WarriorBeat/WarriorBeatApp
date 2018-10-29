@@ -19,4 +19,8 @@ export function registerScreens() {
     'Signup',
     () => require('../screens/signup').default
   );
+  Navigation.registerComponent(
+    'NavMenu',
+    () => require('../components/Menu/index').default
+  );
 }

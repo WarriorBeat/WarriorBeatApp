@@ -6,6 +6,12 @@
       {
         "legacy": true
       }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["./app"]
+      }
     ]
   ]
 }

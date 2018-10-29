@@ -5,7 +5,6 @@
  */
 
 import React from 'react';
-import { View, Button, StyleSheet, ScrollView } from 'react-native';
 import { Text, Tile } from 'react-native-elements';
 import { styles } from './styles';
 import { observer } from 'mobx-react';

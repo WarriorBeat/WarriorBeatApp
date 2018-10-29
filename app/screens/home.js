@@ -4,7 +4,8 @@ import React from 'react';
 import { View, Button, StyleSheet, ScrollView } from 'react-native';
 import { List, Text } from 'react-native-elements';
 import { observer } from 'mobx-react';
-import NewsBlock from '../components/NewsBlock/index';
+import NewsBlock from 'components/NewsBlock/index';
+import { Navigation } from 'react-native-navigation';
 
 @observer
 export default class Home extends React.Component {

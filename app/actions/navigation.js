@@ -6,18 +6,20 @@ import PostStore from '../stores/postStore';
 export const goHome = () =>
   Navigation.setRoot({
     root: {
-      stack: {
-        id: 'App',
-        children: [
-          {
-            component: {
-              name: 'Home',
-              passProps: {
-                store: PostStore
-              }
+      sideMenu: {
+        left: {
+          component: {
+            name: 'NavMenu'
+          }
+        },
+        center: {
+          component: {
+            name: 'Home',
+            passProps: {
+              store: PostStore
             }
           }
-        ]
+        }
       }
     }
   });
