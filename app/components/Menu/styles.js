@@ -83,5 +83,9 @@ export const icons = {
   sports: {
     name: 'football',
     type: 'material-community'
+  },
+  categories: {
+    name: 'star',
+    type: 'font-awesome'
   }
 };

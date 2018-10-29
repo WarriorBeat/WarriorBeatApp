@@ -8,8 +8,14 @@ export const goHome = () =>
     root: {
       sideMenu: {
         left: {
-          component: {
-            name: 'NavMenu'
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'NavMenu'
+                }
+              }
+            ]
           }
         },
         center: {

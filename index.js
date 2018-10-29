@@ -32,6 +32,13 @@ Amplify.configure({
 
 registerScreens();
 
+Navigation.setDefaultOptions({
+  topBar: {
+    visible: false,
+    animate: false
+  }
+});
+
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setRoot({
     root: {

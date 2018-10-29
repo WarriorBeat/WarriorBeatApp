@@ -23,4 +23,8 @@ export function registerScreens() {
     'NavMenu',
     () => require('../components/Menu/index').default
   );
+  Navigation.registerComponent(
+    'NavMenu.SubMenu',
+    () => require('components/Menu/index').SubMenu
+  );
 }
