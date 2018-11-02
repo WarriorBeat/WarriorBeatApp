@@ -23,6 +23,16 @@ export const side_menu = StyleSheet.create({
     alignItems: 'flex-start',
     paddingHorizontal: 10
   },
+  header_container: {
+    display: 'flex',
+    position: 'absolute',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    left: 0,
+    top: 0,
+    paddingHorizontal: 5,
+    paddingVertical: 20
+  },
   footer_container: {
     display: 'flex',
     position: 'absolute',
@@ -57,12 +67,17 @@ export const side_menu = StyleSheet.create({
     ...systemWeights.bold,
     color: materialColors.whitePrimary
   },
+  buttonHeaderText: {
+    ...human.title2WhiteObject,
+    ...systemWeights.bold,
+    color: materialColors.whiteSecondary
+  },
   buttonFooterText: {
     ...human.title2whiteObject,
     ...systemWeights.bold,
     color: materialColors.whiteSecondary
   },
-  buttonFooter: {
+  buttonSecondary: {
     padding: 0,
     margin: 0,
     height: 20,
@@ -95,5 +110,8 @@ export const icons = {
   opinion: {
     name: 'thought-bubble',
     type: 'material-community'
+  },
+  arrow_back: {
+    name: 'arrow-back'
   }
 };

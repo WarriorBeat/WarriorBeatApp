@@ -15,7 +15,15 @@ export const SubMenu = props => {
   const { categories } = props.store;
   const cat_ignores = ['news', 'polls'];
   return (
-    <SideMenu>
+    <SideMenu
+      header={
+        <MenuButton
+          onPress={() => props.exitSubmenu(props.componentId)}
+          icon={icons.arrow_back}
+          title={'Back'}
+        />
+      }
+    >
       {categories.map(c => {
         if (!cat_ignores.includes(c.name.toLowerCase())) {
           return (
@@ -36,15 +44,20 @@ class NavMenu extends React.Component {
     this.props.store.fetchCategories();
   }
 
-  enterSubMenu() {
+  enterSubmenu() {
     Navigation.push(this.props.componentId, {
       component: {
         name: 'NavMenu.SubMenu',
         passProps: {
-          store: this.props.store
+          store: this.props.store,
+          exitSubmenu: this.exitSubmenu
         }
       }
     });
+  }
+
+  exitSubmenu(id) {
+    Navigation.pop(id);
   }
 
   render() {
@@ -62,7 +75,7 @@ class NavMenu extends React.Component {
         <MenuButton title={'My Feed'} icon={icons.home} />
         <MenuButton title={'News'} icon={icons.news} />
         <MenuButton
-          onPress={() => this.enterSubMenu()}
+          onPress={() => this.enterSubmenu()}
           title={'Categories'}
           icon={icons.categories}
         />

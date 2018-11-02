@@ -12,13 +12,15 @@ import { side_menu } from './styles';
 
 export const MenuButton = props => {
   let btnTextStyle =
-    props.textStyle || props.isFooter
-      ? side_menu.buttonFooterText
+    props.textStyle || (props.isFooter || props.isHeader)
+      ? props.isHeader
+        ? side_menu.buttonHeaderText
+        : side_menu.buttonFooterText
       : side_menu.buttonText;
 
   let btnStyle =
     props.buttonStyle || props.isFooter
-      ? side_menu.buttonFooter
+      ? side_menu.buttonSecondary
       : side_menu.button;
 
   return (
@@ -55,6 +57,7 @@ class SideMenu extends React.Component {
             undefined
           )}
           <View style={side_menu.container_content}>{this.props.children}</View>
+          <View style={side_menu.header_container}>{this.props.header}</View>
           <View style={side_menu.footer_container}>{this.props.footer}</View>
         </View>
       </LinearGradient>
