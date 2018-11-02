@@ -1,19 +1,35 @@
 // navigation.js
 
 import { Navigation } from 'react-native-navigation';
+import PostStore from '../stores/postStore';
+import CategoryStore from '../stores/categoryStore';
 
 export const goHome = () =>
   Navigation.setRoot({
     root: {
-      stack: {
-        id: 'App',
-        children: [
-          {
-            component: {
-              name: 'Home'
+      sideMenu: {
+        left: {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: 'NavMenu',
+                  passProps: {
+                    store: CategoryStore
+                  }
+                }
+              }
+            ]
+          }
+        },
+        center: {
+          component: {
+            name: 'Home',
+            passProps: {
+              store: PostStore
             }
           }
-        ]
+        }
       }
     }
   });
@@ -31,7 +47,7 @@ export const goToAuth = () =>
                 bottomTab: {
                   text: 'Sign In',
                   fontSize: 12,
-                  icon: require('./assets/signin.png')
+                  icon: require('../assets/signin.png')
                 }
               }
             }
@@ -43,7 +59,7 @@ export const goToAuth = () =>
                 bottomTab: {
                   text: 'Sign Up',
                   fontSize: 12,
-                  icon: require('./assets/signup.png')
+                  icon: require('../assets/signup.png')
                 }
               }
             }

@@ -51,7 +51,7 @@ import com.android.build.OutputFile
  *
  *   // where to put drawable resources / React Native assets, e.g. the ones you use via
  *   // require('./image.png')), in debug mode
- *   resourcesDirDebug: "$buildDir/intermediates/res/merged/debug",
+ *   resourcesDirDebug: "$buildDir/inetrmediates/res/merged/debug",
  *
  *   // where to put drawable resources / React Native assets, e.g. the ones you use via
  *   // require('./image.png')), in release mode
@@ -151,6 +151,7 @@ configurations.all{
 
 dependencies {
     compile project(':react-native-vector-icons')
+    compile project(':react-native-linear-gradient') // Linear Gradient
     implementation project(':amazon-cognito-identity-js')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
