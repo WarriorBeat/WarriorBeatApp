@@ -36,7 +36,8 @@ Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
     topBar: {
       visible: false,
-      animate: false
+      animate: false,
+      drawBehind: true
     }
   });
   Navigation.setRoot({
