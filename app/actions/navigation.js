@@ -2,6 +2,7 @@
 
 import { Navigation } from 'react-native-navigation';
 import PostStore from '../stores/postStore';
+import CategoryStore from '../stores/categoryStore';
 
 export const goHome = () =>
   Navigation.setRoot({
@@ -12,7 +13,10 @@ export const goHome = () =>
             children: [
               {
                 component: {
-                  name: 'NavMenu'
+                  name: 'NavMenu',
+                  passProps: {
+                    store: CategoryStore
+                  }
                 }
               }
             ]

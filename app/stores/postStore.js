@@ -4,7 +4,7 @@
  */
 
 import { observable, flow } from 'mobx';
-import { PostAPI } from '../api/api';
+import { PostAPI } from 'api/api';
 
 class ObservablePostStore {
   @observable

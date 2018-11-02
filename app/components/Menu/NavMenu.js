@@ -11,20 +11,38 @@ import { icons } from './styles';
 import { SideMenu, MenuButton } from './index';
 import { Navigation } from 'react-native-navigation';
 
-// TODO: Request Categories from API, map for buttons
-export const SubMenu = () => {
+export const SubMenu = props => {
+  const { categories } = props.store;
+  const cat_ignores = ['news', 'polls'];
   return (
     <SideMenu>
-      <MenuButton title={'Submenu!'} />
+      {categories.map(c => {
+        if (!cat_ignores.includes(c.name.toLowerCase())) {
+          return (
+            <MenuButton
+              icon={icons[c.name.toLowerCase()]}
+              title={c.name}
+              key={c.categoryId}
+            />
+          );
+        }
+      })}
     </SideMenu>
   );
 };
 
 class NavMenu extends React.Component {
+  componentDidMount() {
+    this.props.store.fetchCategories();
+  }
+
   enterSubMenu() {
     Navigation.push(this.props.componentId, {
       component: {
-        name: 'NavMenu.SubMenu'
+        name: 'NavMenu.SubMenu',
+        passProps: {
+          store: this.props.store
+        }
       }
     });
   }

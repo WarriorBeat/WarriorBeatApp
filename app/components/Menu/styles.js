@@ -87,5 +87,13 @@ export const icons = {
   categories: {
     name: 'star',
     type: 'font-awesome'
+  },
+  entertainment: {
+    name: 'popcorn',
+    type: 'material-community'
+  },
+  opinion: {
+    name: 'thought-bubble',
+    type: 'material-community'
   }
 };

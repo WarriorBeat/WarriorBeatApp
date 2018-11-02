@@ -18,16 +18,16 @@ class API {
   resource = null;
   constructor(resource) {
     this.resource_type = resource;
-    log.warn('API DEV', API_DEV);
+    log.info('API DEV', API_DEV);
   }
 
   get gateway() {
     switch (API_DEV) {
       case 'local':
-        log.warn('CONNECTED TO LOCALHOST');
+        log.info('CONNECTED TO LOCALHOST');
         return gateways.local;
       case 'awsdev':
-        log.warn('CONNECTED TO AWS DEV');
+        log.info('CONNECTED TO AWS DEV');
         return gateways.aws_dev;
       default:
         return gateways.aws;
@@ -46,3 +46,4 @@ class API {
 }
 
 export const PostAPI = new API('posts');
+export const CategoryAPI = new API('categories');
