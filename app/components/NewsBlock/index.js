@@ -4,6 +4,6 @@
  * Index Exports
  */
 
-import NewsBlock from './NewsBlock';
+import NewsBlock from "./NewsBlock"
 
-export default NewsBlock;
+export default NewsBlock

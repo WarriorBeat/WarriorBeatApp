@@ -1,10 +1,10 @@
 /** @format */
 
-import { Navigation } from 'react-native-navigation';
-import { registerScreens } from './app/config/screens';
-import Amplify, { API } from 'aws-amplify';
-import config from './aws-exports';
-import 'es6-symbol/implement';
+import { Navigation } from "react-native-navigation"
+import { registerScreens } from "./app/config/screens"
+import Amplify, { API } from "aws-amplify"
+import config from "./aws-exports"
+import "es6-symbol/implement"
 
 // Local API for local dev
 Amplify.configure({
@@ -13,24 +13,24 @@ Amplify.configure({
     API: {
       endpoints: [
         {
-          name: 'local',
-          endpoint: 'http://localhost:5000'
+          name: "local",
+          endpoint: "http://localhost:5000"
         },
         {
-          name: 'warriorbeat-stage',
+          name: "warriorbeat-stage",
           endpoint:
-            'https://m6vkw9r8ud.execute-api.us-east-1.amazonaws.com/stage'
+            "https://m6vkw9r8ud.execute-api.us-east-1.amazonaws.com/stage"
         },
         {
-          name: 'warriorbeat-dev',
-          endpoint: 'https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev'
+          name: "warriorbeat-dev",
+          endpoint: "https://ps05owvrph.execute-api.us-east-1.amazonaws.com/dev"
         }
       ]
     }
   }
-});
+})
 
-registerScreens();
+registerScreens()
 
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
@@ -39,12 +39,12 @@ Navigation.events().registerAppLaunchedListener(() => {
       animate: false,
       drawBehind: true
     }
-  });
+  })
   Navigation.setRoot({
     root: {
       component: {
-        name: 'Initializing'
+        name: "Initializing"
       }
     }
-  });
-});
+  })
+})

@@ -4,41 +4,41 @@
  * Styles
  */
 
-import { StyleSheet } from 'react-native';
-import { human } from 'react-native-typography';
-import { systemWeights, materialColors } from 'react-native-typography';
+import { StyleSheet } from "react-native"
+import { human } from "react-native-typography"
+import { systemWeights, materialColors } from "react-native-typography"
 
 export const side_menu = StyleSheet.create({
   container: {
-    display: 'flex',
-    alignItems: 'stretch',
+    display: "flex",
+    alignItems: "stretch",
     flex: 1,
-    backgroundColor: 'transparent'
+    backgroundColor: "transparent"
   },
   container_content: {
-    display: 'flex',
+    display: "flex",
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-start",
     paddingHorizontal: 10
   },
   header_container: {
-    display: 'flex',
-    position: 'absolute',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+    display: "flex",
+    position: "absolute",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     left: 0,
     top: 0,
     paddingHorizontal: 5,
     paddingVertical: 20
   },
   footer_container: {
-    display: 'flex',
-    position: 'absolute',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
-    textAlign: 'left',
+    display: "flex",
+    position: "absolute",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    textAlign: "left",
     left: 0,
     bottom: 0,
     paddingHorizontal: 5,
@@ -48,13 +48,13 @@ export const side_menu = StyleSheet.create({
     height: 170,
     width: 170,
     flex: 1,
-    alignSelf: 'flex-start',
+    alignSelf: "flex-start",
     borderWidth: 1,
-    borderColor: 'transparent',
+    borderColor: "transparent",
     borderRadius: 75,
     marginVertical: 40,
     marginHorizontal: 10,
-    position: 'absolute'
+    position: "absolute"
   },
   button: {
     padding: 0,
@@ -82,36 +82,36 @@ export const side_menu = StyleSheet.create({
     margin: 0,
     height: 20,
     marginVertical: 5,
-    alignSelf: 'flex-start'
+    alignSelf: "flex-start"
   }
-});
+})
 
 export const icons = {
   home: {
-    name: 'home',
-    type: 'entypo'
+    name: "home",
+    type: "entypo"
   },
   news: {
-    name: 'newspaper-o',
-    type: 'font-awesome'
+    name: "newspaper-o",
+    type: "font-awesome"
   },
   sports: {
-    name: 'football',
-    type: 'material-community'
+    name: "football",
+    type: "material-community"
   },
   categories: {
-    name: 'star',
-    type: 'font-awesome'
+    name: "star",
+    type: "font-awesome"
   },
   entertainment: {
-    name: 'popcorn',
-    type: 'material-community'
+    name: "popcorn",
+    type: "material-community"
   },
   opinion: {
-    name: 'thought-bubble',
-    type: 'material-community'
+    name: "thought-bubble",
+    type: "material-community"
   },
   arrow_back: {
-    name: 'arrow-back'
+    name: "arrow-back"
   }
-};
+}
