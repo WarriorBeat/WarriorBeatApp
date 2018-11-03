@@ -2,7 +2,7 @@
 
 import { Navigation } from "react-native-navigation"
 import { registerScreens } from "./app/config/screens"
-import Amplify, { API } from "aws-amplify"
+import Amplify from "aws-amplify"
 import config from "./aws-exports"
 import "es6-symbol/implement"
 

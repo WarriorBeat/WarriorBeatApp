@@ -6,6 +6,7 @@
 
 import { StyleSheet } from "react-native"
 import { human } from "react-native-typography"
+import { colors } from "config/styles"
 import { systemWeights, materialColors } from "react-native-typography"
 
 export const side_menu = StyleSheet.create({
@@ -13,7 +14,7 @@ export const side_menu = StyleSheet.create({
     display: "flex",
     alignItems: "stretch",
     flex: 1,
-    backgroundColor: "transparent"
+    backgroundColor: colors.transparent
   },
   container_content: {
     display: "flex",
@@ -50,7 +51,7 @@ export const side_menu = StyleSheet.create({
     flex: 1,
     alignSelf: "flex-start",
     borderWidth: 1,
-    borderColor: "transparent",
+    borderColor: colors.transparent,
     borderRadius: 75,
     marginVertical: 40,
     marginHorizontal: 10,

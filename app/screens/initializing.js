@@ -1,7 +1,7 @@
 // initializing.js
 
 import React from "react"
-import { goHome, goToAuth } from "actions/navigation"
+import { goToAuth } from "actions/navigation"
 import { View, Text, StyleSheet } from "react-native"
 // TODO: get images from media server
 // import load_image from "./media/moksha.JPG"

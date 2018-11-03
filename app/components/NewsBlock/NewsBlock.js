@@ -5,10 +5,8 @@
  */
 
 import React from "react"
-import { Text, Tile } from "react-native-elements"
+import { Tile } from "react-native-elements"
 import { styles } from "./styles"
-import { observer } from "mobx-react"
-import { observable } from "mobx"
 
 class NewsBlock extends React.Component {
   render() {
