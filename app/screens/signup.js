@@ -1,31 +1,31 @@
 // signup.js
 
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Button, FormLabel, FormInput, Text } from 'react-native-elements';
-import { Navigation } from 'react-native-navigation';
-import { Auth } from 'aws-amplify';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+import React from "react"
+import { View, StyleSheet } from "react-native"
+import { Button, FormLabel, FormInput, Text } from "react-native-elements"
+import { Auth } from "aws-amplify"
+import { observer } from "mobx-react"
+import { observable } from "mobx"
+import * as log from "loglevel"
 
 @observer
-export default class Signup extends React.Component {
+class Signup extends React.Component {
   @observable
   userInput = {
-    username: '',
-    password: '',
-    email: '',
-    phone_number: '',
-    auth_code: '',
+    username: "",
+    password: "",
+    email: "",
+    phone_number: "",
+    auth_code: "",
     showConfirm: false
-  };
+  }
 
   onChangeText = (key, val) => {
-    this.userInput[key] = val;
-  };
+    this.userInput[key] = val
+  }
 
   signUp = async () => {
-    const { username, password, email, phone_number } = this.userInput;
+    const { username, password, email, phone_number } = this.userInput
     try {
       const newUser = await Auth.signUp({
         username,
@@ -34,50 +34,60 @@ export default class Signup extends React.Component {
           email,
           phone_number
         }
-      });
-      console.log('USER SIGNUP SUCCESS: ', newUser);
+      })
+      log.info("USER SIGNUP SUCCESS: ", newUser)
     } catch (err) {
-      console.log('USER SIGNUP FAILED', err);
+      log.warn("USER SIGNUP FAILED", err)
     }
-  };
+  }
 
   render() {
     return (
       <View style={styles.container}>
-        <FormLabel>Username</FormLabel>
+        <FormLabel>
+          <Text>Username</Text>
+        </FormLabel>
         <FormInput
-          placeholder={'Please enter a username'}
+          placeholder={"Please enter a username"}
           autoCapitalize="none"
-          onChangeText={val => this.onChangeText('username', val)}
+          onChangeText={val => this.onChangeText("username", val)}
         />
-        <FormLabel>Password</FormLabel>
+        <FormLabel>
+          <Text>Password</Text>
+        </FormLabel>
         <FormInput
-          placeholder={'Please enter a password'}
+          placeholder={"Please enter a password"}
           autoCapitalize="none"
-          onChangeText={val => this.onChangeText('password', val)}
+          onChangeText={val => this.onChangeText("password", val)}
         />
-        <FormLabel>Email</FormLabel>
+        <FormLabel>
+          <Text>Email</Text>
+        </FormLabel>
         <FormInput
-          placeholder={'Please enter your email'}
+          placeholder={"Please enter your email"}
           autoCapitalize="none"
-          onChangeText={val => this.onChangeText('email', val)}
+          onChangeText={val => this.onChangeText("email", val)}
         />
-        <FormLabel>Phone Number</FormLabel>
+        <FormLabel>
+          <Text>Phone NUmber</Text>
+        </FormLabel>
         <FormInput
-          placeholder={'Please enter your phone number'}
+          placeholder={"Please enter your phone number"}
           autoCapitalize="none"
-          onChangeText={val => this.onChangeText('phone_number', val)}
+          onChangeText={val => this.onChangeText("phone_number", val)}
         />
-        <Button raised onPress={() => this.signUp()} title={'Sign Up'} />
+        <Button raised onPress={() => this.signUp()} title={"Sign Up"} />
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   }
-});
+})
+
+export default Signup

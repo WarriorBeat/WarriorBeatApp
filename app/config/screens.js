@@ -1,30 +1,21 @@
 // Screens
 
-import { Navigation } from 'react-native-navigation';
+import { Navigation } from "react-native-navigation"
 
 export function registerScreens() {
+  Navigation.registerComponent("Home", () => require("screens/index").Home)
   Navigation.registerComponent(
-    'Home',
-    () => require('../screens/home').default
-  );
+    "Initializing",
+    () => require("screens/index").Initializing
+  )
+  Navigation.registerComponent("Signin", () => require("screens/index").Signin)
+  Navigation.registerComponent("Signup", () => require("screens/index").Signup)
   Navigation.registerComponent(
-    'Initializing',
-    sc => require('../screens/initializing').default
-  );
+    "NavMenu",
+    () => require("components/Menu/index").default
+  )
   Navigation.registerComponent(
-    'Signin',
-    () => require('../screens/signin').default
-  );
-  Navigation.registerComponent(
-    'Signup',
-    () => require('../screens/signup').default
-  );
-  Navigation.registerComponent(
-    'NavMenu',
-    () => require('../components/Menu/index').default
-  );
-  Navigation.registerComponent(
-    'NavMenu.SubMenu',
-    () => require('components/Menu/index').SubMenu
-  );
+    "NavMenu.SubMenu",
+    () => require("components/Menu/index").SubMenu
+  )
 }

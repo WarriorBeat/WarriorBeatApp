@@ -1,8 +1,8 @@
 // navigation.js
 
-import { Navigation } from 'react-native-navigation';
-import PostStore from '../stores/postStore';
-import CategoryStore from '../stores/categoryStore';
+import { Navigation } from "react-native-navigation"
+import PostStore from "../stores/postStore"
+import CategoryStore from "../stores/categoryStore"
 
 export const goHome = () =>
   Navigation.setRoot({
@@ -13,7 +13,7 @@ export const goHome = () =>
             children: [
               {
                 component: {
-                  name: 'NavMenu',
+                  name: "NavMenu",
                   passProps: {
                     store: CategoryStore
                   }
@@ -24,7 +24,7 @@ export const goHome = () =>
         },
         center: {
           component: {
-            name: 'Home',
+            name: "Home",
             passProps: {
               store: PostStore
             }
@@ -32,34 +32,34 @@ export const goHome = () =>
         }
       }
     }
-  });
+  })
 
 export const goToAuth = () =>
   Navigation.setRoot({
     root: {
       bottomTabs: {
-        id: 'Auth',
+        id: "Auth",
         children: [
           {
             component: {
-              name: 'Signin',
+              name: "Signin",
               options: {
                 bottomTab: {
-                  text: 'Sign In',
+                  text: "Sign In",
                   fontSize: 12,
-                  icon: require('../assets/signin.png')
+                  icon: require("../assets/signin.png")
                 }
               }
             }
           },
           {
             component: {
-              name: 'Signup',
+              name: "Signup",
               options: {
                 bottomTab: {
-                  text: 'Sign Up',
+                  text: "Sign Up",
                   fontSize: 12,
-                  icon: require('../assets/signup.png')
+                  icon: require("../assets/signup.png")
                 }
               }
             }
@@ -67,4 +67,4 @@ export const goToAuth = () =>
         ]
       }
     }
-  });
+  })
