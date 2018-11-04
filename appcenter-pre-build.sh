@@ -9,7 +9,7 @@ sed -i '' 's/IOS_APP_SECRET\$/'$IOS_APP_SECRET'/g' $IOSCONFIG
 
 # Install awsamplifycli
 echo "Installing awsmobile..."
-yarn global add awsmobile-cli@1.1.5
+yarn global add awsmobile-cli@1.1.5 --force
 
 # Setup AWS User
 echo "Setting up AWS Credentials..."

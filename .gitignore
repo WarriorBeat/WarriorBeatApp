@@ -21,6 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+*.p12
 
 # Android/IntelliJ
 #
@@ -67,3 +68,4 @@ awsmobilejs/\#current-backend-info
 # Vscode
 /.vscode
 \.env
+
