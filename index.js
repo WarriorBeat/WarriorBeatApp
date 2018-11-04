@@ -1,10 +1,19 @@
-/** @format */
+/**
+ * Entry point as a workaround to
+ * babelHelpers failing.
+ * See: https://github.com/facebook/react-native/issues/20150
+ *
+ */
 
-import { Navigation } from "react-native-navigation"
-import { registerScreens } from "./app/config/screens"
 import Amplify from "aws-amplify"
 import config from "./aws-exports"
-import "es6-symbol/implement"
+import applyDecoratedDescriptor from "@babel/runtime/helpers/es6/applyDecoratedDescriptor"
+import initializerDefineProperty from "@babel/runtime/helpers/es6/initializerDefineProperty"
+
+Object.assign(babelHelpers, {
+  applyDecoratedDescriptor,
+  initializerDefineProperty
+})
 
 // Local Testing Api
 config.aws_cloud_logic_custom.push({
@@ -13,21 +22,4 @@ config.aws_cloud_logic_custom.push({
 })
 Amplify.configure(config)
 
-registerScreens()
-
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.setDefaultOptions({
-    topBar: {
-      visible: false,
-      animate: false,
-      drawBehind: true
-    }
-  })
-  Navigation.setRoot({
-    root: {
-      component: {
-        name: "Initializing"
-      }
-    }
-  })
-})
+require("./app/index")
