@@ -28,6 +28,10 @@
     "react-native-vector-icons": "^5.0.0"
   },
   "devDependencies": {
+    "appcenter": "1.9.0",
+    "appcenter-analytics": "1.9.0",
+    "appcenter-crashes": "1.9.0",
+    "appcenter-push": "1.9.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "23.4.2",
     "babel-plugin-module-resolver": "^3.1.1",
