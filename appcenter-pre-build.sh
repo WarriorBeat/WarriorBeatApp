@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
+# Insert Android App Secret
+ANDROIDCONFIG=./android/app/src/main/assets/appcenter-config.json
+IOSCONFIG=./ios/AppCenter-Config.plist
+echo "Loading secrets..."
+sed -i '' 's/ANDROID_APP_SECRET\$/'$ANDROID_APP_SECRET'/g' $ANDROIDCONFIG
+sed -i '' 's/IOS_APP_SECRET\$/'$IOS_APP_SECRET'/g' $IOSCONFIG
+
 # Install awsamplifycli
+echo "Installing awsmobile..."
 yarn global add awsmobile-cli@1.1.5 --force
 
 # Setup AWS User
@@ -41,4 +49,5 @@ awsmobile init $AWS_PROJECT_ID -y
 
 # Pull AWSMobile
 echo y | awsmobile pull
+
 
