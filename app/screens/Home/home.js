@@ -5,23 +5,13 @@
  */
 import React from "react"
 import { View, ScrollView } from "react-native"
-import { List, Text } from "react-native-elements"
+import { List, Header } from "react-native-elements"
 import { observer } from "mobx-react"
 import NewsBlock from "components/NewsBlock/index"
 import { styles } from "./styles"
 
 @observer
 class Home extends React.Component {
-  static get options() {
-    return {
-      topBar: {
-        title: {
-          text: "Home"
-        }
-      }
-    }
-  }
-
   componentDidMount() {
     const { store } = this.props
     store.fetchPosts()
@@ -32,7 +22,11 @@ class Home extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Text h3>Posts</Text>
+        <Header
+          centerComponent={{ text: "Posts", style: styles.headerText }}
+          outerContainerStyles={styles.header}
+          statusBarProps={{ barStyle: "light-content" }}
+        />
         <ScrollView style={styles.scroll_view}>
           <List containerStyle={styles.list_container}>
             {store.posts.map(p => {

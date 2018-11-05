@@ -19,3 +19,10 @@ const soft_white = "rgb(241, 244, 246)"
 export const soft_colors = {
   white: soft_white
 }
+
+// Brand Colors
+export const brand = {
+  primary: "#393939",
+  primaryDark: "#2d2d2d",
+  secondary: "#F6D609"
+}

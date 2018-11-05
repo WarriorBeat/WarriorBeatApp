@@ -5,6 +5,9 @@
  */
 
 import { StyleSheet } from "react-native"
+import { human } from "react-native-typography"
+import { systemWeights } from "react-native-typography"
+import { brand } from "config/styles"
 
 export const styles = StyleSheet.create({
   container: {
@@ -14,7 +17,7 @@ export const styles = StyleSheet.create({
     alignContent: "center"
   },
   scroll_view: {
-    flex: 2,
+    flex: 1,
     alignSelf: "stretch",
     alignContent: "stretch"
   },
@@ -23,5 +26,15 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 20
+  },
+  header: {
+    backgroundColor: brand.primary,
+    alignSelf: "stretch",
+    paddingVertical: 10,
+    minHeight: 85
+  },
+  headerText: {
+    ...human.largeTitleWhiteObject,
+    ...systemWeights.bold
   }
 })
