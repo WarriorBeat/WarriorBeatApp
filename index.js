@@ -7,13 +7,13 @@
 
 import Amplify from "aws-amplify"
 import config from "./aws-exports"
-import applyDecoratedDescriptor from "@babel/runtime/helpers/es6/applyDecoratedDescriptor"
-import initializerDefineProperty from "@babel/runtime/helpers/es6/initializerDefineProperty"
+// import applyDecoratedDescriptor from "@babel/runtime/helpers/es6/applyDecoratedDescriptor"
+// import initializerDefineProperty from "@babel/runtime/helpers/es6/initializerDefineProperty"
 
-Object.assign(babelHelpers, {
-  applyDecoratedDescriptor,
-  initializerDefineProperty
-})
+// Object.assign(babelHelpers, {
+//   applyDecoratedDescriptor,
+//   initializerDefineProperty
+// })
 
 // Local Testing Api
 config.aws_cloud_logic_custom.push({
