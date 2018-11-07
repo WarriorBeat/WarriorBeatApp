@@ -3199,7 +3199,13 @@ has@^1.0.1, has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hoist-non-react-statics@3.x.x, hoist-non-react-statics@^3.0.0:
+hoist-non-react-statics@3.x.x:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.1.0.tgz#42414ccdfff019cd2168168be998c7b3bd5245c0"
+  dependencies:
+    react-is "^16.3.2"
+
+hoist-non-react-statics@^3.0.0:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.0.1.tgz#fba3e7df0210eb9447757ca1a7cb607162f0a364"
   dependencies:
@@ -4045,9 +4051,9 @@ jsbn@~0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/jsbn/-/jsbn-0.1.1.tgz#a5e654c2e5a2deb5f201d96cefbca80c0ef2f513"
 
-jsc-android@^224109.1.0:
-  version "224109.1.0"
-  resolved "https://registry.yarnpkg.com/jsc-android/-/jsc-android-224109.1.0.tgz#9749ec92f1e284b3c09befe7c47cc6e60b1f0cdf"
+jsc-android@^236355.0.0:
+  version "236355.0.0"
+  resolved "https://registry.yarnpkg.com/jsc-android/-/jsc-android-236355.0.0.tgz#22795b980e1cded0fc19a7f95fe780601cec8377"
 
 jsdom@^11.5.1:
   version "11.12.0"
@@ -5333,7 +5339,11 @@ react-devtools-core@^3.4.0:
     shell-quote "^1.6.1"
     ws "^3.3.1"
 
-react-is@^16.3.2, react-is@^16.4.1:
+react-is@^16.3.2:
+  version "16.6.1"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.1.tgz#f77b1c3d901be300abe8d58645b7a59e794e5982"
+
+react-is@^16.4.1:
   version "16.6.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.6.0.tgz#456645144581a6e99f6816ae2bd24ee94bdd0c01"
 
@@ -5364,9 +5374,9 @@ react-native-linear-gradient@react-native-community/react-native-linear-gradient
   version "2.4.2"
   resolved "https://codeload.github.com/react-native-community/react-native-linear-gradient/tar.gz/1be0beb7210f1c3486fbe7544d284dd146251022"
 
-react-native-navigation@^2.0.2608:
-  version "2.0.2631"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.0.2631.tgz#24fcf7bdaa8ef8223fc88e2b8f78630d21db71b4"
+react-native-navigation@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.1.2.tgz#225698d7b39dd114a01ef0a301cca18af260316b"
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.x.x"
