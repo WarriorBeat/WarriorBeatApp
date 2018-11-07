@@ -101,7 +101,7 @@ android {
         applicationId "com.warriorbeatapp"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative56"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
         versionCode 1
         versionName "1.0"
         ndk {
@@ -144,7 +144,13 @@ android {
 configurations.all{
     resolutionStrategy{
         // JSC-Android
-        force 'org.webkit:android-jsc:r224109'
+        force 'org.webkit:android-jsc:r236355'
+    }
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support' && requested.name != 'multidex') {
+            details.useVersion "${rootProject.ext.supportLibVersion}"
+        }
     }
 }
 
