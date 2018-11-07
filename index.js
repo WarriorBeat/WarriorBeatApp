@@ -7,19 +7,34 @@
 
 import Amplify from "aws-amplify"
 import config from "./aws-exports"
-import applyDecoratedDescriptor from "@babel/runtime/helpers/es6/applyDecoratedDescriptor"
-import initializerDefineProperty from "@babel/runtime/helpers/es6/initializerDefineProperty"
+import { Navigation } from "react-native-navigation"
+import { registerScreens } from "config/screens"
 
-Object.assign(babelHelpers, {
-  applyDecoratedDescriptor,
-  initializerDefineProperty
-})
+// Register RN Nav Screens
+registerScreens()
 
 // Local Testing Api
 config.aws_cloud_logic_custom.push({
   name: "local",
   endpoint: "http://localhost:5000"
 })
+// Set API Configuration
 Amplify.configure(config)
 
-require("./app/index")
+// Start RN Navigation
+Navigation.events().registerAppLaunchedListener(() => {
+  Navigation.setDefaultOptions({
+    topBar: {
+      visible: false,
+      animate: false,
+      drawBehind: true
+    }
+  })
+  Navigation.setRoot({
+    root: {
+      component: {
+        name: "Initializing"
+      }
+    }
+  })
+})

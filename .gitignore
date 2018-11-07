@@ -56,6 +56,10 @@ buck-out/
 # Bundle artifact
 *.jsbundle
 
+# Vscode
+/.vscode
+\.env
+
 #awsmobilejs
 appsync-info.json
 aws-info.json
@@ -64,8 +68,3 @@ aws-exports.*
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
-
-# Vscode
-/.vscode
-\.env
-
