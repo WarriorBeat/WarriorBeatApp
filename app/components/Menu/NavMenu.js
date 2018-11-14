@@ -31,6 +31,7 @@ export const SubMenu = props => {
               icon={icons[c.name.toLowerCase()]}
               title={c.name}
               key={c.categoryId}
+              onPress={() => props.filterPosts(c.name.toLowerCase())}
             />
           )
         }
@@ -50,7 +51,8 @@ class NavMenu extends React.Component {
         name: "NavMenu.SubMenu",
         passProps: {
           store: this.props.store,
-          exitSubmenu: this.exitSubmenu
+          exitSubmenu: this.exitSubmenu,
+          filterPosts: this.filterPosts
         }
       }
     })
@@ -58,6 +60,11 @@ class NavMenu extends React.Component {
 
   exitSubmenu(id) {
     Navigation.pop(id)
+  }
+
+  filterPosts = category => {
+    const { store } = this.props
+    store.getCategory(category)
   }
 
   render() {

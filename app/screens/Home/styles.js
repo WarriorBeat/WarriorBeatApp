@@ -16,17 +16,6 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     alignContent: "center"
   },
-  scroll_view: {
-    flex: 1,
-    alignSelf: "stretch",
-    alignContent: "stretch"
-  },
-  list_container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    margin: 20
-  },
   header: {
     backgroundColor: brand.primary,
     alignSelf: "stretch",
