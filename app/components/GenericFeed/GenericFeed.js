@@ -19,7 +19,7 @@ class GenericFeed extends React.Component {
     return (
       <ScrollView style={styles.scroll_view}>
         <List containerStyle={styles.list_container}>
-          {store.posts.map(p => {
+          {store.feed.map(p => {
             return <NewsBlock key={p.postId} post={p} />
           })}
         </List>

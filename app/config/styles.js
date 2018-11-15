@@ -1,7 +1,7 @@
 /**
  * styles.js
  * Definition for common styles
- * Style
+ * Config
  */
 
 // Basic Colors

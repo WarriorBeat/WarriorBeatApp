@@ -10,6 +10,8 @@ import { View } from "react-native"
 import { icons } from "./styles"
 import { SideMenu, MenuButton } from "./index"
 import { Navigation } from "react-native-navigation"
+import { viewPosts } from "actions/navigation"
+import { brand_media } from "config/assets"
 
 export const SubMenu = props => {
   const { categories } = props.store
@@ -31,7 +33,7 @@ export const SubMenu = props => {
               icon={icons[c.name.toLowerCase()]}
               title={c.name}
               key={c.categoryId}
-              onPress={() => props.filterPosts(c.name.toLowerCase())}
+              onPress={() => props.filterPosts(c.name)}
             />
           )
         }
@@ -63,14 +65,13 @@ class NavMenu extends React.Component {
   }
 
   filterPosts = category => {
-    const { store } = this.props
-    store.getCategory(category)
+    viewPosts("HomeScreen", category)
   }
 
   render() {
     return (
       <SideMenu
-        headerImage={require("assets/brand/main.jpg")}
+        headerImage={brand_media.warrior_head}
         footer={
           <View>
             <MenuButton isFooter title={"About Us"} />
@@ -79,7 +80,11 @@ class NavMenu extends React.Component {
           </View>
         }
       >
-        <MenuButton title={"My Feed"} icon={icons.home} />
+        <MenuButton
+          onPress={() => Navigation.popTo("HomeScreen")}
+          title={"My Feed"}
+          icon={icons.home}
+        />
         <MenuButton title={"News"} icon={icons.news} />
         <MenuButton
           onPress={() => this.enterSubmenu()}

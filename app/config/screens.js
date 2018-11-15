@@ -8,6 +8,10 @@ export function registerScreens() {
     "Initializing",
     () => require("screens/index").Initializing
   )
+  Navigation.registerComponent(
+    "FeedView",
+    () => require("screens/index").FeedView
+  )
   Navigation.registerComponent("Signin", () => require("screens/index").Signin)
   Navigation.registerComponent("Signup", () => require("screens/index").Signup)
   Navigation.registerComponent(

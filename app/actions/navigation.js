@@ -3,6 +3,7 @@
 import { Navigation } from "react-native-navigation"
 import PostStore from "../stores/postStore"
 
+// Home Screen
 export const goHome = () =>
   Navigation.setRoot({
     root: {
@@ -22,16 +23,36 @@ export const goHome = () =>
           }
         },
         center: {
-          component: {
-            name: "Home",
-            passProps: {
-              store: PostStore
-            }
+          stack: {
+            children: [
+              {
+                component: {
+                  name: "Home",
+                  id: "HomeScreen",
+                  passProps: {
+                    store: PostStore
+                  }
+                }
+              }
+            ]
           }
         }
       }
     }
   })
+
+// Push new view of Posts
+export const viewPosts = (componentId, category) => {
+  Navigation.push(componentId, {
+    component: {
+      name: "FeedView",
+      passProps: {
+        store: PostStore,
+        category: category
+      }
+    }
+  })
+}
 
 export const goToAuth = () =>
   Navigation.setRoot({
