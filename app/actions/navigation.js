@@ -14,6 +14,7 @@ export const goHome = () =>
               {
                 component: {
                   name: "NavMenu",
+                  id: "PrimaryNavMenu",
                   passProps: {
                     store: PostStore
                   }
@@ -41,6 +42,17 @@ export const goHome = () =>
     }
   })
 
+// Close Side Menu
+export const closeMenu = (menu = "PrimaryNavMenu") => {
+  Navigation.mergeOptions(menu, {
+    sideMenu: {
+      left: {
+        visible: false
+      }
+    }
+  })
+}
+
 // Push new view of Posts
 export const viewPosts = (componentId, category) => {
   Navigation.push(componentId, {
@@ -52,6 +64,13 @@ export const viewPosts = (componentId, category) => {
       }
     }
   })
+  closeMenu()
+}
+
+// Return to Home Screen
+export const returnHome = () => {
+  Navigation.popTo("HomeScreen")
+  closeMenu()
 }
 
 export const goToAuth = () =>

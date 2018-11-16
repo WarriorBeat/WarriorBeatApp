@@ -4,11 +4,10 @@
  * Screen
  */
 import React from "react"
-import { View, Image } from "react-native"
+import { View } from "react-native"
 import { Header } from "react-native-elements"
 import { observer } from "mobx-react"
 import { styles } from "./styles"
-import { brand_media } from "config/assets"
 import GenericFeed from "components/GenericFeed"
 
 @observer

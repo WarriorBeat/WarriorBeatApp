@@ -10,7 +10,7 @@ import { View } from "react-native"
 import { icons } from "./styles"
 import { SideMenu, MenuButton } from "./index"
 import { Navigation } from "react-native-navigation"
-import { viewPosts } from "actions/navigation"
+import { viewPosts, returnHome } from "actions/navigation"
 import { brand_media } from "config/assets"
 
 export const SubMenu = props => {
@@ -81,7 +81,7 @@ class NavMenu extends React.Component {
         }
       >
         <MenuButton
-          onPress={() => Navigation.popTo("HomeScreen")}
+          onPress={() => returnHome()}
           title={"My Feed"}
           icon={icons.home}
         />
