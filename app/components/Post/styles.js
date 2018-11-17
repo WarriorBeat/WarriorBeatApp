@@ -37,7 +37,7 @@ export const styles = StyleSheet.create({
   },
   author_title: {
     ...fonts.whiteHeadline,
-    ...fonts.boldShadow
+    ...fonts.boldShadow,
   },
   author_avatar: {
     borderRadius: 75,
@@ -46,7 +46,8 @@ export const styles = StyleSheet.create({
     shadowColor: colors.black,
     shadowOpacity: 0.5,
     shadowRadius: 3,
-    shadowOffset: { width: 5, height: 9 }
+    shadowOffset: { width: 5, height: 9 },
+    elevation: 2
   },
   scroll_container: {
     justifyContent: "center",
