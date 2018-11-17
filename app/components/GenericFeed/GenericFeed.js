@@ -8,7 +8,7 @@ import React from "react"
 import { ScrollView } from "react-native"
 import { observer } from "mobx-react"
 import { List } from "react-native-elements"
-import NewsBlock from "components/NewsBlock/index"
+import NewsBlock from "components/NewsBlock"
 import { styles } from "./styles"
 
 @observer

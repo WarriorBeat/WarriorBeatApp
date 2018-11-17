@@ -8,7 +8,7 @@ import React from "react"
 import { View } from "react-native"
 import { Header } from "react-native-elements"
 import { observer } from "mobx-react"
-import GenericFeed from "components/GenericFeed/index"
+import GenericFeed from "components/GenericFeed"
 import { styles } from "./styles"
 
 @observer

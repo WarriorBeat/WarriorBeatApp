@@ -3,23 +3,20 @@
 import { Navigation } from "react-native-navigation"
 
 export function registerScreens() {
-  Navigation.registerComponent("Home", () => require("screens/index").Home)
+  Navigation.registerComponent("Home", () => require("screens").Home)
   Navigation.registerComponent(
     "Initializing",
-    () => require("screens/index").Initializing
+    () => require("screens").Initializing
   )
-  Navigation.registerComponent(
-    "FeedView",
-    () => require("screens/index").FeedView
-  )
-  Navigation.registerComponent("Signin", () => require("screens/index").Signin)
-  Navigation.registerComponent("Signup", () => require("screens/index").Signup)
+  Navigation.registerComponent("FeedView", () => require("screens").FeedView)
+  Navigation.registerComponent("Signin", () => require("screens").Signin)
+  Navigation.registerComponent("Signup", () => require("screens").Signup)
   Navigation.registerComponent(
     "NavMenu",
-    () => require("components/Menu/index").default
+    () => require("components/Menu").default
   )
   Navigation.registerComponent(
     "NavMenu.SubMenu",
-    () => require("components/Menu/index").SubMenu
+    () => require("components/Menu").SubMenu
   )
 }
