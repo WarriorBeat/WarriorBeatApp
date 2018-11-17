@@ -6,13 +6,16 @@
 
 import React from "react"
 import { Text } from "react-native-elements"
-import GenericPost, { HTML } from "./GenericPost"
+import GenericPost, { HTML, AuthorHeader } from "./GenericPost"
 
 class Article extends React.Component {
   render() {
     const { post } = this.props
     return (
-      <GenericPost>
+      <GenericPost
+        backgroundSource={post.cover_image.source}
+        Foreground={<AuthorHeader author={post.author} />}
+      >
         <Text>{post.title}</Text>
         <HTML html={post.content} />
       </GenericPost>

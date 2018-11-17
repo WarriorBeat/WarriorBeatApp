@@ -40,5 +40,13 @@ export const fonts = {
   whiteBoldTitleSecondary: {
     ...systemWeights.bold,
     color: materialColors.whiteSecondary
+  },
+  whiteHeadline: {
+    ...human.headlineWhiteObject
+  },
+  boldShadow: {
+    textShadowColor: colors.black,
+    textShadowRadius: 3,
+    textShadowOffset: { width: -1, height: 1 }
   }
 }
