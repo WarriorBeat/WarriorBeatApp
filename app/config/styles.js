@@ -4,6 +4,9 @@
  * Config
  */
 
+import { human } from "react-native-typography"
+import { systemWeights, materialColors } from "react-native-typography"
+
 // Basic Colors
 const black = "#000"
 const white = "$fff"
@@ -25,4 +28,17 @@ export const brand = {
   primary: "#393939",
   primaryDark: "#2d2d2d",
   secondary: "#F6D609"
+}
+
+// Font Styles
+export const fonts = {
+  whiteBoldTitle: {
+    ...human.title2WhiteObject,
+    ...systemWeights.bold,
+    color: materialColors.whitePrimary
+  },
+  whiteBoldTitleSecondary: {
+    ...systemWeights.bold,
+    color: materialColors.whiteSecondary
+  }
 }

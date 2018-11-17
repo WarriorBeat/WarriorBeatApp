@@ -9,6 +9,10 @@ export function registerScreens() {
     () => require("screens").Initializing
   )
   Navigation.registerComponent("FeedView", () => require("screens").FeedView)
+  Navigation.registerComponent(
+    "Post.Article",
+    () => require("components/Post").Article
+  )
   Navigation.registerComponent("Signin", () => require("screens").Signin)
   Navigation.registerComponent("Signup", () => require("screens").Signup)
   Navigation.registerComponent(
