@@ -7,7 +7,7 @@
 import { StyleSheet } from "react-native"
 import { human } from "react-native-typography"
 import { systemWeights } from "react-native-typography"
-import { brand } from "config/styles"
+import { colors } from "config/styles"
 
 export const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
     alignContent: "center"
   },
   header: {
-    backgroundColor: brand.primary,
+    backgroundColor: colors.primary,
     alignSelf: "stretch",
     paddingVertical: 10,
     minHeight: 85

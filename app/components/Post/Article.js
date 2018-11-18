@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { Text } from "react-native-elements"
+import Text from "components/Text"
 import GenericPost, { HTML, AuthorHeader } from "./GenericPost"
 
 class Article extends React.Component {
@@ -16,7 +16,9 @@ class Article extends React.Component {
         backgroundSource={post.cover_image.source}
         Foreground={<AuthorHeader author={post.author} />}
       >
-        <Text>{post.title}</Text>
+        <Text Type="largeTitle" Weight="bold" Color="black">
+          {post.title}
+        </Text>
         <HTML html={post.content} />
       </GenericPost>
     )

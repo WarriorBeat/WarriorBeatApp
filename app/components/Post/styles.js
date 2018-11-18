@@ -5,7 +5,7 @@
  */
 
 import { StyleSheet, Dimensions } from "react-native"
-import { colors, fonts, brand } from "config/styles"
+import { colors, fonts } from "config/styles"
 
 export const window = Dimensions.get("window")
 
@@ -15,7 +15,7 @@ const HEADER_HEIGHT = 300
 export const styles = StyleSheet.create({
   header: {
     flex: 1,
-    backgroundColor: brand.primary,
+    backgroundColor: colors.primary,
     overflow: "hidden"
   },
   header_overlay: {
@@ -37,11 +37,11 @@ export const styles = StyleSheet.create({
   },
   author_title: {
     ...fonts.whiteHeadline,
-    ...fonts.boldShadow,
+    ...fonts.boldShadow
   },
   author_avatar: {
     borderRadius: 75,
-    borderColor: brand.primaryDark,
+    borderColor: colors.primaryDark,
     borderWidth: 1.5,
     shadowColor: colors.black,
     shadowOpacity: 0.5,
@@ -60,5 +60,5 @@ export const styles = StyleSheet.create({
 })
 
 export const header_styles = {
-  backgroundColor: brand.primaryDark
+  backgroundColor: colors.primaryDark
 }
