@@ -37,6 +37,7 @@ class GenericPost extends React.Component {
     return (
       <ParallaxScrollView
         backgroundColor={header_styles.backgroundColor}
+        contentBackgroundColor={header_styles.contentBackgroundColor}
         parallaxHeaderHeight={300}
         renderForeground={() => Foreground}
         renderBackground={() => (

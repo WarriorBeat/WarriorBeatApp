@@ -16,6 +16,11 @@ class ObservablePostStore {
 
   fetchPosts = flow(function*() {
     const resp = yield PostAPI.fetchAll()
+    resp.forEach(p => {
+      if (p.date) {
+        p.date = this.parseDateISO(p.date)
+      }
+    })
     this.posts = resp
     this.feed = resp
     return resp
@@ -25,6 +30,12 @@ class ObservablePostStore {
     const resp = yield CategoryAPI.fetchAll()
     this.categories = resp
   })
+
+  parseDateISO = iso_date => {
+    let date = new Date(iso_date)
+    let parsed = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`
+    return parsed
+  }
 
   async getCategory(category) {
     let posts = this.posts
@@ -48,7 +59,6 @@ class ObservablePostStore {
   addPostItem(item) {
     this.posts.push(item)
   }
-  s
 }
 
 const postStore = new ObservablePostStore()

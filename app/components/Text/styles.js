@@ -43,7 +43,7 @@ export const color = StyleSheet.create({
     color: materialColors.whiteSecondary
   },
   black: {
-    color: materialColors.blackPrimary
+    color: colors.black
   },
   black_light: {
     color: materialColors.blackSecondary

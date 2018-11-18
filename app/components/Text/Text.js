@@ -12,19 +12,19 @@ import { colors as genericColors } from "config/styles"
 class Text extends React.Component {
   handleType = () => {
     const { Type } = this.props
-    let font_type = Type ? type[Type] : type.body
+    let font_type = Type ? type[Type] : {}
     return font_type
   }
 
   handleColor = () => {
     const { Color } = this.props
-    let font_color = Color ? color[Color] : color.white
+    let font_color = Color ? color[Color] : {}
     return font_color
   }
 
   handleWeight = () => {
     const { Weight } = this.props
-    let font_weight = Weight ? weight[Weight] : weight.regular
+    let font_weight = Weight ? weight[Weight] : {}
     return font_weight
   }
 
@@ -40,14 +40,16 @@ class Text extends React.Component {
   }
 
   render() {
-    const { children } = this.props
+    const { children, style } = this.props
     let render_style = {
       ...this.handleType(),
       ...this.handleColor(),
       ...this.handleWeight(),
       ...this.handleDecor()
     }
-    return <RenderText style={render_style}>{children}</RenderText>
+    return (
+      <RenderText style={{ ...style, ...render_style }}>{children}</RenderText>
+    )
   }
 }
 
