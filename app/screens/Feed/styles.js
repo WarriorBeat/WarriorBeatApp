@@ -1,6 +1,6 @@
 /**
- * Home/styles.js
- * Home Screen Styles
+ * Feed/styles.js
+ * Feed View Styles
  * Screens
  */
 

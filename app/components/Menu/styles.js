@@ -5,9 +5,7 @@
  */
 
 import { StyleSheet } from "react-native"
-import { human } from "react-native-typography"
-import { colors } from "config/styles"
-import { systemWeights, materialColors } from "react-native-typography"
+import { colors, fonts } from "config/styles"
 
 export const side_menu = StyleSheet.create({
   container: {
@@ -64,19 +62,13 @@ export const side_menu = StyleSheet.create({
     height: 40
   },
   buttonText: {
-    ...human.title2WhiteObject,
-    ...systemWeights.bold,
-    color: materialColors.whitePrimary
+    ...fonts.whiteBoldTitle
   },
   buttonHeaderText: {
-    ...human.title2WhiteObject,
-    ...systemWeights.bold,
-    color: materialColors.whiteSecondary
+    ...fonts.whiteBoldTitleSecondary
   },
   buttonFooterText: {
-    ...human.title2whiteObject,
-    ...systemWeights.bold,
-    color: materialColors.whiteSecondary
+    ...fonts.whiteBoldTitleSecondary
   },
   buttonSecondary: {
     padding: 0,

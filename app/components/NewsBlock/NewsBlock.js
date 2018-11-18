@@ -7,8 +7,20 @@
 import React from "react"
 import { Tile } from "react-native-elements"
 import { styles } from "./styles"
+import { Navigation } from "react-native-navigation"
 
 class NewsBlock extends React.Component {
+  handlePress = post => {
+    Navigation.push("HomeScreen", {
+      component: {
+        name: "Post.Article",
+        passProps: {
+          post: post
+        }
+      }
+    })
+  }
+
   render() {
     let post = this.props.post
     return (
@@ -19,6 +31,7 @@ class NewsBlock extends React.Component {
         containerStyle={styles.container}
         contentContainerStyle={styles.content_cont}
         titleStyle={styles.caption}
+        onPress={() => this.handlePress(post)}
       />
     )
   }

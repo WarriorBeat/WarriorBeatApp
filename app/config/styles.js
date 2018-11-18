@@ -1,14 +1,20 @@
 /**
  * styles.js
  * Definition for common styles
- * Style
+ * Config
  */
 
-// Basic Colors
+import { human } from "react-native-typography"
+import { systemWeights, materialColors } from "react-native-typography"
+
+// Basic and Brand Colors
 const black = "#000"
 const white = "$fff"
 const transparent = "transparent"
 export const colors = {
+  primary: "#393939",
+  primaryDark: "#2d2d2d",
+  secondary: "#F6D609",
   black: black,
   white: white,
   transparent: transparent
@@ -20,9 +26,24 @@ export const soft_colors = {
   white: soft_white
 }
 
-// Brand Colors
-export const brand = {
-  primary: "#393939",
-  primaryDark: "#2d2d2d",
-  secondary: "#F6D609"
+// Font Styles
+export const fonts = {
+  whiteBoldTitle: {
+    ...human.title2WhiteObject,
+    ...systemWeights.bold,
+    color: materialColors.whitePrimary
+  },
+  whiteBoldTitleSecondary: {
+    ...systemWeights.bold,
+    color: materialColors.whiteSecondary
+  },
+  whiteHeadline: {
+    ...human.headlineWhiteObject
+  },
+  boldShadow: {
+    textShadowColor: colors.black,
+    textShadowRadius: 3,
+    textShadowOffset: { width: -1, height: 1 },
+    elevation: 2
+  }
 }
