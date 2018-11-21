@@ -57,7 +57,7 @@ class NewsBlock extends React.Component {
             <Text
               Type="headline"
               style={styles.author}
-              Shadow={"primary"}
+              Shadow="black"
               Weight="semibold"
             >
               {post.author.name}
