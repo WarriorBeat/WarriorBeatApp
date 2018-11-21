@@ -19,6 +19,18 @@ class Article extends React.Component {
         backgroundSource={post.cover_image.source}
         Foreground={<AuthorHeader author={post.author} />}
       >
+        <View style={article_styles.credits.container}>
+          <Text
+            style={article_styles.credits.text}
+            Type="captionsm"
+            Color="black_light"
+            Weight="thin"
+            Italic
+            NoPadding
+          >
+            {post.cover_image.credits}
+          </Text>
+        </View>
         <View style={article_styles.container}>
           <Text
             style={article_styles.title}

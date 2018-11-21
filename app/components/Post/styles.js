@@ -82,6 +82,18 @@ export const article_styles = {
       marginVertical: 15,
       padding: 5
     }
+  },
+  credits: {
+    container: {
+      marginBottom: 6,
+      padding: 0,
+      alignItems: "flex-end"
+    },
+    text: {
+      textAlignVertical: "center",
+      padding: 3,
+      position: "absolute"
+    }
   }
 }
 
