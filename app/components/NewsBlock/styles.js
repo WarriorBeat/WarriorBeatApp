@@ -45,5 +45,30 @@ export const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center"
+  },
+  author_container: {
+    position: "absolute",
+    top: -200,
+    right: 0,
+    zIndex: 20,
+    marginVertical: 10,
+    padding: 5,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    alignContent: "center",
+    justifyContent: "center"
+  },
+  author: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    alignSelf: "center",
+    padding: 5
+  },
+  author_img: {
+    elevation: 10,
+    borderColor: colors.black,
+    borderWidth: 1,
+    borderRadius: 34 / 2
   }
 })

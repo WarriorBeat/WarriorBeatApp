@@ -6,7 +6,7 @@
 
 import React from "react"
 import { View } from "react-native"
-import { Tile } from "react-native-elements"
+import { Tile, Avatar } from "react-native-elements"
 import { styles } from "./styles"
 import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
@@ -45,6 +45,22 @@ class NewsBlock extends React.Component {
               Weight="light"
             >
               {post.title}
+            </Text>
+          </View>
+          <View style={styles.author_container}>
+            <Avatar
+              small
+              rounded
+              source={{ uri: post.author.profile_image.source }}
+              overlayContainerStyle={styles.author_img}
+            />
+            <Text
+              Type="headline"
+              style={styles.author}
+              Shadow={"primary"}
+              Weight="semibold"
+            >
+              {post.author.name}
             </Text>
           </View>
         </Tile>

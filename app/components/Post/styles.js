@@ -31,7 +31,7 @@ export const styles = StyleSheet.create({
     height: HEADER_HEIGHT,
     flex: 1,
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   author_name: {
     ...fonts.whiteBoldTitle,
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 3,
     shadowOffset: { width: 5, height: 9 },
-    elevation: 2
+    elevation: 10
   },
   scroll_container: {
     justifyContent: "center",
