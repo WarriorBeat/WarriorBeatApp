@@ -18,13 +18,14 @@ export const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: colors.transparent,
+    backgroundColor: colors.whiteTertiary,
+    borderRadius: 6,
     width: "100%",
     shadowColor: colors.black,
     shadowOpacity: 0.5,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 9 },
-    elevation: 2
+    elevation: 8
   },
   image_container: {
     borderTopEndRadius: 6,
