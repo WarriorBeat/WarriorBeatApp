@@ -1,6 +1,7 @@
 /**
- *  api/api.js
+ *  api.js
  *  main API class for WarriorBeatApp
+ *  api
  */
 
 import * as log from "loglevel"
@@ -47,3 +48,4 @@ class API {
 
 export const PostAPI = new API("posts")
 export const CategoryAPI = new API("categories")
+export const AuthorAPI = new API("authors")

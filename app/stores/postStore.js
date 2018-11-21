@@ -1,10 +1,12 @@
 /**
- *  stores/posts.js
+ *  postStore.js
  *  mobx store for post data
+ *  stores
  */
 
 import { observable, flow } from "mobx"
-import { PostAPI, CategoryAPI } from "api/api"
+import { PostAPI, CategoryAPI } from "api"
+import AuthorStore from "./authorStore"
 
 class ObservablePostStore {
   @observable
@@ -16,10 +18,14 @@ class ObservablePostStore {
 
   fetchPosts = flow(function*() {
     const resp = yield PostAPI.fetchAll()
+    let authors = yield AuthorStore.fetchAuthors()
     resp.forEach(p => {
       if (p.date) {
         p.date = this.parseDateISO(p.date)
       }
+      p.author = authors.find(a => {
+        return a.authorId == p.authorId
+      })
     })
     this.posts = resp
     this.feed = resp
