@@ -5,9 +5,11 @@
  */
 
 import React from "react"
+import { View } from "react-native"
 import { Tile } from "react-native-elements"
 import { styles } from "./styles"
 import { Navigation } from "react-native-navigation"
+import Text from "components/Text"
 
 class NewsBlock extends React.Component {
   handlePress = post => {
@@ -24,15 +26,29 @@ class NewsBlock extends React.Component {
   render() {
     let post = this.props.post
     return (
-      <Tile
-        imageSrc={{ uri: post.cover_image.source }}
-        title={post.title}
-        caption={post.author.name}
-        containerStyle={styles.container}
-        contentContainerStyle={styles.content_cont}
-        titleStyle={styles.caption}
-        onPress={() => this.handlePress(post)}
-      />
+      <View style={styles.block}>
+        <Tile
+          style={styles.tile}
+          imageSrc={{ uri: post.cover_image.source }}
+          caption={post.author.name}
+          containerStyle={styles.container}
+          contentContainerStyle={styles.content_container}
+          imageContainerStyle={styles.image_container}
+          titleStyle={styles.caption}
+          onPress={() => this.handlePress(post)}
+        >
+          <View style={styles.content}>
+            <Text
+              style={styles.title}
+              Type="title"
+              Color="black"
+              Weight="light"
+            >
+              {post.title}
+            </Text>
+          </View>
+        </Tile>
+      </View>
     )
   }
 }
