@@ -5,7 +5,7 @@
  */
 
 import { StyleSheet, Dimensions } from "react-native"
-import { colors, soft_colors, fonts } from "config/styles"
+import { colors, soft_colors } from "config/styles"
 import { type as font_type } from "components/Text/styles"
 import { materialColors } from "react-native-typography"
 
@@ -26,30 +26,6 @@ export const styles = StyleSheet.create({
     width: window.width,
     backgroundColor: HEADER_OVERLAY,
     height: HEADER_HEIGHT
-  },
-  author_header: {
-    height: HEADER_HEIGHT,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  author_name: {
-    ...fonts.whiteBoldTitle,
-    ...fonts.boldShadow
-  },
-  author_title: {
-    ...fonts.whiteHeadline,
-    ...fonts.boldShadow
-  },
-  author_avatar: {
-    borderRadius: 75,
-    borderColor: colors.primaryDark,
-    borderWidth: 1.5,
-    shadowColor: colors.black,
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    shadowOffset: { width: 5, height: 9 },
-    elevation: 10
   },
   scroll_container: {
     justifyContent: "center",

@@ -7,7 +7,8 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import GenericPost, { HTML, AuthorHeader } from "./GenericPost"
+import GenericPost, { HTML } from "./GenericPost"
+import { AuthorHeader } from "components/Author"
 import { article_styles } from "./styles"
 
 class Article extends React.Component {
