@@ -5,5 +5,6 @@
  */
 
 import AuthorHeader from "./AuthorHeader"
+import AuthorSummary from "./AuthorSummary"
 
-export { AuthorHeader }
+export { AuthorHeader, AuthorSummary }
