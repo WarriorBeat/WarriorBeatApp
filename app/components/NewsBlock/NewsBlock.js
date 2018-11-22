@@ -27,6 +27,23 @@ class NewsBlock extends React.Component {
     let post = this.props.post
     return (
       <View style={styles.block}>
+        <View style={styles.author_container}>
+          <Avatar
+            medium
+            rounded
+            source={{ uri: post.author.profile_image.source }}
+            overlayContainerStyle={styles.author_img}
+            containerStyle={styles.author_img_contianer}
+          />
+          <Text
+            Type="callout"
+            style={styles.author}
+            Shadow="black"
+            Weight="semibold"
+          >
+            {post.author.name}
+          </Text>
+        </View>
         <Tile
           style={styles.tile}
           imageSrc={{ uri: post.cover_image.source }}
@@ -45,23 +62,6 @@ class NewsBlock extends React.Component {
               Weight="light"
             >
               {post.title}
-            </Text>
-          </View>
-          <View style={styles.author_container}>
-            <Avatar
-              medium
-              rounded
-              source={{ uri: post.author.profile_image.source }}
-              overlayContainerStyle={styles.author_img}
-              containerStyle={styles.author_img_contianer}
-            />
-            <Text
-              Type="headline"
-              style={styles.author}
-              Shadow="black"
-              Weight="semibold"
-            >
-              {post.author.name}
             </Text>
           </View>
         </Tile>
