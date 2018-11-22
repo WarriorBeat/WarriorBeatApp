@@ -77,3 +77,32 @@ export const header_styles = {
   backgroundColor: colors.primaryDark,
   contentBackgroundColor: soft_colors.white
 }
+
+export const related = StyleSheet.create({
+  root: {
+    marginBottom: 10
+  },
+  title: {
+    margin: 15
+  },
+  container: {
+    shadowColor: colors.black,
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    shadowOffset: { width: 1, height: 0 },
+    elevation: 8
+  },
+  wrapper: {
+    height: 250
+  },
+  item_container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 40
+  },
+  image_container: {
+    borderRadius: 6,
+    overflow: "hidden"
+  }
+})

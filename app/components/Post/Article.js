@@ -8,6 +8,7 @@ import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
 import GenericPost, { HTML } from "./GenericPost"
+import RelatedPost from "./RelatedPost"
 import { AuthorHeader, AuthorSummary } from "components/Author"
 import { article_styles } from "./styles"
 
@@ -49,6 +50,7 @@ class Article extends React.Component {
           <HTML html={post.content} />
           <AuthorSummary author={post.author} />
         </View>
+        <RelatedPost post={post} />
       </GenericPost>
     )
   }
