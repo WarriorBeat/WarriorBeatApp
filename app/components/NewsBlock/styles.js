@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
   tile: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: colors.transparent
+    backgroundColor: colors.transparent,
+    flexDirection: "row"
   },
   container: {
     flex: 1,
@@ -31,15 +32,16 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 6,
     borderTopLeftRadius: 6,
     overflow: "hidden",
-    resizeMode: "cover",
-    flex: 3
+    resizeMode: "cover"
   },
   content_container: {
-    flex: 1,
+    paddingTop: 10,
+    paddingBottom: 10,
     borderBottomEndRadius: 6,
     borderBottomLeftRadius: 6,
     backgroundColor: colors.whitePrimary,
     alignItems: "center",
+    alignSelf: "stretch",
     justifyContent: "center",
     flexDirection: "row"
   },
@@ -48,14 +50,15 @@ export const styles = StyleSheet.create({
   },
   author_container: {
     position: "absolute",
-    top: "-300%",
+    top: 0,
     right: 0,
-    zIndex: 20,
+    zIndex: 100,
+    elevation: 100,
     marginVertical: 10,
     padding: 5,
     flex: 1,
-    flexDirection: "row",
-    alignItems: "flex-start",
+    flexDirection: "column",
+    alignItems: "center",
     alignContent: "center",
     justifyContent: "center"
   },
