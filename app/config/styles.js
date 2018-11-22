@@ -9,14 +9,14 @@ import { systemWeights, materialColors } from "react-native-typography"
 
 // Basic and Brand Colors
 const black = "#000"
-const white = "$fff"
 const transparent = "transparent"
 export const colors = {
+  ...materialColors,
   primary: "#393939",
   primaryDark: "#2d2d2d",
   secondary: "#F6D609",
   black: black,
-  white: white,
+  white: materialColors.whitePrimary,
   transparent: transparent
 }
 

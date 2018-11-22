@@ -13,8 +13,6 @@ export function registerScreens() {
     "Post.Article",
     () => require("components/Post").Article
   )
-  Navigation.registerComponent("Signin", () => require("screens").Signin)
-  Navigation.registerComponent("Signup", () => require("screens").Signup)
   Navigation.registerComponent(
     "NavMenu",
     () => require("components/Menu").default

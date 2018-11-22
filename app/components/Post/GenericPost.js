@@ -6,29 +6,12 @@
 
 import React from "react"
 import { View, Image } from "react-native"
-import { Avatar, Text } from "react-native-elements"
 import { styles, header_styles, window } from "./styles"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 
 export const HTML = props => {
   return <RenderHTML baseFontStyle={styles.html_font} {...props} />
-}
-
-export const AuthorHeader = props => {
-  const { name, title, profile_image } = props.author
-  return (
-    <View style={styles.author_header}>
-      <Avatar
-        xlarge
-        rounded
-        source={{ uri: profile_image.source }}
-        containerStyle={styles.author_avatar}
-      />
-      <Text style={styles.author_name}>{name}</Text>
-      <Text style={styles.author_title}>{title}</Text>
-    </View>
-  )
 }
 
 class GenericPost extends React.Component {

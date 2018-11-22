@@ -85,7 +85,7 @@ export const type = StyleSheet.create({
     ...human.subheadWhiteObject
   },
   footnote: {
-    ...human.footnote
+    ...human.footnoteWhiteObject
   },
   caption: {
     ...human.caption1WhiteObject

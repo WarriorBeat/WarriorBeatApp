@@ -5,7 +5,7 @@
  */
 
 import { StyleSheet, Dimensions } from "react-native"
-import { colors, soft_colors, fonts } from "config/styles"
+import { colors, soft_colors } from "config/styles"
 import { type as font_type } from "components/Text/styles"
 import { materialColors } from "react-native-typography"
 
@@ -26,30 +26,6 @@ export const styles = StyleSheet.create({
     width: window.width,
     backgroundColor: HEADER_OVERLAY,
     height: HEADER_HEIGHT
-  },
-  author_header: {
-    height: HEADER_HEIGHT,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  author_name: {
-    ...fonts.whiteBoldTitle,
-    ...fonts.boldShadow
-  },
-  author_title: {
-    ...fonts.whiteHeadline,
-    ...fonts.boldShadow
-  },
-  author_avatar: {
-    borderRadius: 75,
-    borderColor: colors.primaryDark,
-    borderWidth: 1.5,
-    shadowColor: colors.black,
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    shadowOffset: { width: 5, height: 9 },
-    elevation: 2
   },
   scroll_container: {
     justifyContent: "center",
@@ -82,6 +58,18 @@ export const article_styles = {
       marginVertical: 15,
       padding: 5
     }
+  },
+  credits: {
+    container: {
+      marginBottom: 6,
+      padding: 0,
+      alignItems: "flex-end"
+    },
+    text: {
+      textAlignVertical: "center",
+      padding: 3,
+      position: "absolute"
+    }
   }
 }
 
@@ -89,3 +77,32 @@ export const header_styles = {
   backgroundColor: colors.primaryDark,
   contentBackgroundColor: soft_colors.white
 }
+
+export const related = StyleSheet.create({
+  root: {
+    marginBottom: 10
+  },
+  title: {
+    margin: 15
+  },
+  container: {
+    shadowColor: colors.black,
+    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    shadowOffset: { width: 1, height: 0 },
+    elevation: 8
+  },
+  wrapper: {
+    height: 250
+  },
+  item_container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 40
+  },
+  image_container: {
+    borderRadius: 6,
+    overflow: "hidden"
+  }
+})

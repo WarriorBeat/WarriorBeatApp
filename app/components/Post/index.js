@@ -5,5 +5,6 @@
  */
 
 import Article from "./Article"
+import RelatedPost from "./RelatedPost"
 
-export { Article }
+export { Article, RelatedPost }

@@ -5549,6 +5549,12 @@ react-native-render-html@^3.10.0:
     htmlparser2 "^3.9.0"
     stream "0.0.2"
 
+react-native-swiper@^1.5.13:
+  version "1.5.13"
+  resolved "https://registry.yarnpkg.com/react-native-swiper/-/react-native-swiper-1.5.13.tgz#fa695cd4ab77b9a9df2d2bfee38ea7274dd07a2e"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-typography@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-typography/-/react-native-typography-1.4.0.tgz#166b79c618075882d8af07720649f5bc6523160d"

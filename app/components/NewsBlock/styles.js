@@ -5,30 +5,77 @@
  */
 
 import { StyleSheet } from "react-native"
-import { colors, soft_colors } from "config/styles"
-
-const border_color = "rgba(0,0,0,0.15)"
+import { colors } from "config/styles"
 
 export const styles = StyleSheet.create({
+  block: {
+    marginVertical: 10
+  },
+  tile: {
+    flex: 1,
+    paddingVertical: 10,
+    backgroundColor: colors.transparent
+  },
   container: {
+    flex: 1,
+    backgroundColor: colors.whiteTertiary,
     borderRadius: 6,
-    borderColor: border_color,
-    borderWidth: 1.5,
     width: "100%",
-    display: "flex",
-    marginTop: 10,
     shadowColor: colors.black,
     shadowOpacity: 0.5,
-    shadowRadius: 3,
-    shadowOffset: { width: 5, height: 9 },
-    elevation: 2
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 9 },
+    elevation: 8
   },
-  content_cont: {
-    height: 70,
-    backgroundColor: soft_colors.white,
-    alignItems: "center"
+  image_container: {
+    borderTopEndRadius: 6,
+    borderTopLeftRadius: 6,
+    overflow: "hidden",
+    resizeMode: "cover",
+    flex: 3
   },
-  caption: {
-    fontWeight: "600"
+  content_container: {
+    flex: 1,
+    borderBottomEndRadius: 6,
+    borderBottomLeftRadius: 6,
+    backgroundColor: colors.whitePrimary,
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row"
+  },
+  title: {
+    textAlign: "center"
+  },
+  author_container: {
+    position: "absolute",
+    top: "-300%",
+    right: 0,
+    zIndex: 20,
+    marginVertical: 10,
+    padding: 5,
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    alignContent: "center",
+    justifyContent: "center"
+  },
+  author: {
+    textAlign: "center",
+    textAlignVertical: "center",
+    alignSelf: "center",
+    padding: 5
+  },
+  author_img_container: {
+    flex: 1,
+    borderColor: colors.primaryDark,
+    borderWidth: 2,
+    borderRadius: 22
+  },
+  author_img: {
+    elevation: 10,
+    shadowColor: colors.black,
+    shadowOpacity: 0.7,
+    shadowRadius: 1.5,
+    shadowOffset: { width: 0, height: 4 }
   }
 })
