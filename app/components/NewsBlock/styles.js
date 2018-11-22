@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   author_container: {
     position: "absolute",
-    top: "-290%",
+    top: "-300%",
     right: 0,
     zIndex: 20,
     marginVertical: 10,
@@ -65,11 +65,14 @@ export const styles = StyleSheet.create({
     alignSelf: "center",
     padding: 5
   },
+  author_img_container: {
+    flex: 1,
+    borderColor: colors.primaryDark,
+    borderWidth: 2,
+    borderRadius: 22
+  },
   author_img: {
     elevation: 10,
-    borderRadius: 34 / 2,
-    borderColor: colors.primaryDark,
-    borderWidth: 1.5,
     shadowColor: colors.black,
     shadowOpacity: 0.7,
     shadowRadius: 1.5,

@@ -49,10 +49,11 @@ class NewsBlock extends React.Component {
           </View>
           <View style={styles.author_container}>
             <Avatar
-              small
+              medium
               rounded
               source={{ uri: post.author.profile_image.source }}
               overlayContainerStyle={styles.author_img}
+              containerStyle={styles.author_img_contianer}
             />
             <Text
               Type="headline"

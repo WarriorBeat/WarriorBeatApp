@@ -40,7 +40,8 @@ export const summary = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "stretch",
-    flexDirection: "row"
+    flexDirection: "row",
+    marginVertical: 25
   },
   header: {
     flex: 1,

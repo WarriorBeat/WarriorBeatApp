@@ -13,11 +13,13 @@ import { related as styles } from "./styles"
 import PostStore from "stores/postStore"
 import { observer } from "mobx-react"
 import { observable } from "mobx"
+import { Navigation } from "react-native-navigation"
 
 const RelatedPostItem = props => {
-  const { post } = props
+  const { post, handlePress } = props
   return (
     <Tile
+      onPress={() => handlePress(post)}
       containerStyle={styles.container}
       imageContainerStyle={styles.image_container}
       featured
@@ -37,6 +39,17 @@ const RelatedPostItem = props => {
 class RelatedPost extends React.Component {
   @observable
   related = []
+
+  handlePress = post => {
+    Navigation.push("HomeScreen", {
+      component: {
+        name: "Post.Article",
+        passProps: {
+          post: post
+        }
+      }
+    })
+  }
 
   componentDidMount = async () => {
     const { post } = this.props
@@ -66,7 +79,10 @@ class RelatedPost extends React.Component {
           {this.related.map(p => {
             return (
               <View key={this.related.indexOf(p)} style={styles.item_container}>
-                <RelatedPostItem post={p} />
+                <RelatedPostItem
+                  post={p}
+                  handlePress={p => this.handlePress(p)}
+                />
               </View>
             )
           })}
