@@ -62,8 +62,26 @@ class ObservablePostStore {
     return filtered
   }
 
-  addPostItem(item) {
-    this.posts.push(item)
+  async getRelated(post) {
+    let posts = this.posts
+    if (this.posts.length <= 0) {
+      posts = await this.fetchPosts()
+    }
+    let categories = post.categories.map(c => {
+      return c.categoryId
+    })
+    let x_category = posts.filter(p => {
+      let p_categories = p.categories.map(c => {
+        return c.categoryId
+      })
+      if (
+        p.postId !== post.postId &&
+        p_categories.some(cat => categories.includes(cat))
+      ) {
+        return p
+      }
+    })
+    return x_category
   }
 }
 

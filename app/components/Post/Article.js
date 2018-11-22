@@ -7,8 +7,11 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import GenericPost, { HTML, AuthorHeader } from "./GenericPost"
+import GenericPost, { HTML } from "./GenericPost"
+import RelatedPost from "./RelatedPost"
+import { AuthorHeader, AuthorSummary } from "components/Author"
 import { article_styles } from "./styles"
+import { Divider } from "react-native-elements"
 
 class Article extends React.Component {
   render() {
@@ -35,10 +38,18 @@ class Article extends React.Component {
           <Text
             style={article_styles.title}
             Type="largeTitle"
-            Weight="regular"
+            Weight="bold"
             Color="black"
           >
             {post.title}
+          </Text>
+          <Text
+            Type="headline"
+            Color="primary"
+            Weight="light"
+            style={article_styles.title}
+          >
+            {post.categories[0].name}
           </Text>
           <View style={article_styles.post_header.container}>
             <Text>
@@ -46,7 +57,10 @@ class Article extends React.Component {
             </Text>
           </View>
           <HTML html={post.content} />
+          <Divider style={article_styles.divider} />
+          <AuthorSummary author={post.author} />
         </View>
+        <RelatedPost post={post} />
       </GenericPost>
     )
   }
