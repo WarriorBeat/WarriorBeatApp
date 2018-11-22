@@ -10,6 +10,9 @@ import { Tile } from "react-native-elements"
 import Swiper from "react-native-swiper"
 import Text from "components/Text"
 import { related as styles } from "./styles"
+import PostStore from "stores/postStore"
+import { observer } from "mobx-react"
+import { observable } from "mobx"
 
 const RelatedPostItem = props => {
   const { post } = props
@@ -30,9 +33,19 @@ const RelatedPostItem = props => {
   )
 }
 
+@observer
 class RelatedPost extends React.Component {
-  render() {
+  @observable
+  related = []
+
+  componentDidMount = async () => {
     const { post } = this.props
+    let related = await PostStore.getRelated(post)
+    this.related = related
+    return related
+  }
+
+  render() {
     return (
       <View style={styles.root}>
         <Text
@@ -43,10 +56,20 @@ class RelatedPost extends React.Component {
         >
           Related
         </Text>
-        <Swiper containerStyle={styles.swiper_container} style={styles.wrapper}>
-          <View style={styles.item_container}>
-            <RelatedPostItem post={post} />
-          </View>
+        <Swiper
+          loop
+          showsPagination={false}
+          showsButtons={false}
+          containerStyle={styles.swiper_container}
+          style={styles.wrapper}
+        >
+          {this.related.map(p => {
+            return (
+              <View key={this.related.indexOf(p)} style={styles.item_container}>
+                <RelatedPostItem post={p} />
+              </View>
+            )
+          })}
         </Swiper>
       </View>
     )
