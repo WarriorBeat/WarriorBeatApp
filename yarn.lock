@@ -6373,6 +6373,11 @@ react-native-render-html@^3.10.0:
     htmlparser2 "^3.9.0"
     stream "0.0.2"
 
+react-native-responsive-screen@^1.1.10:
+  version "1.1.10"
+  resolved "https://registry.yarnpkg.com/react-native-responsive-screen/-/react-native-responsive-screen-1.1.10.tgz#2dae970f86445ad20ff727fcd0fb359692ef0b3d"
+  integrity sha512-4jg6+hRtPfKWQfvTXO8D0vucu/vBLnxEYojKun5bWlmS+uFt1UHTEIe1fntIUFfIo9ibhZTekmJLdrd/D53S5g==
+
 react-native-snap-carousel@^3.7.5:
   version "3.7.5"
   resolved "https://registry.yarnpkg.com/react-native-snap-carousel/-/react-native-snap-carousel-3.7.5.tgz#7172456d40ab9161523055eb302f9b03b244240a"
