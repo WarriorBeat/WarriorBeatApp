@@ -7,9 +7,9 @@
 import React from "react"
 import { View } from "react-native"
 import { Tile } from "react-native-elements"
-import Swiper from "react-native-swiper"
+import Carousel from "react-native-snap-carousel"
 import Text from "components/Text"
-import { related as styles } from "./styles"
+import { related as styles, window } from "./styles"
 import PostStore from "stores/postStore"
 import { observer } from "mobx-react"
 import { observable } from "mobx"
@@ -19,6 +19,7 @@ const RelatedPostItem = props => {
   const { post, handlePress } = props
   return (
     <Tile
+      key={post.postId}
       onPress={() => handlePress(post)}
       containerStyle={styles.container}
       imageContainerStyle={styles.image_container}
@@ -58,6 +59,12 @@ class RelatedPost extends React.Component {
     return related
   }
 
+  _renderItem = ({ item }) => {
+    return (
+      <RelatedPostItem post={item} handlePress={p => this.handlePress(p)} />
+    )
+  }
+
   render() {
     return (
       <View style={styles.root}>
@@ -69,24 +76,15 @@ class RelatedPost extends React.Component {
         >
           Related
         </Text>
-        <Swiper
+        <Carousel
+          data={this.related}
+          renderItem={this._renderItem}
+          sliderWidth={window.width}
+          itemHeight={300}
+          itemWidth={window.width / 1.3}
           loop
-          showsPagination={false}
-          showsButtons={false}
-          containerStyle={styles.swiper_container}
-          style={styles.wrapper}
-        >
-          {this.related.map(p => {
-            return (
-              <View key={this.related.indexOf(p)} style={styles.item_container}>
-                <RelatedPostItem
-                  post={p}
-                  handlePress={p => this.handlePress(p)}
-                />
-              </View>
-            )
-          })}
-        </Swiper>
+          autoplay
+        />
       </View>
     )
   }
