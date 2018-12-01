@@ -58,20 +58,14 @@ export const styles = StyleSheet.create({
     right: 0,
     zIndex: 100,
     elevation: 100,
-    marginVertical: hp("2%"),
-    padding: wp("2%"),
+    marginVertical: hp(".25%"),
+    marginHorizontal: wp("-3%"),
+    paddingVertical: hp(".5%"),
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center"
-  },
-  author: {
-    textAlign: "center",
-    textAlignVertical: "center",
-    alignSelf: "center",
-    paddingVertical: hp(".5%"),
-    paddingHorizontal: wp(".5%")
   },
   author_img_container: {
     flex: 1,

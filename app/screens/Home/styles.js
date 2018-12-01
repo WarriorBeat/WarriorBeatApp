@@ -9,7 +9,6 @@ import { human } from "react-native-typography"
 import { systemWeights } from "react-native-typography"
 import { colors } from "config/styles"
 import {
-  widthPercentageToDP as wp,
   heightPercentageToDP as hp
 } from "react-native-responsive-screen"
 
