@@ -7,11 +7,10 @@
 import { StyleSheet } from "react-native"
 import { colors, fonts } from "config/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
-const HEADER_HEIGHT = 300
 
 export const styles = StyleSheet.create({
   author_header: {
-    height: HEADER_HEIGHT,
+    height: hp("30%"),
     flex: 1,
     alignItems: "center",
     justifyContent: "center"

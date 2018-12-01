@@ -8,9 +8,7 @@ import { StyleSheet } from "react-native"
 import { human } from "react-native-typography"
 import { systemWeights } from "react-native-typography"
 import { colors } from "config/styles"
-import {
-  heightPercentageToDP as hp
-} from "react-native-responsive-screen"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 export const styles = StyleSheet.create({
   container: {
@@ -23,7 +21,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     alignSelf: "stretch",
     paddingVertical: 10,
-    minHeight: hp("11%")
+    minHeight: hp("15%")
   },
   headerText: {
     ...human.largeTitleWhiteObject,
