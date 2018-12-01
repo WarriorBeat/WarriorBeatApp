@@ -39,8 +39,8 @@ export const side_menu = StyleSheet.create({
   footer_container: {
     display: "flex",
     position: "absolute",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: "center",
+    alignItems: "stretch",
     textAlign: "left",
     left: 0,
     bottom: 0,
@@ -72,12 +72,10 @@ export const side_menu = StyleSheet.create({
     ...fonts.whiteBoldTitleSecondary
   },
   buttonFooterText: {
-    ...fonts.whiteBoldTitleSecondary
+    ...fonts.whiteBoldTitleSecondary,
   },
   buttonSecondary: {
     padding: 0,
-    margin: 0,
-    height: hp("3%"),
     marginVertical: hp(".7%"),
     alignSelf: "flex-start"
   }
