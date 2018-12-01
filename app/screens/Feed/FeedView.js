@@ -25,7 +25,11 @@ class FeedView extends React.Component {
         <Header
           centerComponent={{ text: category, style: styles.headerText }}
           outerContainerStyles={styles.header}
-          statusBarProps={{ barStyle: "light-content" }}
+          statusBarProps={{
+            barStyle: "light-content",
+            backgroundColor: "#00000039",
+            drawBehind: true
+          }}
         />
         <GenericFeed store={store} />
       </View>
