@@ -9,7 +9,11 @@ import { View } from "react-native"
 import { Tile } from "react-native-elements"
 import Carousel from "react-native-snap-carousel"
 import Text from "components/Text"
-import { related as styles, window } from "./styles"
+import {
+  related as styles,
+  window,
+  related_size as styles_size
+} from "./styles"
 import PostStore from "stores/postStore"
 import { observer } from "mobx-react"
 import { observable } from "mobx"
@@ -30,7 +34,7 @@ const RelatedPostItem = props => {
           {post.title}
         </Text>
       }
-      height={250}
+      height={styles_size.height}
       width={"100%"}
     />
   )
@@ -80,7 +84,7 @@ class RelatedPost extends React.Component {
           data={this.related}
           renderItem={this._renderItem}
           sliderWidth={window.width}
-          itemHeight={300}
+          itemHeight={styles_size.item_height}
           itemWidth={window.width / 1.3}
           loop
           autoplay

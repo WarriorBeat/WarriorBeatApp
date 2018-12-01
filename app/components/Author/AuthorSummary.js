@@ -24,7 +24,7 @@ class AuthorSummary extends React.Component {
         <View style={styles.header}>
           <Text
             style={styles.title}
-            Type="titlesm"
+            Type="titlexsm"
             Weight="regular"
             Color="primaryDark"
           >
