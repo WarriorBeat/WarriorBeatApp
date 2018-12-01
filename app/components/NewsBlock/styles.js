@@ -6,6 +6,10 @@
 
 import { StyleSheet } from "react-native"
 import { colors } from "config/styles"
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen"
 
 export const styles = StyleSheet.create({
   block: {
@@ -35,8 +39,8 @@ export const styles = StyleSheet.create({
     resizeMode: "cover"
   },
   content_container: {
-    paddingTop: 10,
-    paddingBottom: 10,
+    paddingTop: hp("2%"),
+    paddingBottom: hp("2%"),
     borderBottomEndRadius: 6,
     borderBottomLeftRadius: 6,
     backgroundColor: colors.whitePrimary,
@@ -54,19 +58,14 @@ export const styles = StyleSheet.create({
     right: 0,
     zIndex: 100,
     elevation: 100,
-    marginVertical: 10,
-    padding: 5,
+    marginVertical: hp(".25%"),
+    marginHorizontal: wp("2.5%"),
+    paddingVertical: hp(".5%"),
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
     justifyContent: "center"
-  },
-  author: {
-    textAlign: "center",
-    textAlignVertical: "center",
-    alignSelf: "center",
-    padding: 5
   },
   author_img_container: {
     flex: 1,

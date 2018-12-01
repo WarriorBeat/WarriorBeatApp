@@ -6,6 +6,7 @@
 
 import { StyleSheet } from "react-native"
 import { colors, fonts } from "config/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 const HEADER_HEIGHT = 300
 
 export const styles = StyleSheet.create({
@@ -41,7 +42,7 @@ export const summary = StyleSheet.create({
     justifyContent: "center",
     alignItems: "stretch",
     flexDirection: "row",
-    marginVertical: 25
+    marginVertical: hp("4%")
   },
   header: {
     flex: 1,

@@ -35,19 +35,10 @@ class NewsBlock extends React.Component {
             overlayContainerStyle={styles.author_img}
             containerStyle={styles.author_img_contianer}
           />
-          <Text
-            Type="callout"
-            style={styles.author}
-            Shadow="black"
-            Weight="semibold"
-          >
-            {post.author.name}
-          </Text>
         </View>
         <Tile
           style={styles.tile}
           imageSrc={{ uri: post.cover_image.source }}
-          caption={post.author.name}
           containerStyle={styles.container}
           contentContainerStyle={styles.content_container}
           imageContainerStyle={styles.image_container}

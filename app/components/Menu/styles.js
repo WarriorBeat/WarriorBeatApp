@@ -6,6 +6,10 @@
 
 import { StyleSheet } from "react-native"
 import { colors, fonts } from "config/styles"
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen"
 
 export const side_menu = StyleSheet.create({
   container: {
@@ -51,15 +55,15 @@ export const side_menu = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.transparent,
     borderRadius: 75,
-    marginVertical: 40,
-    marginHorizontal: 10,
+    marginVertical: hp("5.5%"),
+    marginHorizontal: wp("2.5%"),
     position: "absolute"
   },
   button: {
     padding: 0,
     margin: 0,
     marginVertical: 5,
-    height: 40
+    height: hp("5%")
   },
   buttonText: {
     ...fonts.whiteBoldTitle
@@ -73,8 +77,8 @@ export const side_menu = StyleSheet.create({
   buttonSecondary: {
     padding: 0,
     margin: 0,
-    height: 20,
-    marginVertical: 5,
+    height: hp("3%"),
+    marginVertical: hp(".7%"),
     alignSelf: "flex-start"
   }
 })

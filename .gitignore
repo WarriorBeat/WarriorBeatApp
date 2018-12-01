@@ -22,6 +22,7 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 *.p12
+ios/warriorbeatapp-release/*
 
 # Android/IntelliJ
 #
