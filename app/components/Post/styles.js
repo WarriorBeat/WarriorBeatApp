@@ -130,3 +130,17 @@ export const related_size = {
   height: hp("40%"),
   item_height: hp("50%")
 }
+
+export const reaction = StyleSheet.create({
+  wrapper: {
+    flex: 1
+  },
+  emoji: {
+    color: colors.white
+  }
+})
+
+export const reaction_settings = {
+  button_color: "rgba(45,45,45, 1)",
+  button_item_color: colors.primary
+}
