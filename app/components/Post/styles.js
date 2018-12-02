@@ -30,6 +30,10 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     ...font_type.body,
     color: materialColors.blackPrimary
+  },
+  touchable_overlay: {
+    height: HEADER_HEIGHT,
+    width: "100%"
   }
 })
 
