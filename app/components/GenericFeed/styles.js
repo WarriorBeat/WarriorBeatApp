@@ -6,20 +6,21 @@
 
 import { StyleSheet } from "react-native"
 import { colors, soft_colors } from "config/styles"
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from "react-native-responsive-screen"
 
 export const styles = StyleSheet.create({
   scroll_view: {
     flex: 1,
-    alignSelf: "stretch",
-    alignContent: "stretch",
     backgroundColor: soft_colors.white
   },
   list_container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "stretch",
-    margin: 20,
-    paddingVertical: 10,
+    marginVertical: hp("1.5%"),
+    marginHorizontal: wp("5%"),
     backgroundColor: colors.transparent
   }
 })

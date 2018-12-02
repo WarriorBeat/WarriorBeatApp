@@ -8,24 +8,20 @@ import { StyleSheet, Dimensions } from "react-native"
 import { colors, soft_colors } from "config/styles"
 import { type as font_type } from "components/Text/styles"
 import { materialColors } from "react-native-typography"
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp
+} from "react-native-responsive-screen"
 
 export const window = Dimensions.get("window")
-
-const HEADER_OVERLAY = "rgba(0,0,0,.4)"
-const HEADER_HEIGHT = 300
+export const HEADER_HEIGHT = hp("40%")
+export const STICKY_HEADER_HEIGHT = hp("10%")
 
 export const styles = StyleSheet.create({
   header: {
     flex: 1,
     backgroundColor: colors.primary,
     overflow: "hidden"
-  },
-  header_overlay: {
-    position: "absolute",
-    top: 0,
-    width: window.width,
-    backgroundColor: HEADER_OVERLAY,
-    height: HEADER_HEIGHT
   },
   scroll_container: {
     justifyContent: "center",
@@ -35,13 +31,36 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     ...font_type.body,
     color: materialColors.blackPrimary
+  },
+  touchable_overlay: {
+    height: HEADER_HEIGHT,
+    width: "100%"
+  },
+  sticky_container: {
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  fixed_container: {
+    position: "absolute",
+    left: 0,
+    top: hp("1%"),
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  header_button: {
+    alignSelf: "center"
   }
 })
 
 export const article_styles = {
   container: {
     flex: 1,
-    margin: 15,
+    marginVertical: hp("3%"),
+    marginHorizontal: wp("3%"),
     alignContent: "center"
   },
   title: {
@@ -55,13 +74,13 @@ export const article_styles = {
       borderTopWidth: 2.5,
       borderBottomWidth: 2.5,
       borderColor: colors.secondary,
-      marginVertical: 15,
+      marginVertical: hp("2%"),
       padding: 5
     }
   },
   credits: {
     container: {
-      marginBottom: 6,
+      marginBottom: hp("1%"),
       padding: 0,
       alignItems: "flex-end"
     },
@@ -106,3 +125,8 @@ export const related = StyleSheet.create({
     overflow: "hidden"
   }
 })
+
+export const related_size = {
+  height: hp("40%"),
+  item_height: hp("50%")
+}

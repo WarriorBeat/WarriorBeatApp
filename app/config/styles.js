@@ -6,6 +6,7 @@
 
 import { human } from "react-native-typography"
 import { systemWeights, materialColors } from "react-native-typography"
+import { Navigation } from "react-native-navigation"
 
 // Basic and Brand Colors
 const black = "#000"
@@ -45,5 +46,47 @@ export const fonts = {
     textShadowRadius: 3,
     textShadowOffset: { width: -1, height: 1 },
     elevation: 2
+  }
+}
+
+// RNN Navigation Constants
+export const getNavConstants = async () => {
+  const NavConstants = await Navigation.constants()
+  return NavConstants
+}
+
+// App Icons
+export const icons = {
+  home: {
+    name: "home",
+    type: "entypo"
+  },
+  news: {
+    name: "newspaper-o",
+    type: "font-awesome"
+  },
+  sports: {
+    name: "football",
+    type: "material-community"
+  },
+  categories: {
+    name: "star",
+    type: "font-awesome"
+  },
+  entertainment: {
+    name: "popcorn",
+    type: "material-community"
+  },
+  opinion: {
+    name: "thought-bubble",
+    type: "material-community"
+  },
+  arrow_back: {
+    name: "ios-arrow-back",
+    type: "ionicon"
+  },
+  menu: {
+    name: "md-menu",
+    type: "ionicon"
   }
 }

@@ -5,36 +5,8 @@
  */
 
 import { StyleSheet } from "react-native"
-import { colors, fonts } from "config/styles"
+import { colors } from "config/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
-const HEADER_HEIGHT = 300
-
-export const styles = StyleSheet.create({
-  author_header: {
-    height: HEADER_HEIGHT,
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  author_avatar: {
-    borderRadius: 75,
-    borderColor: colors.primaryDark,
-    borderWidth: 1.5,
-    shadowColor: colors.black,
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    shadowOffset: { width: 5, height: 9 },
-    elevation: 10
-  },
-  author_name: {
-    ...fonts.whiteBoldTitle,
-    ...fonts.boldShadow
-  },
-  author_title: {
-    ...fonts.whiteHeadline,
-    ...fonts.boldShadow
-  }
-})
 
 export const summary = StyleSheet.create({
   summary_container: {
