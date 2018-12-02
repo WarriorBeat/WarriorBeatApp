@@ -80,33 +80,3 @@ export const side_menu = StyleSheet.create({
     alignSelf: "flex-start"
   }
 })
-
-export const icons = {
-  home: {
-    name: "home",
-    type: "entypo"
-  },
-  news: {
-    name: "newspaper-o",
-    type: "font-awesome"
-  },
-  sports: {
-    name: "football",
-    type: "material-community"
-  },
-  categories: {
-    name: "star",
-    type: "font-awesome"
-  },
-  entertainment: {
-    name: "popcorn",
-    type: "material-community"
-  },
-  opinion: {
-    name: "thought-bubble",
-    type: "material-community"
-  },
-  arrow_back: {
-    name: "arrow-back"
-  }
-}
