@@ -9,7 +9,7 @@ import { View } from "react-native"
 import Text from "components/Text"
 import GenericPost, { HTML } from "./GenericPost"
 import RelatedPost from "./RelatedPost"
-import { AuthorHeader, AuthorSummary } from "components/Author"
+import { AuthorSummary } from "components/Author"
 import { article_styles } from "./styles"
 import { Divider } from "react-native-elements"
 
@@ -18,10 +18,7 @@ class Article extends React.Component {
     const { post } = this.props
     const BULL = " • "
     return (
-      <GenericPost
-        backgroundSource={post.cover_image.source}
-        Foreground={<AuthorHeader author={post.author} />}
-      >
+      <GenericPost backgroundSource={post.cover_image.source}>
         <View style={article_styles.credits.container}>
           <Text
             style={article_styles.credits.text}

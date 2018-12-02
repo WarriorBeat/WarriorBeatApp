@@ -14,22 +14,14 @@ import {
 } from "react-native-responsive-screen"
 
 export const window = Dimensions.get("window")
-
-const HEADER_OVERLAY = "rgba(0,0,0,.4)"
-const HEADER_HEIGHT = 300
+export const HEADER_HEIGHT = hp("40%")
+export const STICKY_HEADER_HEIGHT = hp("10%")
 
 export const styles = StyleSheet.create({
   header: {
     flex: 1,
     backgroundColor: colors.primary,
     overflow: "hidden"
-  },
-  header_overlay: {
-    position: "absolute",
-    top: 0,
-    width: window.width,
-    backgroundColor: HEADER_OVERLAY,
-    height: HEADER_HEIGHT
   },
   scroll_container: {
     justifyContent: "center",
@@ -39,6 +31,28 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     ...font_type.body,
     color: materialColors.blackPrimary
+  },
+  touchable_overlay: {
+    height: HEADER_HEIGHT,
+    width: "100%"
+  },
+  sticky_container: {
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  fixed_container: {
+    position: "absolute",
+    left: 0,
+    top: hp("1%"),
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  header_button: {
+    alignSelf: "center"
   }
 })
 
