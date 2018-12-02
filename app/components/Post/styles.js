@@ -15,6 +15,7 @@ import {
 
 export const window = Dimensions.get("window")
 export const HEADER_HEIGHT = hp("40%")
+export const STICKY_HEADER_HEIGHT = hp("10%")
 
 export const styles = StyleSheet.create({
   header: {
@@ -34,6 +35,24 @@ export const styles = StyleSheet.create({
   touchable_overlay: {
     height: HEADER_HEIGHT,
     width: "100%"
+  },
+  sticky_container: {
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  fixed_container: {
+    position: "absolute",
+    left: 0,
+    top: hp("1%"),
+    height: STICKY_HEADER_HEIGHT,
+    width: "100%",
+    alignItems: "flex-start",
+    justifyContent: "center"
+  },
+  header_button: {
+    alignSelf: "center"
   }
 })
 

@@ -6,10 +6,18 @@
 
 import React from "react"
 import { View, TouchableWithoutFeedback, Image } from "react-native"
-import { styles, header_styles, window, HEADER_HEIGHT } from "./styles"
+import {
+  styles,
+  header_styles,
+  window,
+  HEADER_HEIGHT,
+  STICKY_HEADER_HEIGHT
+} from "./styles"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
+import { Button } from "react-native-elements"
+import { Navigation } from "react-native-navigation"
 
 export const HTML = props => {
   return <RenderHTML baseFontStyle={styles.html_font} {...props} />
@@ -18,6 +26,10 @@ export const HTML = props => {
 class GenericPost extends React.Component {
   openLightBox = () => {
     this._box.open()
+  }
+
+  popScreen = () => {
+    Navigation.pop("ArticleView")
   }
 
   render() {
@@ -32,6 +44,19 @@ class GenericPost extends React.Component {
             <View style={styles.touchable_overlay} />
           </TouchableWithoutFeedback>
         )}
+        renderFixedHeader={() => (
+          <View style={styles.fixed_container}>
+            <Button
+              large
+              backgroundColor={"transparent"}
+              icon={{ name: "ios-arrow-back", type: "ionicon" }}
+              buttonStyle={styles.header_button}
+              onPress={() => this.popScreen()}
+            />
+          </View>
+        )}
+        renderStickyHeader={() => <View style={styles.sticky_container} />}
+        stickyHeaderHeight={STICKY_HEADER_HEIGHT}
         renderBackground={() => (
           <Lightbox ref={box => (this._box = box)} navigator={null}>
             <Image

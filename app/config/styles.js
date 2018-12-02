@@ -6,6 +6,7 @@
 
 import { human } from "react-native-typography"
 import { systemWeights, materialColors } from "react-native-typography"
+import { Navigation } from "react-native-navigation"
 
 // Basic and Brand Colors
 const black = "#000"
@@ -46,4 +47,10 @@ export const fonts = {
     textShadowOffset: { width: -1, height: 1 },
     elevation: 2
   }
+}
+
+// RNN Navigation Constants
+export const getNavConstants = async () => {
+  const NavConstants = await Navigation.constants()
+  return NavConstants
 }
