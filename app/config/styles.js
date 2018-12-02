@@ -54,3 +54,35 @@ export const getNavConstants = async () => {
   const NavConstants = await Navigation.constants()
   return NavConstants
 }
+
+// App Icons
+export const icons = {
+  home: {
+    name: "home",
+    type: "entypo"
+  },
+  news: {
+    name: "newspaper-o",
+    type: "font-awesome"
+  },
+  sports: {
+    name: "football",
+    type: "material-community"
+  },
+  categories: {
+    name: "star",
+    type: "font-awesome"
+  },
+  entertainment: {
+    name: "popcorn",
+    type: "material-community"
+  },
+  opinion: {
+    name: "thought-bubble",
+    type: "material-community"
+  },
+  arrow_back: {
+    name: "ios-arrow-back",
+    type: "ionicon"
+  }
+}

@@ -18,6 +18,7 @@ import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
 import { Button } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
+import { icons } from "config/styles"
 
 export const HTML = props => {
   return <RenderHTML baseFontStyle={styles.html_font} {...props} />
@@ -49,7 +50,7 @@ class GenericPost extends React.Component {
             <Button
               large
               backgroundColor={"transparent"}
-              icon={{ name: "ios-arrow-back", type: "ionicon" }}
+              icon={icons.arrow_back}
               buttonStyle={styles.header_button}
               onPress={() => this.popScreen()}
             />

@@ -7,11 +7,11 @@
  */
 import React from "react"
 import { View } from "react-native"
-import { icons } from "./styles"
 import { SideMenu, MenuButton } from "./index"
 import { Navigation } from "react-native-navigation"
 import { viewPosts, returnHome } from "actions/navigation"
 import { brand_media } from "config/assets"
+import { icons } from "config/styles"
 
 export const SubMenu = props => {
   const { categories } = props.store
