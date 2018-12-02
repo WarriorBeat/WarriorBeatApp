@@ -42,12 +42,15 @@ export const goHome = () =>
     }
   })
 
-// Close Side Menu
-export const closeMenu = (menu = "PrimaryNavMenu") => {
+// Change Side Menu State
+export const toggleMenu = ({
+  menu = "PrimaryNavMenu",
+  status = false
+} = {}) => {
   Navigation.mergeOptions(menu, {
     sideMenu: {
       left: {
-        visible: false
+        visible: status
       }
     }
   })
@@ -64,11 +67,11 @@ export const viewPosts = (componentId, category) => {
       }
     }
   })
-  closeMenu()
+  toggleMenu()
 }
 
 // Return to Home Screen
 export const returnHome = () => {
   Navigation.popTo("HomeScreen")
-  closeMenu()
+  toggleMenu()
 }

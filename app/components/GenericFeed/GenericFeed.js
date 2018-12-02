@@ -5,9 +5,8 @@
  */
 
 import React from "react"
-import { ScrollView } from "react-native"
+import { ScrollView, View } from "react-native"
 import { observer } from "mobx-react"
-import { List } from "react-native-elements"
 import NewsBlock from "components/NewsBlock"
 import { styles } from "./styles"
 
@@ -18,11 +17,11 @@ class GenericFeed extends React.Component {
 
     return (
       <ScrollView style={styles.scroll_view}>
-        <List containerStyle={styles.list_container}>
+        <View style={styles.list_container}>
           {store.feed.map(p => {
             return <NewsBlock key={p.postId} post={p} />
           })}
-        </List>
+        </View>
       </ScrollView>
     )
   }

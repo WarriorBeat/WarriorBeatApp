@@ -84,5 +84,9 @@ export const icons = {
   arrow_back: {
     name: "ios-arrow-back",
     type: "ionicon"
+  },
+  menu: {
+    name: "md-menu",
+    type: "ionicon"
   }
 }
