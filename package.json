@@ -8,7 +8,8 @@
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
     "lint": "node_modules/eslint/bin/eslint.js *.js **/*.js",
     "postversion": "react-native-version",
-    "commit": "git cz"
+    "commit": "yarn changelog && git add CHANGELOG.md && git cz",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -u -r 0"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
