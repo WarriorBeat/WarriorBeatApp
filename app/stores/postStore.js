@@ -18,12 +18,13 @@ class ObservablePostStore {
   fetchPosts = flow(function*() {
     let includes = ["categories", "cover_image"]
     let author_includes = ["profile_image"]
-    const resp = yield PostAPI.fetchIDs()
-    resp.forEach(async id => {
+    let resp = yield PostAPI.fetchIDs()
+    resp.map(async (id, index) => {
       let post = await PostAPI.get(id, includes)
       const author = await AuthorAPI.get(post.author, author_includes)
       post.author = author
       post.date = this.parseDateISO(post.date)
+      post.index = index
       this.posts.push(post)
       this.feed.push(post)
       return post
@@ -62,10 +63,6 @@ class ObservablePostStore {
 
   async getRelated(post) {
     let posts = this.posts
-    if (this.posts.length <= 0) {
-      posts = await this.fetchPosts()
-      posts = this.posts
-    }
     let categories = post.categories.map(c => {
       return c.categoryId
     })
