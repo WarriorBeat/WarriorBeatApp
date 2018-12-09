@@ -28,7 +28,7 @@ const RelatedPostItem = props => {
       containerStyle={styles.container}
       imageContainerStyle={styles.image_container}
       featured
-      imageSrc={{ uri: post.cover_image.source }}
+      imageSrc={{ uri: post.cover_image.url }}
       title={
         <Text Shadow="primaryDark" Type="title" Weight="semibold">
           {post.title}

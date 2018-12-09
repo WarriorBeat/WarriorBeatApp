@@ -18,7 +18,7 @@ class Article extends React.Component {
     const { post } = this.props
     const BULL = " • "
     return (
-      <GenericPost backgroundSource={post.cover_image.source}>
+      <GenericPost backgroundSource={post.cover_image.url}>
         <View style={article_styles.credits.container}>
           <Text
             style={article_styles.credits.text}

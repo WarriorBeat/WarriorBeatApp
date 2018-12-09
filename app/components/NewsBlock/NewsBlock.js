@@ -32,14 +32,14 @@ class NewsBlock extends React.Component {
           <Avatar
             medium
             rounded
-            source={{ uri: post.author.profile_image.source }}
+            source={{ uri: post.author.profile_image.url }}
             overlayContainerStyle={styles.author_img}
             containerStyle={styles.author_img_contianer}
           />
         </View>
         <Tile
           style={styles.tile}
-          imageSrc={{ uri: post.cover_image.source }}
+          imageSrc={{ uri: post.cover_image.url }}
           containerStyle={styles.container}
           contentContainerStyle={styles.content_container}
           imageContainerStyle={styles.image_container}
