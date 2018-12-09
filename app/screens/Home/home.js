@@ -12,6 +12,7 @@ import { Button } from "react-native-elements"
 import { toggleMenu } from "actions/navigation"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
+
 class Home extends React.Component {
   componentDidMount() {
     const { store } = this.props

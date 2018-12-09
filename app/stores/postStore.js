@@ -5,8 +5,7 @@
  */
 
 import { observable, flow } from "mobx"
-import { PostAPI, CategoryAPI } from "api"
-import AuthorStore from "./authorStore"
+import { PostAPI, AuthorAPI, CategoryAPI } from "api"
 
 class ObservablePostStore {
   @observable
@@ -17,19 +16,18 @@ class ObservablePostStore {
   categories = []
 
   fetchPosts = flow(function*() {
-    const resp = yield PostAPI.fetchAll()
-    let authors = yield AuthorStore.fetchAuthors()
-    resp.forEach(p => {
-      if (p.date) {
-        p.date = this.parseDateISO(p.date)
-      }
-      p.author = authors.find(a => {
-        return a.authorId == p.authorId
-      })
+    let includes = ["categories", "cover_image"]
+    let author_includes = ["profile_image"]
+    const resp = yield PostAPI.fetchIDs()
+    resp.forEach(async id => {
+      let post = await PostAPI.get(id, includes)
+      const author = await AuthorAPI.get(post.author, author_includes)
+      post.author = author
+      post.date = this.parseDateISO(post.date)
+      this.posts.push(post)
+      this.feed.push(post)
+      return post
     })
-    this.posts = resp
-    this.feed = resp
-    return resp
   })
 
   fetchCategories = flow(function*() {
@@ -66,6 +64,7 @@ class ObservablePostStore {
     let posts = this.posts
     if (this.posts.length <= 0) {
       posts = await this.fetchPosts()
+      posts = this.posts
     }
     let categories = post.categories.map(c => {
       return c.categoryId
