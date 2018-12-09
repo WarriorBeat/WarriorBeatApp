@@ -5126,6 +5126,11 @@ lodash.times@^4.3.2:
   resolved "https://registry.yarnpkg.com/lodash.times/-/lodash.times-4.3.2.tgz#3e1f2565c431754d54ab57f2ed1741939285ca1d"
   integrity sha1-Ph8lZcQxdU1Uq1fy7RdBk5KFyh0=
 
+lodash.toarray@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
+  integrity sha1-JMS/zWsvuji/0FlNsRedjptlZWE=
+
 lodash.unescape@4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/lodash.unescape/-/lodash.unescape-4.0.1.tgz#bf2249886ce514cda112fae9218cdc065211fc9c"
@@ -5678,6 +5683,13 @@ nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
+
+node-emoji@1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/node-emoji/-/node-emoji-1.8.1.tgz#6eec6bfb07421e2148c75c6bba72421f8530a826"
+  integrity sha512-+ktMAh1Jwas+TnGodfCfjUbJKoANqPaJFN0z0iqh41eqD8dvguNzcitVSBSVK1pidz0AqGbLKcoVuVLRVZ/aVg==
+  dependencies:
+    lodash.toarray "^4.4.0"
 
 node-fetch@1.6.3:
   version "1.6.3"
@@ -6451,6 +6463,13 @@ react-native-elements@^0.19.1:
     lodash.times "^4.3.2"
     opencollective "^1.0.3"
     prop-types "^15.5.8"
+
+react-native-emoji@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/react-native-emoji/-/react-native-emoji-1.3.1.tgz#1beaafaf4e2ce81d613990989ab1c7fae55ec063"
+  integrity sha512-mRkILnqktOO3ndiE+0u0wsztbFZGKDW8N/LqJ1cuugh/popALpGuZxnnYBSLUFPj7alISuksyCcysOS4+CeR/A==
+  dependencies:
+    node-emoji "1.8.1"
 
 react-native-lightbox@^0.8.0:
   version "0.8.0"

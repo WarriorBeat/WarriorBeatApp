@@ -88,5 +88,9 @@ export const icons = {
   menu: {
     name: "md-menu",
     type: "ionicon"
+  },
+  features: {
+    name: "new-releases",
+    type: "material-icons"
   }
 }

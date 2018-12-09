@@ -48,8 +48,9 @@ export const side_menu = StyleSheet.create({
     paddingVertical: 15
   },
   image: {
-    height: 170,
-    width: 170,
+    height: wp("40%"),
+    width: wp("40%"),
+    zIndex : 99,
     flex: 1,
     alignSelf: "flex-start",
     borderWidth: 1,
@@ -72,7 +73,7 @@ export const side_menu = StyleSheet.create({
     ...fonts.whiteBoldTitleSecondary
   },
   buttonFooterText: {
-    ...fonts.whiteBoldTitleSecondary,
+    ...fonts.whiteBoldTitleSecondary
   },
   buttonSecondary: {
     padding: 0,
