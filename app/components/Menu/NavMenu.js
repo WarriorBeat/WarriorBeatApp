@@ -65,7 +65,7 @@ class NavMenu extends React.Component {
   }
 
   filterPosts = category => {
-    viewPosts("HomeScreen", category)
+    viewPosts("HomeScreen", this.props.store, category)
   }
 
   render() {
