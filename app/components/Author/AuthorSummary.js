@@ -19,7 +19,7 @@ class AuthorSummary extends React.Component {
           containerStyle={styles.avatar}
           rounded
           large
-          source={{ uri: profile_image.source }}
+          source={{ uri: profile_image.url }}
         />
         <View style={styles.header}>
           <Text

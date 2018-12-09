@@ -15,10 +15,11 @@ import { Divider } from "react-native-elements"
 
 class Article extends React.Component {
   render() {
-    const { post } = this.props
+    const { active, store } = this.props
+    const post = store.feed[active]
     const BULL = " • "
     return (
-      <GenericPost backgroundSource={post.cover_image.source}>
+      <GenericPost backgroundSource={post.cover_image.url}>
         <View style={article_styles.credits.container}>
           <Text
             style={article_styles.credits.text}
@@ -57,7 +58,7 @@ class Article extends React.Component {
           <Divider style={article_styles.divider} />
           <AuthorSummary author={post.author} />
         </View>
-        <RelatedPost post={post} />
+        <RelatedPost store={store} active={active} />
       </GenericPost>
     )
   }
