@@ -57,12 +57,12 @@ export const toggleMenu = ({
 }
 
 // Push new view of Posts
-export const viewPosts = (componentId, category) => {
+export const viewPosts = (componentId, store, category) => {
   Navigation.push(componentId, {
     component: {
       name: "FeedView",
       passProps: {
-        store: PostStore,
+        store: store,
         category: category
       }
     }
