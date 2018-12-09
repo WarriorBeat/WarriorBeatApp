@@ -136,11 +136,17 @@ export const reaction = StyleSheet.create({
     flex: 1
   },
   emoji: {
-    color: colors.white
+    color: colors.white,
+    fontSize: wp("5.5%"),
+    padding: wp("2%"),
+    textShadowColor: colors.black,
+    textShadowRadius: 6,
+    textShadowOffset: { width: 1, height: 0 },
+    elevation: 2
   }
 })
 
 export const reaction_settings = {
-  button_color: "rgba(45,45,45, 1)",
-  button_item_color: colors.primary
+  button_color: "rgba(39,39,39, 1)",
+  button_item_color: "rgba(39, 39, 39, 1)"
 }
