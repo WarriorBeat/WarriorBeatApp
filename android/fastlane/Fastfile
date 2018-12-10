@@ -24,8 +24,12 @@ platform :android do
   desc "Build and Release on App Center"
   lane :build do
     sh "./load_secret.sh"
-    gradle(task: "clean")
-    gradle(task: "assemble", build_type: 'release')
+    gradle(task: "app:assembleRelease")
+    appcenter_upload(
+      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+      should_clip: false,
+      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
+    )
     sh "./load_secret.sh clean"
   end
 
