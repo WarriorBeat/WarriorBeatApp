@@ -16,10 +16,14 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Push a new beta build to TestFlight"
-  lane :beta do
-    increment_build_number(xcodeproj: "warriorbeatapp.xcodeproj")
-    build_app(scheme: "warriorbeatapp")
-    upload_to_testflight
+  desc "Build latest changes" 
+  lane :build do
+    sh("./load_secret.sh")
+    build_app(scheme: "warriorbeatapp", export_xcargs: "-allowProvisioningUpdates")
+    sh("./load_secret.sh clean")
+    appcenter_upload(
+      should_clip: false,
+      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
+    )
   end
 end
