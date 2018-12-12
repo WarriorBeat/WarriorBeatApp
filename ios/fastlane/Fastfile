@@ -1,0 +1,31 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build latest changes" 
+  lane :build do
+    sh("./load_secret.sh")
+    get_certificates(development:true)
+    get_provisioning_profile(development:true)
+    build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
+    sh("./load_secret.sh clean")
+    appcenter_upload(
+      should_clip: false,
+      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
+    )
+  end
+end

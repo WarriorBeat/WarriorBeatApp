@@ -53,6 +53,8 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+*/fastlane/test_output
+*/*app.dSYM.zip
 
 # Bundle artifact
 *.jsbundle
@@ -69,3 +71,6 @@ aws-exports.*
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
+*.mobileprovision
+
+*.cer

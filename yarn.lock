@@ -4821,7 +4821,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@4.x.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
+lodash@4.17.x, lodash@^4.0.0, lodash@^4.13.1, lodash@^4.17.10, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.2.1, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
@@ -6067,12 +6067,12 @@ react-native-linear-gradient@react-native-community/react-native-linear-gradient
   version "2.4.2"
   resolved "https://codeload.github.com/react-native-community/react-native-linear-gradient/tar.gz/1be0beb7210f1c3486fbe7544d284dd146251022"
 
-react-native-navigation@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.1.2.tgz#225698d7b39dd114a01ef0a301cca18af260316b"
+react-native-navigation@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.2.0.tgz#183eea45975f4a4b9d2ce8a6fef3cc7994f8a86f"
   dependencies:
     hoist-non-react-statics "3.x.x"
-    lodash "4.x.x"
+    lodash "4.17.x"
     prop-types "15.x.x"
     react-lifecycles-compat "2.0.0"
     tslib "1.9.3"
