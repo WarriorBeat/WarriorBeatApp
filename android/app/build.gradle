@@ -98,7 +98,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.warriorbeatapp"
+        applicationId "org.lamarcountyschools.ogwarriorbeat"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
@@ -173,6 +173,7 @@ dependencies {
     compile project(':react-native-linear-gradient') // Linear Gradient
     implementation project(':amazon-cognito-identity-js')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.android.support:design:25.4.0'
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-navigation')
