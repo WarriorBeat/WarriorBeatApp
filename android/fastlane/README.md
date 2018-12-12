@@ -26,6 +26,11 @@ Runs all the tests
 fastlane android build
 ```
 Build and Release on App Center
+### android install_release
+```
+fastlane android install_release
+```
+Install Release on Device
 ### android beta
 ```
 fastlane android beta

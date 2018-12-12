@@ -33,6 +33,12 @@ platform :android do
     sh "./load_secret.sh clean"
   end
 
+  desc "Install Release on Device"
+  lane :install_release do
+    gradle(task: "app:assembleRelease")
+    gradle(task: "app:installRelease")
+  end
+
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleRelease")
