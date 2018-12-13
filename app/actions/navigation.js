@@ -1,7 +1,6 @@
 // navigation.js
 
 import { Navigation } from "react-native-navigation"
-import PostStore from "../stores/postStore"
 
 // Home Screen
 export const goHome = () =>
@@ -14,10 +13,7 @@ export const goHome = () =>
               {
                 component: {
                   name: "NavMenu",
-                  id: "PrimaryNavMenu",
-                  passProps: {
-                    store: PostStore
-                  }
+                  id: "PrimaryNavMenu"
                 }
               }
             ]
@@ -29,10 +25,7 @@ export const goHome = () =>
               {
                 component: {
                   name: "Home",
-                  id: "HomeScreen",
-                  passProps: {
-                    store: PostStore
-                  }
+                  id: "HomeScreen"
                 }
               }
             ]
