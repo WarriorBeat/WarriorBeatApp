@@ -12,11 +12,14 @@ import RelatedPost from "./RelatedPost"
 import { AuthorSummary } from "components/Author"
 import { article_styles } from "./styles"
 import { Divider } from "react-native-elements"
+import { observer, inject } from "mobx-react/native"
 
+@inject("postStore")
+@observer
 class Article extends React.Component {
   render() {
-    const { active, store } = this.props
-    const post = store.feed[active]
+    const { postStore, postId } = this.props
+    let post = postStore.resolvePost(postId)
     const BULL = " • "
     return (
       <GenericPost backgroundSource={post.cover_image.url}>
@@ -58,7 +61,7 @@ class Article extends React.Component {
           <Divider style={article_styles.divider} />
           <AuthorSummary author={post.author} />
         </View>
-        <RelatedPost store={store} active={active} />
+        <RelatedPost />
       </GenericPost>
     )
   }

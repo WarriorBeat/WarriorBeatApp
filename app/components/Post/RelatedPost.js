@@ -14,16 +14,16 @@ import {
   window,
   related_size as styles_size
 } from "./styles"
-import { observer } from "mobx-react"
 import { observable } from "mobx"
 import { Navigation } from "react-native-navigation"
+import { observer, inject } from "mobx-react/native"
 
 const RelatedPostItem = props => {
   const { post, handlePress } = props
   return (
     <Tile
-      key={post.postId}
-      onPress={() => handlePress(post.index)}
+      key={post.id}
+      onPress={() => handlePress(post.id)}
       containerStyle={styles.container}
       imageContainerStyle={styles.image_container}
       featured
@@ -39,30 +39,21 @@ const RelatedPostItem = props => {
   )
 }
 
+@inject("postStore")
 @observer
 class RelatedPost extends React.Component {
   @observable
   related = []
 
-  handlePress = postIndex => {
-    const { store } = this.props
+  handlePress = postId => {
     Navigation.push("HomeScreen", {
       component: {
         name: "Post.Article",
         passProps: {
-          active: postIndex,
-          store: store
+          postId: postId
         }
       }
     })
-  }
-
-  componentDidMount = async () => {
-    const { active, store } = this.props
-    let post = store.feed[active]
-    let related = await store.getRelated(post)
-    this.related = related
-    return related
   }
 
   _renderItem = ({ item }) => {
@@ -72,6 +63,7 @@ class RelatedPost extends React.Component {
   }
 
   render() {
+    this.related = this.props.postStore.posts
     return (
       <View style={styles.root}>
         <Text

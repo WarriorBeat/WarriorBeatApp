@@ -15,11 +15,14 @@ import { observer, inject } from "mobx-react/native"
 @inject("postStore")
 @observer
 class NewsBlock extends React.Component {
-  handlePress = postIndex => {
+  handlePress = postId => {
     Navigation.push("HomeScreen", {
       component: {
         name: "Post.Article",
-        id: "ArticleView"
+        id: "ArticleView",
+        passProps: {
+          postId: postId
+        }
       }
     })
   }
