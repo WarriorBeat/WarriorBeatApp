@@ -36,9 +36,8 @@ export class CategoryStore {
     if (!category) {
       category = new Category(this, json.categoryId)
       this.categories.push(category)
-    } else {
-      category.updateFromJson(json)
     }
+    category.updateFromJson(json)
   }
 
   resolveCategories(ids) {
@@ -61,11 +60,18 @@ export class Category {
   constructor(store, id) {
     this.store = store
     this.id = id
-    this.saveHandler = reaction(() => this.asJson, json => {})
+    this.saveHandler = reaction(
+      () => this.asJson,
+      json => {
+        if (this.autoSave) {
+          this.store.updateCategory(json)
+        }
+      }
+    )
   }
 
   @computed
-  asJson() {
+  get asJson() {
     return {
       categoryId: this.id,
       name: this.name

@@ -4,7 +4,7 @@
  *  stores
  */
 
-import { observable, flow, computed, reaction } from "mobx"
+import { observable, flow, computed, reaction, when } from "mobx"
 
 export class PostStore {
   authorStore
@@ -26,8 +26,13 @@ export class PostStore {
     this.state = "pending"
     this.posts = []
     const posts = yield this.resourceClient.fetchAll()
-    posts.forEach(json => this.updatePost(json))
-    this.state = "ready"
+    when(
+      () => this.rootStore.authorStore.status == "ready",
+      () => {
+        posts.forEach(json => this.updatePost(json))
+        this.state = "ready"
+      }
+    )
   })
 
   updatePost(json) {
@@ -35,9 +40,13 @@ export class PostStore {
     if (!post) {
       post = new Post(this, json.postId)
       this.posts.push(post)
-    } else {
-      post.updateFromJson(json)
     }
+    post.updateFromJson(json)
+  }
+
+  resolvePost(id) {
+    let post = this.posts.find(post => post.id === id)
+    return post !== null ? post : null
   }
 }
 
@@ -60,7 +69,14 @@ export class Post {
     this.store = store
     this.id = id
     // Add Save Handler to update post on server (reactions, etc)
-    this.saveHandler = reaction(() => this.asJson, json => {})
+    this.saveHandler = reaction(
+      () => this.asJson,
+      json => {
+        if (this.autoSave) {
+          this.store.updatePost(json)
+        }
+      }
+    )
   }
 
   @computed
@@ -70,8 +86,8 @@ export class Post {
       title: this.title,
       date: this.date,
       content: this.content,
-      author: this.author.id,
-      cover_image: this.cover_image.id,
+      author: this.author,
+      cover_image: this.cover_image,
       type: this.type,
       categories: this.categories
     }
@@ -89,10 +105,12 @@ export class Post {
     this.title = json.title
     this.date = this.parsePostDate(json.date)
     this.content = json.content
-    this.author = this.rootStore.authorStore.resolveAuthor(json.author)
-    this.cover_image = this.rootStore.mediaStore.resolveMedia(json.cover_image)
+    this.author = this.store.rootStore.authorStore.resolveAuthor(json.author)
+    this.cover_image = this.store.rootStore.mediaStore.resolveMedia(
+      json.cover_image
+    )
     this.type = json.type
-    this.categories = this.rootStore.categoryStore.resolveCategories(
+    this.categories = this.store.rootStore.categoryStore.resolveCategories(
       json.categories
     )
     this.autoSave = true
