@@ -51,7 +51,8 @@ class NavMenu extends React.Component {
         name: "NavMenu.SubMenu",
         passProps: {
           exitSubmenu: this.exitSubmenu,
-          filterPosts: this.filterPosts
+          filterPosts: this.filterPosts,
+          store: this.props.rootStore.categoryStore
         }
       }
     })
