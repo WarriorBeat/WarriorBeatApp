@@ -12,6 +12,7 @@ import { Navigation } from "react-native-navigation"
 import { viewPosts, returnHome } from "actions/navigation"
 import { brand_media } from "config/assets"
 import { icons } from "config/styles"
+import { observer, inject } from "mobx-react/native"
 
 export const SubMenu = props => {
   const { categories } = props.store
@@ -41,18 +42,14 @@ export const SubMenu = props => {
     </SideMenu>
   )
 }
-
+@inject("rootStore")
+@observer
 class NavMenu extends React.Component {
-  componentDidMount() {
-    this.props.store.fetchCategories()
-  }
-
   enterSubmenu() {
     Navigation.push(this.props.componentId, {
       component: {
         name: "NavMenu.SubMenu",
         passProps: {
-          store: this.props.store,
           exitSubmenu: this.exitSubmenu,
           filterPosts: this.filterPosts
         }

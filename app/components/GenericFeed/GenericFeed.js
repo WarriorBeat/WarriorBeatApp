@@ -6,20 +6,19 @@
 
 import React from "react"
 import { ScrollView, View } from "react-native"
-import { observer } from "mobx-react"
+import { observer, inject } from "mobx-react/native"
 import NewsBlock from "components/NewsBlock"
 import { styles } from "./styles"
 
+@inject("postStore")
 @observer
 class GenericFeed extends React.Component {
   render() {
-    const { store } = this.props
-
     return (
       <ScrollView style={styles.scroll_view}>
         <View style={styles.list_container}>
-          {store.feed.map((p, index) => {
-            return <NewsBlock key={p.postId} store={store} active={index} />
+          {this.props.postStore.posts.map(p => {
+            return <NewsBlock key={p.id} postId={p.id} />
           })}
         </View>
       </ScrollView>

@@ -10,24 +10,23 @@ import { Tile, Avatar } from "react-native-elements"
 import { styles } from "./styles"
 import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
+import { observer, inject } from "mobx-react/native"
 
+@inject("postStore")
+@observer
 class NewsBlock extends React.Component {
   handlePress = postIndex => {
     Navigation.push("HomeScreen", {
       component: {
         name: "Post.Article",
-        id: "ArticleView",
-        passProps: {
-          active: postIndex,
-          store: this.props.store
-        }
+        id: "ArticleView"
       }
     })
   }
 
   render() {
-    let { active, store } = this.props
-    let post = store.feed[active]
+    const { postStore, postId } = this.props
+    let post = postStore.resolvePost(postId)
     return (
       <View style={styles.block}>
         <View style={styles.author_container}>
@@ -46,7 +45,7 @@ class NewsBlock extends React.Component {
           contentContainerStyle={styles.content_container}
           imageContainerStyle={styles.image_container}
           titleStyle={styles.caption}
-          onPress={() => this.handlePress(active)}
+          onPress={() => this.handlePress(post.id)}
         >
           <View style={styles.content}>
             <Text
