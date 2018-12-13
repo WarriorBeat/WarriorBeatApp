@@ -4,82 +4,97 @@
  *  stores
  */
 
-import { observable, flow } from "mobx"
-import { PostAPI, AuthorAPI, CategoryAPI } from "api"
+import { observable, flow, computed, reaction } from "mobx"
 
-class ObservablePostStore {
+export class PostStore {
+  authorStore
+  resourceClient
+
   @observable
   posts = []
+
   @observable
-  feed = []
+  state = "pending"
+
+  constructor(rootStore, resourceClient) {
+    this.rootStore = rootStore
+    this.resourceClient = resourceClient
+    this.loadPosts()
+  }
+
+  loadPosts = flow(function*() {
+    this.state = "pending"
+    this.posts = []
+    const posts = yield this.resourceClient.fetchAll()
+    posts.forEach(json => this.updatePost(json))
+    this.state = "ready"
+  })
+
+  updatePost(json) {
+    let post = this.posts.find(post => post.id === json.postId)
+    if (!post) {
+      post = new Post(this, json.postId)
+      this.posts.push(post)
+    } else {
+      post.updateFromJson(json)
+    }
+  }
+}
+
+export class Post {
+  id = null
+
+  @observable
+  author = null
   @observable
   categories = []
+  @observable
+  cover_image = null
 
-  fetchPosts = flow(function*() {
-    let includes = ["categories", "cover_image"]
-    let author_includes = ["profile_image"]
-    let resp = yield PostAPI.fetchIDs()
-    resp.map(async (id, index) => {
-      let post = await PostAPI.get(id, includes)
-      const author = await AuthorAPI.get(post.author, author_includes)
-      post.author = author
-      post.date = this.parseDateISO(post.date)
-      post.index = index
-      this.posts.push(post)
-      this.feed.push(post)
-      return post
-    })
-  })
+  autoSave = false
 
-  fetchCategories = flow(function*() {
-    const resp = yield CategoryAPI.fetchAll()
-    this.categories = resp
-  })
+  store = null
+  saveHandler = null
 
-  parseDateISO = iso_date => {
+  constructor(store, id) {
+    this.store = store
+    this.id = id
+    // Add Save Handler to update post on server (reactions, etc)
+    this.saveHandler = reaction(() => this.asJson, json => {})
+  }
+
+  @computed
+  get asJson() {
+    return {
+      postId: this.id,
+      title: this.title,
+      date: this.date,
+      content: this.content,
+      author: this.author.id,
+      cover_image: this.cover_image.id,
+      type: this.type,
+      categories: this.categories
+    }
+  }
+
+  parsePostDate = iso_date => {
     let date = new Date(iso_date)
     let parsed = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`
     return parsed
   }
 
-  async getCategory(category) {
-    let posts = this.posts
-    this.feed = posts
-    if (this.posts.length <= 0) {
-      posts = await this.fetchPosts()
-    }
-    let filtered = posts.filter(post => {
-      if (
-        post.categories.filter(
-          c => c.name.toLowerCase() == category.toLowerCase()
-        ).length >= 1
-      ) {
-        return post
-      }
-    })
-    this.feed = filtered
-    return filtered
-  }
-
-  async getRelated(post) {
-    let posts = this.posts
-    let categories = post.categories.map(c => {
-      return c.categoryId
-    })
-    let x_category = posts.filter(p => {
-      let p_categories = p.categories.map(c => {
-        return c.categoryId
-      })
-      if (
-        p.postId !== post.postId &&
-        p_categories.some(cat => categories.includes(cat))
-      ) {
-        return p
-      }
-    })
-    return x_category
+  updateFromJson(json) {
+    this.autoSave = false
+    this.id = json.postId
+    this.title = json.title
+    this.date = this.parsePostDate(json.date)
+    this.content = json.content
+    this.author = this.rootStore.authorStore.resolveAuthor(json.author)
+    this.cover_image = this.rootStore.mediaStore.resolveMedia(json.cover_image)
+    this.type = json.type
+    this.categories = this.rootStore.categoryStore.resolveCategories(
+      json.categories
+    )
+    this.autoSave = true
   }
 }
-
-const postStore = new ObservablePostStore()
-export default postStore

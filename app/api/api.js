@@ -14,7 +14,7 @@ const gateways = {
   aws_dev: "warriorbeat-dev"
 }
 
-class API {
+export default class API {
   resource = null
   constructor(resource, identity) {
     this.resource_type = resource
@@ -62,7 +62,3 @@ class API {
     return resp
   }
 }
-
-export const PostAPI = new API("posts", "postId")
-export const CategoryAPI = new API("categories", "categoryId")
-export const AuthorAPI = new API("authors", "authorId")

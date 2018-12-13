@@ -4,6 +4,5 @@
  *  api
  */
 
-import { PostAPI, CategoryAPI, AuthorAPI } from "./api"
-
-export { PostAPI, CategoryAPI, AuthorAPI }
+import API from "./api"
+export default API

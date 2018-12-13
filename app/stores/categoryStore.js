@@ -1,0 +1,81 @@
+/**
+ *  categoryStore.js
+ *  mobx store for category data
+ *  stores
+ */
+
+import { observable, flow, computed, reaction } from "mobx"
+
+export class CategoryStore {
+  resourceClient
+
+  @observable
+  categories = []
+
+  @observable
+  state = "pending"
+
+  constructor(rootStore, resourceClient) {
+    this.rootStore = rootStore
+    this.resourceClient = resourceClient
+    this.loadCategories()
+  }
+
+  loadCategories = flow(function*() {
+    this.state = "pending"
+    this.categories = []
+    const categories = yield this.resourceClient.fetchAll()
+    categories.forEach(json => this.updateCategory(json))
+    this.state = "ready"
+  })
+
+  updateCategory(json) {
+    let category = this.categories.find(
+      category => category.id === json.categoryId
+    )
+    if (!category) {
+      category = new Category(this, json.categoryId)
+      this.categories.push(category)
+    } else {
+      category.updateFromJson(json)
+    }
+  }
+
+  resolveCategories(ids) {
+    let categories = ids.map(id => {
+      let category = this.categories.find(category => category.id === id)
+      return category !== null ? category : null
+    })
+    return categories
+  }
+}
+
+export class Category {
+  id = null
+
+  autoSave = false
+
+  store = null
+  saveHandler = null
+
+  constructor(store, id) {
+    this.store = store
+    this.id = id
+    this.saveHandler = reaction(() => this.asJson, json => {})
+  }
+
+  @computed
+  asJson() {
+    return {
+      categoryId: this.id,
+      name: this.name
+    }
+  }
+
+  updateFromJson(json) {
+    this.autoSave = false
+    this.id = json.categoryId
+    this.name = json.name
+    this.autoSave = true
+  }
+}
