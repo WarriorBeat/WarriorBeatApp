@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.4.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.4.1-rc.0...v0.4.1) (2018-12-12)
+<a name="0.5.0-rc.0"></a>
+# [0.5.0-rc.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.4.1...v0.5.0-rc.0) (2018-12-13)
+
+
+### Features
+
+* Updated Components to use New Stores ([#22](https://github.com/WarriorBeat/WarriorBeatApp/issues/22)) ([92106a5](https://github.com/WarriorBeat/WarriorBeatApp/commit/92106a5))
+* **store:** Restructured Mobx Stores, Added Root and other Stores ([#20](https://github.com/WarriorBeat/WarriorBeatApp/issues/20)) ([e38caec](https://github.com/WarriorBeat/WarriorBeatApp/commit/e38caec))
 
 
 
