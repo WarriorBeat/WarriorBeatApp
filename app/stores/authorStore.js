@@ -4,7 +4,7 @@
  *  stores
  */
 
-import { observable, flow, computed, reaction } from "mobx"
+import { observable, flow, computed, reaction, when } from "mobx"
 
 export class AuthorStore {
   resourceClient
@@ -25,8 +25,13 @@ export class AuthorStore {
     this.state = "pending"
     this.authors = []
     const authors = yield this.resourceClient.fetchAll()
-    authors.forEach(json => this.updateAuthor(json))
-    this.state = "ready"
+    when(
+      () => this.rootStore.mediaStore.status == "ready",
+      () => {
+        authors.forEach(json => this.updateAuthor(json))
+        this.state = "ready"
+      }
+    )
   })
 
   updateAuthor(json) {
@@ -34,14 +39,18 @@ export class AuthorStore {
     if (!author) {
       author = new Author(this, json.authorId)
       this.authors.push(author)
-    } else {
-      author.updateFromJson(json)
     }
+    author.updateFromJson(json)
   }
 
   resolveAuthor(id) {
     let author = this.authors.find(author => author.id === id)
     return author !== null ? author : null
+  }
+
+  @computed
+  get status() {
+    return this.state
   }
 }
 
@@ -59,17 +68,24 @@ export class Author {
   constructor(store, id) {
     this.store = store
     this.id = id
-    this.saveHandler = reaction(() => this.asJson, json => {})
+    this.saveHandler = reaction(
+      () => this.asJson,
+      json => {
+        if (this.autoSave) {
+          this.store.updateAuthor(json)
+        }
+      }
+    )
   }
 
   @computed
-  asJson() {
+  get asJson() {
     return {
       authorId: this.id,
       name: this.name,
       title: this.title,
       description: this.description,
-      profile_image: this.profile_image.id
+      profile_image: this.profile_image
     }
   }
 
@@ -79,7 +95,7 @@ export class Author {
     this.title = json.title
     this.name = json.name
     this.description = json.description
-    this.profile_image = this.rootStore.mediaStore.resolveMedia(
+    this.profile_image = this.store.rootStore.mediaStore.resolveMedia(
       json.profile_image
     )
     this.autoSave = true

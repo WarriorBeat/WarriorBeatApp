@@ -20,11 +20,12 @@ import { Button } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import ReactionButton from "./ReactionButton"
+import { observer } from "mobx-react/native"
 
 export const HTML = props => {
   return <RenderHTML baseFontStyle={styles.html_font} {...props} />
 }
-
+@observer
 class GenericPost extends React.Component {
   openLightBox = () => {
     this._box.open()

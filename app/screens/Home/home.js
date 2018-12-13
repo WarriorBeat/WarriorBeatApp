@@ -12,13 +12,11 @@ import { Button } from "react-native-elements"
 import { toggleMenu } from "actions/navigation"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
+import { inject, observer } from "mobx-react/native"
 
+@inject("rootStore")
+@observer
 class Home extends React.Component {
-  componentDidMount() {
-    const { store } = this.props
-    store.fetchPosts()
-  }
-
   _renderLeftComponent = () => {
     return (
       <Button
@@ -42,7 +40,6 @@ class Home extends React.Component {
   }
 
   render() {
-    const { store } = this.props
     return (
       <View style={styles.container}>
         <Header
@@ -56,7 +53,7 @@ class Home extends React.Component {
           }}
         />
 
-        <GenericFeed store={store} />
+        <GenericFeed />
       </View>
     )
   }

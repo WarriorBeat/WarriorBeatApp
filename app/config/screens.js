@@ -21,9 +21,11 @@ export function registerScreens() {
     () => require("screens").Initializing
   )
   Navigation.registerComponent("FeedView", () => require("screens").FeedView)
-  Navigation.registerComponent(
+  Navigation.registerComponentWithRedux(
     "Post.Article",
-    () => require("components/Post").Article
+    () => require("components/Post").Article,
+    Provider,
+    store
   )
   Navigation.registerComponentWithRedux(
     "NavMenu",

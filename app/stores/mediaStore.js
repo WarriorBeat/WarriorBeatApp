@@ -32,16 +32,20 @@ export class MediaStore {
   updateMedia(json) {
     let media = this.media.find(media => media.id === json.mediaId)
     if (!media) {
-      media = new Media(this, json.authorId)
+      media = new Media(this, json.mediaId)
       this.media.push(media)
-    } else {
-      media.updateFromJson(json)
     }
+    media.updateFromJson(json)
   }
 
   resolveMedia(id) {
     let media = this.media.find(media => media.id === id)
     return media !== null ? media : null
+  }
+
+  @computed
+  get status() {
+    return this.state
   }
 }
 
@@ -56,14 +60,21 @@ export class Media {
   constructor(store, id) {
     this.store = store
     this.id = id
-    this.saveHandler = reaction(() => this.asJson, json => {})
+    this.saveHandler = reaction(
+      () => this.asJson,
+      json => {
+        if (this.autoSave) {
+          this.store.updateMedia(json)
+        }
+      }
+    )
   }
 
   @computed
-  asJson() {
+  get asJson() {
     return {
       mediaId: this.id,
-      source: this.source,
+      url: this.url,
       title: this.title,
       credits: this.credits,
       caption: this.caption,
@@ -74,6 +85,7 @@ export class Media {
   updateFromJson(json) {
     this.autoSave = false
     this.id = json.mediaId
+    this.url = json.url
     this.title = json.title
     this.credits = json.credits
     this.caption = json.caption
