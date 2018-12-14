@@ -51,7 +51,13 @@ class Text extends React.Component {
     }
     let font_size = fontSize ? fontSize : render_style.fontSize
     return (
-      <RenderText style={{ ...style, ...render_style, fontSize: font_size }}>
+      <RenderText
+        style={{
+          ...style,
+          ...render_style,
+          fontSize: font_size
+        }}
+      >
         {children}
       </RenderText>
     )
