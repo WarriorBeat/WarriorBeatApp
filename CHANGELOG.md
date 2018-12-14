@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0-rc.1"></a>
+# [0.5.0-rc.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.5.0-rc.0...v0.5.0-rc.1) (2018-12-14)
+
+
+### Bug Fixes
+
+* Fixed ArticleView Components not popping ([#25](https://github.com/WarriorBeat/WarriorBeatApp/issues/25)) ([7bb9e14](https://github.com/WarriorBeat/WarriorBeatApp/commit/7bb9e14))
+* Viewing Posts by Category Crashes App ([#24](https://github.com/WarriorBeat/WarriorBeatApp/issues/24)) ([7fe76c6](https://github.com/WarriorBeat/WarriorBeatApp/commit/7fe76c6)), closes [#23](https://github.com/WarriorBeat/WarriorBeatApp/issues/23)
+
+
+
 <a name="0.5.0-rc.0"></a>
 # [0.5.0-rc.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.4.1...v0.5.0-rc.0) (2018-12-13)
 
