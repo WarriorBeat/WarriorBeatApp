@@ -47,6 +47,11 @@ export class CategoryStore {
     })
     return categories
   }
+
+  resolveCategory(id) {
+    let category = this.categories.find(category => category.id === id)
+    return category !== null ? category : null
+  }
 }
 
 export class Category {
