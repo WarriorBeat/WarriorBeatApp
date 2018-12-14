@@ -14,11 +14,18 @@ import { styles } from "./styles"
 @observer
 class GenericFeed extends React.Component {
   render() {
+    const { categoryId } = this.props
     return (
       <ScrollView style={styles.scroll_view}>
         <View style={styles.list_container}>
           {this.props.postStore.posts.map(p => {
-            return <NewsBlock key={p.id} postId={p.id} />
+            if (categoryId) {
+              return p.categories.find(cat => cat.id === categoryId) ? (
+                <NewsBlock key={p.id} postId={p.id} />
+              ) : null
+            } else {
+              return <NewsBlock key={p.id} postId={p.id} />
+            }
           })}
         </View>
       </ScrollView>

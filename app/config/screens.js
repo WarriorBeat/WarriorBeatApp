@@ -8,7 +8,8 @@ export function registerScreens() {
   const rootStore = new RootStore()
   const store = {
     rootStore: rootStore,
-    postStore: rootStore.postStore
+    postStore: rootStore.postStore,
+    categoryStore: rootStore.categoryStore
   }
   Navigation.registerComponentWithRedux(
     "Home",
@@ -20,7 +21,12 @@ export function registerScreens() {
     "Initializing",
     () => require("screens").Initializing
   )
-  Navigation.registerComponent("FeedView", () => require("screens").FeedView)
+  Navigation.registerComponentWithRedux(
+    "FeedView",
+    () => require("screens").FeedView,
+    Provider,
+    store
+  )
   Navigation.registerComponentWithRedux(
     "Post.Article",
     () => require("components/Post").Article,

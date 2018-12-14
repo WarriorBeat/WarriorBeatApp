@@ -7,23 +7,20 @@
 import React from "react"
 import { View } from "react-native"
 import { Header } from "react-native-elements"
-import { observer } from "mobx-react"
 import GenericFeed from "components/GenericFeed"
 import { styles } from "./styles"
+import { observer, inject } from "mobx-react/native"
 
+@inject("categoryStore")
 @observer
 class FeedView extends React.Component {
-  componentDidMount() {
-    const { store, category } = this.props
-    store.getCategory(category)
-  }
-
   render() {
-    const { store, category } = this.props
+    const { categoryId, categoryStore } = this.props
+    let category = categoryStore.resolveCategory(categoryId)
     return (
       <View style={styles.container}>
         <Header
-          centerComponent={{ text: category, style: styles.headerText }}
+          centerComponent={{ text: category.name, style: styles.headerText }}
           outerContainerStyles={styles.header}
           statusBarProps={{
             barStyle: "light-content",
@@ -31,7 +28,7 @@ class FeedView extends React.Component {
             drawBehind: true
           }}
         />
-        <GenericFeed store={store} />
+        <GenericFeed categoryId={category.id} />
       </View>
     )
   }

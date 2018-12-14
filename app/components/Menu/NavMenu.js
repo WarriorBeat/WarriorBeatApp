@@ -33,8 +33,8 @@ export const SubMenu = props => {
             <MenuButton
               icon={icons[c.name.toLowerCase()]}
               title={c.name}
-              key={c.categoryId}
-              onPress={() => props.filterPosts(c.name)}
+              key={c.id}
+              onPress={() => props.filterPosts(c.id)}
             />
           )
         }
@@ -62,8 +62,8 @@ class NavMenu extends React.Component {
     Navigation.pop(id)
   }
 
-  filterPosts = category => {
-    viewPosts("HomeScreen", this.props.store, category)
+  filterPosts = categoryId => {
+    viewPosts("HomeScreen", categoryId)
   }
 
   render() {
