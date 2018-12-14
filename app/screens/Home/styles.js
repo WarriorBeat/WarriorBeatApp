@@ -24,13 +24,29 @@ export const styles = StyleSheet.create({
     backgroundColor: soft_colors.white
   },
   headerContainer: {
+    flex: 1,
     backgroundColor: soft_colors.white,
     alignSelf: "stretch",
-    justifyContent: "flex-end",
-    height: 100
+    justifyContent: "center",
+    height: 125
   },
   header: {
     backgroundColor: soft_colors.white,
+    paddingTop: hp("4%"),
+    paddingHorizontal: wp("5%")
+  },
+  sticky_header: {
+    backgroundColor: colors.primary,
+    height: 100,
+    width: "100%",
+    alignSelf: "flex-end",
+    alignItems: "flex-end",
+    justifyContent: "center",
+    flexDirection: "column",
+    paddingTop: hp("5%")
+  },
+  sticky_content: {
+    alignSelf: "center",
     paddingHorizontal: wp("2%")
   }
 })

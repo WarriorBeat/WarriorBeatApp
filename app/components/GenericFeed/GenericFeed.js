@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { ScrollView, View } from "react-native"
+import { View } from "react-native"
 import { observer, inject } from "mobx-react/native"
 import NewsBlock from "components/NewsBlock"
 import { styles } from "./styles"

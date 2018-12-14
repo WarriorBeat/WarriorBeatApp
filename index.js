@@ -30,9 +30,9 @@ Navigation.events().registerAppLaunchedListener(() => {
       drawBehind: true
     },
     statusBar: {
-      barStyle: "light-content",
       backgroundColor: "#00000039",
-      drawBehind: true
+      drawBehind: true,
+      visible: false
     }
   })
   Navigation.setRoot({

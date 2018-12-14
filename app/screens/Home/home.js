@@ -23,13 +23,12 @@ class Home extends React.Component {
     return (
       <View style={styles.headerContainer}>
         <View style={styles.header}>
-          <Text Type="largeTitle" Weight="bold" Color="black" fontSize={45}>
-            <Text Type="titlesm" Weight="bold" Color="black" fontSize={25}>
+          <Text Weight="black" Type="largeTitle" Color="black" fontSize={45}>
+            <Text Weight="black" Type="titlesm" Color="black" fontSize={25}>
               The
               {"\n"}
             </Text>
-            {"Warrior"}
-            <Text Weight="bold">Beat</Text>
+            WarriorBeat
           </Text>
         </View>
       </View>
@@ -43,7 +42,17 @@ class Home extends React.Component {
         backgroundColor={scrollStyles.backgroundColor}
         contentBackgroundColor={scrollStyles.backgroundColor}
         renderForeground={() => this._renderHeader()}
-        parallaxHeaderHeight={100}
+        parallaxHeaderHeight={250}
+        renderStickyHeader={() => (
+          <View style={styles.sticky_header}>
+            <View style={styles.sticky_content}>
+              <Text Type="largeTitle" Weight="heavy">
+                The Warrior Beat
+              </Text>
+            </View>
+          </View>
+        )}
+        stickyHeaderHeight={100}
       >
         <GenericFeed />
       </ParallaxScrollView>
