@@ -40,7 +40,7 @@ class Text extends React.Component {
   }
 
   render() {
-    const { children, style, Italic, NoPadding } = this.props
+    const { children, style, Italic, NoPadding, fontSize } = this.props
     let render_style = {
       ...this.handleType(),
       ...this.handleColor(),
@@ -49,8 +49,11 @@ class Text extends React.Component {
       fontStyle: Italic ? "italic" : "normal",
       includeFontPadding: NoPadding ? false : true
     }
+    let font_size = fontSize ? fontSize : render_style.fontSize
     return (
-      <RenderText style={{ ...style, ...render_style }}>{children}</RenderText>
+      <RenderText style={{ ...style, ...render_style, fontSize: font_size }}>
+        {children}
+      </RenderText>
     )
   }
 }
