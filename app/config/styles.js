@@ -92,5 +92,9 @@ export const icons = {
   features: {
     name: "new-releases",
     type: "material-icons"
+  },
+  school: {
+    name: "md-school",
+    type: "ionicon"
   }
 }

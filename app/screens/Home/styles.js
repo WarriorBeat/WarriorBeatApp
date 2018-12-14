@@ -50,5 +50,25 @@ export const styles = StyleSheet.create({
   sticky_content: {
     alignSelf: "center",
     paddingHorizontal: wp("2%")
+  },
+  carouselContainer: {
+    flex: 1,
+    flexGrow: 0
+  },
+  pagination: {
+    flex: 1
+  },
+  tab_item: {
+    width: wp("50%"),
+    alignSelf: "flex-end"
+  },
+  tab_button: {
+    padding: 0,
+    margin: 0,
+    marginVertical: 5,
+    height: hp("5%")
+  },
+  tab_color: {
+    color: colors.blackSecondary
   }
 })
