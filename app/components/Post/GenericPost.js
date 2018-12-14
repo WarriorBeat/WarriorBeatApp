@@ -31,12 +31,12 @@ class GenericPost extends React.Component {
     this._box.open()
   }
 
-  popScreen = () => {
-    Navigation.pop("ArticleView")
+  popScreen = componentId => {
+    Navigation.pop(componentId)
   }
 
   render() {
-    const { backgroundSource } = this.props
+    const { childComponentId, backgroundSource } = this.props
     return (
       <ReactionButton ref={rxnButton => (this._rxnButton = rxnButton)}>
         <ParallaxScrollView
@@ -57,7 +57,7 @@ class GenericPost extends React.Component {
                 backgroundColor={"transparent"}
                 icon={icons.arrow_back}
                 buttonStyle={styles.header_button}
-                onPress={() => this.popScreen()}
+                onPress={() => this.popScreen(childComponentId)}
               />
             </View>
           )}
