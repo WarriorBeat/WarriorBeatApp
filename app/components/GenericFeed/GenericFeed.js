@@ -16,7 +16,7 @@ class GenericFeed extends React.Component {
   render() {
     const { categoryId } = this.props
     return (
-      <View style={styles.list_container}>
+      <View>
         {this.props.postStore.posts.map(p => {
           if (categoryId) {
             return p.categories.find(cat => cat.id === categoryId) ? (

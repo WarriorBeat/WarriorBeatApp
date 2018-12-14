@@ -6,20 +6,22 @@
 import React from "react"
 import { View, Animated, ScrollView } from "react-native"
 import { Header } from "react-native-elements"
-import { styles, scrollView as scrollStyles } from "./styles"
+import { styles, scrollView as scrollStyles, window } from "./styles"
 import { icons } from "config/styles"
 import { Button, Icon } from "react-native-elements"
 import { toggleMenu } from "actions/navigation"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
 import { inject, observer } from "mobx-react/native"
+import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
+import Carousel from "react-native-snap-carousel"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 @inject("rootStore")
 @observer
 class Home extends React.Component {
-  _renderHeader = () => {
+  _renderHeader() {
     return (
       <View style={styles.headerContainer}>
         <View style={styles.header}>
@@ -34,8 +36,29 @@ class Home extends React.Component {
       </View>
     )
   }
+  P
+
+  _renderCategory({ item, index }) {
+    return <GenericFeed categoryId={item.id} />
+  }
+
+  _renderCarousel() {
+    const categoryStore = this.props.rootStore.categoryStore
+    return (
+      <Carousel
+        ref={c => {
+          this._carousel = c
+        }}
+        data={categoryStore.categories}
+        renderItem={this._renderCategory}
+        sliderWidth={window.width}
+        itemWidth={window.width / 1.1}
+      />
+    )
+  }
 
   render() {
+    const categoryStore = this.props.rootStore.categoryStore
     return (
       <ParallaxScrollView
         renderScrollComponent={() => <AnimatedScrollView />}
@@ -54,7 +77,7 @@ class Home extends React.Component {
         )}
         stickyHeaderHeight={100}
       >
-        <GenericFeed />
+        {categoryStore.status === "ready" ? this._renderCarousel() : null}
       </ParallaxScrollView>
     )
   }

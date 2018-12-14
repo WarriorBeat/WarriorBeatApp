@@ -4,12 +4,14 @@
  * Screens
  */
 
-import { StyleSheet } from "react-native"
+import { StyleSheet, Dimensions } from "react-native"
 import { colors, soft_colors } from "config/styles"
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from "react-native-responsive-screen"
+
+export const window = Dimensions.get("window")
 
 export const scrollView = {
   backgroundColor: soft_colors.white

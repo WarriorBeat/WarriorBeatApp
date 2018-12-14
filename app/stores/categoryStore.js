@@ -52,6 +52,11 @@ export class CategoryStore {
     let category = this.categories.find(category => category.id === id)
     return category !== null ? category : null
   }
+
+  @computed
+  get status() {
+    return this.state
+  }
 }
 
 export class Category {
