@@ -19,7 +19,7 @@ class NewsBlock extends React.Component {
     Navigation.push("HomeScreen", {
       component: {
         name: "Post.Article",
-        id: "ArticleView",
+        id: `ArticleView${postId}`,
         passProps: {
           postId: postId
         }

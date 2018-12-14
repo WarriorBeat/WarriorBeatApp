@@ -22,7 +22,10 @@ class Article extends React.Component {
     let post = postStore.resolvePost(postId)
     const BULL = " • "
     return (
-      <GenericPost backgroundSource={post.cover_image.url}>
+      <GenericPost
+        childComponentId={this.props.componentId}
+        backgroundSource={post.cover_image.url}
+      >
         <View style={article_styles.credits.container}>
           <Text
             style={article_styles.credits.text}
