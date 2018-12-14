@@ -5,31 +5,32 @@
  */
 
 import { StyleSheet } from "react-native"
-import { colors } from "config/styles"
-import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { colors, soft_colors } from "config/styles"
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp
+} from "react-native-responsive-screen"
+
+export const scrollView = {
+  backgroundColor: soft_colors.white
+}
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    alignContent: "center"
+    alignContent: "center",
+    backgroundColor: soft_colors.white
+  },
+  headerContainer: {
+    backgroundColor: soft_colors.white,
+    alignSelf: "stretch",
+    justifyContent: "flex-end",
+    height: 100
   },
   header: {
-    backgroundColor: colors.primary,
-    alignSelf: "stretch",
-    minHeight: hp("15%"),
-    flexDirection: "row"
-  },
-  menu_container: {
-    padding: 0,
-    marginRight: 0,
-    marginLeft: 0
-  },
-  menu_button: {
-    padding: 0,
-    marginRight: 0,
-    marginLeft: 0,
-    marginTop: hp("-5%")
+    backgroundColor: soft_colors.white,
+    paddingHorizontal: wp("2%")
   }
 })
