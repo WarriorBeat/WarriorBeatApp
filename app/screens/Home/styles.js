@@ -50,13 +50,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: soft_colors.white,
     alignSelf: "stretch",
-    justifyContent: "center",
-    height: carousel.container.parallaxHeaderHeight
+    justifyContent: "flex-start",
+    height: carousel.container.parallaxHeaderHeight,
+    flexDirection: "row"
   },
   header: {
     backgroundColor: soft_colors.white,
     paddingTop: hp("4%"),
-    paddingHorizontal: wp("5%")
+    paddingHorizontal: wp("5%"),
+    alignSelf: "flex-end"
   },
   sticky_header: {
     backgroundColor: colors.primary,

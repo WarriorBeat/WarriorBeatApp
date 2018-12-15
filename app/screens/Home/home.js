@@ -4,7 +4,7 @@
  * Screen
  */
 import React from "react"
-import { View, Animated, ScrollView } from "react-native"
+import { View, Animated, ScrollView, LayoutAnimation } from "react-native"
 import { styles, carousel } from "./styles"
 import { icons } from "config/styles"
 import { Button } from "react-native-elements"
@@ -65,7 +65,7 @@ class Home extends React.Component {
 
   _renderTab = ({ item, index }) => {
     let btn_weight =
-      index === this.activeSlide || index === 0 ? "bold" : "light"
+      index === this.activeSlide || index === 0 ? "bold" : "regular"
     return (
       <View style={styles.tab_item}>
         <Button
@@ -104,15 +104,15 @@ class Home extends React.Component {
             onSnapToItem={index => this._updateSlideIndex(index)}
           />
         )}
-        tappableDots
       />
     )
   }
 
   _updateSlideIndex = index => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    this.activeSlide = index
     this._pager.snapToItem(index)
     this._carousel.snapToItem(index)
-    this.activeSlide = index
   }
 
   _renderCarousel = categories => {
