@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   list_container: {
     flex: 1,
     flexGrow: 0,
-    marginVertical: hp("1.5%"),
+    marginVertical: hp(".5%"),
     marginHorizontal: wp("5%"),
     backgroundColor: colors.transparent
   }

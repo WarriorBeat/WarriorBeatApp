@@ -17,12 +17,33 @@ export const scrollView = {
   backgroundColor: soft_colors.white
 }
 
+export const carousel = {
+  feed: {
+    sliderWidth: wp("100%"),
+    itemWidth: wp("100%"),
+    inactiveSlideScale: 0.99,
+    inactiveSlideOpacity: 0.99
+  },
+  pager: {
+    itemWidth: wp("50%"),
+    sliderWidth: wp("100%"),
+    inactiveSlideScale: 0.7,
+    activeSlideAlignment: "start"
+  },
+  tab: {
+    large: true,
+    backgroundColor: "transparent"
+  },
+  container: {
+    parallaxHeaderHeight: hp("18%"),
+    stickyHeaderHeight: hp("12%"),
+    backgroundColor: soft_colors.white,
+    contentBackgroundColor: soft_colors.white
+  }
+}
+
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    alignContent: "center",
     backgroundColor: soft_colors.white
   },
   headerContainer: {
@@ -30,7 +51,7 @@ export const styles = StyleSheet.create({
     backgroundColor: soft_colors.white,
     alignSelf: "stretch",
     justifyContent: "center",
-    height: 125
+    height: carousel.container.parallaxHeaderHeight
   },
   header: {
     backgroundColor: soft_colors.white,
@@ -39,7 +60,7 @@ export const styles = StyleSheet.create({
   },
   sticky_header: {
     backgroundColor: colors.primary,
-    height: 100,
+    height: carousel.container.stickyHeaderHeight,
     width: "100%",
     alignSelf: "flex-end",
     alignItems: "flex-end",
@@ -52,23 +73,32 @@ export const styles = StyleSheet.create({
     paddingHorizontal: wp("2%")
   },
   carouselContainer: {
-    flex: 1,
+    flex: 0,
     flexGrow: 0
   },
   pagination: {
-    flex: 1
+    alignItems: "center",
+    justifyContent: "center",
+    paddingBottom: 10,
+    paddingHorizontal: 0
   },
   tab_item: {
-    width: wp("50%"),
-    alignSelf: "flex-end"
+    width: carousel.pager.itemWidth,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 20,
+    height: hp("5%")
   },
   tab_button: {
     padding: 0,
     margin: 0,
-    marginVertical: 5,
+    marginTop: 5,
     height: hp("5%")
   },
   tab_color: {
     color: colors.blackSecondary
+  },
+  tab_button_container: {
+    marginRight: 0
   }
 })

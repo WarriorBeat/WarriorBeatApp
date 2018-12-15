@@ -5,7 +5,7 @@
  */
 import React from "react"
 import { View, Animated, ScrollView } from "react-native"
-import { styles, scrollView as scrollStyles, window } from "./styles"
+import { styles, carousel } from "./styles"
 import { icons } from "config/styles"
 import { Button } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
@@ -22,6 +22,8 @@ const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 class Home extends React.Component {
   @observable
   activeSlide
+  @observable
+  slideHeight = {}
 
   _renderHeader() {
     return (
@@ -39,8 +41,26 @@ class Home extends React.Component {
     )
   }
 
-  _renderCategory({ item }) {
-    return <GenericFeed categoryId={item.id} />
+  _updateHeight = (event, index) => {
+    let height = event.nativeEvent.layout.height
+    let values = Object.values(this.slideHeight)
+    if (values.length >= 1 && height <= 100) {
+      height = values.reduce((prev, curr) => {
+        return Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
+      })
+    }
+    if (this.slideHeight[index] !== height) {
+      this.slideHeight[index] = height * 1.1
+    }
+    return this.slideHeight
+  }
+
+  _renderCategory = ({ item, index }) => {
+    return (
+      <View onLayout={e => this._updateHeight(e, index)}>
+        <GenericFeed categoryId={item.id} />
+      </View>
+    )
   }
 
   _renderTab = ({ item, index }) => {
@@ -49,17 +69,18 @@ class Home extends React.Component {
     return (
       <View style={styles.tab_item}>
         <Button
-          icon={{ ...icons[item.name.toLowerCase()], color: "back" }}
-          large
-          backgroundColor={"transparent"}
+          containerViewStyle={styles.tab_button_container}
+          icon={{ ...icons[item.name.toLowerCase()], color: "black" }}
           title={
             <Text Color="black" Weight={btn_weight}>
               {item.name}
             </Text>
           }
           key={index}
+          onPress={() => this._carousel.snapToNext()}
           iconStyle={styles.tab_color}
           buttonStyle={styles.tab_button}
+          {...carousel.tab}
         />
       </View>
     )
@@ -79,10 +100,7 @@ class Home extends React.Component {
             }}
             data={categories}
             renderItem={this._renderTab}
-            sliderWidth={window.width}
-            sliderHeight={20}
-            itemWidth={200}
-            activeSlideAlignment={"start"}
+            {...carousel.pager}
             onSnapToItem={index => this._updateSlideIndex(index)}
           />
         )}
@@ -92,9 +110,9 @@ class Home extends React.Component {
   }
 
   _updateSlideIndex = index => {
-    this.activeSlide = index
     this._pager.snapToItem(index)
     this._carousel.snapToItem(index)
+    this.activeSlide = index
   }
 
   _renderCarousel = categories => {
@@ -105,12 +123,10 @@ class Home extends React.Component {
         }}
         data={categories}
         renderItem={this._renderCategory}
-        sliderWidth={window.width}
-        itemWidth={window.width}
         containerCustomStyle={styles.carouselContainer}
-        inactiveSlideScale={0.99}
-        inactiveSlideOpacity={0.9}
+        {...carousel.feed}
         onSnapToItem={index => this._updateSlideIndex(index)}
+        slideStyle={{ height: this.slideHeight[this.activeSlide] }}
       />
     )
   }
@@ -121,11 +137,11 @@ class Home extends React.Component {
     let categories = categoryStore.sortCategories(sort_order)
     return (
       <ParallaxScrollView
-        renderScrollComponent={() => <AnimatedScrollView />}
-        backgroundColor={scrollStyles.backgroundColor}
-        contentBackgroundColor={scrollStyles.backgroundColor}
+        renderScrollComponent={() => (
+          <AnimatedScrollView style={styles.container} />
+        )}
         renderForeground={() => this._renderHeader()}
-        parallaxHeaderHeight={250}
+        {...carousel.container}
         renderStickyHeader={() => (
           <View style={styles.sticky_header}>
             <View style={styles.sticky_content}>
@@ -135,7 +151,6 @@ class Home extends React.Component {
             </View>
           </View>
         )}
-        stickyHeaderHeight={100}
       >
         {categoryStore.status === "ready"
           ? this._renderPagination(categories)
