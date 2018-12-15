@@ -5,7 +5,7 @@
  */
 
 import { observable, flow, computed, reaction } from "mobx"
-
+import _ from "lodash"
 export class CategoryStore {
   resourceClient
 
@@ -38,6 +38,17 @@ export class CategoryStore {
       this.categories.push(category)
     }
     category.updateFromJson(json)
+  }
+
+  sortCategories(collection) {
+    let sorted = _.partition(this.categories, item => {
+      return collection.includes(item.name)
+    })
+    sorted[0] = _.sortBy(sorted[0], item => {
+      return collection.indexOf(item.name) - sorted[0].indexOf(item)
+    })
+    sorted[1].unshift(...sorted[0])
+    return sorted[1]
   }
 
   resolveCategories(ids) {

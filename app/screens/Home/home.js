@@ -5,12 +5,9 @@
  */
 import React from "react"
 import { View, Animated, ScrollView } from "react-native"
-import { Header } from "react-native-elements"
 import { styles, scrollView as scrollStyles, window } from "./styles"
 import { icons } from "config/styles"
-import { Button, Icon } from "react-native-elements"
-import { toggleMenu } from "actions/navigation"
-import { MenuButton } from "components/Menu"
+import { Button } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
 import { inject, observer } from "mobx-react/native"
@@ -42,7 +39,7 @@ class Home extends React.Component {
     )
   }
 
-  _renderCategory({ item, index }) {
+  _renderCategory({ item }) {
     return <GenericFeed categoryId={item.id} />
   }
 
@@ -68,20 +65,19 @@ class Home extends React.Component {
     )
   }
 
-  _renderPagination() {
-    const categoryStore = this.props.rootStore.categoryStore
+  _renderPagination(categories) {
     return (
       <Pagination
         containerStyle={styles.pagination}
-        dotsLength={categoryStore.categories.length}
+        dotsLength={categories.length}
         activeDotIndex={this.activeSlide}
         carouselRef={this._carousel}
-        renderDots={activeIndex => (
+        renderDots={() => (
           <Carousel
             ref={c => {
               this._pager = c
             }}
-            data={categoryStore.categories}
+            data={categories}
             renderItem={this._renderTab}
             sliderWidth={window.width}
             sliderHeight={20}
@@ -101,14 +97,13 @@ class Home extends React.Component {
     this._carousel.snapToItem(index)
   }
 
-  _renderCarousel = () => {
-    const categoryStore = this.props.rootStore.categoryStore
+  _renderCarousel = categories => {
     return (
       <Carousel
         ref={c => {
           this._carousel = c
         }}
-        data={categoryStore.categories}
+        data={categories}
         renderItem={this._renderCategory}
         sliderWidth={window.width}
         itemWidth={window.width}
@@ -122,6 +117,8 @@ class Home extends React.Component {
 
   render() {
     const categoryStore = this.props.rootStore.categoryStore
+    let sort_order = ["News", "Sports"]
+    let categories = categoryStore.sortCategories(sort_order)
     return (
       <ParallaxScrollView
         renderScrollComponent={() => <AnimatedScrollView />}
@@ -140,8 +137,12 @@ class Home extends React.Component {
         )}
         stickyHeaderHeight={100}
       >
-        {categoryStore.status === "ready" ? this._renderPagination() : null}
-        {categoryStore.status === "ready" ? this._renderCarousel() : null}
+        {categoryStore.status === "ready"
+          ? this._renderPagination(categories)
+          : null}
+        {categoryStore.status === "ready"
+          ? this._renderCarousel(categories)
+          : null}
       </ParallaxScrollView>
     )
   }
