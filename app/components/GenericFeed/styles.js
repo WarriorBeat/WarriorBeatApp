@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
   },
   list_container: {
     flex: 1,
-    justifyContent: "center",
-    marginVertical: hp("1.5%"),
+    flexGrow: 0,
+    marginVertical: hp(".5%"),
     marginHorizontal: wp("5%"),
     backgroundColor: colors.transparent
   }

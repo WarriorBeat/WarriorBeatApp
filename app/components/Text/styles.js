@@ -23,6 +23,12 @@ export const weight = StyleSheet.create({
   },
   bold: {
     ...systemWeights.bold
+  },
+  heavy: {
+    fontWeight: "800"
+  },
+  black: {
+    fontWeight: "900"
   }
 })
 

@@ -5,7 +5,13 @@
  */
 
 import React from "react"
-import { View, TouchableWithoutFeedback, Image } from "react-native"
+import {
+  View,
+  TouchableWithoutFeedback,
+  Image,
+  Animated,
+  ScrollView
+} from "react-native"
 import {
   styles,
   header_styles,
@@ -21,6 +27,8 @@ import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import ReactionButton from "./ReactionButton"
 import { observer } from "mobx-react/native"
+
+const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
 export const HTML = props => {
   return <RenderHTML baseFontStyle={styles.html_font} {...props} />
@@ -40,6 +48,7 @@ class GenericPost extends React.Component {
     return (
       <ReactionButton ref={rxnButton => (this._rxnButton = rxnButton)}>
         <ParallaxScrollView
+          renderScrollComponent={() => <AnimatedScrollView />}
           scrollEvent={e => this._rxnButton.onScroll(e)}
           scrollEventThrottle={1}
           backgroundColor={header_styles.backgroundColor}

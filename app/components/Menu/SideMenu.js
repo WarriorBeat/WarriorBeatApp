@@ -27,7 +27,7 @@ export const MenuButton = props => {
     <Button
       large
       backgroundColor={"transparent"}
-      textStyle={btnTextStyle}
+      textStyle={{...btnTextStyle, ...props.textStyle}}
       buttonStyle={btnStyle}
       title={props.title}
       icon={props.icon}
