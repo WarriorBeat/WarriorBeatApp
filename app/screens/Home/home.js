@@ -4,16 +4,23 @@
  * Screen
  */
 import React from "react"
-import { View, Animated, ScrollView, LayoutAnimation } from "react-native"
-import { styles, carousel } from "./styles"
+import {
+  View,
+  Animated,
+  ScrollView,
+  LayoutAnimation,
+  Easing
+} from "react-native"
+import { styles, carousel, nav_icon_style } from "./styles"
 import { icons } from "config/styles"
-import { Button } from "react-native-elements"
+import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
 import { inject, observer } from "mobx-react/native"
 import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
+import { toggleMenu } from "actions/navigation"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
@@ -24,6 +31,13 @@ class Home extends React.Component {
   activeSlide
   @observable
   slideHeight = {}
+  @observable
+  headerVisible = true
+
+  constructor() {
+    super()
+    this.iconScale = new Animated.Value(0)
+  }
 
   _renderHeader() {
     return (
@@ -39,6 +53,18 @@ class Home extends React.Component {
         </View>
       </View>
     )
+  }
+
+  _onHeaderVisible = isVisible => {
+    if (this.headerVisible !== isVisible) {
+      this.iconScale.setValue(isVisible ? 1 : 0)
+      Animated.timing(this.iconScale, {
+        toValue: isVisible ? 0 : 1,
+        duration: 600,
+        easing: Easing.elastic(2)
+      }).start()
+      this.headerVisible = isVisible
+    }
   }
 
   _updateHeight = (event, index) => {
@@ -135,6 +161,15 @@ class Home extends React.Component {
     const categoryStore = this.props.rootStore.categoryStore
     let sort_order = ["News", "Sports"]
     let categories = categoryStore.sortCategories(sort_order)
+    let icon_style = nav_icon_style(this.headerVisible)
+    const icon_scale = this.iconScale.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0.8, 1]
+    })
+    const icon_opacity = this.iconScale.interpolate({
+      inputRange: [0, 0.5, 1],
+      outputRange: [1, 0, 1]
+    })
     return (
       <ParallaxScrollView
         renderScrollComponent={() => (
@@ -151,6 +186,26 @@ class Home extends React.Component {
             </View>
           </View>
         )}
+        onChangeHeaderVisibility={isVisible => this._onHeaderVisible(isVisible)}
+        renderFixedHeader={() => {
+          return (
+            <View style={styles.fixed_header}>
+              <Animated.View
+                style={{
+                  ...styles.fixed_inner,
+                  opacity: icon_opacity,
+                  transform: [{ scale: icon_scale }]
+                }}
+              >
+                <Icon
+                  onPress={() => toggleMenu({ status: true })}
+                  {...icons.menu}
+                  {...icon_style.container}
+                />
+              </Animated.View>
+            </View>
+          )
+        }}
       >
         {categoryStore.status === "ready"
           ? this._renderPagination(categories)

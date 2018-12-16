@@ -32,7 +32,6 @@ Navigation.events().registerAppLaunchedListener(() => {
     statusBar: {
       backgroundColor: "#00000039",
       drawBehind: true,
-      visible: false
     }
   })
   Navigation.setRoot({

@@ -4,19 +4,18 @@
  * Screens
  */
 
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet, Platform } from "react-native"
 import { colors, soft_colors } from "config/styles"
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from "react-native-responsive-screen"
 
-export const window = Dimensions.get("window")
-
 export const scrollView = {
   backgroundColor: soft_colors.white
 }
 
+const HEADER_HEIGHT = Platform.OS === "android" ? hp("23%") : hp("18%")
 export const carousel = {
   feed: {
     sliderWidth: wp("100%"),
@@ -35,10 +34,22 @@ export const carousel = {
     backgroundColor: "transparent"
   },
   container: {
-    parallaxHeaderHeight: hp("18%"),
+    parallaxHeaderHeight: HEADER_HEIGHT,
     stickyHeaderHeight: hp("12%"),
     backgroundColor: soft_colors.white,
     contentBackgroundColor: soft_colors.white
+  }
+}
+
+export const nav_icon_style = isVisible => {
+  let color = isVisible ? colors.primaryDark : colors.white
+  let size = wp("7%")
+  return {
+    container: {
+      size: size,
+      color: color,
+      underlayColor: "transparent"
+    }
   }
 }
 
@@ -64,15 +75,22 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     height: carousel.container.stickyHeaderHeight,
     width: "100%",
-    alignSelf: "flex-end",
-    alignItems: "flex-end",
-    justifyContent: "center",
-    flexDirection: "column",
-    paddingTop: hp("5%")
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: hp("1.5%")
   },
-  sticky_content: {
-    alignSelf: "center",
-    paddingHorizontal: wp("2%")
+  fixed_header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
+    height: carousel.container.stickyHeaderHeight,
+    width: wp("100%")
+  },
+  fixed_inner: {
+    paddingHorizontal: wp("5%"),
+    paddingBottom: hp("2.25%")
   },
   carouselContainer: {
     flex: 0,
