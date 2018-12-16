@@ -5,57 +5,60 @@
  */
 
 import React from "react"
-import { weight, color, decoration, type } from "./styles"
 import { Text as RenderText } from "react-native"
 import { colors as genericColors } from "config/styles"
+import {
+  weight, color, decoration, type,
+} from "./styles"
 
 class Text extends React.Component {
   handleType = () => {
     const { Type } = this.props
-    let font_type = Type ? type[Type] : {}
-    return font_type
+    const fontType = Type ? type[Type] : {}
+    return fontType
   }
 
   handleColor = () => {
     const { Color } = this.props
-    let font_color = Color ? color[Color] : {}
-    return font_color
+    const fontColor = Color ? color[Color] : {}
+    return fontColor
   }
 
   handleWeight = () => {
     const { Weight } = this.props
-    let font_weight = Weight ? weight[Weight] : {}
-    return font_weight
+    const fontWeight = Weight ? weight[Weight] : {}
+    return fontWeight
   }
 
   handleDecor = () => {
     const { Shadow } = this.props
-    let font_decor = {}
-    let shadow_decor = Shadow ? decoration.shadow : {}
-    font_decor =
-      typeof Shadow == "string"
-        ? { ...shadow_decor, textShadowColor: genericColors[Shadow] }
-        : { ...shadow_decor }
-    return font_decor
+    let fontDecor = {}
+    const shadowDecor = Shadow ? decoration.shadow : {}
+    fontDecor = typeof Shadow === "string"
+      ? { ...shadowDecor, textShadowColor: genericColors[Shadow] }
+      : { ...shadowDecor }
+    return fontDecor
   }
 
   render() {
-    const { children, style, Italic, NoPadding, fontSize } = this.props
-    let render_style = {
+    const {
+      children, style, Italic, NoPadding, fontSize,
+    } = this.props
+    const renderStyle = {
       ...this.handleType(),
       ...this.handleColor(),
       ...this.handleWeight(),
       ...this.handleDecor(),
       fontStyle: Italic ? "italic" : "normal",
-      includeFontPadding: NoPadding ? false : true
+      includeFontPadding: !NoPadding,
     }
-    let font_size = fontSize ? fontSize : render_style.fontSize
+    const textSize = fontSize || renderStyle.fontSize
     return (
       <RenderText
         style={{
           ...style,
-          ...render_style,
-          fontSize: font_size
+          ...renderStyle,
+          fontSize: textSize,
         }}
       >
         {children}

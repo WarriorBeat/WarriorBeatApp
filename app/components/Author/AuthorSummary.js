@@ -7,36 +7,25 @@
 import React from "react"
 import { View } from "react-native"
 import { Avatar } from "react-native-elements"
-import { summary as styles } from "./styles"
 import Text from "components/Text"
+import styles from "./styles"
 
-class AuthorSummary extends React.Component {
-  render() {
-    const { description, profile_image } = this.props.author
-    return (
-      <View style={styles.summary_container}>
-        <Avatar
-          containerStyle={styles.avatar}
-          rounded
-          large
-          source={{ uri: profile_image.url }}
-        />
-        <View style={styles.header}>
-          <Text
-            style={styles.title}
-            Type="titlexsm"
-            Weight="regular"
-            Color="primaryDark"
-          >
-            About the Author
-          </Text>
-          <Text Type="caption" Weight="light" Color="primary">
-            {description}
-          </Text>
-        </View>
+const AuthorSummary = (props) => {
+  const { author } = props
+  const { description, profileImage } = author
+  return (
+    <View style={styles.summary_container}>
+      <Avatar containerStyle={styles.avatar} rounded large source={{ uri: profileImage.url }} />
+      <View style={styles.header}>
+        <Text style={styles.title} Type="titlexsm" Weight="regular" Color="primaryDark">
+          About the Author
+        </Text>
+        <Text Type="caption" Weight="light" Color="primary">
+          {description}
+        </Text>
       </View>
-    )
-  }
+    </View>
+  )
 }
 
 export default AuthorSummary

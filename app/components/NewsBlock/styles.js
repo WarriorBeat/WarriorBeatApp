@@ -8,18 +8,18 @@ import { StyleSheet } from "react-native"
 import { colors } from "config/styles"
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen"
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   block: {
-    marginVertical: 10
+    marginVertical: 10,
   },
   tile: {
     flex: 1,
     paddingVertical: 10,
     backgroundColor: colors.transparent,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   container: {
     flex: 1,
@@ -30,13 +30,13 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 5,
     shadowOffset: { width: 1, height: 9 },
-    elevation: 8
+    elevation: 8,
   },
   image_container: {
     borderTopEndRadius: 6,
     borderTopLeftRadius: 6,
     overflow: "hidden",
-    resizeMode: "cover"
+    resizeMode: "cover",
   },
   content_container: {
     paddingTop: hp("2%"),
@@ -47,10 +47,10 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "stretch",
     justifyContent: "center",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   author_container: {
     position: "absolute",
@@ -65,19 +65,21 @@ export const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     alignContent: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   author_img_container: {
     flex: 1,
     borderColor: colors.primaryDark,
     borderWidth: 2,
-    borderRadius: 22
+    borderRadius: 22,
   },
   author_img: {
     elevation: 10,
     shadowColor: colors.black,
     shadowOpacity: 0.7,
     shadowRadius: 1.5,
-    shadowOffset: { width: 0, height: 4 }
-  }
+    shadowOffset: { width: 0, height: 4 },
+  },
 })
+
+export default styles

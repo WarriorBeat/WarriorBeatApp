@@ -9,11 +9,10 @@ import {
   Animated,
   ScrollView,
   LayoutAnimation,
-  Easing
+  Easing,
 } from "react-native"
-import { styles, carousel, nav_icon_style } from "./styles"
 import { icons } from "config/styles"
-import { enableLayoutAnimations } from "config/utils"
+import enableLayoutAnimations from "config/utils"
 import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
@@ -22,6 +21,7 @@ import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import { toggleMenu } from "actions/navigation"
+import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
@@ -30,8 +30,10 @@ const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 class Home extends React.Component {
   @observable
   activeSlide
+
   @observable
   slideHeight = {}
+
   @observable
   headerVisible = true
 
@@ -41,41 +43,38 @@ class Home extends React.Component {
     this.iconScale = new Animated.Value(0)
   }
 
-  _renderHeader() {
-    return (
-      <View style={styles.headerContainer}>
-        <View style={styles.header}>
-          <Text Weight="black" Type="largeTitle" Color="black" fontSize={45}>
-            <Text Weight="black" Type="titlesm" Color="black" fontSize={25}>
-              The
-              {"\n"}
-            </Text>
-            WarriorBeat
+  _renderHeader = () => (
+    <View style={styles.headerContainer}>
+      <View style={styles.header}>
+        <Text Weight="black" Type="largeTitle" Color="black" fontSize={45}>
+          <Text Weight="black" Type="titlesm" Color="black" fontSize={25}>
+                The
+            {"\n"}
           </Text>
-        </View>
+              WarriorBeat
+        </Text>
       </View>
-    )
-  }
+    </View>
+  )
 
-  _onHeaderVisible = isVisible => {
+  _onHeaderVisible = (isVisible) => {
     if (this.headerVisible !== isVisible) {
       this.iconScale.setValue(isVisible ? 1 : 0)
       Animated.timing(this.iconScale, {
         toValue: isVisible ? 0 : 1,
         duration: 600,
-        easing: Easing.elastic(2)
+        easing: Easing.elastic(2),
       }).start()
       this.headerVisible = isVisible
     }
   }
 
   _updateHeight = (event, index) => {
-    let height = event.nativeEvent.layout.height
-    let values = Object.values(this.slideHeight)
+    let { height } = event.nativeEvent.layout
+    const values = Object.values(this.slideHeight)
     if (values.length >= 1 && height <= 100) {
-      height = values.reduce((prev, curr) => {
-        return Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev
-      })
+      height = values.reduce((prev, curr) => (
+        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev))
     }
     if (this.slideHeight[index] !== height) {
       this.slideHeight[index] = height * 1.1
@@ -83,27 +82,24 @@ class Home extends React.Component {
     return this.slideHeight
   }
 
-  _renderCategory = ({ item, index }) => {
-    return (
-      <View onLayout={e => this._updateHeight(e, index)}>
-        <GenericFeed categoryId={item.id} />
-      </View>
-    )
-  }
+  _renderCategory = ({ item, index }) => (
+    <View onLayout={e => this._updateHeight(e, index)}>
+      <GenericFeed categoryId={item.id} />
+    </View>
+  )
 
   _renderTab = ({ item, index }) => {
-    let btn_weight =
-      index === this.activeSlide || index === 0 ? "bold" : "regular"
+    const btnWeight = index === this.activeSlide || index === 0 ? "bold" : "regular"
     return (
       <View style={styles.tab_item}>
         <Button
           containerViewStyle={styles.tab_button_container}
           icon={{ ...icons[item.name.toLowerCase()], color: "black" }}
-          title={
-            <Text Color="black" Weight={btn_weight}>
+          title={(
+            <Text Color="black" Weight={btnWeight}>
               {item.name}
             </Text>
-          }
+          )}
           key={index}
           onPress={() => this._carousel.snapToNext()}
           iconStyle={styles.tab_color}
@@ -123,7 +119,7 @@ class Home extends React.Component {
         carouselRef={this._carousel}
         renderDots={() => (
           <Carousel
-            ref={c => {
+            ref={(c) => {
               this._pager = c
             }}
             data={categories}
@@ -136,41 +132,40 @@ class Home extends React.Component {
     )
   }
 
-  _updateSlideIndex = index => {
+  _updateSlideIndex = (index) => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
     this.activeSlide = index
     this._pager.snapToItem(index)
     this._carousel.snapToItem(index)
   }
 
-  _renderCarousel = categories => {
-    return (
-      <Carousel
-        ref={c => {
-          this._carousel = c
-        }}
-        data={categories}
-        renderItem={this._renderCategory}
-        containerCustomStyle={styles.carouselContainer}
-        {...carousel.feed}
-        onSnapToItem={index => this._updateSlideIndex(index)}
-        slideStyle={{ height: this.slideHeight[this.activeSlide] }}
-      />
-    )
-  }
+  _renderCarousel = categories => (
+    <Carousel
+      ref={(c) => {
+        this._carousel = c
+      }}
+      data={categories}
+      renderItem={this._renderCategory}
+      containerCustomStyle={styles.carouselContainer}
+      {...carousel.feed}
+      onSnapToItem={index => this._updateSlideIndex(index)}
+      slideStyle={{ height: this.slideHeight[this.activeSlide] }}
+    />
+  )
 
   render() {
-    const categoryStore = this.props.rootStore.categoryStore
-    let sort_order = ["News", "Sports"]
-    let categories = categoryStore.sortCategories(sort_order)
-    let icon_style = nav_icon_style(this.headerVisible)
-    const icon_scale = this.iconScale.interpolate({
+    const { rootStore } = this.props
+    const { categoryStore } = rootStore
+    const sortOrder = ["News", "Sports"]
+    const categories = categoryStore.sortCategories(sortOrder)
+    const iconStyle = navIconStyles(this.headerVisible)
+    const iconScale = this.iconScale.interpolate({
       inputRange: [0, 1],
-      outputRange: [0.8, 1]
+      outputRange: [0.8, 1],
     })
-    const icon_opacity = this.iconScale.interpolate({
+    const iconCapacity = this.iconScale.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [1, 0, 1]
+      outputRange: [1, 0, 1],
     })
     return (
       <ParallaxScrollView
@@ -189,25 +184,23 @@ class Home extends React.Component {
           </View>
         )}
         onChangeHeaderVisibility={isVisible => this._onHeaderVisible(isVisible)}
-        renderFixedHeader={() => {
-          return (
-            <View style={styles.fixed_header}>
-              <Animated.View
-                style={{
-                  ...styles.fixed_inner,
-                  opacity: icon_opacity,
-                  transform: [{ scale: icon_scale }]
-                }}
-              >
-                <Icon
-                  onPress={() => toggleMenu({ status: true })}
-                  {...icons.menu}
-                  {...icon_style.container}
-                />
-              </Animated.View>
-            </View>
-          )
-        }}
+        renderFixedHeader={() => (
+          <View style={styles.fixed_header}>
+            <Animated.View
+              style={{
+                ...styles.fixed_inner,
+                opacity: iconCapacity,
+                transform: [{ scale: iconScale }],
+              }}
+            >
+              <Icon
+                onPress={() => toggleMenu({ status: true })}
+                {...icons.menu}
+                {...iconStyle.container}
+              />
+            </Animated.View>
+          </View>
+        )}
       >
         {categoryStore.status === "ready"
           ? this._renderPagination(categories)

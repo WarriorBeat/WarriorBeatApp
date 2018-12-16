@@ -5,12 +5,12 @@
  */
 
 import { StyleSheet, Dimensions } from "react-native"
-import { colors, soft_colors } from "config/styles"
-import { type as font_type } from "components/Text/styles"
+import { colors, softColors } from "config/styles"
+import { type as fontType } from "components/Text/styles"
 import { materialColors } from "react-native-typography"
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp
+  heightPercentageToDP as hp,
 } from "react-native-responsive-screen"
 
 export const window = Dimensions.get("window")
@@ -21,26 +21,26 @@ export const styles = StyleSheet.create({
   header: {
     flex: 1,
     backgroundColor: colors.primary,
-    overflow: "hidden"
+    overflow: "hidden",
   },
   scroll_container: {
     justifyContent: "center",
-    alignContent: "center"
+    alignContent: "center",
   },
   html_font: {
     fontSize: 16,
-    ...font_type.body,
-    color: materialColors.blackPrimary
+    ...fontType.body,
+    color: materialColors.blackPrimary,
   },
   touchable_overlay: {
     height: HEADER_HEIGHT,
-    width: "100%"
+    width: "100%",
   },
   sticky_container: {
     height: STICKY_HEADER_HEIGHT,
     width: "100%",
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   fixed_container: {
     position: "absolute",
@@ -49,22 +49,22 @@ export const styles = StyleSheet.create({
     height: STICKY_HEADER_HEIGHT,
     width: "100%",
     alignItems: "flex-start",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   header_button: {
-    alignSelf: "center"
-  }
+    alignSelf: "center",
+  },
 })
 
-export const article_styles = {
+export const articleStyles = {
   container: {
     flex: 1,
     marginVertical: hp("3%"),
     marginHorizontal: wp("3%"),
-    alignContent: "center"
+    alignContent: "center",
   },
   title: {
-    textAlign: "center"
+    textAlign: "center",
   },
   post_header: {
     container: {
@@ -75,65 +75,65 @@ export const article_styles = {
       borderBottomWidth: 2.5,
       borderColor: colors.secondary,
       marginVertical: hp("2%"),
-      padding: 5
-    }
+      padding: 5,
+    },
   },
   credits: {
     container: {
       marginBottom: hp("1%"),
       padding: 0,
-      alignItems: "flex-end"
+      alignItems: "flex-end",
     },
     text: {
       textAlignVertical: "center",
       padding: 3,
-      position: "absolute"
-    }
-  }
+      position: "absolute",
+    },
+  },
 }
 
-export const header_styles = {
+export const headerStyles = {
   backgroundColor: colors.primaryDark,
-  contentBackgroundColor: soft_colors.white
+  contentBackgroundColor: softColors.white,
 }
 
 export const related = StyleSheet.create({
   root: {
-    marginBottom: 10
+    marginBottom: 10,
   },
   title: {
-    margin: 15
+    margin: 15,
   },
   container: {
     shadowColor: colors.black,
     shadowOpacity: 0.5,
     shadowRadius: 3,
     shadowOffset: { width: 1, height: 0 },
-    elevation: 8
+    elevation: 8,
   },
   wrapper: {
-    height: 250
+    height: 250,
   },
   item_container: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    padding: 40
+    padding: 40,
   },
   image_container: {
     borderRadius: 6,
-    overflow: "hidden"
-  }
+    overflow: "hidden",
+  },
 })
 
-export const related_size = {
+export const relatedSize = {
   height: hp("40%"),
-  item_height: hp("50%")
+  item_height: hp("50%"),
 }
 
 export const reaction = StyleSheet.create({
   wrapper: {
-    flex: 1
+    flex: 1,
   },
   emoji: {
     color: colors.white,
@@ -142,11 +142,11 @@ export const reaction = StyleSheet.create({
     textShadowColor: colors.black,
     textShadowRadius: 6,
     textShadowOffset: { width: 1, height: 0 },
-    elevation: 2
-  }
+    elevation: 2,
+  },
 })
 
-export const reaction_settings = {
+export const reactionSettings = {
   button_color: "rgba(39,39,39, 1)",
-  button_item_color: "rgba(39, 39, 39, 1)"
+  button_item_color: "rgba(39, 39, 39, 1)",
 }

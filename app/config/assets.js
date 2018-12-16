@@ -5,6 +5,8 @@
  */
 
 // Brand Assets
-export const brand_media = {
-  warrior_head: require("assets/brand/main.jpg")
+const brandMedia = {
+  warrior_head: require("assets/brand/main.jpg"),
 }
+
+export default brandMedia

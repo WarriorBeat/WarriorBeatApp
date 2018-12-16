@@ -10,50 +10,50 @@ import { colors } from "config/styles"
 
 export const weight = StyleSheet.create({
   thin: {
-    ...systemWeights.thin
+    ...systemWeights.thin,
   },
   light: {
-    ...systemWeights.light
+    ...systemWeights.light,
   },
   regular: {
-    ...systemWeights.regular
+    ...systemWeights.regular,
   },
   semibold: {
-    ...systemWeights.semibold
+    ...systemWeights.semibold,
   },
   bold: {
-    ...systemWeights.bold
+    ...systemWeights.bold,
   },
   heavy: {
-    fontWeight: "800"
+    fontWeight: "800",
   },
   black: {
-    fontWeight: "900"
-  }
+    fontWeight: "900",
+  },
 })
 
 export const color = StyleSheet.create({
   primary: {
-    color: colors.primary
+    color: colors.primary,
   },
   primaryDark: {
-    color: colors.primaryDark
+    color: colors.primaryDark,
   },
   secondary: {
-    color: colors.secondary
+    color: colors.secondary,
   },
   white: {
-    color: materialColors.whitePrimary
+    color: materialColors.whitePrimary,
   },
   white_dark: {
-    color: materialColors.whiteSecondary
+    color: materialColors.whiteSecondary,
   },
   black: {
-    color: colors.black
+    color: colors.black,
   },
   black_light: {
-    color: materialColors.blackSecondary
-  }
+    color: materialColors.blackSecondary,
+  },
 })
 
 export const decoration = StyleSheet.create({
@@ -61,42 +61,42 @@ export const decoration = StyleSheet.create({
     textShadowColor: colors.black,
     textShadowRadius: 3,
     textShadowOffset: { width: -1, height: 1 },
-    elevation: 2
-  }
+    elevation: 2,
+  },
 })
 
 export const type = StyleSheet.create({
   largeTitle: {
-    ...human.largeTitleWhiteObject
+    ...human.largeTitleWhiteObject,
   },
   title: {
-    ...human.title1WhiteObject
+    ...human.title1WhiteObject,
   },
   titlesm: {
-    ...human.title2WhiteObject
+    ...human.title2WhiteObject,
   },
   titlexsm: {
-    ...human.title3WhiteObject
+    ...human.title3WhiteObject,
   },
   headline: {
-    ...human.headlineWhiteObject
+    ...human.headlineWhiteObject,
   },
   body: {
-    ...human.bodyWhiteObject
+    ...human.bodyWhiteObject,
   },
   callout: {
-    ...human.calloutWhiteObject
+    ...human.calloutWhiteObject,
   },
   subhead: {
-    ...human.subheadWhiteObject
+    ...human.subheadWhiteObject,
   },
   footnote: {
-    ...human.footnoteWhiteObject
+    ...human.footnoteWhiteObject,
   },
   caption: {
-    ...human.caption1WhiteObject
+    ...human.caption1WhiteObject,
   },
   captionsm: {
-    ...human.caption2WhiteObject
-  }
+    ...human.caption2WhiteObject,
+  },
 })

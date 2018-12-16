@@ -4,8 +4,7 @@
  * Config
  */
 
-import { human } from "react-native-typography"
-import { systemWeights, materialColors } from "react-native-typography"
+import { human, systemWeights, materialColors } from "react-native-typography"
 import { Navigation } from "react-native-navigation"
 
 // Basic and Brand Colors
@@ -16,15 +15,15 @@ export const colors = {
   primary: "#393939",
   primaryDark: "#2d2d2d",
   secondary: "#F6D609",
-  black: black,
+  black,
   white: materialColors.whitePrimary,
-  transparent: transparent
+  transparent,
 }
 
 // Soft Colors
-const soft_white = "rgb(241, 244, 246)"
-export const soft_colors = {
-  white: soft_white
+const softWhite = "rgb(241, 244, 246)"
+export const softColors = {
+  white: softWhite,
 }
 
 // Font Styles
@@ -32,21 +31,21 @@ export const fonts = {
   whiteBoldTitle: {
     ...human.title2WhiteObject,
     ...systemWeights.bold,
-    color: materialColors.whitePrimary
+    color: materialColors.whitePrimary,
   },
   whiteBoldTitleSecondary: {
     ...systemWeights.bold,
-    color: materialColors.whiteSecondary
+    color: materialColors.whiteSecondary,
   },
   whiteHeadline: {
-    ...human.headlineWhiteObject
+    ...human.headlineWhiteObject,
   },
   boldShadow: {
     textShadowColor: colors.black,
     textShadowRadius: 3,
     textShadowOffset: { width: -1, height: 1 },
-    elevation: 2
-  }
+    elevation: 2,
+  },
 }
 
 // RNN Navigation Constants
@@ -59,42 +58,42 @@ export const getNavConstants = async () => {
 export const icons = {
   home: {
     name: "home",
-    type: "entypo"
+    type: "entypo",
   },
   news: {
     name: "newspaper-o",
-    type: "font-awesome"
+    type: "font-awesome",
   },
   sports: {
     name: "football",
-    type: "material-community"
+    type: "material-community",
   },
   categories: {
     name: "star",
-    type: "font-awesome"
+    type: "font-awesome",
   },
   entertainment: {
     name: "popcorn",
-    type: "material-community"
+    type: "material-community",
   },
   opinion: {
     name: "thought-bubble",
-    type: "material-community"
+    type: "material-community",
   },
   arrow_back: {
     name: "ios-arrow-back",
-    type: "ionicon"
+    type: "ionicon",
   },
   menu: {
     name: "md-menu",
-    type: "ionicon"
+    type: "ionicon",
   },
   features: {
     name: "new-releases",
-    type: "material-icons"
+    type: "material-icons",
   },
   school: {
     name: "md-school",
-    type: "ionicon"
-  }
+    type: "ionicon",
+  },
 }

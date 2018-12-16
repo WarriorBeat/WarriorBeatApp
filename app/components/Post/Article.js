@@ -7,61 +7,46 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import GenericPost, { HTML } from "./GenericPost"
-import RelatedPost from "./RelatedPost"
-import { AuthorSummary } from "components/Author"
-import { article_styles } from "./styles"
+import AuthorSummary from "components/Author"
 import { Divider } from "react-native-elements"
 import { observer, inject } from "mobx-react/native"
+import GenericPost, { HTML } from "./GenericPost"
+import RelatedPost from "./RelatedPost"
+import { articleStyles } from "./styles"
 
 @inject("postStore")
 @observer
 class Article extends React.Component {
   render() {
-    const { postStore, postId } = this.props
-    let post = postStore.resolvePost(postId)
+    const { postStore, postId, componentId } = this.props
+    const post = postStore.resolvePost(postId)
     const BULL = " • "
     return (
-      <GenericPost
-        childComponentId={this.props.componentId}
-        backgroundSource={post.cover_image.url}
-      >
-        <View style={article_styles.credits.container}>
+      <GenericPost childComponentId={componentId} backgroundSource={post.coverImage.url}>
+        <View style={articleStyles.credits.container}>
           <Text
-            style={article_styles.credits.text}
+            style={articleStyles.credits.text}
             Type="captionsm"
             Color="black_light"
             Weight="thin"
             Italic
             NoPadding
           >
-            {post.cover_image.credits}
+            {post.coverImage.credits}
           </Text>
         </View>
-        <View style={article_styles.container}>
-          <Text
-            style={article_styles.title}
-            Type="largeTitle"
-            Weight="bold"
-            Color="black"
-          >
+        <View style={articleStyles.container}>
+          <Text style={articleStyles.title} Type="largeTitle" Weight="bold" Color="black">
             {post.title}
           </Text>
-          <Text
-            Type="headline"
-            Color="primary"
-            Weight="light"
-            style={article_styles.title}
-          >
+          <Text Type="headline" Color="primary" Weight="light" style={articleStyles.title}>
             {post.categories[0].name}
           </Text>
-          <View style={article_styles.post_header.container}>
-            <Text>
-              {post.author.name + " / " + post.author.title + BULL + post.date}
-            </Text>
+          <View style={articleStyles.post_header.container}>
+            <Text>{`${post.author.name} / ${post.author.title}${BULL}${post.date}`}</Text>
           </View>
           <HTML html={post.content} />
-          <Divider style={article_styles.divider} />
+          <Divider style={articleStyles.divider} />
           <AuthorSummary author={post.author} />
         </View>
         <RelatedPost />

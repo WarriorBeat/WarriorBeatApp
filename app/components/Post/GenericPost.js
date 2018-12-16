@@ -6,53 +6,43 @@
 
 import React from "react"
 import {
-  View,
-  TouchableWithoutFeedback,
-  Image,
-  Animated,
-  ScrollView
+  View, TouchableWithoutFeedback, Image, Animated, ScrollView,
 } from "react-native"
-import {
-  styles,
-  header_styles,
-  window,
-  HEADER_HEIGHT,
-  STICKY_HEADER_HEIGHT
-} from "./styles"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
 import { Button } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
-import ReactionButton from "./ReactionButton"
 import { observer } from "mobx-react/native"
+import ReactionButton from "./ReactionButton"
+import {
+  styles, headerStyles, window, HEADER_HEIGHT, STICKY_HEADER_HEIGHT,
+} from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
-export const HTML = props => {
-  return <RenderHTML baseFontStyle={styles.html_font} {...props} />
-}
+export const HTML = props => <RenderHTML baseFontStyle={styles.html_font} {...props} />
 @observer
 class GenericPost extends React.Component {
   openLightBox = () => {
     this._box.open()
   }
 
-  popScreen = componentId => {
+  popScreen = (componentId) => {
     Navigation.pop(componentId)
   }
 
   render() {
-    const { childComponentId, backgroundSource } = this.props
+    const { childComponentId, backgroundSource, children } = this.props
     return (
       <ReactionButton ref={rxnButton => (this._rxnButton = rxnButton)}>
         <ParallaxScrollView
           renderScrollComponent={() => <AnimatedScrollView />}
           scrollEvent={e => this._rxnButton.onScroll(e)}
           scrollEventThrottle={1}
-          backgroundColor={header_styles.backgroundColor}
-          contentBackgroundColor={header_styles.contentBackgroundColor}
+          backgroundColor={headerStyles.backgroundColor}
+          contentBackgroundColor={headerStyles.contentBackgroundColor}
           parallaxHeaderHeight={HEADER_HEIGHT}
           renderForeground={() => (
             <TouchableWithoutFeedback onPress={() => this.openLightBox()}>
@@ -63,7 +53,7 @@ class GenericPost extends React.Component {
             <View style={styles.fixed_container}>
               <Button
                 large
-                backgroundColor={"transparent"}
+                backgroundColor="transparent"
                 icon={icons.arrow_back}
                 buttonStyle={styles.header_button}
                 onPress={() => this.popScreen(childComponentId)}
@@ -78,7 +68,7 @@ class GenericPost extends React.Component {
                 source={{
                   uri: backgroundSource,
                   width: window.width,
-                  height: HEADER_HEIGHT
+                  height: HEADER_HEIGHT,
                 }}
               />
             </Lightbox>
@@ -86,7 +76,7 @@ class GenericPost extends React.Component {
           contentContainerStyle={styles.scroll_container}
           style={styles.header}
         >
-          {this.props.children}
+          {children}
         </ParallaxScrollView>
       </ReactionButton>
     )
