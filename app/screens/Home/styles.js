@@ -47,7 +47,8 @@ export const nav_icon_style = isVisible => {
   return {
     container: {
       size: size,
-      color: color
+      color: color,
+      underlayColor: "transparent"
     }
   }
 }
