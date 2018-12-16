@@ -4,19 +4,18 @@
  * Screens
  */
 
-import { StyleSheet, Dimensions } from "react-native"
+import { StyleSheet, Platform } from "react-native"
 import { colors, soft_colors } from "config/styles"
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp
 } from "react-native-responsive-screen"
 
-export const window = Dimensions.get("window")
-
 export const scrollView = {
   backgroundColor: soft_colors.white
 }
 
+const HEADER_HEIGHT = Platform.OS === "android" ? hp("23%") : hp("18%")
 export const carousel = {
   feed: {
     sliderWidth: wp("100%"),
@@ -35,7 +34,7 @@ export const carousel = {
     backgroundColor: "transparent"
   },
   container: {
-    parallaxHeaderHeight: hp("18%"),
+    parallaxHeaderHeight: HEADER_HEIGHT,
     stickyHeaderHeight: hp("12%"),
     backgroundColor: soft_colors.white,
     contentBackgroundColor: soft_colors.white
@@ -77,7 +76,7 @@ export const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
     justifyContent: "flex-end",
-    paddingBottom: hp("2%")
+    paddingBottom: hp("1.5%")
   },
   fixed_header: {
     position: "absolute",
@@ -90,7 +89,7 @@ export const styles = StyleSheet.create({
   },
   fixed_inner: {
     paddingHorizontal: wp("5%"),
-    paddingBottom: hp("2.5%")
+    paddingBottom: hp("2.25%")
   },
   carouselContainer: {
     flex: 0,
