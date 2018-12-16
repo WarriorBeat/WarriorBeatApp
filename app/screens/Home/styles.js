@@ -42,6 +42,17 @@ export const carousel = {
   }
 }
 
+export const nav_icon_style = isVisible => {
+  let color = isVisible ? colors.primaryDark : colors.white
+  let size = wp("7%")
+  return {
+    container: {
+      size: size,
+      color: color
+    }
+  }
+}
+
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: soft_colors.white
@@ -64,15 +75,22 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     height: carousel.container.stickyHeaderHeight,
     width: "100%",
-    alignSelf: "flex-end",
-    alignItems: "flex-end",
-    justifyContent: "center",
-    flexDirection: "column",
-    paddingTop: hp("5%")
+    alignItems: "center",
+    justifyContent: "flex-end",
+    paddingBottom: hp("2%")
   },
-  sticky_content: {
-    alignSelf: "center",
-    paddingHorizontal: wp("2%")
+  fixed_header: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
+    height: carousel.container.stickyHeaderHeight,
+    width: wp("100%")
+  },
+  fixed_inner: {
+    paddingHorizontal: wp("5%"),
+    paddingBottom: hp("2.5%")
   },
   carouselContainer: {
     flex: 0,
