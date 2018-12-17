@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.6.0...v0.7.0) (2018-12-17)
+
+
+### Bug Fixes
+
+* **android:** Fix LayoutAnimations on Android ([#28](https://github.com/WarriorBeat/WarriorBeatApp/issues/28)) ([98325ff](https://github.com/WarriorBeat/WarriorBeatApp/commit/98325ff))
+
+
+### Features
+
+* Implemented Prop-Types ([#30](https://github.com/WarriorBeat/WarriorBeatApp/issues/30)) ([9b14be0](https://github.com/WarriorBeat/WarriorBeatApp/commit/9b14be0))
+* **style:** Extend Airbnb Style Guide for ESLint ([#29](https://github.com/WarriorBeat/WarriorBeatApp/issues/29)) ([b7e3ab3](https://github.com/WarriorBeat/WarriorBeatApp/commit/b7e3ab3))
+* Home Screen Nav Burger, Animations, and Layout Cleanup ([#27](https://github.com/WarriorBeat/WarriorBeatApp/issues/27)) ([d53a862](https://github.com/WarriorBeat/WarriorBeatApp/commit/d53a862))
+
+
+
 <a name="0.6.0"></a>
 # [0.6.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.5.0...v0.6.0) (2018-12-15)
 
