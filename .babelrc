@@ -23,6 +23,7 @@
         "root": ["./app"]
       }
     ],
-    ["lodash"]
+    ["lodash"],
+    ["functional-hmr"]
   ]
 }
