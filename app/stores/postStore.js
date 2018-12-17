@@ -8,6 +8,12 @@ import {
   observable, flow, computed, reaction, when,
 } from "mobx"
 
+/**
+ * Class for individual Post Resource Item
+ *
+ * @export Post
+ * @class Post
+ */
 export class Post {
   id = null
 
@@ -26,6 +32,14 @@ export class Post {
 
   saveHandler = null
 
+  /**
+   * Creates an instance of Post.
+   * Hooks saveHandler
+   *
+   * @param {object} store - Parent Store
+   * @param {string} id - Immutable id of Post Item
+   * @memberof Post
+   */
   constructor(store, id) {
     this.store = store
     this.id = id
@@ -40,6 +54,14 @@ export class Post {
     )
   }
 
+  /**
+   * MobX Computed
+   *
+   * Used in reaction to watch for any changes in post
+   * @readonly
+   * @memberof Post
+   * @returns Post attributes as JSON
+   */
   @computed
   get asJson() {
     return {
@@ -54,12 +76,28 @@ export class Post {
     }
   }
 
+  /**
+   * Parse and return Post Date from ISO
+   * to readable format
+   *
+   * @param {string} isoDate - Parse in ISO Format
+   * @memberof Post
+   * @returns Parsed Post Date
+   */
   parsePostDate = (isoDate) => {
     const date = new Date(isoDate)
     const parsed = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`
     return parsed
   }
 
+  /**
+   * Update and Resolve post attributes
+   *
+   * Temporarily disables autoSave to prevent event loop
+   *
+   * @param {object} json - JSON Object
+   * @memberof Post
+   */
   updateFromJson(json) {
     this.autoSave = false
     this.id = json.postId
@@ -74,6 +112,11 @@ export class Post {
   }
 }
 
+/**
+ * MobX Store for managing Post related data
+ * @export
+ * @class PostStore
+ */
 export class PostStore {
   authorStore
 
@@ -85,12 +128,25 @@ export class PostStore {
   @observable
   state = "pending"
 
+  /**
+   * Creates an instance of PostStore
+   * @param {object} rootStore - RootStore Singleton
+   * @param {object} resourceClient - Instance of API class
+   * @memberof PostStore
+   */
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
     this.loadPosts()
   }
 
+  /**
+   * Loads all Posts from API
+   *
+   * @generator
+   * @yields Endpoint Resource Items
+   * @memberof PostStore
+   */
   loadPosts = flow(function* () {
     this.state = "pending"
     this.posts = []
@@ -104,6 +160,12 @@ export class PostStore {
     )
   })
 
+  /**
+   * Updates Post Item if ID exists, otherwise creates one
+   *
+   * @param {object} json - JSON Data from API
+   * @memberof PostStore
+   */
   updatePost(json) {
     let post = this.posts.find(p => p.id === json.postId)
     if (!post) {
@@ -113,6 +175,13 @@ export class PostStore {
     post.updateFromJson(json)
   }
 
+  /**
+   * Resolves PostItem from ID
+   *
+   * @param {string} id - Immutable ID of Post Item
+   * @returns Post Instance if it exists
+   * @memberof PostStore
+   */
   resolvePost(id) {
     const post = this.posts.find(p => p.id === id)
     return post !== null ? post : null
