@@ -9,7 +9,8 @@ import { View } from "react-native"
 import { Tile, Avatar } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
-import { observer, inject } from "mobx-react/native"
+import { PropTypes } from "prop-types"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import styles from "./styles"
 
 @inject("postStore")
@@ -59,6 +60,14 @@ class NewsBlock extends React.Component {
       </View>
     )
   }
+}
+
+NewsBlock.wrappedComponent.propTypes = {
+  postStore: MobxTypes.observableObject.isRequired,
+}
+
+NewsBlock.propTypes = {
+  postId: PropTypes.string.isRequired,
 }
 
 export default NewsBlock

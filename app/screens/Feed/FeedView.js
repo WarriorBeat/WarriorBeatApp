@@ -6,9 +6,10 @@
 
 import React from "react"
 import { View } from "react-native"
+import PropTypes from "prop-types"
 import { Header } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
-import { observer, inject } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import styles from "./styles"
 
 @inject("categoryStore")
@@ -32,6 +33,14 @@ class FeedView extends React.Component {
       </View>
     )
   }
+}
+
+FeedView.wrappedComponent.propTypes = {
+  categoryStore: MobxTypes.observableObject.isRequired,
+}
+
+FeedView.propTypes = {
+  categoryId: PropTypes.string.isRequired,
 }
 
 export default FeedView

@@ -9,7 +9,8 @@ import { View } from "react-native"
 import Text from "components/Text"
 import AuthorSummary from "components/Author"
 import { Divider } from "react-native-elements"
-import { observer, inject } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { PropTypes } from "prop-types"
 import GenericPost, { HTML } from "./GenericPost"
 import RelatedPost from "./RelatedPost"
 import { articleStyles } from "./styles"
@@ -43,7 +44,9 @@ class Article extends React.Component {
             {post.categories[0].name}
           </Text>
           <View style={articleStyles.post_header.container}>
-            <Text>{`${post.author.name} / ${post.author.title}${BULL}${post.date}`}</Text>
+            <Text Color="primaryDark">
+              {`${post.author.name} / ${post.author.title}${BULL}${post.date}`}
+            </Text>
           </View>
           <HTML html={post.content} />
           <Divider style={articleStyles.divider} />
@@ -53,6 +56,15 @@ class Article extends React.Component {
       </GenericPost>
     )
   }
+}
+
+Article.wrappedComponent.propTypes = {
+  postStore: MobxTypes.observableObject.isRequired,
+}
+
+Article.propTypes = {
+  postId: PropTypes.string.isRequired,
+  componentId: PropTypes.string.isRequired,
 }
 
 export default Article

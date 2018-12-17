@@ -6,6 +6,7 @@
 
 import React from "react"
 import { Text as RenderText } from "react-native"
+import PropTypes from "prop-types"
 import { colors as genericColors } from "config/styles"
 import {
   weight, color, decoration, type,
@@ -52,7 +53,7 @@ class Text extends React.Component {
       fontStyle: Italic ? "italic" : "normal",
       includeFontPadding: !NoPadding,
     }
-    const textSize = fontSize || renderStyle.fontSize
+    const textSize = fontSize !== null ? fontSize : renderStyle.fontSize
     return (
       <RenderText
         style={{
@@ -65,6 +66,29 @@ class Text extends React.Component {
       </RenderText>
     )
   }
+}
+
+Text.propTypes = {
+  Type: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  Color: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  Weight: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  Shadow: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.array]).isRequired,
+  style: RenderText.propTypes.style,
+  Italic: PropTypes.bool,
+  NoPadding: PropTypes.bool,
+  fontSize: PropTypes.number,
+}
+
+Text.defaultProps = {
+  Type: false,
+  Color: false,
+  Weight: false,
+  Shadow: false,
+  style: {},
+  Italic: false,
+  NoPadding: false,
+  fontSize: null,
 }
 
 export default Text

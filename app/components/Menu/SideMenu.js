@@ -8,6 +8,7 @@ import React from "react"
 import { View, Image } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { Button } from "react-native-elements"
+import { PropTypes } from "prop-types"
 import sideMenu from "./styles"
 
 export const MenuButton = (props) => {
@@ -17,14 +18,14 @@ export const MenuButton = (props) => {
   let btnTextStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
   btnTextStyle = isFooter ? sideMenu.buttonFooterText : btnTextStyle
 
-  const btnStyle = buttonStyle || isFooter ? sideMenu.buttonSecondary : sideMenu.button
+  const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
 
   return (
     <Button
       large
       backgroundColor="transparent"
       textStyle={{ ...btnTextStyle, ...textStyle }}
-      buttonStyle={btnStyle}
+      buttonStyle={{ ...btnStyle, ...buttonStyle }}
       title={title}
       icon={icon}
       onPress={onPress}
@@ -56,6 +57,38 @@ const SideMenu = (props) => {
       </View>
     </LinearGradient>
   )
+}
+
+MenuButton.propTypes = {
+  isHeader: PropTypes.bool,
+  isFooter: PropTypes.bool,
+  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  icon: PropTypes.objectOf(PropTypes.string),
+  onPress: PropTypes.func,
+  buttonStyle: Button.propTypes.buttonStyle,
+  textStyle: Button.propTypes.textStyle,
+}
+
+MenuButton.defaultProps = {
+  isHeader: false,
+  isFooter: false,
+  icon: {},
+  onPress: () => {},
+  buttonStyle: {},
+  textStyle: {},
+}
+
+SideMenu.propTypes = {
+  headerImage: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
+  header: PropTypes.node,
+  footer: PropTypes.node,
+  children: PropTypes.node.isRequired,
+}
+
+SideMenu.defaultProps = {
+  headerImage: false,
+  header: null,
+  footer: null,
 }
 
 export default SideMenu

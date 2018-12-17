@@ -6,12 +6,13 @@
 
 import React from "react"
 import { View } from "react-native"
+import { PropTypes } from "prop-types"
 import { Tile } from "react-native-elements"
 import Carousel from "react-native-snap-carousel"
 import Text from "components/Text"
 import { observable } from "mobx"
 import { Navigation } from "react-native-navigation"
-import { observer, inject } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { related as styles, window, relatedSize as stylesSize } from "./styles"
 
 const RelatedPostItem = (props) => {
@@ -75,6 +76,15 @@ class RelatedPost extends React.Component {
       </View>
     )
   }
+}
+
+RelatedPost.wrappedComponent.propTypes = {
+  postStore: MobxTypes.observableObject.isRequired,
+}
+
+RelatedPostItem.propTypes = {
+  post: MobxTypes.observableObject.isRequired,
+  handlePress: PropTypes.func.isRequired,
 }
 
 export default RelatedPost

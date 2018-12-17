@@ -11,7 +11,8 @@ import { Navigation } from "react-native-navigation"
 import { viewPosts, returnHome } from "actions/navigation"
 import brandMedia from "config/assets"
 import { icons } from "config/styles"
-import { observer, inject } from "mobx-react/native"
+import { PropTypes } from "prop-types"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { SideMenu, MenuButton } from "./index"
 
 export const SubMenu = (props) => {
@@ -44,12 +45,11 @@ export const SubMenu = (props) => {
     </SideMenu>
   )
 }
-@inject("rootStore")
+@inject("categoryStore")
 @observer
 class NavMenu extends React.Component {
   enterSubmenu() {
-    const { componentId, rootStore } = this.props
-    const { categoryStore } = rootStore
+    const { componentId, categoryStore } = this.props
     Navigation.push(componentId, {
       component: {
         name: "NavMenu.SubMenu",
@@ -92,6 +92,20 @@ class NavMenu extends React.Component {
       </SideMenu>
     )
   }
+}
+
+SubMenu.propTypes = {
+  store: MobxTypes.observableObject.isRequired,
+  exitSubmenu: PropTypes.func.isRequired,
+  componentId: PropTypes.string.isRequired,
+}
+
+NavMenu.wrappedComponent.propTypes = {
+  categoryStore: MobxTypes.observableObject.isRequired,
+}
+
+NavMenu.propTypes = {
+  componentId: PropTypes.string.isRequired,
 }
 
 export default NavMenu

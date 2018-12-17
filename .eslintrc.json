@@ -36,7 +36,6 @@
     "no-underscore-dangle": 0,
     "func-names": [2, "never"],
     "react/sort-comp": 0,
-    "react/prop-types": 0,
     "no-return-assign": 0
   },
   "globals": {
