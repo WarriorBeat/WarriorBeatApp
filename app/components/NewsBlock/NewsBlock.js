@@ -52,7 +52,7 @@ class NewsBlock extends React.Component {
           onPress={() => this.handlePress(post.id)}
         >
           <View style={styles.content}>
-            <Text style={styles.title} Type="title" Color="black" Weight="light">
+            <Text style={styles.title} Type="title" Color="black" Weight="regular">
               {post.title}
             </Text>
           </View>
