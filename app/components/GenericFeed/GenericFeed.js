@@ -6,7 +6,8 @@
 
 import React from "react"
 import { View } from "react-native"
-import { observer, inject } from "mobx-react/native"
+import PropTypes from "prop-types"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import NewsBlock from "components/NewsBlock"
 import styles from "./styles"
 
@@ -29,6 +30,18 @@ class GenericFeed extends React.Component {
       </View>
     )
   }
+}
+
+GenericFeed.wrappedComponent.propTypes = {
+  postStore: MobxTypes.observableObject.isRequired,
+}
+
+GenericFeed.propTypes = {
+  categoryId: PropTypes.string,
+}
+
+GenericFeed.defaultProps = {
+  categoryId: false,
 }
 
 export default GenericFeed

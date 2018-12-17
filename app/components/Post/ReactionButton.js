@@ -8,6 +8,7 @@ import React from "react"
 import { View, LayoutAnimation } from "react-native"
 import { observer } from "mobx-react"
 import { observable } from "mobx"
+import { PropTypes } from "prop-types"
 import ActionButton from "react-native-action-button"
 import Emoji from "react-native-emoji"
 import { reaction as styles, reactionSettings as settings } from "./styles"
@@ -76,6 +77,10 @@ class ReactionButton extends React.Component {
       </View>
     )
   }
+}
+
+ReactionButton.propTypes = {
+  children: PropTypes.node.isRequired,
 }
 
 export default ReactionButton

@@ -15,6 +15,7 @@ import { Button } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import { observer } from "mobx-react/native"
+import { PropTypes } from "prop-types"
 import ReactionButton from "./ReactionButton"
 import {
   styles, headerStyles, window, HEADER_HEIGHT, STICKY_HEADER_HEIGHT,
@@ -81,6 +82,12 @@ class GenericPost extends React.Component {
       </ReactionButton>
     )
   }
+}
+
+GenericPost.propTypes = {
+  childComponentId: PropTypes.string.isRequired,
+  backgroundSource: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 }
 
 export default GenericPost
