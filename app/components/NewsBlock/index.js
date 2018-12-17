@@ -1,9 +1,9 @@
 /**
- * NewsBlock/index.js
- * News Block Component
- * Index Exports
+ * index.js
+ * News Block Components
+ * components
  */
 
-import NewsBlock from "./NewsBlock"
+import ArticleBlock from "./ArticleBlock"
 
-export default NewsBlock
+export default ArticleBlock
