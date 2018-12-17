@@ -3,49 +3,48 @@
 import { Navigation } from "react-native-navigation"
 
 // Home Screen
-export const goHome = () =>
-  Navigation.setRoot({
-    root: {
-      sideMenu: {
-        left: {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: "NavMenu",
-                  id: "PrimaryNavMenu"
-                }
-              }
-            ]
-          }
+export const goHome = () => Navigation.setRoot({
+  root: {
+    sideMenu: {
+      left: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: "NavMenu",
+                id: "PrimaryNavMenu",
+              },
+            },
+          ],
         },
-        center: {
-          stack: {
-            children: [
-              {
-                component: {
-                  name: "Home",
-                  id: "HomeScreen"
-                }
-              }
-            ]
-          }
-        }
-      }
-    }
-  })
+      },
+      center: {
+        stack: {
+          children: [
+            {
+              component: {
+                name: "Home",
+                id: "HomeScreen",
+              },
+            },
+          ],
+        },
+      },
+    },
+  },
+})
 
 // Change Side Menu State
 export const toggleMenu = ({
   menu = "PrimaryNavMenu",
-  status = false
+  status = false,
 } = {}) => {
   Navigation.mergeOptions(menu, {
     sideMenu: {
       left: {
-        visible: status
-      }
-    }
+        visible: status,
+      },
+    },
   })
 }
 
@@ -55,9 +54,9 @@ export const viewPosts = (componentId, categoryId = null) => {
     component: {
       name: "FeedView",
       passProps: {
-        categoryId: categoryId
-      }
-    }
+        categoryId,
+      },
+    },
   })
   toggleMenu()
 }

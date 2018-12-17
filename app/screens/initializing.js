@@ -4,6 +4,17 @@ import React from "react"
 import { goHome } from "actions/navigation"
 import { View, Text, StyleSheet } from "react-native"
 
+const styles = StyleSheet.create({
+  welcome: {
+    fontSize: 28,
+  },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+})
+
 export default class Initializing extends React.Component {
   async componentDidMount() {
     goHome()
@@ -17,14 +28,3 @@ export default class Initializing extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  welcome: {
-    fontSize: 28
-  },
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
-})

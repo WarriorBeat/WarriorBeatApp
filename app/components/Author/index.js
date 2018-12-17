@@ -6,4 +6,4 @@
 
 import AuthorSummary from "./AuthorSummary"
 
-export { AuthorSummary }
+export default AuthorSummary

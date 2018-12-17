@@ -7,28 +7,29 @@
  */
 import React from "react"
 import { View } from "react-native"
-import { SideMenu, MenuButton } from "./index"
 import { Navigation } from "react-native-navigation"
 import { viewPosts, returnHome } from "actions/navigation"
-import { brand_media } from "config/assets"
+import brandMedia from "config/assets"
 import { icons } from "config/styles"
 import { observer, inject } from "mobx-react/native"
+import { SideMenu, MenuButton } from "./index"
 
-export const SubMenu = props => {
-  const { categories } = props.store
-  const cat_ignores = ["news", "polls"]
+export const SubMenu = (props) => {
+  const { store } = props
+  const { categories } = store
+  const catIgnores = ["news", "polls"]
   return (
     <SideMenu
-      header={
+      header={(
         <MenuButton
           onPress={() => props.exitSubmenu(props.componentId)}
           icon={icons.arrow_back}
-          title={"Back"}
+          title="Back"
         />
-      }
+      )}
     >
-      {categories.map(c => {
-        if (!cat_ignores.includes(c.name.toLowerCase())) {
+      {categories.map((c) => {
+        if (!catIgnores.includes(c.name.toLowerCase())) {
           return (
             <MenuButton
               icon={icons[c.name.toLowerCase()]}
@@ -38,6 +39,7 @@ export const SubMenu = props => {
             />
           )
         }
+        return false
       })}
     </SideMenu>
   )
@@ -46,47 +48,45 @@ export const SubMenu = props => {
 @observer
 class NavMenu extends React.Component {
   enterSubmenu() {
-    Navigation.push(this.props.componentId, {
+    const { componentId, rootStore } = this.props
+    const { categoryStore } = rootStore
+    Navigation.push(componentId, {
       component: {
         name: "NavMenu.SubMenu",
         passProps: {
           exitSubmenu: this.exitSubmenu,
           filterPosts: this.filterPosts,
-          store: this.props.rootStore.categoryStore
-        }
-      }
+          store: categoryStore,
+        },
+      },
     })
   }
 
-  exitSubmenu(id) {
+  exitSubmenu = (id) => {
     Navigation.pop(id)
   }
 
-  filterPosts = categoryId => {
+  filterPosts = (categoryId) => {
     viewPosts("HomeScreen", categoryId)
   }
 
   render() {
     return (
       <SideMenu
-        headerImage={brand_media.warrior_head}
-        footer={
+        headerImage={brandMedia.warrior_head}
+        footer={(
           <View>
-            <MenuButton isFooter title={"About Us"} />
-            <MenuButton isFooter title={"Meet the Staff"} />
-            <MenuButton isFooter title={"Social"} />
+            <MenuButton isFooter title="About Us" />
+            <MenuButton isFooter title="Meet the Staff" />
+            <MenuButton isFooter title="Social" />
           </View>
-        }
+        )}
       >
-        <MenuButton
-          onPress={() => returnHome()}
-          title={"My Feed"}
-          icon={icons.home}
-        />
-        <MenuButton title={"News"} icon={icons.news} />
+        <MenuButton onPress={() => returnHome()} title="My Feed" icon={icons.home} />
+        <MenuButton title="News" icon={icons.news} />
         <MenuButton
           onPress={() => this.enterSubmenu()}
-          title={"Categories"}
+          title="Categories"
           icon={icons.categories}
         />
       </SideMenu>

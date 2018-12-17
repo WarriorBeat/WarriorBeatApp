@@ -27,20 +27,20 @@ export default class Provider extends MobXProvider {
     // inherit stores
     const baseStores = this.context.mobxStores
     if (baseStores) {
-      for (let key in baseStores) {
+      for (const key in baseStores) {
         stores[key] = baseStores[key]
       }
     }
 
     // add own stores
-    for (let key in this.props.store) {
+    for (const key in this.props.store) {
       if (!SPECIAL_REACT_KEYS[key]) {
         stores[key] = this.props.store[key]
       }
     }
 
     return {
-      mobxStores: stores
+      mobxStores: stores,
     }
   }
 }

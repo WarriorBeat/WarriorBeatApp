@@ -4,43 +4,34 @@ import { Navigation } from "react-native-navigation"
 import Provider from "lib/RNNProvider"
 import RootStore from "stores/rootStore"
 
-export function registerScreens() {
+function registerScreens() {
   const rootStore = new RootStore()
   const store = {
-    rootStore: rootStore,
+    rootStore,
     postStore: rootStore.postStore,
-    categoryStore: rootStore.categoryStore
+    categoryStore: rootStore.categoryStore,
   }
-  Navigation.registerComponentWithRedux(
-    "Home",
-    () => require("screens").Home,
-    Provider,
-    store
-  )
-  Navigation.registerComponent(
-    "Initializing",
-    () => require("screens").Initializing
-  )
+  Navigation.registerComponentWithRedux("Home", () => require("screens").Home, Provider, store)
+  Navigation.registerComponent("Initializing", () => require("screens").Initializing)
   Navigation.registerComponentWithRedux(
     "FeedView",
     () => require("screens").FeedView,
     Provider,
-    store
+    store,
   )
   Navigation.registerComponentWithRedux(
     "Post.Article",
     () => require("components/Post").Article,
     Provider,
-    store
+    store,
   )
   Navigation.registerComponentWithRedux(
     "NavMenu",
     () => require("components/Menu").default,
     Provider,
-    store
+    store,
   )
-  Navigation.registerComponent(
-    "NavMenu.SubMenu",
-    () => require("components/Menu").SubMenu
-  )
+  Navigation.registerComponent("NavMenu.SubMenu", () => require("components/Menu").SubMenu)
 }
+
+export default registerScreens

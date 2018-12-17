@@ -9,4 +9,6 @@ import { AuthorStore } from "./authorStore"
 import { MediaStore } from "./mediaStore"
 import { CategoryStore } from "./categoryStore"
 
-export { PostStore, AuthorStore, MediaStore, CategoryStore }
+export {
+  PostStore, AuthorStore, MediaStore, CategoryStore,
+}

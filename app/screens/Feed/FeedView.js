@@ -8,15 +8,15 @@ import React from "react"
 import { View } from "react-native"
 import { Header } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
-import { styles } from "./styles"
 import { observer, inject } from "mobx-react/native"
+import styles from "./styles"
 
 @inject("categoryStore")
 @observer
 class FeedView extends React.Component {
   render() {
     const { categoryId, categoryStore } = this.props
-    let category = categoryStore.resolveCategory(categoryId)
+    const category = categoryStore.resolveCategory(categoryId)
     return (
       <View style={styles.container}>
         <Header
@@ -25,7 +25,7 @@ class FeedView extends React.Component {
           statusBarProps={{
             barStyle: "light-content",
             backgroundColor: "#00000039",
-            drawBehind: true
+            drawBehind: true,
           }}
         />
         <GenericFeed categoryId={category.id} />

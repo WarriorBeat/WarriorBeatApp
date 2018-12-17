@@ -7,13 +7,6 @@
 import { API as REQ } from "aws-amplify"
 import { API_DEV } from "react-native-dotenv"
 
-// Gateways
-const gateways = {
-  local: "local",
-  aws: "warriorbeat-stage",
-  aws_dev: "warriorbeat-dev"
-}
-
 /**
  * Handle API Resources
  *
@@ -22,6 +15,7 @@ const gateways = {
  */
 export default class API {
   resource = null
+
   /**
    * Creates an instance of API.
    * @param {string} resource - Resource endpoint name
@@ -31,6 +25,11 @@ export default class API {
   constructor(resource, identity) {
     this.resource_type = resource
     this.identity = identity
+    this.gateways = {
+      local: "local",
+      aws: "warriorbeat-stage",
+      aws_dev: "warriorbeat-dev",
+    }
   }
 
   /**
@@ -42,11 +41,11 @@ export default class API {
   get gateway() {
     switch (API_DEV) {
     case "local":
-      return gateways.local
+      return this.gateways.local
     case "awsdev":
-      return gateways.aws_dev
+      return this.gateways.aws_dev
     default:
-      return gateways.aws
+      return this.gateways.aws
     }
   }
 
@@ -57,7 +56,7 @@ export default class API {
    * @memberof API
    */
   get resource() {
-    let path = `/api/${this.resource_type}`
+    const path = `/api/${this.resource_type}`
     return path
   }
 
@@ -81,9 +80,7 @@ export default class API {
    */
   async fetchIDs() {
     const resp = await REQ.get(this.gateway, this.resource)
-    let ids = resp.map(item => {
-      return item[this.identity]
-    })
+    const ids = resp.map(item => item[this.identity])
     return ids
   }
 
@@ -97,7 +94,7 @@ export default class API {
    * @memberof API
    */
   async get(id, includes) {
-    let url = `${this.resource}/${id}?include=${includes.join(",")}`
+    const url = `${this.resource}/${id}?include=${includes.join(",")}`
     const resp = await REQ.get(this.gateway, url)
     return resp
   }

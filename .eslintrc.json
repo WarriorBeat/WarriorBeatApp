@@ -6,7 +6,7 @@
     "es6": true,
     "react-native/react-native": true
   },
-  "extends": "eslint:recommended",
+  "extends": "airbnb",
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
@@ -23,6 +23,7 @@
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "double"],
     "semi": ["error", "never"],
+    "global-require": 0,
     "react/jsx-uses-vars": 2,
     "react/jsx-uses-react": 2,
     "react/react-in-jsx-scope": 2,
@@ -30,9 +31,27 @@
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
     "react-native/no-color-literals": 2,
-    "react-native/no-raw-text": 2
+    "react-native/no-raw-text": 2,
+    "react/jsx-filename-extension": 0,
+    "no-underscore-dangle": 0,
+    "func-names": [2, "never"],
+    "react/sort-comp": 0,
+    "react/prop-types": 0,
+    "no-return-assign": 0
   },
   "globals": {
     "fetch": false
+  },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {
+        "alias": {
+          "root": "app",
+          "components": "./app/components",
+          "actions": "./app/actions",
+          "config": "./app/config"
+        }
+      }
+    }
   }
 }

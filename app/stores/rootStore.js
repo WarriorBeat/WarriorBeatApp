@@ -4,8 +4,10 @@
  *  stores
  */
 
-import { PostStore, AuthorStore, MediaStore, CategoryStore } from "."
 import API from "api"
+import {
+  PostStore, AuthorStore, MediaStore, CategoryStore,
+} from "."
 
 export default class RootStore {
   constructor() {
