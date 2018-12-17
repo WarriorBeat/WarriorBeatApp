@@ -5,5 +5,6 @@
  */
 
 import ArticleBlock from "./ArticleBlock"
+import PollBlock from "./PollBlock"
 
-export default ArticleBlock
+export { ArticleBlock, PollBlock }

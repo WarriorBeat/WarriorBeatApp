@@ -42,18 +42,12 @@ export class Poll {
     }
   }
 
-  parsePollDate = (isoDate) => {
-    const date = new Date(isoDate)
-    const parsed = `${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`
-    return parsed
-  }
-
   updateFromJson(json) {
     this.autoSave = false
     this.id = json.pollId
     this.question = json.question
     this.status = json.status
-    this.date = this.parsePollDate(json.date)
+    this.date = new Date(json.date)
     this.answers = json.answers
     this.total_votes = json.total_votes
     this.autoSave = true
