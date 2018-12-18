@@ -6,7 +6,7 @@
 
 import React from "react"
 import { View } from "react-native"
-import { Tile, Avatar } from "react-native-elements"
+import { Tile, Avatar, Badge } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
@@ -59,25 +59,41 @@ class NewsBlock extends React.Component {
   }
 
   _renderDateStamp = date => (
-    <View>
-      <Text>{date.toDateString()}</Text>
+    <View style={styles.dateStamp}>
+      <Text style={styles.date} Type="subhead" Color="black_light" Weight="bold">
+        {date.toDateString()}
+      </Text>
+    </View>
+  )
+
+  _renderBadge = content => (
+    <View style={styles.badge_container}>
+      <Badge containerStyle={styles.badge}>
+        <Text Weight="bold" Color="#5D6160" style={styles.badge_text}>
+          {content}
+        </Text>
+      </Badge>
     </View>
   )
 
   render() {
     const {
-      title, viewComponent, imageSrc, author, date,
+      title, viewComponent, imageSrc, author, date, badge,
     } = this.props
     const isFull = !imageSrc
     const tileProps = this._getTileProps(isFull)
     const fontWeight = isFull ? "semibold" : "regular"
+    const contentStyle = isFull ? { ...styles.content, ...styles.content_full } : styles.content
     return (
       <View style={styles.block}>
+        {badge ? this._renderBadge(badge) : null}
         {author ? this._renderAuthor(author) : null}
         <Tile {...tileProps} imageSrc={imageSrc} onPress={() => this.handlePress(viewComponent)}>
-          <Text style={styles.title} Type="title" Color="black" Weight={fontWeight}>
-            {title}
-          </Text>
+          <View style={contentStyle}>
+            <Text style={styles.title} Type="title" Color="black" Weight={fontWeight}>
+              {title}
+            </Text>
+          </View>
           {date ? this._renderDateStamp(date) : null}
         </Tile>
       </View>
