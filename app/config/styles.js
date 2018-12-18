@@ -6,6 +6,10 @@
 
 import { human, systemWeights, materialColors } from "react-native-typography"
 import { Navigation } from "react-native-navigation"
+import { hexToRGB } from "./utils"
+
+// Export Hex to RGB
+export const rgba = hexToRGB
 
 // Basic and Brand Colors
 const black = "#000"
@@ -15,13 +19,14 @@ export const colors = {
   primary: "#393939",
   primaryDark: "#2d2d2d",
   secondary: "#F6D609",
+  green: "#5EE569",
   black,
   white: materialColors.whitePrimary,
   transparent,
 }
 
 // Soft Colors
-const softWhite = "rgb(241, 244, 246)"
+const softWhite = "#F2F4F6"
 export const softColors = {
   white: softWhite,
 }
