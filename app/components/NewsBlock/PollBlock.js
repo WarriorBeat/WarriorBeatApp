@@ -19,6 +19,7 @@ class PollBlock extends React.Component {
       id: poll.id,
       type: "Poll",
       props: { pollId: poll.id },
+      modal: true,
     }
     const badge = `${poll.total_votes} Votes`
     return (

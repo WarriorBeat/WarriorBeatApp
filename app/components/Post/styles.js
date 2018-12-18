@@ -150,3 +150,52 @@ export const reactionSettings = {
   button_color: "rgba(39,39,39, 1)",
   button_item_color: "rgba(39, 39, 39, 1)",
 }
+
+export const pollStyles = {
+  root: {
+    marginVertical: hp("10%"),
+    marginHorizontal: wp("5%"),
+    flex: 1,
+  },
+  header: {
+    paddingTop: hp("2%"),
+    paddingHorizontal: wp("5%"),
+  },
+  answerContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  buttonContainer: {
+    marginVertical: hp("1%"),
+  },
+  submitContainer: {
+    marginTop: "auto",
+  },
+  button: {
+    paddingVertical: hp("3%"),
+  },
+  closeButton: {
+    position: "absolute",
+    top: hp("-5%"),
+    left: 0,
+  },
+}
+
+export const polls = {
+  button: {
+    backgroundColor: colors.ios.lightGray,
+    containerViewStyle: pollStyles.buttonContainer,
+    buttonStyle: pollStyles.button,
+    borderRadius: 15,
+  },
+  submitButton: {
+    backgroundColor: colors.ios.green,
+    containerViewStyle: pollStyles.submitButtonContainer,
+    buttonStyle: pollStyles.button,
+    borderRadius: 15,
+  },
+  closeButton: {
+    color: colors.ios.gray,
+    containerStyle: pollStyles.closeButton,
+  },
+}

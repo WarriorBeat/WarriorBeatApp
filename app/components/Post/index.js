@@ -6,5 +6,6 @@
 
 import Article from "./Article"
 import RelatedPost from "./RelatedPost"
+import Poll from "./Poll"
 
-export { Article, RelatedPost }
+export { Article, RelatedPost, Poll }

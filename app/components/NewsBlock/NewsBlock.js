@@ -15,14 +15,25 @@ import styles from "./styles"
 
 @observer
 class NewsBlock extends React.Component {
-  handlePress = ({ id, type, props }) => {
-    Navigation.push("HomeScreen", {
+  handlePress = ({
+    id, type, props, modal,
+  }) => {
+    const screen = {
       component: {
         name: `Post.${type}`,
         id: `${type}View${id}`,
         passProps: props,
       },
-    })
+    }
+    if (modal) {
+      Navigation.showModal({
+        stack: {
+          children: [screen],
+        },
+      })
+    } else {
+      Navigation.push("HomeScreen", screen)
+    }
   }
 
   _renderAuthor = author => (
