@@ -5,7 +5,9 @@
  */
 
 import { StyleSheet } from "react-native"
-import { systemWeights, materialColors, human } from "react-native-typography"
+import {
+  systemWeights, materialColors, human, iOSColors,
+} from "react-native-typography"
 import { colors } from "config/styles"
 
 export const weight = StyleSheet.create({
@@ -53,6 +55,15 @@ export const color = StyleSheet.create({
   },
   black_light: {
     color: materialColors.blackSecondary,
+  },
+  green: {
+    color: colors.green,
+  },
+  ios_green: {
+    color: iOSColors.green,
+  },
+  ios_blue: {
+    color: iOSColors.blue,
   },
 })
 
