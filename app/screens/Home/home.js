@@ -12,7 +12,7 @@ import {
   Easing,
 } from "react-native"
 import { icons } from "config/styles"
-import enableLayoutAnimations from "config/utils"
+import { enableLayoutAnimations } from "config/utils"
 import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"

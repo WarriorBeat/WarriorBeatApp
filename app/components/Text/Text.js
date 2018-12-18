@@ -43,7 +43,7 @@ class Text extends React.Component {
 
   render() {
     const {
-      children, style, Italic, NoPadding, fontSize,
+      children, style, Italic, NoPadding, fontSize, Uppercase,
     } = this.props
     const renderStyle = {
       ...this.handleType(),
@@ -54,12 +54,14 @@ class Text extends React.Component {
       includeFontPadding: !NoPadding,
     }
     const textSize = fontSize !== null ? fontSize : renderStyle.fontSize
+    const transform = Uppercase ? "uppercase" : renderStyle.textTransform
     return (
       <RenderText
         style={{
           ...style,
           ...renderStyle,
           fontSize: textSize,
+          textTransform: transform,
         }}
       >
         {children}
@@ -78,6 +80,7 @@ Text.propTypes = {
   Italic: PropTypes.bool,
   NoPadding: PropTypes.bool,
   fontSize: PropTypes.number,
+  Uppercase: PropTypes.bool,
 }
 
 Text.defaultProps = {
@@ -89,6 +92,7 @@ Text.defaultProps = {
   Italic: false,
   NoPadding: false,
   fontSize: null,
+  Uppercase: false,
 }
 
 export default Text

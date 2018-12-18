@@ -3,6 +3,7 @@
 import React from "react"
 import { goHome } from "actions/navigation"
 import { View, Text, StyleSheet } from "react-native"
+import { observer } from "mobx-react/native"
 
 const styles = StyleSheet.create({
   welcome: {
@@ -15,8 +16,9 @@ const styles = StyleSheet.create({
   },
 })
 
+@observer
 export default class Initializing extends React.Component {
-  async componentDidMount() {
+  componentDidMount() {
     goHome()
   }
 

@@ -20,7 +20,10 @@ class PollBlock extends React.Component {
       type: "Poll",
       props: { pollId: poll.id },
     }
-    return <NewsBlock title={poll.question} date={poll.date} viewComponent={pollView} />
+    const badge = `${poll.total_votes} Votes`
+    return (
+      <NewsBlock title={poll.question} date={poll.date} viewComponent={pollView} badge={badge} />
+    )
   }
 }
 
