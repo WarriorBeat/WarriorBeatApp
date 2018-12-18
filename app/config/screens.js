@@ -10,6 +10,7 @@ function registerScreens() {
     rootStore,
     postStore: rootStore.postStore,
     categoryStore: rootStore.categoryStore,
+    pollStore: rootStore.pollStore,
   }
   Navigation.registerComponentWithRedux("Home", () => require("screens").Home, Provider, store)
   Navigation.registerComponent("Initializing", () => require("screens").Initializing)
