@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 1, height: 9 },
     elevation: 8,
   },
+  full_container: {
+    height: hp("20%"),
+  },
   image_container: {
     borderTopEndRadius: 6,
     borderTopLeftRadius: 6,
@@ -48,6 +51,11 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
     justifyContent: "center",
     flexDirection: "row",
+  },
+  full_content_container: {
+    height: "100%",
+    borderRadius: 6,
+    flexDirection: "column",
   },
   title: {
     textAlign: "center",

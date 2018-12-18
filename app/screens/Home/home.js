@@ -84,7 +84,7 @@ class Home extends React.Component {
 
   _renderCategory = ({ item, index }) => (
     <View onLayout={e => this._updateHeight(e, index)}>
-      <GenericFeed categoryId={item.id} />
+      <GenericFeed categoryId={item.id} withPolls={index === 0} />
     </View>
   )
 
