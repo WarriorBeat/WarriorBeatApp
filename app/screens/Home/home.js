@@ -163,10 +163,6 @@ class Home extends React.Component {
       inputRange: [0, 1],
       outputRange: [0.8, 1],
     })
-    const iconCapacity = this.iconScale.interpolate({
-      inputRange: [0, 0.5, 1],
-      outputRange: [1, 0, 1],
-    })
     return (
       <ParallaxScrollView
         renderScrollComponent={() => (
@@ -189,7 +185,6 @@ class Home extends React.Component {
             <Animated.View
               style={{
                 ...styles.fixed_inner,
-                opacity: iconCapacity,
                 transform: [{ scale: iconScale }],
               }}
             >
