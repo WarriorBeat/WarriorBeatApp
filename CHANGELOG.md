@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.7.0...v0.8.0) (2018-12-19)
+
+
+### Bug Fixes
+
+* **home:** Nav Burger flashing when scrolling too quickly ([f03055e](https://github.com/WarriorBeat/WarriorBeatApp/commit/f03055e))
+
+
+### Features
+
+* Poll Blocks on Home Screen ([#31](https://github.com/WarriorBeat/WarriorBeatApp/issues/31)) ([f1a6f7e](https://github.com/WarriorBeat/WarriorBeatApp/commit/f1a6f7e)), closes [#32](https://github.com/WarriorBeat/WarriorBeatApp/issues/32)
+* Updated React Native to v0.57.8 ([#32](https://github.com/WarriorBeat/WarriorBeatApp/issues/32)) ([dd53112](https://github.com/WarriorBeat/WarriorBeatApp/commit/dd53112))
+* View and Vote on Polls ([#33](https://github.com/WarriorBeat/WarriorBeatApp/issues/33)) ([1cacd75](https://github.com/WarriorBeat/WarriorBeatApp/commit/1cacd75))
+* **NewsBlock:** Modified NewsBlock Font Weight ([e0f9c31](https://github.com/WarriorBeat/WarriorBeatApp/commit/e0f9c31))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.6.0...v0.7.0) (2018-12-17)
 
