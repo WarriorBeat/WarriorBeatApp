@@ -58,10 +58,10 @@ class Text extends React.Component {
     return (
       <RenderText
         style={{
-          ...style,
           ...renderStyle,
           fontSize: textSize,
           textTransform: transform,
+          ...style,
         }}
       >
         {children}

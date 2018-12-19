@@ -4,7 +4,9 @@
  * Config
  */
 
-import { human, systemWeights, materialColors } from "react-native-typography"
+import {
+  human, systemWeights, materialColors, iOSColors,
+} from "react-native-typography"
 import { Navigation } from "react-native-navigation"
 import { hexToRGB } from "./utils"
 
@@ -16,6 +18,9 @@ const black = "#000"
 const transparent = "transparent"
 export const colors = {
   ...materialColors,
+  ios: {
+    ...iOSColors,
+  },
   primary: "#393939",
   primaryDark: "#2d2d2d",
   secondary: "#F6D609",
@@ -87,6 +92,10 @@ export const icons = {
   },
   arrow_back: {
     name: "ios-arrow-back",
+    type: "ionicon",
+  },
+  close: {
+    name: "md-close",
     type: "ionicon",
   },
   menu: {

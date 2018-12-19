@@ -5,7 +5,7 @@
  */
 
 import {
-  observable, flow, computed, reaction, when,
+  observable, flow, computed, reaction, when, action,
 } from "mobx"
 
 export class Poll {
@@ -17,6 +17,12 @@ export class Poll {
 
   saveHandler = null
 
+  @observable
+  answers = []
+
+  @observable
+  totalVotes = 0
+
   constructor(store, id) {
     this.store = store
     this.id = id
@@ -24,7 +30,7 @@ export class Poll {
       () => this.asJson,
       (json) => {
         if (this.autoSave) {
-          this.store.updatePoll(json)
+          this.store.resourceClient.patch(this.id, json)
         }
       },
     )
@@ -38,7 +44,6 @@ export class Poll {
       status: this.status,
       date: this.date,
       answers: this.answers,
-      total_votes: this.total_votes,
     }
   }
 
@@ -49,8 +54,20 @@ export class Poll {
     this.status = json.status
     this.date = new Date(json.date)
     this.answers = json.answers
-    this.total_votes = json.total_votes
+    this.totalVotes = json.total_votes
     this.autoSave = true
+  }
+
+  @action.bound
+  voteOn(activeId, votes) {
+    this.answers = this.answers.map((a) => {
+      const voted = a
+      if (a.answerId === activeId) {
+        voted.votes = votes
+        return voted
+      }
+      return a
+    })
   }
 }
 
@@ -66,6 +83,7 @@ export class PollStore {
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
+    this.resourceClient.onReceiveUpdate = json => this.updatePoll(json)
     this.loadPolls()
   }
 
