@@ -140,9 +140,13 @@ export default class API {
    * @returns Server Reply of Patch Request
    * @memberof API
    */
-  async patch(id) {
+  async patch(id, data) {
     const url = this.getItemUrl(id)
-    const resp = await REQ.patch(this.gateway, url)
+    const init = {
+      body: { ...data },
+    }
+    const resp = await REQ.patch(this.gateway, url, init)
+    this.handleServerUpdate(resp)
     return resp
   }
 }

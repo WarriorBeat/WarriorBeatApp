@@ -19,14 +19,14 @@ import { pollStyles as styles, polls } from "./styles"
 @observer
 class Poll extends React.Component {
   @observable
-  activeIndex = null
+  activeId = null
 
-  _renderAnswer = (answerObj, index) => {
-    const buttonProps = index === this.activeIndex ? polls.activeButton : polls.button
-    const textColor = index === this.activeIndex ? "white" : "primaryDark"
+  _renderAnswer = (answerObj) => {
+    const buttonProps = answerObj.answerId === this.activeId ? polls.activeButton : polls.button
+    const textColor = answerObj.answerId === this.activeId ? "white" : "primaryDark"
     return (
       <Button
-        onPress={() => this.updateSelected(index)}
+        onPress={() => this.updateSelected(answerObj.answerId)}
         title={(
           <Text Type="titlexsm" Color={textColor} Weight="semibold">
             {answerObj.answer}
@@ -37,8 +37,15 @@ class Poll extends React.Component {
     )
   }
 
-  updateSelected = (index) => {
-    this.activeIndex = index
+  updateSelected = (answerId) => {
+    this.activeId = answerId
+  }
+
+  submitPoll = (poll) => {
+    const answer = poll.answers.find(a => a.answerId === this.activeId)
+    const newVotes = String(Number(answer.votes) + 1)
+    poll.voteOn(this.activeId, newVotes)
+    return poll
   }
 
   render() {
@@ -60,11 +67,10 @@ class Poll extends React.Component {
             {poll.question}
           </Text>
         </View>
-        <View style={styles.answerContainer}>
-          {poll.answers.map((a, i) => this._renderAnswer(a, i))}
-        </View>
+        <View style={styles.answerContainer}>{poll.answers.map(a => this._renderAnswer(a))}</View>
         <View style={styles.submitContainer}>
           <Button
+            onPress={() => this.submitPoll(poll)}
             title={(
               <Text Type="titlesm" Weight="bold">
                 Submit

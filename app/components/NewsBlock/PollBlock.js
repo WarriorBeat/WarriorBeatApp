@@ -21,7 +21,7 @@ class PollBlock extends React.Component {
       props: { pollId: poll.id },
       modal: true,
     }
-    const badge = `${poll.total_votes} Votes`
+    const badge = `${poll.totalVotes} Votes`
     return (
       <NewsBlock title={poll.question} date={poll.date} viewComponent={pollView} badge={badge} />
     )
