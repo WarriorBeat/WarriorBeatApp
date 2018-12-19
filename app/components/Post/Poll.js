@@ -12,21 +12,34 @@ import Text from "components/Text"
 import { Navigation } from "react-native-navigation"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
+import { observable } from "mobx"
 import { pollStyles as styles, polls } from "./styles"
 
 @inject("pollStore")
 @observer
 class Poll extends React.Component {
-  _renderAnswer = answerObj => (
-    <Button
-      title={(
-        <Text Type="titlexsm" Color="primaryDark" Weight="semibold">
-          {answerObj.answer}
-        </Text>
-      )}
-      {...polls.button}
-    />
-  )
+  @observable
+  activeIndex = null
+
+  _renderAnswer = (answerObj, index) => {
+    const buttonProps = index === this.activeIndex ? polls.activeButton : polls.button
+    const textColor = index === this.activeIndex ? "white" : "primaryDark"
+    return (
+      <Button
+        onPress={() => this.updateSelected(index)}
+        title={(
+          <Text Type="titlexsm" Color={textColor} Weight="semibold">
+            {answerObj.answer}
+          </Text>
+        )}
+        {...buttonProps}
+      />
+    )
+  }
+
+  updateSelected = (index) => {
+    this.activeIndex = index
+  }
 
   render() {
     const { pollStore, pollId, componentId } = this.props

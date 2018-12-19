@@ -181,18 +181,25 @@ export const pollStyles = {
   },
 }
 
+const pollButton = {
+  buttonStyle: pollStyles.button,
+  borderRadius: 15,
+}
 export const polls = {
   button: {
     backgroundColor: colors.ios.lightGray,
     containerViewStyle: pollStyles.buttonContainer,
-    buttonStyle: pollStyles.button,
-    borderRadius: 15,
+    ...pollButton,
   },
   submitButton: {
     backgroundColor: colors.ios.green,
     containerViewStyle: pollStyles.submitButtonContainer,
-    buttonStyle: pollStyles.button,
-    borderRadius: 15,
+    ...pollButton,
+  },
+  activeButton: {
+    backgroundColor: colors.ios.blue,
+    containerViewStyle: pollStyles.buttonContainer,
+    ...pollButton,
   },
   closeButton: {
     color: colors.ios.gray,
