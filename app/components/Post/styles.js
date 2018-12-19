@@ -179,11 +179,44 @@ export const pollStyles = {
     top: hp("-5%"),
     left: 0,
   },
+  resultContainer: {
+    margin: wp("-5%"),
+  },
+  resultContentContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  resultItemContainer: {
+    marginHorizontal: wp("5%"),
+    flexDirection: "row",
+    backgroundColor: colors.white,
+    height: hp("20%"),
+    padding: wp("5%"),
+    marginVertical: hp("1.5%"),
+    borderRadius: 10,
+    shadowColor: colors.primaryDark,
+    shadowOpacity: 0.6,
+    shadowRadius: 5,
+    shadowOffset: { width: 1, height: 3 },
+    elevation: 8,
+  },
+  resultTextContainer: { flex: 1 },
+  resultProgressContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }
 
 const pollButton = {
   buttonStyle: pollStyles.button,
   borderRadius: 15,
+}
+const resultProgressCircle = {
+  size: hp("15%"),
+  showsText: true,
+  animated: true,
 }
 export const polls = {
   button: {
@@ -204,5 +237,13 @@ export const polls = {
   closeButton: {
     color: colors.ios.gray,
     containerStyle: pollStyles.closeButton,
+  },
+  resultProg: {
+    ...resultProgressCircle,
+    color: colors.ios.blue,
+  },
+  resultVotedProg: {
+    ...resultProgressCircle,
+    color: colors.ios.green,
   },
 }

@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View } from "react-native"
+import { View, ScrollView, LayoutAnimation } from "react-native"
 import { PropTypes } from "prop-types"
 import { Button, Icon } from "react-native-elements"
 import Text from "components/Text"
@@ -13,6 +13,8 @@ import { Navigation } from "react-native-navigation"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
+import { Circle as CircleProgress } from "react-native-progress"
+import { enableLayoutAnimations } from "config/utils"
 import { pollStyles as styles, polls } from "./styles"
 
 @inject("pollStore")
@@ -21,7 +23,15 @@ class Poll extends React.Component {
   @observable
   activeId = null
 
-  _renderAnswer = (answerObj) => {
+  @observable
+  hasVoted = false
+
+  constructor() {
+    super()
+    enableLayoutAnimations()
+  }
+
+  _renderAnswerItem = (answerObj) => {
     const buttonProps = answerObj.answerId === this.activeId ? polls.activeButton : polls.button
     const textColor = answerObj.answerId === this.activeId ? "white" : "primaryDark"
     return (
@@ -37,16 +47,77 @@ class Poll extends React.Component {
     )
   }
 
+  _renderResultItem = (answerObj, totalVotes) => {
+    const { answerId, answer, votes } = answerObj
+    const votePercent = votes / totalVotes
+    const percentProps = answerId === this.activeId ? polls.resultVotedProg : polls.resultProg
+    return (
+      <View style={styles.resultItemContainer}>
+        <View style={styles.resultTextContainer}>
+          <Text Type="titlesm" Color="primaryDark" Weight="bold">
+            {answer}
+          </Text>
+          <Text Type="header" Color="black_light" Weight="semibold">
+            {`${votes} Votes`}
+          </Text>
+        </View>
+        <View style={styles.resultProgressContainer}>
+          <CircleProgress
+            progress={votePercent}
+            formatText={() => `${Math.round(votePercent * 100)}%`}
+            {...percentProps}
+          />
+        </View>
+      </View>
+    )
+  }
+
   updateSelected = (answerId) => {
     this.activeId = answerId
   }
 
   submitPoll = (poll) => {
+    if (!this.activeId) {
+      return null
+    }
     const answer = poll.answers.find(a => a.answerId === this.activeId)
     const newVotes = String(Number(answer.votes) + 1)
     poll.voteOn(this.activeId, newVotes)
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+    this.hasVoted = true
     return poll
   }
+
+  _renderAnswers = poll => (
+    <View style={styles.answerContainer}>{poll.answers.map(a => this._renderAnswerItem(a))}</View>
+  )
+
+  _renderResults = poll => (
+    <ScrollView
+      style={styles.resultContainer}
+      contentContainerStyle={styles.resultContentContainer}
+    >
+      <Text Type="title" Color="primaryDark" Weight="semibold">
+        Results
+      </Text>
+      {poll.answers.map(a => this._renderResultItem(a, poll.totalVotes))}
+    </ScrollView>
+  )
+
+  _renderSubmit = poll => (
+    <View style={styles.submitContainer}>
+      <Button
+        {...(!this.activeId ? { disabled: true } : null)}
+        onPress={() => this.submitPoll(poll)}
+        title={(
+          <Text Type="titlesm" Weight="bold">
+            Submit
+          </Text>
+        )}
+        {...polls.submitButton}
+      />
+    </View>
+  )
 
   render() {
     const { pollStore, pollId, componentId } = this.props
@@ -67,18 +138,9 @@ class Poll extends React.Component {
             {poll.question}
           </Text>
         </View>
-        <View style={styles.answerContainer}>{poll.answers.map(a => this._renderAnswer(a))}</View>
-        <View style={styles.submitContainer}>
-          <Button
-            onPress={() => this.submitPoll(poll)}
-            title={(
-              <Text Type="titlesm" Weight="bold">
-                Submit
-              </Text>
-            )}
-            {...polls.submitButton}
-          />
-        </View>
+        {!this.hasVoted ? this._renderAnswers(poll) : null}
+        {this.hasVoted ? this._renderResults(poll) : null}
+        {!this.hasVoted ? this._renderSubmit(poll) : null}
       </View>
     )
   }
