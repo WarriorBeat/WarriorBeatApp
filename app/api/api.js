@@ -16,6 +16,8 @@ import { API_DEV } from "react-native-dotenv"
 export default class API {
   resource = null
 
+  onReceiveUpdate = null
+
   /**
    * Creates an instance of API.
    * @param {string} resource - Resource endpoint name
@@ -61,6 +63,37 @@ export default class API {
   }
 
   /**
+   * Get Resource Item Endpoint
+   *
+   * @param {string} id - Resource Item ID
+   * @param {string[]=} includes - Optional Query Params for Includes
+   * @returns Resource Item Url
+   * @memberof API
+   */
+  getItemUrl(id, includes) {
+    let path = `${this.resource}/${id}`
+    if (includes) {
+      path = `${path}?include=${includes.join(",")}`
+    }
+    return path
+  }
+
+  /**
+   * Event Handler for Updates received from Api
+   *
+   * @param {object} json - Received JSON Data
+   * @event API#onReceiveUpdate
+   * @returns JSON Data
+   * @memberof API
+   */
+  handleServerUpdate(json) {
+    if (this.onReceiveUpdate) {
+      this.onReceiveUpdate(json)
+    }
+    return json
+  }
+
+  /**
    * Fetch all items at resource endpoint
    *
    * @returns - All Items at resource endpoint
@@ -94,8 +127,22 @@ export default class API {
    * @memberof API
    */
   async get(id, includes) {
-    const url = `${this.resource}/${id}?include=${includes.join(",")}`
+    const url = this.getItemUrl(id, includes)
     const resp = await REQ.get(this.gateway, url)
+    return resp
+  }
+
+  /**
+   * Make Patch Request to Resource Item
+   *
+   * @param {string} id - Resource Item Id
+   * @async
+   * @returns Server Reply of Patch Request
+   * @memberof API
+   */
+  async patch(id) {
+    const url = this.getItemUrl(id)
+    const resp = await REQ.patch(this.gateway, url)
     return resp
   }
 }

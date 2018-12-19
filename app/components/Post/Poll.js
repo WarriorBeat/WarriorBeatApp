@@ -60,7 +60,9 @@ class Poll extends React.Component {
             {poll.question}
           </Text>
         </View>
-        <View style={styles.answerContainer}>{poll.answers.map(a => this._renderAnswer(a))}</View>
+        <View style={styles.answerContainer}>
+          {poll.answers.map((a, i) => this._renderAnswer(a, i))}
+        </View>
         <View style={styles.submitContainer}>
           <Button
             title={(
