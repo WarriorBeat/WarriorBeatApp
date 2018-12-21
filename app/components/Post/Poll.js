@@ -134,6 +134,7 @@ class Poll extends React.Component {
         style={styles.resultContainer}
         contentContainerStyle={styles.resultContentContainer}
       >
+        {/* eslint-disable-next-line react-native/no-raw-text */}
         <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
           Results
         </AnimatedText>
