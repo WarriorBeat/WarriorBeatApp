@@ -74,3 +74,6 @@ awsmobilejs/\#current-backend-info
 *.mobileprovision
 
 *.cer
+
+# Sentry
+*/sentry\.properties
