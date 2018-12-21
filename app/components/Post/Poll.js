@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View, ScrollView, LayoutAnimation } from "react-native"
+import { View, ScrollView, Animated } from "react-native"
 import { PropTypes } from "prop-types"
 import { Button, Icon } from "react-native-elements"
 import Text from "components/Text"
@@ -14,7 +14,6 @@ import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
 import { Circle as CircleProgress } from "react-native-progress"
-import { enableLayoutAnimations } from "config/utils"
 import { pollStyles as styles, polls } from "./styles"
 
 @inject("pollStore")
@@ -28,31 +27,43 @@ class Poll extends React.Component {
 
   constructor() {
     super()
-    enableLayoutAnimations()
+    this.translations = []
+    this.animOpacity = new Animated.Value(0)
   }
 
-  _renderAnswerItem = (answerObj) => {
+  _renderAnswerItem = (answerObj, index) => {
     const buttonProps = answerObj.answerId === this.activeId ? polls.activeButton : polls.button
     const textColor = answerObj.answerId === this.activeId ? "white" : "primaryDark"
+    const translateY = this.translations[index].interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 600],
+    })
     return (
-      <Button
-        onPress={() => this.updateSelected(answerObj.answerId)}
-        title={(
-          <Text Type="titlexsm" Color={textColor} Weight="semibold">
-            {answerObj.answer}
-          </Text>
-        )}
-        {...buttonProps}
-      />
+      <Animated.View style={{ transform: [{ translateY }] }}>
+        <Button
+          onPress={() => this.updateSelected(answerObj.answerId)}
+          title={(
+            <Text Type="titlexsm" Color={textColor} Weight="semibold">
+              {answerObj.answer}
+            </Text>
+          )}
+          {...buttonProps}
+        />
+      </Animated.View>
     )
   }
 
-  _renderResultItem = (answerObj, totalVotes) => {
+  _renderResultItem = (answerObj, totalVotes, index) => {
     const { answerId, answer, votes } = answerObj
     const votePercent = votes / totalVotes
     const percentProps = answerId === this.activeId ? polls.resultVotedProg : polls.resultProg
+    const translateY = this.translations[index].interpolate({
+      inputRange: [0, 1],
+      outputRange: [600, 0],
+    })
+    this.animateTransition()
     return (
-      <View style={styles.resultItemContainer}>
+      <Animated.View style={{ ...styles.resultItemContainer, transform: [{ translateY }] }}>
         <View style={styles.resultTextContainer}>
           <Text Type="titlesm" Color="primaryDark" Weight="bold">
             {answer}
@@ -64,11 +75,11 @@ class Poll extends React.Component {
         <View style={styles.resultProgressContainer}>
           <CircleProgress
             progress={votePercent}
-            formatText={() => `${Math.round(votePercent * 100)}%`}
+            formatText={() => `${Math.round(Number(votePercent) * 100)}%`}
             {...percentProps}
           />
         </View>
-      </View>
+      </Animated.View>
     )
   }
 
@@ -76,36 +87,64 @@ class Poll extends React.Component {
     this.activeId = answerId
   }
 
+  animateTransition = (reverseDirection) => {
+    Animated.timing(this.animOpacity, {
+      toValue: reverseDirection ? 1 : 0,
+      duration: 100,
+    }).start()
+    let animTranslations = this.translations.map((val, i) => Animated.timing(this.translations[i], {
+      toValue: 1,
+      duration: 600,
+    }))
+    if (reverseDirection) {
+      animTranslations = animTranslations.reverse()
+    }
+    Animated.stagger(100, animTranslations).start(() => {
+      if (!this.hasVoted) {
+        this.translations.forEach(anim => anim.setValue(0))
+        this.hasVoted = true
+      }
+    })
+  }
+
   submitPoll = (poll) => {
     if (!this.activeId) {
       return null
     }
+    this.animateTransition(true)
     const answer = poll.answers.find(a => a.answerId === this.activeId)
     const newVotes = String(Number(answer.votes) + 1)
     poll.voteOn(this.activeId, newVotes)
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-    this.hasVoted = true
     return poll
   }
 
   _renderAnswers = poll => (
-    <View style={styles.answerContainer}>{poll.answers.map(a => this._renderAnswerItem(a))}</View>
+    <View style={styles.answerContainer}>
+      {poll.answers.map((a, i) => {
+        this.translations[i] = new Animated.Value(0)
+        return this._renderAnswerItem(a, i)
+      })}
+    </View>
   )
 
-  _renderResults = poll => (
-    <ScrollView
-      style={styles.resultContainer}
-      contentContainerStyle={styles.resultContentContainer}
-    >
-      <Text Type="title" Color="primaryDark" Weight="semibold">
-        Results
-      </Text>
-      {poll.answers.map(a => this._renderResultItem(a, poll.totalVotes))}
-    </ScrollView>
-  )
+  _renderResults = (poll, opacity) => {
+    const AnimatedText = Animated.createAnimatedComponent(Text)
+    return (
+      <ScrollView
+        style={styles.resultContainer}
+        contentContainerStyle={styles.resultContentContainer}
+      >
+        {/* eslint-disable-next-line react-native/no-raw-text */}
+        <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
+          Results
+        </AnimatedText>
+        {poll.answers.map((a, i) => this._renderResultItem(a, poll.totalVotes, i))}
+      </ScrollView>
+    )
+  }
 
-  _renderSubmit = poll => (
-    <View style={styles.submitContainer}>
+  _renderSubmit = (poll, opacity) => (
+    <Animated.View style={{ ...styles.submitContainer, opacity }}>
       <Button
         {...(!this.activeId ? { disabled: true } : null)}
         onPress={() => this.submitPoll(poll)}
@@ -116,12 +155,16 @@ class Poll extends React.Component {
         )}
         {...polls.submitButton}
       />
-    </View>
+    </Animated.View>
   )
 
   render() {
     const { pollStore, pollId, componentId } = this.props
     const poll = pollStore.resolvePoll(pollId)
+    const opacity = this.animOpacity.interpolate({
+      inputRange: [0, 1],
+      outputRange: [1, 0],
+    })
     return (
       <View style={styles.root}>
         <Icon
@@ -139,8 +182,8 @@ class Poll extends React.Component {
           </Text>
         </View>
         {!this.hasVoted ? this._renderAnswers(poll) : null}
-        {this.hasVoted ? this._renderResults(poll) : null}
-        {!this.hasVoted ? this._renderSubmit(poll) : null}
+        {this.hasVoted ? this._renderResults(poll, opacity) : null}
+        {!this.hasVoted ? this._renderSubmit(poll, opacity) : null}
       </View>
     )
   }
