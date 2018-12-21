@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.9.0"></a>
+# [0.9.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.8.0...v0.9.0) (2018-12-21)
+
+
+### Bug Fixes
+
+* **Categories:** Fixed Category Icon Lookup ([6712472](https://github.com/WarriorBeat/WarriorBeatApp/commit/6712472))
+* **PostStore:** Fixed Posts loading before CategoryStore was ready ([67b399e](https://github.com/WarriorBeat/WarriorBeatApp/commit/67b399e)), closes [#36](https://github.com/WarriorBeat/WarriorBeatApp/issues/36)
+
+
+### Features
+
+* **PollView:** New Animations for Poll View ([#35](https://github.com/WarriorBeat/WarriorBeatApp/issues/35)) ([ab3887c](https://github.com/WarriorBeat/WarriorBeatApp/commit/ab3887c))
+* **Sentry:** Implemented Sentry Error Tracking ([#37](https://github.com/WarriorBeat/WarriorBeatApp/issues/37)) ([4202bbf](https://github.com/WarriorBeat/WarriorBeatApp/commit/4202bbf))
+* New Category Icons ([#34](https://github.com/WarriorBeat/WarriorBeatApp/issues/34)) ([6a45995](https://github.com/WarriorBeat/WarriorBeatApp/commit/6a45995))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.7.0...v0.8.0) (2018-12-19)
 
