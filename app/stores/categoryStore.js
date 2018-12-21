@@ -7,6 +7,8 @@
 import {
   observable, flow, computed, reaction,
 } from "mobx"
+import { icons } from "config/styles"
+import slugify from "slugify"
 import _ from "lodash"
 
 export class Category {
@@ -39,10 +41,19 @@ export class Category {
     }
   }
 
+  @computed
+  get icon() {
+    const slug = slugify(this.name, {
+      replacement: "_",
+      lower: true,
+    })
+    return icons[slug]
+  }
+
   updateFromJson(json) {
     this.autoSave = false
     this.id = json.categoryId
-    this.name = json.name
+    this.name = json.name.includes("/") ? json.name.split("/")[0] : json.name
     this.autoSave = true
   }
 }
