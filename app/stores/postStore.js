@@ -152,7 +152,8 @@ export class PostStore {
     this.posts = []
     const posts = yield this.resourceClient.fetchAll()
     when(
-      () => this.rootStore.authorStore.status === "ready",
+      () => this.rootStore.authorStore.status === "ready"
+        && this.rootStore.categoryStore.status === "ready",
       () => {
         posts.forEach(json => this.updatePost(json))
         this.state = "ready"
