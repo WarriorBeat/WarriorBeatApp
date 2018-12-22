@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.9.0...v0.10.0) (2018-12-22)
+
+
+### Bug Fixes
+
+* **deps:** Update to RN-Elements@v1.0.0-beta7, Refactor to Changes ([#38](https://github.com/WarriorBeat/WarriorBeatApp/issues/38)) ([98b4877](https://github.com/WarriorBeat/WarriorBeatApp/commit/98b4877))
+
+
+### Features
+
+* **Cache:** Implemented FastImage for Image Caching and Retrieval ([#39](https://github.com/WarriorBeat/WarriorBeatApp/issues/39)) ([fb1f962](https://github.com/WarriorBeat/WarriorBeatApp/commit/fb1f962))
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.8.0...v0.9.0) (2018-12-21)
 
