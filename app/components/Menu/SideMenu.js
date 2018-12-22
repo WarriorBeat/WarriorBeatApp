@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View, Image } from "react-native"
+import { View, Image, Text } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { Button } from "react-native-elements"
 import { PropTypes } from "prop-types"
@@ -13,21 +13,20 @@ import sideMenu from "./styles"
 
 export const MenuButton = (props) => {
   const {
-    isHeader, isFooter, title, icon, onPress, buttonStyle, textStyle,
+    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle,
   } = props
-  let btnTextStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
-  btnTextStyle = isFooter ? sideMenu.buttonFooterText : btnTextStyle
+  let btnTitleStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
+  btnTitleStyle = isFooter ? sideMenu.buttonFooterText : btnTitleStyle
 
   const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
 
   return (
     <Button
-      large
-      backgroundColor="transparent"
-      textStyle={{ ...btnTextStyle, ...textStyle }}
+      clear
+      titleStyle={{ ...btnTitleStyle, ...titleStyle }}
       buttonStyle={{ ...btnStyle, ...buttonStyle }}
       title={title}
-      icon={icon}
+      icon={{ ...icon, color: "white" }}
       onPress={onPress}
     />
   )
@@ -65,8 +64,8 @@ MenuButton.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   icon: PropTypes.objectOf(PropTypes.string),
   onPress: PropTypes.func,
-  buttonStyle: Button.propTypes.buttonStyle,
-  textStyle: Button.propTypes.textStyle,
+  buttonStyle: Text.propTypes.style,
+  titleStyle: Text.propTypes.style,
 }
 
 MenuButton.defaultProps = {
@@ -75,7 +74,7 @@ MenuButton.defaultProps = {
   icon: {},
   onPress: () => {},
   buttonStyle: {},
-  textStyle: {},
+  titleStyle: {},
 }
 
 SideMenu.propTypes = {

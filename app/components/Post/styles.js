@@ -52,7 +52,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header_button: {
-    alignSelf: "center",
+    color: colors.white,
+    paddingHorizontal: wp("5%"),
   },
 })
 

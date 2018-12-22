@@ -11,7 +11,7 @@ import {
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
-import { Button } from "react-native-elements"
+import { Icon } from "react-native-elements"
 import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import { observer } from "mobx-react/native"
@@ -52,11 +52,10 @@ class GenericPost extends React.Component {
           )}
           renderFixedHeader={() => (
             <View style={styles.fixed_container}>
-              <Button
-                large
-                backgroundColor="transparent"
-                icon={icons.arrow_back}
-                buttonStyle={styles.header_button}
+              <Icon
+                {...icons.arrow_back}
+                {...styles.header_button}
+                containerStyle={styles.header_button}
                 onPress={() => this.popScreen(childComponentId)}
               />
             </View>
