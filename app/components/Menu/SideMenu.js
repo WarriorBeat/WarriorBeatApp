@@ -5,10 +5,11 @@
  */
 
 import React from "react"
-import { View, Image, Text } from "react-native"
+import { View, Text } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
 import { Button } from "react-native-elements"
 import { PropTypes } from "prop-types"
+import Image from "react-native-fast-image"
 import sideMenu from "./styles"
 
 export const MenuButton = (props) => {
@@ -22,7 +23,7 @@ export const MenuButton = (props) => {
 
   return (
     <Button
-      clear
+      type="clear"
       titleStyle={{ ...btnTitleStyle, ...titleStyle }}
       buttonStyle={{ ...btnStyle, ...buttonStyle }}
       title={title}
@@ -46,7 +47,11 @@ const SideMenu = (props) => {
     >
       <View style={sideMenu.container}>
         {headerImage ? (
-          <Image source={headerImage} style={sideMenu.image} resizeMode="cover" />
+          <Image
+            source={headerImage}
+            style={sideMenu.image}
+            resizeMode={Image.resizeMode.contain}
+          />
         ) : (
           undefined
         )}

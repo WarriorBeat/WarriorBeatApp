@@ -13,12 +13,14 @@ import Text from "components/Text"
 import { observable } from "mobx"
 import { Navigation } from "react-native-navigation"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import Image from "react-native-fast-image"
 import { related as styles, window, relatedSize as stylesSize } from "./styles"
 
 const RelatedPostItem = (props) => {
   const { post, handlePress } = props
   return (
     <Tile
+      ImageComponent={Image}
       key={post.id}
       onPress={() => handlePress(post.id)}
       containerStyle={styles.container}

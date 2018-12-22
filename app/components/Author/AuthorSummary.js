@@ -9,6 +9,7 @@ import { View } from "react-native"
 import { Avatar } from "react-native-elements"
 import Text from "components/Text"
 import { PropTypes as MobxTypes } from "mobx-react/native"
+import Image from "react-native-fast-image"
 import styles from "./styles"
 
 const AuthorSummary = (props) => {
@@ -17,7 +18,7 @@ const AuthorSummary = (props) => {
   return (
     <View style={styles.summary_container}>
       <View style={styles.avatar_shadow}>
-        <Avatar rounded size="large" source={{ uri: profileImage.url }} />
+        <Avatar rounded size="large" source={{ uri: profileImage.url }} ImageComponent={Image} />
       </View>
       <View style={styles.header}>
         <Text style={styles.title} Type="titlexsm" Weight="regular" Color="primaryDark">

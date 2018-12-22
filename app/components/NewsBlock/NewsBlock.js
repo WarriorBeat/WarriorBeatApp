@@ -11,6 +11,7 @@ import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
 import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import Image from "react-native-fast-image"
 import styles from "./styles"
 
 @observer
@@ -39,7 +40,12 @@ class NewsBlock extends React.Component {
   _renderAuthor = author => (
     <View style={styles.author_container}>
       <View style={styles.author_img_shadow}>
-        <Avatar rounded size="medium" source={{ uri: author.profileImage.url }} />
+        <Avatar
+          rounded
+          size="medium"
+          source={{ uri: author.profileImage.url }}
+          ImageComponent={Image}
+        />
       </View>
     </View>
   )
@@ -75,11 +81,14 @@ class NewsBlock extends React.Component {
 
   _renderBadge = content => (
     <View style={styles.badge_container}>
-      <Badge containerStyle={styles.badge}>
-        <Text Weight="bold" Color="#5D6160" style={styles.badge_text}>
-          {content}
-        </Text>
-      </Badge>
+      <Badge
+        badgeStyle={styles.badge}
+        value={(
+          <Text Weight="bold" Color="#5D6160" style={styles.badge_text}>
+            {content}
+          </Text>
+        )}
+      />
     </View>
   )
 
@@ -95,7 +104,12 @@ class NewsBlock extends React.Component {
       <View style={styles.block}>
         {badge ? this._renderBadge(badge) : null}
         {author ? this._renderAuthor(author) : null}
-        <Tile {...tileProps} imageSrc={imageSrc} onPress={() => this.handlePress(viewComponent)}>
+        <Tile
+          {...tileProps}
+          imageSrc={imageSrc}
+          ImageComponent={Image}
+          onPress={() => this.handlePress(viewComponent)}
+        >
           <View style={contentStyle}>
             <Text style={styles.title} Type="title" Color="black" Weight={fontWeight}>
               {title}

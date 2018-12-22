@@ -6,7 +6,7 @@
 
 import React from "react"
 import {
-  View, TouchableWithoutFeedback, Image, Animated, ScrollView,
+  View, TouchableWithoutFeedback, Animated, ScrollView,
 } from "react-native"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
@@ -16,6 +16,7 @@ import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import { observer } from "mobx-react/native"
 import { PropTypes } from "prop-types"
+import Image from "react-native-fast-image"
 import ReactionButton from "./ReactionButton"
 import {
   styles, headerStyles, window, HEADER_HEIGHT, STICKY_HEADER_HEIGHT,
@@ -65,10 +66,13 @@ class GenericPost extends React.Component {
           renderBackground={() => (
             <Lightbox ref={box => (this._box = box)} navigator={null}>
               <Image
-                source={{
-                  uri: backgroundSource,
+                style={{
                   width: window.width,
                   height: HEADER_HEIGHT,
+                }}
+                source={{
+                  uri: backgroundSource,
+                  priority: Image.priority.high,
                 }}
               />
             </Lightbox>
