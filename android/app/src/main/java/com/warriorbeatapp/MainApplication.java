@@ -3,6 +3,7 @@ package com.warriorbeatapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import io.sentry.RNSentryPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
@@ -46,6 +47,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     // Additional Packages
     return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new FastImageViewPackage(),
             new RNSentryPackage(),
             new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
             new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
