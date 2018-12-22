@@ -38,13 +38,9 @@ class NewsBlock extends React.Component {
 
   _renderAuthor = author => (
     <View style={styles.author_container}>
-      <Avatar
-        medium
-        rounded
-        source={{ uri: author.profileImage.url }}
-        overlayContainerStyle={styles.author_img}
-        containerStyle={styles.author_img_contianer}
-      />
+      <View style={styles.author_img_shadow}>
+        <Avatar rounded size="medium" source={{ uri: author.profileImage.url }} />
+      </View>
     </View>
   )
 

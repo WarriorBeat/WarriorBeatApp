@@ -16,7 +16,9 @@ const AuthorSummary = (props) => {
   const { description, profileImage } = author
   return (
     <View style={styles.summary_container}>
-      <Avatar containerStyle={styles.avatar} rounded large source={{ uri: profileImage.url }} />
+      <View style={styles.avatar_shadow}>
+        <Avatar rounded size="large" source={{ uri: profileImage.url }} />
+      </View>
       <View style={styles.header}>
         <Text style={styles.title} Type="titlexsm" Weight="regular" Color="primaryDark">
           About the Author

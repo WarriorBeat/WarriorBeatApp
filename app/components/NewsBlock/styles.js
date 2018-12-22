@@ -81,13 +81,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
   },
-  author_img_container: {
-    flex: 1,
-    borderColor: colors.primaryDark,
-    borderWidth: 2,
-    borderRadius: 22,
-  },
-  author_img: {
+  author_img_shadow: {
     elevation: 10,
     shadowColor: colors.black,
     shadowOpacity: 0.7,

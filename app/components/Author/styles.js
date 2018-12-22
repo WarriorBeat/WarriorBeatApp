@@ -23,10 +23,7 @@ const summary = StyleSheet.create({
     alignItems: "flex-start",
     paddingHorizontal: 8,
   },
-  avatar: {
-    borderRadius: 75,
-    borderColor: colors.primaryDark,
-    borderWidth: 2,
+  avatar_shadow: {
     shadowColor: colors.primaryDark,
     shadowOpacity: 0.3,
     shadowRadius: 3,

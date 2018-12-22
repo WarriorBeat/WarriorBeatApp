@@ -52,7 +52,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   header_button: {
-    alignSelf: "center",
+    color: colors.white,
+    paddingHorizontal: wp("5%"),
   },
 })
 
@@ -209,10 +210,13 @@ export const pollStyles = {
   },
 }
 
-const pollButton = {
-  buttonStyle: pollStyles.button,
+const pollButton = bgColor => ({
+  buttonStyle: {
+    ...pollStyles.button,
+    backgroundColor: bgColor,
+  },
   borderRadius: 15,
-}
+})
 const resultProgressCircle = {
   size: hp("15%"),
   showsText: true,
@@ -220,19 +224,16 @@ const resultProgressCircle = {
 }
 export const polls = {
   button: {
-    backgroundColor: colors.ios.lightGray,
-    containerViewStyle: pollStyles.buttonContainer,
-    ...pollButton,
+    containerStyle: pollStyles.buttonContainer,
+    ...pollButton(colors.ios.lightGray),
   },
   submitButton: {
-    backgroundColor: colors.ios.green,
-    containerViewStyle: pollStyles.submitButtonContainer,
-    ...pollButton,
+    containerStyle: pollStyles.submitButtonContainer,
+    ...pollButton(colors.ios.green),
   },
   activeButton: {
-    backgroundColor: colors.ios.blue,
-    containerViewStyle: pollStyles.buttonContainer,
-    ...pollButton,
+    containerStyle: pollStyles.buttonContainer,
+    ...pollButton(colors.ios.blue),
   },
   closeButton: {
     color: colors.ios.gray,
