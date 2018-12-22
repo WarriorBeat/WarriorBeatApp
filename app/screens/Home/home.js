@@ -93,7 +93,7 @@ class Home extends React.Component {
     return (
       <View style={styles.tab_item}>
         <Button
-          clear
+          type="clear"
           containerStyle={styles.tab_button_container}
           icon={{ ...item.icon, color: "black" }}
           title={(

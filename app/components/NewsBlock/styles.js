@@ -94,6 +94,7 @@ const styles = StyleSheet.create({
   },
   badge: {
     width: wp("25%"),
+    height: hp("5%"),
     color: colors.white,
     backgroundColor: rgba(softColors.white, 0.9),
     borderColor: colors.green,
