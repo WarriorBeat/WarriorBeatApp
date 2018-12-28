@@ -1,3 +1,5 @@
 awsmobilejs/*
 node_modules/*
 app/lib/*
+amplify/*
+aws-exports*
