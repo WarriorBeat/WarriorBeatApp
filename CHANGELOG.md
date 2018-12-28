@@ -1,3 +1,28 @@
+## [0.10.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.10.0...v0.10.1) (2018-12-28)
+
+
+### ✨ Features
+
+* **aws:** Migrated to AWS Amplify ([#40](https://github.com/WarriorBeat/WarriorBeatApp/issues/40)) ([9a9e34c](https://github.com/WarriorBeat/WarriorBeatApp/commit/9a9e34c))
+
+
+### 🐛 Bug Fixes
+
+* **Poll:** Improved Animations and Fixed Stutter ([#43](https://github.com/WarriorBeat/WarriorBeatApp/issues/43)) ([6765dcc](https://github.com/WarriorBeat/WarriorBeatApp/commit/6765dcc))
+* **sentry:** Sentry loading during dev ([bde4881](https://github.com/WarriorBeat/WarriorBeatApp/commit/bde4881))
+
+
+### 📦 Code Refactoring
+
+* **Poll:** Split up and made Post.Poll into its own Parent Component ([#42](https://github.com/WarriorBeat/WarriorBeatApp/issues/42)) ([14238db](https://github.com/WarriorBeat/WarriorBeatApp/commit/14238db))
+
+
+### 📚 Documentation
+
+* Changed Conventional Commit/Changelog Preset to MetaHub ([#41](https://github.com/WarriorBeat/WarriorBeatApp/issues/41)) ([d38b8cf](https://github.com/WarriorBeat/WarriorBeatApp/commit/d38b8cf))
+
+
+
 # [0.10.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.9.0...v0.10.0) (2018-12-22)
 
 
