@@ -6,19 +6,14 @@
 import Amplify from "aws-amplify"
 import { Navigation } from "react-native-navigation"
 import registerScreens from "config/screens"
+import API from "config/aws"
 import { Sentry } from "react-native-sentry"
-import config from "./aws-exports"
 
 // Load Sentry
 Sentry.config("https://5dab653ac82e4d01ab0b08a1fbabd1c0@sentry.io/1358160").install()
 
-// Local Testing Api
-config.aws_cloud_logic_custom.push({
-  name: "local",
-  endpoint: "http://localhost:5000",
-})
 // Set API Configuration
-Amplify.configure(config)
+Amplify.configure({ API })
 
 // Register RN Nav Screens
 registerScreens()

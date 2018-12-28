@@ -1,0 +1,17 @@
+{
+    "projectName": "WarriorBeatApp",
+    "javascript": {
+        "framework": "react-native",
+        "config": {
+            "SourceDir": ".",
+            "DistributionDir": "./dist",
+            "BuildCommand": "yarn start",
+            "StartCommand": "yarn start"
+        }
+    },
+    "providers": [
+        "awscloudformation"
+    ],
+    "frontend": "javascript",
+    "version": "1.0"
+}
