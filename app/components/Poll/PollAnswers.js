@@ -5,21 +5,15 @@
  */
 
 import React from "react"
-import { View, ScrollView, Animated } from "react-native"
+import { View, Animated } from "react-native"
 import { PropTypes } from "prop-types"
-import { Button, Icon } from "react-native-elements"
+import { Button } from "react-native-elements"
 import Text from "components/Text"
-import { Navigation } from "react-native-navigation"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
-import { icons } from "config/styles"
-import { observable } from "mobx"
-import { Circle as CircleProgress } from "react-native-progress"
+import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { pollStyles as styles, polls } from "./styles"
 
 const AnswerItem = (props) => {
-  const {
-    answerObj, index, isActive, onPress,
-  } = props
+  const { answerObj, isActive, onPress } = props
   const { answerId, answer } = answerObj
   const buttonProps = isActive ? polls.activeButton : polls.button
   const textColor = isActive ? "white" : "primaryDark"
@@ -42,11 +36,17 @@ const PollAnswers = (props) => {
   const { poll, onPress, active } = props
   return (
     <View style={styles.answerContainer}>
-      {poll.answers.map((a, i) => (
-        <AnswerItem onPress={onPress} answerObj={a} index={i} isActive={a.answerId === active} />
+      {poll.answers.map(a => (
+        <AnswerItem onPress={onPress} answerObj={a} isActive={a.answerId === active} />
       ))}
     </View>
   )
+}
+
+PollAnswers.propTypes = {
+  poll: MobxTypes.observableObject.isRequired,
+  onPress: PropTypes.func.isRequired,
+  active: PropTypes.string.isRequired,
 }
 
 export default observer(PollAnswers)

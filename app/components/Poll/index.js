@@ -6,4 +6,4 @@
 
 import Poll from "./Poll"
 
-export { Poll }
+export default Poll

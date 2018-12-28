@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View, ScrollView, Animated } from "react-native"
+import { View, Animated } from "react-native"
 import { PropTypes } from "prop-types"
 import { Button, Icon } from "react-native-elements"
 import Text from "components/Text"
@@ -13,7 +13,6 @@ import { Navigation } from "react-native-navigation"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
-import { Circle as CircleProgress } from "react-native-progress"
 import { pollStyles as styles, polls } from "./styles"
 import PollAnswers from "./PollAnswers"
 import PollResults from "./PollResults"

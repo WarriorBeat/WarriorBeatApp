@@ -7,20 +7,14 @@
 import React from "react"
 import { View, ScrollView, Animated } from "react-native"
 import { PropTypes } from "prop-types"
-import { Button, Icon } from "react-native-elements"
 import Text from "components/Text"
-import { Navigation } from "react-native-navigation"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
-import { icons } from "config/styles"
-import { observable } from "mobx"
+import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { Circle as CircleProgress } from "react-native-progress"
 import { pollStyles as styles, polls } from "./styles"
 
 const ResultItem = (props) => {
-  const {
-    answerObj, totalVotes, index, didVote,
-  } = props
-  const { answerId, answer, votes } = answerObj
+  const { answerObj, totalVotes, didVote } = props
+  const { answer, votes } = answerObj
   const votePercent = votes / totalVotes
   const percentProps = didVote ? polls.resultVotedProg : polls.resultProg
   return (
@@ -54,16 +48,16 @@ const PollResults = (props) => {
       <Text Type="title" Color="primaryDark" Weight="semibold">
         Results
       </Text>
-      {poll.answers.map((a, i) => (
-        <ResultItem
-          answerObj={a}
-          totalVotes={poll.totalVotes}
-          index={i}
-          didVote={a.answerId === votedOn}
-        />
+      {poll.answers.map(a => (
+        <ResultItem answerObj={a} totalVotes={poll.totalVotes} didVote={a.answerId === votedOn} />
       ))}
     </ScrollView>
   )
+}
+
+PollResults.propTypes = {
+  poll: MobxTypes.observableObject.isRequired,
+  votedOn: PropTypes.string.isRequired,
 }
 
 export default observer(PollResults)
