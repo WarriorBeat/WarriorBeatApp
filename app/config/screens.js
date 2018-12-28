@@ -28,7 +28,7 @@ function registerScreens() {
   )
   Navigation.registerComponentWithRedux(
     "Post.Poll",
-    () => require("components/Post").Poll,
+    () => require("components/Poll").default,
     Provider,
     store,
   )
