@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View, Animated } from "react-native"
+import { View, Animated, Easing } from "react-native"
 import { PropTypes } from "prop-types"
 import { Button, Icon } from "react-native-elements"
 import Text from "components/Text"
@@ -26,6 +26,24 @@ class Poll extends React.Component {
   @observable
   hasVoted = false
 
+  constructor() {
+    super()
+    this.animIn = new Animated.Value(0)
+  }
+
+  componentDidMount() {
+    this.animate()
+  }
+
+  animate(toVal = 1) {
+    Animated.timing(this.animIn, {
+      toValue: toVal,
+      duration: 600,
+      useNativeDriver: true,
+      easing: Easing.ease,
+    }).start()
+  }
+
   submitPoll = (poll) => {
     if (!this.activeId) {
       return null
@@ -33,12 +51,13 @@ class Poll extends React.Component {
     const answer = poll.answers.find(a => a.answerId === this.activeId)
     const newVotes = String(Number(answer.votes) + 1)
     poll.voteOn(this.activeId, newVotes)
-    this.hasVoted = true
+    this.animate(0)
+    this._answers.animate(poll, 0, () => this.hasVoted = true)
     return poll
   }
 
   _renderSubmit = poll => (
-    <Animated.View style={{ ...styles.submitContainer }}>
+    <Animated.View style={{ ...styles.submitContainer, opacity: this.animIn }}>
       <Button
         {...(!this.activeId ? { disabled: true } : null)}
         onPress={() => this.submitPoll(poll)}
@@ -55,6 +74,8 @@ class Poll extends React.Component {
   render() {
     const { pollStore, pollId, componentId } = this.props
     const poll = pollStore.resolvePoll(pollId)
+    const AnimatedText = Animated.createAnimatedComponent(Text)
+    const opacity = this.activeId === null ? this.animIn : 1
     return (
       <View style={styles.root}>
         <Icon
@@ -64,15 +85,20 @@ class Poll extends React.Component {
           onPress={() => Navigation.dismissModal(componentId)}
         />
         <View style={styles.header}>
-          <Text Type="footnote" Weight="black" Color="ios_blue">
+          <AnimatedText style={{ opacity }} Type="footnote" Weight="black" Color="ios_blue">
             {poll.date.toDateString().toUpperCase()}
-          </Text>
-          <Text Type="title" Color="primaryDark" Weight="semibold">
+          </AnimatedText>
+          <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
             {poll.question}
-          </Text>
+          </AnimatedText>
         </View>
         {!this.hasVoted ? (
-          <PollAnswers onPress={id => (this.activeId = id)} active={this.activeId} poll={poll} />
+          <PollAnswers
+            ref={answers => (this._answers = answers)}
+            onPress={id => (this.activeId = id)}
+            active={this.activeId}
+            poll={poll}
+          />
         ) : null}
         {this.hasVoted ? <PollResults poll={poll} votedOn={this.activeId} /> : null}
         {!this.hasVoted ? this._renderSubmit(poll) : null}
