@@ -16,7 +16,7 @@ const API = {
     },
     {
       name: "local",
-      endpoint: "http://localhost:5000",
+      endpoint: "http://0ef6bec7.ngrok.io",
     },
   ],
 }
