@@ -128,7 +128,12 @@ export default class API {
    */
   async get(id, includes) {
     const url = this.getItemUrl(id, includes)
-    const resp = await REQ.get(this.gateway, url)
+    let resp
+    try {
+      resp = await REQ.get(this.gateway, url)
+    } catch (error) {
+      return null
+    }
     return resp
   }
 
@@ -147,6 +152,21 @@ export default class API {
     }
     const resp = await REQ.patch(this.gateway, url, init)
     this.handleServerUpdate(resp)
+    return resp
+  }
+
+  /**
+   * Make Post Request to Resource Endpoint
+   *
+   * @param {object} data - JSON Data to Post
+   * @returns JSON Server Reply of Post Request
+   * @memberof API
+   */
+  async post(data) {
+    const init = {
+      body: data,
+    }
+    const resp = await REQ.post(this.gateway, this.resource, init)
     return resp
   }
 }
