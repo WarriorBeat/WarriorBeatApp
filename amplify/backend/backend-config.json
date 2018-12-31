@@ -1,1 +1,8 @@
-{}
+{
+	"auth": {
+		"WarriorBeatCognito": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

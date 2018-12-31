@@ -11,6 +11,7 @@ function registerScreens() {
     postStore: rootStore.postStore,
     categoryStore: rootStore.categoryStore,
     pollStore: rootStore.pollStore,
+    userStore: rootStore.userStore,
   }
   Navigation.registerComponentWithRedux("Home", () => require("screens").Home, Provider, store)
   Navigation.registerComponent("Initializing", () => require("screens").Initializing)
@@ -39,6 +40,12 @@ function registerScreens() {
     store,
   )
   Navigation.registerComponent("NavMenu.SubMenu", () => require("components/Menu").SubMenu)
+  Navigation.registerComponentWithRedux(
+    "Account.Authenticator",
+    () => require("screens/Account").default,
+    Provider,
+    store,
+  )
 }
 
 export default registerScreens

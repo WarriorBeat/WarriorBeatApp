@@ -83,12 +83,15 @@ export const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
-    alignItems: "flex-start",
     justifyContent: "flex-end",
     height: carousel.container.stickyHeaderHeight,
     width: wp("100%"),
   },
   fixed_inner: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  fixed_inner_item: {
     paddingHorizontal: wp("5%"),
     paddingBottom: hp("2.25%"),
   },

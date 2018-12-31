@@ -5,11 +5,7 @@
  */
 import React from "react"
 import {
-  View,
-  Animated,
-  ScrollView,
-  LayoutAnimation,
-  Easing,
+  View, Animated, ScrollView, LayoutAnimation, Easing,
 } from "react-native"
 import { icons } from "config/styles"
 import { enableLayoutAnimations } from "config/utils"
@@ -48,10 +44,10 @@ class Home extends React.Component {
       <View style={styles.header}>
         <Text Weight="black" Type="largeTitle" Color="black" fontSize={45}>
           <Text Weight="black" Type="titlesm" Color="black" fontSize={25}>
-                The
+            The
             {"\n"}
           </Text>
-              WarriorBeat
+          WarriorBeat
         </Text>
       </View>
     </View>
@@ -62,8 +58,9 @@ class Home extends React.Component {
       this.iconScale.setValue(isVisible ? 1 : 0)
       Animated.timing(this.iconScale, {
         toValue: isVisible ? 0 : 1,
-        duration: 600,
-        easing: Easing.elastic(2),
+        duration: 400,
+        easing: Easing.elastic(1.5),
+        useNativeDriver: true,
       }).start()
       this.headerVisible = isVisible
     }
@@ -73,8 +70,9 @@ class Home extends React.Component {
     let { height } = event.nativeEvent.layout
     const values = Object.values(this.slideHeight)
     if (values.length >= 1 && height <= 100) {
-      height = values.reduce((prev, curr) => (
-        Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev))
+      height = values.reduce(
+        (prev, curr) => (Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev),
+      )
     }
     if (this.slideHeight[index] !== height) {
       this.slideHeight[index] = height * 1.1
@@ -166,16 +164,14 @@ class Home extends React.Component {
     })
     return (
       <ParallaxScrollView
-        renderScrollComponent={() => (
-          <AnimatedScrollView style={styles.container} />
-        )}
+        renderScrollComponent={() => <AnimatedScrollView style={styles.container} />}
         renderForeground={() => this._renderHeader()}
         {...carousel.container}
         renderStickyHeader={() => (
           <View style={styles.sticky_header}>
             <View style={styles.sticky_content}>
               <Text Type="largeTitle" Weight="heavy">
-                The Warrior Beat
+                TheWarriorBeat
               </Text>
             </View>
           </View>
@@ -183,27 +179,25 @@ class Home extends React.Component {
         onChangeHeaderVisibility={isVisible => this._onHeaderVisible(isVisible)}
         renderFixedHeader={() => (
           <View style={styles.fixed_header}>
-            <Animated.View
-              style={{
-                ...styles.fixed_inner,
-                transform: [{ scale: iconScale }],
-              }}
-            >
-              <Icon
-                onPress={() => toggleMenu({ status: true })}
-                {...icons.menu}
-                {...iconStyle.container}
-              />
-            </Animated.View>
+            <View style={styles.fixed_inner}>
+              <Animated.View
+                style={{
+                  ...styles.fixed_inner_item,
+                  transform: [{ scale: iconScale }],
+                }}
+              >
+                <Icon
+                  onPress={() => toggleMenu({ status: true })}
+                  {...icons.menu}
+                  {...iconStyle.container}
+                />
+              </Animated.View>
+            </View>
           </View>
         )}
       >
-        {categoryStore.status === "ready"
-          ? this._renderPagination(categories)
-          : null}
-        {categoryStore.status === "ready"
-          ? this._renderCarousel(categories)
-          : null}
+        {categoryStore.status === "ready" ? this._renderPagination(categories) : null}
+        {categoryStore.status === "ready" ? this._renderCarousel(categories) : null}
       </ParallaxScrollView>
     )
   }

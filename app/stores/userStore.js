@@ -54,6 +54,9 @@ export class UserStore {
   user = null
 
   @observable
+  isAuthed = false
+
+  @observable
   state = "pending"
 
   constructor(rootStore, resourceClient) {
@@ -83,5 +86,10 @@ export class UserStore {
   @computed
   get status() {
     return this.state
+  }
+
+  @computed
+  get authed() {
+    return this.isAuthed
   }
 }
