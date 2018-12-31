@@ -32,6 +32,9 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: colors.ios.blue,
   },
+  submitSignup: {
+    backgroundColor: colors.ios.green,
+  },
 })
 
 export default styles

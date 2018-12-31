@@ -12,6 +12,7 @@ import TabbedHeader from "components/Header"
 import styles from "./styles"
 
 import Login from "./Login"
+import Signup from "./Signup"
 
 class Authenticator extends React.Component {
   @observable
@@ -25,7 +26,7 @@ class Authenticator extends React.Component {
           leftButton="Login"
           rightButton="Sign Up"
         />
-        {this.page === 0 ? <Login /> : null}
+        {this.page === 0 ? <Login /> : <Signup />}
       </View>
     )
   }
