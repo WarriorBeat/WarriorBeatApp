@@ -35,10 +35,7 @@ export const goHome = () => Navigation.setRoot({
 })
 
 // Change Side Menu State
-export const toggleMenu = ({
-  menu = "PrimaryNavMenu",
-  status = false,
-} = {}) => {
+export const toggleMenu = ({ menu = "PrimaryNavMenu", status = false } = {}) => {
   Navigation.mergeOptions(menu, {
     sideMenu: {
       left: {
@@ -66,3 +63,16 @@ export const returnHome = () => {
   Navigation.popTo("HomeScreen")
   toggleMenu()
 }
+
+// Launch Auth Modal
+export const authUser = () => Navigation.showModal({
+  stack: {
+    children: [
+      {
+        component: {
+          name: "Account.Authenticator",
+        },
+      },
+    ],
+  },
+})

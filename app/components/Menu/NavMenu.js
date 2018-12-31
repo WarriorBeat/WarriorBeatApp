@@ -8,7 +8,7 @@
 import React from "react"
 import { View } from "react-native"
 import { Navigation } from "react-native-navigation"
-import { viewPosts, returnHome } from "actions/navigation"
+import { viewPosts, returnHome, authUser } from "actions/navigation"
 import brandMedia from "config/assets"
 import { icons } from "config/styles"
 import { PropTypes } from "prop-types"
@@ -45,7 +45,7 @@ export const SubMenu = (props) => {
     </SideMenu>
   )
 }
-@inject("categoryStore")
+@inject("categoryStore", "userStore")
 @observer
 class NavMenu extends React.Component {
   enterSubmenu() {
@@ -71,6 +71,7 @@ class NavMenu extends React.Component {
   }
 
   render() {
+    const { userStore } = this.props
     return (
       <SideMenu
         headerImage={brandMedia.warrior_head}
@@ -82,13 +83,12 @@ class NavMenu extends React.Component {
           </View>
         )}
       >
-        <MenuButton onPress={() => returnHome()} title="My Feed" icon={icons.home} />
-        <MenuButton title="News" icon={icons.news} />
-        <MenuButton
-          onPress={() => this.enterSubmenu()}
-          title="Categories"
-          icon={icons.categories}
-        />
+        <MenuButton onPress={() => returnHome()} title="News" icon={icons.news} />
+        {userStore.authed ? (
+          <MenuButton title="My Feed" icon={icons.home} />
+        ) : (
+          <MenuButton onPress={() => authUser()} title="Login / Signup" icon={icons.user} />
+        )}
       </SideMenu>
     )
   }
@@ -102,6 +102,7 @@ SubMenu.propTypes = {
 
 NavMenu.wrappedComponent.propTypes = {
   categoryStore: MobxTypes.observableObject.isRequired,
+  userStore: MobxTypes.observableObject.isRequired,
 }
 
 NavMenu.propTypes = {

@@ -126,4 +126,8 @@ export const icons = {
     name: "lock",
     type: "font-awesome",
   },
+  user: {
+    name: "user",
+    type: "font-awesome",
+  },
 }
