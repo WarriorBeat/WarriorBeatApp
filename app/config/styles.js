@@ -118,4 +118,12 @@ export const icons = {
     name: "open-book",
     type: "entypo",
   },
+  email: {
+    name: "email-outline",
+    type: "material-community",
+  },
+  lock: {
+    name: "lock",
+    type: "font-awesome",
+  },
 }
