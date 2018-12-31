@@ -63,7 +63,9 @@ class TabbedHeader extends React.Component {
   }
 
   render() {
-    const { backgroundColor, leftButton, rightButton } = this.props
+    const {
+      backgroundColor, leftButton, rightButton, onTabSwitch,
+    } = this.props
     return (
       <View>
         <Header
@@ -77,7 +79,10 @@ class TabbedHeader extends React.Component {
           leftButton={leftButton}
           rightButton={rightButton}
           active={this.activeTab}
-          onPress={pos => (this.activeTab = pos)}
+          onPress={(pos) => {
+            this.activeTab = pos
+            return onTabSwitch(pos === "left" ? 0 : 1)
+          }}
         />
       </View>
     )
@@ -89,6 +94,7 @@ TabbedHeader.propTypes = {
   centerImage: PropTypes.number,
   leftButton: PropTypes.string.isRequired,
   rightButton: PropTypes.string.isRequired,
+  onTabSwitch: PropTypes.func.isRequired,
 }
 
 TabbedHeader.defaultProps = {
