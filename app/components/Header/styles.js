@@ -14,8 +14,8 @@ import {
 const styles = StyleSheet.create({
   header_container: {
     flexDirection: "column",
-    height: hp("28%"),
-    paddingTop: 0,
+    height: hp("30%"),
+    paddingTop: hp("1.5%"),
   },
   header_image: {
     height: wp("30%"),
@@ -42,6 +42,27 @@ const styles = StyleSheet.create({
   tab_button_selected: {
     borderColor: colors.secondary,
   },
+  backButtonContainer: {
+    position: "absolute",
+    top: hp("2.5%"),
+    left: 0,
+    width: wp("100%"),
+    height: hp("10%"),
+    paddingHorizontal: wp("1%"),
+    zIndex: 99,
+    alignItems: "flex-start",
+    justifyContent: "center",
+  },
+  backButton: {
+    padding: wp("3%"),
+    color: colors.white,
+  },
 })
+
+export const config = {
+  backButton: {
+    underlayColor: colors.transparent,
+  },
+}
 
 export default styles

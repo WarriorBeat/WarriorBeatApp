@@ -5,16 +5,17 @@
  */
 
 import React from "react"
-import { View, ViewPropTypes } from "react-native"
-import { Header, Button } from "react-native-elements"
+import { View, ViewPropTypes, TouchableOpacity } from "react-native"
+import { Header, Button, Icon } from "react-native-elements"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
 import { observer } from "mobx-react/native"
 import { observable } from "mobx"
 import Image from "react-native-fast-image"
-import { colors } from "config/styles"
+import { colors, icons } from "config/styles"
 import brandMedia from "config/assets"
-import styles from "./styles"
+import { Navigation } from "react-native-navigation"
+import styles, { config } from "./styles"
 
 const TabButton = ({
   title, active, onPress, pos,
@@ -68,6 +69,14 @@ class TabbedHeader extends React.Component {
     } = this.props
     return (
       <View>
+        <Icon
+          {...icons.arrow_back}
+          {...config.backButton}
+          iconStyle={styles.backButton}
+          containerStyle={styles.backButtonContainer}
+          onPress={() => Navigation.dismissAllModals()}
+          component={TouchableOpacity}
+        />
         <Header
           barStyle="light-content"
           centerContainerStyle={styles.center_container}
