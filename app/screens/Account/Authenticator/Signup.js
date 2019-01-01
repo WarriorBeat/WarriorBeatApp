@@ -10,22 +10,44 @@ import { Button, Divider } from "react-native-elements"
 import Text from "components/Text"
 import Input from "components/Input"
 import { colors, icons } from "config/styles"
+import { observer } from "mobx-react/native"
 import styles from "./styles"
 
-const Signup = () => (
+const SignupFields = ({ onChange, data }) => (
+  <View>
+    <Input
+      label="Email"
+      name="email"
+      handleChange={onChange}
+      leftIcon={{ ...icons.email, color: colors.ios.gray }}
+      errorMessage={data.email.error}
+    />
+    <Input
+      label="Password"
+      handleChange={onChange}
+      name="password"
+      leftIcon={{ ...icons.lock, color: colors.ios.gray }}
+      hideText
+      errorMessage={data.password.error}
+    />
+    <Input
+      label="Confirm Password"
+      leftIcon={{ ...icons.lock, color: colors.ios.gray }}
+      hideText
+      handleChange={onChange}
+      name="confirmPassword"
+      errorMessage={data.confirmPassword.error}
+    />
+  </View>
+)
+
+const Signup = ({ onChange, onSubmit, data }) => (
   <View style={styles.authContainer}>
-    <View>
-      <Input label="Email" leftIcon={{ ...icons.email, color: colors.ios.gray }} />
-      <Input label="Password" leftIcon={{ ...icons.lock, color: colors.ios.gray }} hideText />
-      <Input
-        label="Confirm Password"
-        leftIcon={{ ...icons.lock, color: colors.ios.gray }}
-        hideText
-      />
-    </View>
+    <SignupFields onChange={onChange} data={data} />
     <View style={styles.submitContainer}>
       <Divider />
       <Button
+        onPress={onSubmit}
         title={(
           <Text Color="white" Weight="bold" Type="titlexsm">
             Sign Up
@@ -39,4 +61,4 @@ const Signup = () => (
   </View>
 )
 
-export default Signup
+export default observer(Signup)

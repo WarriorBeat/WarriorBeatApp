@@ -5,9 +5,10 @@
  */
 
 import {
-  observable, flow, computed, reaction,
+  observable, flow, computed, reaction, action,
 } from "mobx"
 import DeviceInfo from "react-native-device-info"
+import { Auth } from "aws-amplify"
 
 export class User {
   id = null
@@ -54,6 +55,9 @@ export class UserStore {
   user = null
 
   @observable
+  cognito = null
+
+  @observable
   isAuthed = false
 
   @observable
@@ -66,6 +70,7 @@ export class UserStore {
     this.loadUser()
   }
 
+  @action
   loadUser = flow(function* () {
     this.state = "pending"
     let user = yield this.resourceClient.get(this.deviceId)
@@ -76,12 +81,44 @@ export class UserStore {
     this.state = "ready"
   })
 
+  @action
   updateUser(json) {
     if (!this.user) {
       this.user = new User(this, json.userId)
     }
     this.user.updateFromJson(json)
   }
+
+  @action
+  authenticateUser = flow(function* (email, password) {
+    let user = null
+    try {
+      user = yield Auth.signIn(email, password)
+      this.cognito = user
+      this.isAuthed = true
+    } catch (err) {
+      console.log(err)
+    }
+    return user
+  })
+
+  @action
+  createUser = flow(function* (email, password) {
+    let user = null
+    try {
+      user = yield Auth.signUp({
+        username: email,
+        password,
+        attributes: {
+          email,
+        },
+      })
+    } catch (err) {
+      user = null
+      console.log(err)
+    }
+    return user
+  })
 
   @computed
   get status() {

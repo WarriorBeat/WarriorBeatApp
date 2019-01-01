@@ -10,7 +10,9 @@ import Text from "components/Text"
 import styles from "./styles"
 
 const Input = (props) => {
-  const { label, hideText } = props
+  const {
+    label, hideText, name, handleChange, value,
+  } = props
   const textLabel = (
     <Text Color="black_light" Type="header">
       {label}
@@ -26,6 +28,7 @@ const Input = (props) => {
       label={textLabel}
       clearButtonMode="always"
       secureTextEntry={!!hideText}
+      onChangeText={val => handleChange(name, val)}
     />
   )
 }
