@@ -31,7 +31,11 @@ class Authenticator extends React.Component {
       icon: icons.email,
       value: "",
       error: "",
-      errorCodes: ["UsernameExistsException", "InvalidEmailParameterException"],
+      errorCodes: [
+        "UsernameExistsException",
+        "InvalidEmailParameterException",
+        "UserNotFoundException",
+      ],
     },
     password: {
       label: "Password",
@@ -39,7 +43,11 @@ class Authenticator extends React.Component {
       hidden: true,
       value: "",
       error: "",
-      errorCodes: ["InvalidParameterException", "InvalidPasswordException"],
+      errorCodes: [
+        "InvalidParameterException",
+        "InvalidPasswordException",
+        "NotAuthorizedException",
+      ],
     },
     confirmPassword: {
       label: "Confirm Password",
@@ -110,7 +118,7 @@ class Authenticator extends React.Component {
     })
   }
 
-  handleStatus = (nextForm) => {
+  handleStatus = (nextForm = null) => {
     const { userStore } = this.props
     when(
       () => userStore.status === "ready" || userStore.status === "failed",
@@ -121,7 +129,10 @@ class Authenticator extends React.Component {
           this.handleError(userStore.error)
           return userStore.resolve()
         }
-        return (this.currentForm = nextForm)
+        if (nextForm) {
+          return (this.currentForm = nextForm)
+        }
+        return Navigation.dismissAllModals()
       },
     )
   }
@@ -129,7 +140,14 @@ class Authenticator extends React.Component {
   handleLogin = () => {
     const { userStore } = this.props
     const { email, password } = this.fields
-    return userStore.authenticateUser(email.value, password.value)
+    if (email.value.length <= 0 || password.value.length <= 0) {
+      this.clearErrors()
+      this.fields.password.error = "Email and Password are required."
+      return false
+    }
+    this.isLoading = true
+    userStore.authenticateUser(email.value, password.value)
+    return this.handleStatus()
   }
 
   handleSignup = () => {
@@ -147,13 +165,16 @@ class Authenticator extends React.Component {
 
   handleValidation = () => {
     const { userStore } = this.props
-    const { email, validateEmail } = this.fields
+    const { email, password, validateEmail } = this.fields
     this.isLoading = true
-    userStore.validateUser(email.value, validateEmail.value)
+    userStore.validateUser(email.value, password.value, validateEmail.value)
     return this.handleStatus("signupSuccess")
   }
 
-  handleTab = pos => (pos === 1 ? (this.currentForm = "signup") : (this.currentForm = "login"))
+  handleTab = (pos) => {
+    this.clearErrors()
+    this.currentForm = pos === 1 ? "signup" : "login"
+  }
 
   render() {
     return (

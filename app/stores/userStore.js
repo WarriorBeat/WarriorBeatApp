@@ -94,14 +94,16 @@ export class UserStore {
 
   @action
   authenticateUser = flow(function* (email, password) {
+    this.state = "pending"
     let user = null
     try {
       user = yield Auth.signIn(email, password)
       this.cognito = user
       this.isAuthed = true
     } catch (err) {
-      console.log(err)
+      return this.handleError(err)
     }
+    this.state = "ready"
     return user
   })
 
@@ -125,7 +127,7 @@ export class UserStore {
   })
 
   @action
-  validateUser = flow(function* (email, code) {
+  validateUser = flow(function* (email, password, code) {
     this.state = "pending"
     let user = null
     try {
@@ -136,6 +138,7 @@ export class UserStore {
         return this.handleError(err)
       }
     }
+    this.authenticateUser(email, password)
     this.state = "ready"
     return user
   })
