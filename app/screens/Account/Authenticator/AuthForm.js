@@ -14,8 +14,15 @@ import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { PropTypes } from "prop-types"
 import styles from "./styles"
 
-const AuthForm = ({ fields, form, onChange }) => (
+const AuthForm = ({
+  fields, form, onChange, isLoading,
+}) => (
   <View style={styles.authContainer}>
+    {form.desc ? (
+      <Text Type="body" Color="primary">
+        {form.desc()}
+      </Text>
+    ) : null}
     {Object.keys(fields).map((key) => {
       if (form.fields.includes(key)) {
         const field = fields[key]
@@ -36,6 +43,7 @@ const AuthForm = ({ fields, form, onChange }) => (
     <View style={styles.submitContainer}>
       <Divider />
       <Button
+        loading={isLoading}
         onPress={form.onSubmit}
         title={(
           <Text Color="white" Weight="bold" Type="titlexsm">
@@ -63,6 +71,7 @@ AuthForm.propTypes = {
     submitColor: PropTypes.string,
   }).isRequired,
   onChange: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 }
 
 export default observer(AuthForm)

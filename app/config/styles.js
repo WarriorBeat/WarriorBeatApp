@@ -130,4 +130,8 @@ export const icons = {
     name: "user",
     type: "font-awesome",
   },
+  check: {
+    name: "check",
+    type: "font-awesome",
+  },
 }

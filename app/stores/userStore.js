@@ -104,6 +104,7 @@ export class UserStore {
 
   @action
   createUser = flow(function* (email, password) {
+    this.state = "pending"
     let user = null
     try {
       user = yield Auth.signUp({
@@ -117,6 +118,20 @@ export class UserStore {
       user = null
       console.log(err)
     }
+    this.state = "ready"
+    return user
+  })
+
+  @action
+  validateUser = flow(function* (email, code) {
+    this.state = "pending"
+    let user = null
+    try {
+      user = yield Auth.confirmSignUp(email, code)
+    } catch (error) {
+      console.log(error)
+    }
+    this.state = "ready"
     return user
   })
 
