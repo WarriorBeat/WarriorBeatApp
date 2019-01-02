@@ -19,19 +19,36 @@ const styles = StyleSheet.create({
   authContainer: {
     flex: 1,
     paddingTop: hp("2%"),
-    paddingHorizontal: wp("7%"),
+    paddingHorizontal: wp("2%"),
   },
   submitContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: hp("6%"),
+    marginBottom: hp("5%"),
+    marginHorizontal: wp("5%"),
   },
   submitButtonContainer: {
     marginTop: hp("2%"),
   },
+  descContainer: {
+    marginHorizontal: wp("5%"),
+  },
   helpContainer: {
     marginVertical: hp(".5%"),
     marginHorizontal: wp("5%"),
+  },
+  inputContainer: {
+    marginLeft: 0,
+    marginRight: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    width: "100%",
+  },
+  inputContentContainer: {
+    flexGrow: 1,
+    marginLeft: 0,
+    marginRight: 0,
+    paddingHorizontal: wp("5%"),
   },
 })
 

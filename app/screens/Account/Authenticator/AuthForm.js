@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { View } from "react-native"
+import { View, ScrollView } from "react-native"
 import { Button, Divider } from "react-native-elements"
 import Text from "components/Text"
 import Input from "components/Input"
@@ -18,28 +18,30 @@ const AuthForm = ({
   fields, form, onChange, isLoading,
 }) => (
   <View style={styles.authContainer}>
-    {form.desc ? (
-      <Text Type="body" Color="primary">
-        {form.desc()}
-      </Text>
-    ) : null}
-    {Object.keys(fields).map((key) => {
-      if (form.fields.includes(key)) {
-        const field = fields[key]
-        return (
-          <Input
-            key={key}
-            label={field.label}
-            leftIcon={{ ...field.icon, color: colors.ios.gray }}
-            hideText={field.hidden}
-            handleChange={onChange}
-            name={key}
-            errorMessage={field.error}
-          />
-        )
-      }
-      return null
-    })}
+    <ScrollView style={styles.inputContainer} contentContainerStyle={styles.inputContentContainer}>
+      {form.desc ? (
+        <Text Type="body" Color="primary">
+          {form.desc()}
+        </Text>
+      ) : null}
+      {Object.keys(fields).map((key) => {
+        if (form.fields.includes(key)) {
+          const field = fields[key]
+          return (
+            <Input
+              key={key}
+              label={field.label}
+              leftIcon={{ ...field.icon, color: colors.ios.gray }}
+              hideText={field.hidden}
+              handleChange={onChange}
+              name={key}
+              errorMessage={field.error}
+            />
+          )
+        }
+        return null
+      })}
+    </ScrollView>
     <View style={styles.submitContainer}>
       {form.displayHelp ? (
         <View style={styles.helpContainer}>
