@@ -41,6 +41,16 @@ const AuthForm = ({
       return null
     })}
     <View style={styles.submitContainer}>
+      {form.displayHelp ? (
+        <View style={styles.helpContainer}>
+          <Button
+            onPress={form.onHelp}
+            type="clear"
+            title={form.helpText}
+            containerStyle={styles.helpButton}
+          />
+        </View>
+      ) : null}
       <Divider />
       <Button
         loading={isLoading}

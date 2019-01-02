@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
   submitButtonContainer: {
     marginTop: hp("2%"),
   },
+  helpContainer: {
+    marginVertical: hp(".5%"),
+    marginHorizontal: wp("5%"),
+  },
 })
 
 export default styles

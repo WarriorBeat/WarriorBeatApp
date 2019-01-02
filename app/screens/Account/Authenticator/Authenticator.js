@@ -77,6 +77,9 @@ class Authenticator extends React.Component {
       fields: ["email", "password", "confirmPassword"],
       onSubmit: () => this.handleSignup(),
       submitText: "Sign Up",
+      helpText: "Already have a verification code?",
+      onHelp: () => (this.currentForm = "validate"),
+      displayHelp: false,
     },
     validate: {
       desc: () => `A verification code has been sent to you at ${
@@ -101,10 +104,14 @@ class Authenticator extends React.Component {
 
   handleError = (error) => {
     const { code, message } = error
+    const form = this.forms[this.currentForm]
     Object.keys(this.fields).map((key) => {
       const field = this.fields[key]
       if (field.errorCodes.includes(code)) {
         return (field.error = message)
+      }
+      if (form.displayHelp === false) {
+        form.displayHelp = true
       }
       return null
     })
