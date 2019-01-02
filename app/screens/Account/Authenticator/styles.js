@@ -9,7 +9,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen"
-import { colors, softColors } from "config/styles"
+import { softColors } from "config/styles"
 
 const styles = StyleSheet.create({
   root: {
@@ -19,21 +19,36 @@ const styles = StyleSheet.create({
   authContainer: {
     flex: 1,
     paddingTop: hp("2%"),
-    paddingHorizontal: wp("7%"),
+    paddingHorizontal: wp("2%"),
   },
   submitContainer: {
     flex: 1,
     justifyContent: "flex-end",
-    marginBottom: hp("6%"),
+    marginBottom: hp("5%"),
+    marginHorizontal: wp("5%"),
   },
   submitButtonContainer: {
     marginTop: hp("2%"),
   },
-  submitButton: {
-    backgroundColor: colors.ios.blue,
+  descContainer: {
+    marginHorizontal: wp("5%"),
   },
-  submitSignup: {
-    backgroundColor: colors.ios.green,
+  helpContainer: {
+    marginVertical: hp(".5%"),
+    marginHorizontal: wp("5%"),
+  },
+  inputContainer: {
+    marginLeft: 0,
+    marginRight: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    width: "100%",
+  },
+  inputContentContainer: {
+    flexGrow: 1,
+    marginLeft: 0,
+    marginRight: 0,
+    paddingHorizontal: wp("5%"),
   },
 })
 
