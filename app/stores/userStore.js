@@ -63,6 +63,9 @@ export class UserStore {
   @observable
   state = "pending"
 
+  @observable
+  errorMessage = null
+
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
@@ -115,8 +118,7 @@ export class UserStore {
         },
       })
     } catch (err) {
-      user = null
-      console.log(err)
+      return this.handleError(err)
     }
     this.state = "ready"
     return user
@@ -128,12 +130,39 @@ export class UserStore {
     let user = null
     try {
       user = yield Auth.confirmSignUp(email, code)
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      this.state = "failed"
+      if (err.code === "CodeMismatchException") {
+        return this.handleError(err)
+      }
     }
     this.state = "ready"
     return user
   })
+
+  @action
+  handleError(error) {
+    this.state = "failed"
+    this.errorMessage = error
+    const { code } = this.errorMessage
+    switch (code) {
+    case "InvalidParameterException":
+      if (this.errorMessage.message.includes("email")) {
+        this.errorMessage.code = "InvalidEmailParameterException"
+        this.errorMessage.message = "Invalid email address."
+      } else {
+        this.errorMessage.message = "Password must be greater than 8 characters and include at least one uppercase letter."
+      }
+      return this.errorMessage
+    default:
+      return this.errorMessage
+    }
+  }
+
+  @action
+  resolve() {
+    return (this.state = "ready")
+  }
 
   @computed
   get status() {
@@ -143,5 +172,10 @@ export class UserStore {
   @computed
   get authed() {
     return this.isAuthed
+  }
+
+  @computed
+  get error() {
+    return this.errorMessage
   }
 }

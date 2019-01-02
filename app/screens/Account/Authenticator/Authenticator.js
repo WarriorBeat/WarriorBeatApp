@@ -10,6 +10,7 @@ import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable, when } from "mobx"
 import TabbedHeader from "components/Header"
 import { icons, colors } from "config/styles"
+import { Navigation } from "react-native-navigation"
 import styles from "./styles"
 
 import AuthForm from "./AuthForm"
@@ -30,6 +31,7 @@ class Authenticator extends React.Component {
       icon: icons.email,
       value: "",
       error: "",
+      errorCodes: ["UsernameExistsException", "InvalidEmailParameterException"],
     },
     password: {
       label: "Password",
@@ -37,18 +39,22 @@ class Authenticator extends React.Component {
       hidden: true,
       value: "",
       error: "",
+      errorCodes: ["InvalidParameterException", "InvalidPasswordException"],
     },
     confirmPassword: {
       label: "Confirm Password",
       icon: icons.lock,
+      hidden: true,
       value: "",
       error: "",
+      errorCodes: [],
     },
     validateEmail: {
       label: "Verification Code",
       icon: icons.check,
       value: "",
       error: "",
+      errorCodes: ["CodeMismatchException"],
     },
   }
 
@@ -72,19 +78,50 @@ class Authenticator extends React.Component {
       onSubmit: () => this.handleValidation(),
       submitText: "Validate",
     },
+    signupSuccess: {
+      desc: () => "Success! Your account has been verified. Click the button below to continue.",
+      fields: [],
+      onSubmit: () => Navigation.dismissAllModals(),
+      submitText: "Close",
+      submitColor: colors.ios.blue,
+    },
   }
 
   handleChange = (key, value) => {
     this.fields[key].value = value
   }
 
+  handleError = (error) => {
+    const { code, message } = error
+    Object.keys(this.fields).map((key) => {
+      const field = this.fields[key]
+      if (field.errorCodes.includes(code)) {
+        return (field.error = message)
+      }
+      return null
+    })
+  }
+
+  clearErrors = () => {
+    Object.keys(this.fields).map((key) => {
+      const field = this.fields[key]
+      field.error = ""
+      return field
+    })
+  }
+
   handleStatus = (nextForm) => {
     const { userStore } = this.props
     when(
-      () => userStore.status === "ready",
+      () => userStore.status === "ready" || userStore.status === "failed",
       () => {
+        this.clearErrors()
         this.isLoading = false
-        this.currentForm = nextForm
+        if (userStore.status === "failed") {
+          this.handleError(userStore.error)
+          return userStore.resolve()
+        }
+        return (this.currentForm = nextForm)
       },
     )
   }
@@ -99,6 +136,7 @@ class Authenticator extends React.Component {
     const { userStore } = this.props
     const { email, password, confirmPassword } = this.fields
     if (password.value !== confirmPassword.value) {
+      this.clearErrors()
       this.fields.confirmPassword.error = "Password must match!"
       return false
     }
@@ -110,8 +148,9 @@ class Authenticator extends React.Component {
   handleValidation = () => {
     const { userStore } = this.props
     const { email, validateEmail } = this.fields
-    this.loading = true
+    this.isLoading = true
     userStore.validateUser(email.value, validateEmail.value)
+    return this.handleStatus("signupSuccess")
   }
 
   handleTab = pos => (pos === 1 ? (this.currentForm = "signup") : (this.currentForm = "login"))
