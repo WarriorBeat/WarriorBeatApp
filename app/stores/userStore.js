@@ -144,6 +144,32 @@ export class UserStore {
   })
 
   @action
+  forgotPassword = flow(function* (email) {
+    this.state = "pending"
+    let user = null
+    try {
+      user = yield Auth.forgotPassword(email)
+    } catch (err) {
+      this.handleError(err)
+    }
+    this.state = "ready"
+    return user
+  })
+
+  @action
+  resetPassword = flow(function* (email, code, new_password) {
+    this.state = "pending"
+    let user = null
+    try {
+      user = yield Auth.forgotPasswordSubmit(email, code, new_password)
+    } catch (err) {
+      this.handleError(err)
+    }
+    this.state = "ready"
+    return user
+  })
+
+  @action
   handleError(error) {
     this.state = "failed"
     this.errorMessage = error

@@ -72,13 +72,16 @@ class Authenticator extends React.Component {
       onSubmit: () => this.handleLogin(),
       submitText: "Login",
       submitColor: colors.ios.blue,
+      helpText: "Forgot Password?",
+      onHelp: () => this.handleStatus("forgotPassword"),
+      displayHelp: false,
     },
     signup: {
       fields: ["email", "password", "confirmPassword"],
       onSubmit: () => this.handleSignup(),
       submitText: "Sign Up",
       helpText: "Already have a verification code?",
-      onHelp: () => (this.currentForm = "validate"),
+      onHelp: () => this.handleStatus("validateAlready"),
       displayHelp: false,
     },
     validate: {
@@ -89,11 +92,36 @@ class Authenticator extends React.Component {
       onSubmit: () => this.handleValidation(),
       submitText: "Validate",
     },
+    validateAlready: {
+      desc: () => "Enter the email you wish to validate.",
+      fields: ["email"],
+      onSubmit: () => this.handleStatus("validate"),
+      submitText: "Submit",
+    },
     signupSuccess: {
       desc: () => "Success! Your account has been verified. Click the button below to continue.",
       fields: [],
       onSubmit: () => Navigation.dismissAllModals(),
       submitText: "Close",
+      submitColor: colors.ios.blue,
+    },
+    forgotPassword: {
+      desc: () => "Enter your email below to reset your password.",
+      fields: ["email"],
+      onSubmit: () => this.handleForgot(),
+      submitText: "Submit",
+    },
+    resetPassword: {
+      desc: () => `Enter the confirmation code sent to ${this.fields.email.value} and a new password.`,
+      fields: ["validateEmail", "password", "confirmPassword"],
+      onSubmit: () => this.handleReset(),
+      submitText: "Submit",
+    },
+    resetSuccess: {
+      desc: () => "Success! Your password has been reset. Press the button below to continue and login with your new credentials.",
+      fields: [],
+      onSubmit: () => this.handleStatus("login"),
+      submitText: "Continue",
       submitColor: colors.ios.blue,
     },
   }
@@ -176,6 +204,29 @@ class Authenticator extends React.Component {
     this.isLoading = true
     userStore.validateUser(email.value, password.value, validateEmail.value)
     return this.handleStatus("signupSuccess")
+  }
+
+  handleForgot = () => {
+    const { userStore } = this.props
+    const { email } = this.fields
+    this.isLoading = true
+    userStore.forgotPassword(email.value)
+    return this.handleStatus("resetPassword")
+  }
+
+  handleReset = () => {
+    const { userStore } = this.props
+    const {
+      email, validateEmail, password, confirmPassword,
+    } = this.fields
+    if (password.value !== confirmPassword.value) {
+      this.clearErrors()
+      this.fields.confirmPassword.error = "Password must match!"
+      return false
+    }
+    this.isLoading = true
+    userStore.resetPassword(email.value, validateEmail.value, password.value)
+    return this.handleStatus("resetSuccess")
   }
 
   handleTab = (pos) => {
