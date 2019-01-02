@@ -157,11 +157,11 @@ export class UserStore {
   })
 
   @action
-  resetPassword = flow(function* (email, code, new_password) {
+  resetPassword = flow(function* (email, code, newPassword) {
     this.state = "pending"
     let user = null
     try {
-      user = yield Auth.forgotPasswordSubmit(email, code, new_password)
+      user = yield Auth.forgotPasswordSubmit(email, code, newPassword)
     } catch (err) {
       this.handleError(err)
     }
