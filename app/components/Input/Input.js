@@ -11,7 +11,7 @@ import styles from "./styles"
 
 const Input = (props) => {
   const {
-    label, hideText, name, handleChange, value,
+    label, hideText, name, handleChange,
   } = props
   const textLabel = (
     <Text Color="black_light" Type="header">

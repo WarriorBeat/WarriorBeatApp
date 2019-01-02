@@ -42,7 +42,7 @@ function registerScreens() {
   Navigation.registerComponent("NavMenu.SubMenu", () => require("components/Menu").SubMenu)
   Navigation.registerComponentWithRedux(
     "Account.Authenticator",
-    () => require("screens/Account").default,
+    () => require("screens/Account").Authenticator,
     Provider,
     store,
   )

@@ -5,5 +5,6 @@
  */
 
 import Authenticator from "./Authenticator/Authenticator"
+import AuthForm from "./Authenticator/AuthForm"
 
-export default Authenticator
+export { Authenticator, AuthForm }

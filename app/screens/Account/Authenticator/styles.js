@@ -9,7 +9,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen"
-import { colors, softColors } from "config/styles"
+import { softColors } from "config/styles"
 
 const styles = StyleSheet.create({
   root: {
@@ -28,12 +28,6 @@ const styles = StyleSheet.create({
   },
   submitButtonContainer: {
     marginTop: hp("2%"),
-  },
-  submitButton: {
-    backgroundColor: colors.ios.blue,
-  },
-  submitSignup: {
-    backgroundColor: colors.ios.green,
   },
 })
 
