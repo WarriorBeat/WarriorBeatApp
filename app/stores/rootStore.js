@@ -6,11 +6,13 @@
 
 import API from "api"
 import {
-  PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore,
+  PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore, UIStore,
 } from "."
 
 export default class RootStore {
   constructor() {
+    this.uiStore = new UIStore(this)
+
     this.userResource = new API("users", "userId")
     this.mediaResource = new API("media", "mediaId")
     this.authorResource = new API("authors", "categoryId")

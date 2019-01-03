@@ -16,7 +16,6 @@ import { inject, observer } from "mobx-react/native"
 import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
-import { toggleMenu } from "actions/navigation"
 import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
@@ -154,7 +153,7 @@ class Home extends React.Component {
 
   render() {
     const { rootStore } = this.props
-    const { categoryStore } = rootStore
+    const { categoryStore, uiStore } = rootStore
     const sortOrder = ["News", "Sports"]
     const categories = categoryStore.sortCategories(sortOrder)
     const iconStyle = navIconStyles(this.headerVisible)
@@ -187,7 +186,7 @@ class Home extends React.Component {
                 }}
               >
                 <Icon
-                  onPress={() => toggleMenu({ status: true })}
+                  onPress={() => uiStore.toggle("PrimaryNavMenu")}
                   {...icons.menu}
                   {...iconStyle.container}
                 />
