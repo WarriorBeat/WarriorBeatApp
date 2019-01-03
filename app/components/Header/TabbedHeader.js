@@ -10,11 +10,10 @@ import { Header, Button, Icon } from "react-native-elements"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
 import { observer, inject } from "mobx-react/native"
-import { observable, } from "mobx"
+import { observable } from "mobx"
 import Image from "react-native-fast-image"
 import { colors, icons } from "config/styles"
 import brandMedia from "config/assets"
-import { Navigation } from "react-native-navigation"
 import styles, { config } from "./styles"
 
 const TabButton = ({
@@ -46,7 +45,7 @@ const Tabs = (props) => {
   )
 }
 
-@inject('uiStore')
+@inject("uiStore")
 @observer
 class TabbedHeader extends React.Component {
   @observable
@@ -67,7 +66,7 @@ class TabbedHeader extends React.Component {
 
   render() {
     const {
-      backgroundColor, leftButton, rightButton, onTabSwitch, uiStore
+      backgroundColor, leftButton, rightButton, onTabSwitch, uiStore,
     } = this.props
     return (
       <View>
@@ -76,7 +75,7 @@ class TabbedHeader extends React.Component {
           {...config.backButton}
           iconStyle={styles.backButton}
           containerStyle={styles.backButtonContainer}
-          onPress={() => uiStore.goTo('Home')}
+          onPress={() => uiStore.goBack()}
           component={TouchableOpacity}
         />
         <Header
