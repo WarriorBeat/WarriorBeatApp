@@ -1,3 +1,15 @@
+# [0.11.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.10.1...v0.11.0) (2019-01-03)
+
+
+### ✨ Features
+
+* **Auth:** User Authentication Functionality and UI Edits ([#47](https://github.com/WarriorBeat/WarriorBeatApp/issues/47)) ([54c9c01](https://github.com/WarriorBeat/WarriorBeatApp/commit/54c9c01))
+* **Auth:** User Authentication UI ([#45](https://github.com/WarriorBeat/WarriorBeatApp/issues/45)) ([86acf22](https://github.com/WarriorBeat/WarriorBeatApp/commit/86acf22))
+* **uiStore:** Global UI Store for observing Navigation and more ([#48](https://github.com/WarriorBeat/WarriorBeatApp/issues/48)) ([edb9f91](https://github.com/WarriorBeat/WarriorBeatApp/commit/edb9f91))
+* **UserStore:** Basic User Store Implementation ([#44](https://github.com/WarriorBeat/WarriorBeatApp/issues/44)) ([93a7cb5](https://github.com/WarriorBeat/WarriorBeatApp/commit/93a7cb5))
+
+
+
 ## [0.10.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.10.0...v0.10.1) (2018-12-28)
 
 
@@ -20,6 +32,11 @@
 ### 📚 Documentation
 
 * Changed Conventional Commit/Changelog Preset to MetaHub ([#41](https://github.com/WarriorBeat/WarriorBeatApp/issues/41)) ([d38b8cf](https://github.com/WarriorBeat/WarriorBeatApp/commit/d38b8cf))
+
+
+### ♻️ Chores
+
+* **release:** 0.10.1 ([51b5d50](https://github.com/WarriorBeat/WarriorBeatApp/commit/51b5d50))
 
 
 
