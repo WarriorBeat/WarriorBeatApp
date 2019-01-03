@@ -9,12 +9,11 @@ import { View, ViewPropTypes, TouchableOpacity } from "react-native"
 import { Header, Button, Icon } from "react-native-elements"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
-import { observer } from "mobx-react/native"
+import { observer, inject } from "mobx-react/native"
 import { observable } from "mobx"
 import Image from "react-native-fast-image"
 import { colors, icons } from "config/styles"
 import brandMedia from "config/assets"
-import { Navigation } from "react-native-navigation"
 import styles, { config } from "./styles"
 
 const TabButton = ({
@@ -46,6 +45,8 @@ const Tabs = (props) => {
   )
 }
 
+@inject("uiStore")
+@observer
 class TabbedHeader extends React.Component {
   @observable
   activeTab = "left"
@@ -65,7 +66,7 @@ class TabbedHeader extends React.Component {
 
   render() {
     const {
-      backgroundColor, leftButton, rightButton, onTabSwitch,
+      backgroundColor, leftButton, rightButton, onTabSwitch, uiStore,
     } = this.props
     return (
       <View>
@@ -74,7 +75,7 @@ class TabbedHeader extends React.Component {
           {...config.backButton}
           iconStyle={styles.backButton}
           containerStyle={styles.backButtonContainer}
-          onPress={() => Navigation.dismissAllModals()}
+          onPress={() => uiStore.goBack()}
           component={TouchableOpacity}
         />
         <Header
@@ -125,4 +126,4 @@ TabButton.propTypes = {
   pos: PropTypes.oneOf(["left", "right"]).isRequired,
 }
 
-export default observer(TabbedHeader)
+export default TabbedHeader

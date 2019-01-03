@@ -7,7 +7,6 @@
 import {
   observable, flow, computed, reaction, action,
 } from "mobx"
-import DeviceInfo from "react-native-device-info"
 import { Auth } from "aws-amplify"
 
 export class User {
@@ -69,7 +68,7 @@ export class UserStore {
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
-    this.deviceId = DeviceInfo.getUniqueID()
+    this.deviceId = this.rootStore.uiStore.device.id
     this.loadUser()
   }
 

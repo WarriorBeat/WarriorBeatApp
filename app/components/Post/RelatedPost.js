@@ -11,7 +11,6 @@ import { Tile } from "react-native-elements"
 import Carousel from "react-native-snap-carousel"
 import Text from "components/Text"
 import { observable } from "mobx"
-import { Navigation } from "react-native-navigation"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import Image from "react-native-fast-image"
 import { related as styles, window, relatedSize as stylesSize } from "./styles"
@@ -38,21 +37,15 @@ const RelatedPostItem = (props) => {
   )
 }
 
-@inject("postStore")
+@inject("postStore", "uiStore")
 @observer
 class RelatedPost extends React.Component {
   @observable
   related = []
 
   handlePress = (postId) => {
-    Navigation.push("HomeScreen", {
-      component: {
-        name: "Post.Article",
-        passProps: {
-          postId,
-        },
-      },
-    })
+    const { uiStore } = this.props
+    uiStore.push("Post.Article", postId, { postId })
   }
 
   _renderItem = ({ item }) => <RelatedPostItem post={item} handlePress={p => this.handlePress(p)} />
@@ -82,6 +75,7 @@ class RelatedPost extends React.Component {
 
 RelatedPost.wrappedComponent.propTypes = {
   postStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 RelatedPostItem.propTypes = {

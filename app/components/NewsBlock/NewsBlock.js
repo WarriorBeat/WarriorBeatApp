@@ -7,34 +7,19 @@
 import React from "react"
 import { View } from "react-native"
 import { Tile, Avatar, Badge } from "react-native-elements"
-import { Navigation } from "react-native-navigation"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import Image from "react-native-fast-image"
 import styles from "./styles"
 
+@inject("uiStore")
 @observer
 class NewsBlock extends React.Component {
-  handlePress = ({
-    id, type, props, modal,
-  }) => {
-    const screen = {
-      component: {
-        name: `Post.${type}`,
-        id: `${type}View${id}`,
-        passProps: props,
-      },
-    }
-    if (modal) {
-      Navigation.showModal({
-        stack: {
-          children: [screen],
-        },
-      })
-    } else {
-      Navigation.push("HomeScreen", screen)
-    }
+  handlePress = ({ id, type, props }) => {
+    const { uiStore } = this.props
+    const component = `Post.${type}`
+    uiStore.push(component, id, props)
   }
 
   _renderAuthor = author => (

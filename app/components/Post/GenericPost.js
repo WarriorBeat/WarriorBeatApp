@@ -12,11 +12,11 @@ import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
 import { Icon } from "react-native-elements"
-import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import { observer } from "mobx-react/native"
 import { PropTypes } from "prop-types"
 import Image from "react-native-fast-image"
+import { inject } from "mobx-react"
 import ReactionButton from "./ReactionButton"
 import {
   styles, headerStyles, window, HEADER_HEIGHT, STICKY_HEADER_HEIGHT,
@@ -25,18 +25,15 @@ import {
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
 export const HTML = props => <RenderHTML baseFontStyle={styles.html_font} {...props} />
+@inject("uiStore")
 @observer
 class GenericPost extends React.Component {
   openLightBox = () => {
     this._box.open()
   }
 
-  popScreen = (componentId) => {
-    Navigation.pop(componentId)
-  }
-
   render() {
-    const { childComponentId, backgroundSource, children } = this.props
+    const { backgroundSource, children, uiStore } = this.props
     return (
       <ReactionButton ref={rxnButton => (this._rxnButton = rxnButton)}>
         <ParallaxScrollView
@@ -57,7 +54,7 @@ class GenericPost extends React.Component {
                 {...icons.arrow_back}
                 {...styles.header_button}
                 containerStyle={styles.header_button}
-                onPress={() => this.popScreen(childComponentId)}
+                onPress={() => uiStore.goBack()}
               />
             </View>
           )}
@@ -88,7 +85,6 @@ class GenericPost extends React.Component {
 }
 
 GenericPost.propTypes = {
-  childComponentId: PropTypes.string.isRequired,
   backgroundSource: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }

@@ -8,13 +8,19 @@ function registerScreens() {
   const rootStore = new RootStore()
   const store = {
     rootStore,
+    uiStore: rootStore.uiStore,
     postStore: rootStore.postStore,
     categoryStore: rootStore.categoryStore,
     pollStore: rootStore.pollStore,
     userStore: rootStore.userStore,
   }
   Navigation.registerComponentWithRedux("Home", () => require("screens").Home, Provider, store)
-  Navigation.registerComponent("Initializing", () => require("screens").Initializing)
+  Navigation.registerComponentWithRedux(
+    "Initializing",
+    () => require("screens").Initializing,
+    Provider,
+    store,
+  )
   Navigation.registerComponentWithRedux(
     "FeedView",
     () => require("screens").FeedView,

@@ -10,12 +10,11 @@ import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable, when } from "mobx"
 import TabbedHeader from "components/Header"
 import { icons, colors } from "config/styles"
-import { Navigation } from "react-native-navigation"
 import styles from "./styles"
 
 import AuthForm from "./AuthForm"
 
-@inject("userStore")
+@inject("userStore", "uiStore")
 @observer
 class Authenticator extends React.Component {
   @observable
@@ -101,7 +100,7 @@ class Authenticator extends React.Component {
     signupSuccess: {
       desc: () => "Success! Your account has been verified. Click the button below to continue.",
       fields: [],
-      onSubmit: () => Navigation.dismissAllModals(),
+      onSubmit: () => this.dismiss(),
       submitText: "Close",
       submitColor: colors.ios.blue,
     },
@@ -128,6 +127,11 @@ class Authenticator extends React.Component {
 
   handleChange = (key, value) => {
     this.fields[key].value = value
+  }
+
+  dismiss = () => {
+    const { uiStore } = this.props
+    return uiStore.toggle("Account.Authenticator", false)
   }
 
   handleError = (error) => {
@@ -167,7 +171,7 @@ class Authenticator extends React.Component {
         if (nextForm) {
           return (this.currentForm = nextForm)
         }
-        return Navigation.dismissAllModals()
+        return this.dismiss()
       },
     )
   }
@@ -255,6 +259,7 @@ class Authenticator extends React.Component {
 
 Authenticator.wrappedComponent.propTypes = {
   userStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 export default Authenticator

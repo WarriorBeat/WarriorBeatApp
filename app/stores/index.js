@@ -10,7 +10,8 @@ import { MediaStore } from "./mediaStore"
 import { CategoryStore } from "./categoryStore"
 import { PollStore } from "./pollStore"
 import { UserStore } from "./userStore"
+import UIStore from "./uiStore"
 
 export {
-  PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore,
+  PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore, UIStore,
 }

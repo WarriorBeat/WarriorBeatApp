@@ -5,7 +5,7 @@
  */
 
 import SideMenu, { MenuButton } from "./SideMenu"
-import NavMenu, { SubMenu } from "./NavMenu"
+import NavMenu from "./NavMenu"
 
-export { SideMenu, MenuButton, SubMenu }
+export { SideMenu, MenuButton }
 export default NavMenu

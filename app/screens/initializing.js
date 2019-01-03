@@ -1,9 +1,8 @@
 // initializing.js
 
 import React from "react"
-import { goHome } from "actions/navigation"
 import { View, Text, StyleSheet } from "react-native"
-import { observer } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 
 const styles = StyleSheet.create({
   welcome: {
@@ -16,10 +15,12 @@ const styles = StyleSheet.create({
   },
 })
 
+@inject("uiStore")
 @observer
 export default class Initializing extends React.Component {
   componentDidMount() {
-    goHome()
+    const { uiStore } = this.props
+    uiStore.goTo("Home")
   }
 
   render() {
@@ -29,4 +30,8 @@ export default class Initializing extends React.Component {
       </View>
     )
   }
+}
+
+Initializing.wrappedComponent.propTypes = {
+  uiStore: MobxTypes.observableObject.isRequired,
 }
