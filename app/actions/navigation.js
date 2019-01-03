@@ -80,6 +80,6 @@ export const authUser = () => Navigation.showModal({
 // Launch Modal
 export const launchModal = component => Navigation.showModal({
   stack: {
-    children: [{ component }],
+    children: [component],
   },
 })

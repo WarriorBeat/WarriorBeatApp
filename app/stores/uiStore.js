@@ -4,7 +4,9 @@
  *  stores
  */
 
-import { observable, computed, action } from "mobx"
+import {
+  observable, computed, action, reaction, when,
+} from "mobx"
 import { Navigation } from "react-native-navigation"
 import DeviceInfo from "react-native-device-info"
 import * as navAction from "actions/navigation"
@@ -54,25 +56,68 @@ class UIStore {
     {
       active: false,
       name: "Post.Article",
-      type: "post",
+      id: "",
+      setId: id => `ArticleView${id}`,
+      type: "screen",
     },
     {
       active: false,
       name: "Post.Poll",
-      type: "post",
+      id: "",
+      setId: id => `PollView${id}`,
+      type: "modal",
     },
   ]
 
+  @observable
+  currentStack = "Initializing"
+
+  stackHistory = []
+
+  watchHistory = true
+
+  historyHandler = null
+
+  appearHandler = null
+
+  disappearHandler = null
+
   constructor(rootStore) {
     this.rootStore = rootStore
+    this.historyHandler = reaction(
+      () => this.currentStack,
+      (currentStack) => {
+        if (this.watchHistory) {
+          this.updateHistory(currentStack)
+        }
+      },
+    )
+    this.appearHandler = Navigation.events().registerComponentDidAppearListener(
+      ({ componentId, componentName }) => this.updateComponent(componentId, true, componentName),
+    )
+    this.disappearHandler = Navigation.events().registerComponentDidDisappearListener(
+      ({ componentId, componentName }) => this.updateComponent(componentId, false, componentName),
+    )
+  }
+
+  updateHistory(newStack) {
+    const { length } = this.stackHistory
+    this.watchHistory = false
+    if (length >= 5) {
+      this.stackHistory.shift()
+    }
+    this.stackHistory.push(newStack)
+    this.watchHistory = true
   }
 
   makeChild = (component, props = {}) => {
     const { name, id } = component
     return {
-      name,
-      id,
-      passProps: props,
+      component: {
+        name,
+        id,
+        passProps: props,
+      },
     }
   }
 
@@ -112,47 +157,60 @@ class UIStore {
   goTo(name) {
     const component = this.resolveComponent(name)
     const { type, active } = component
-    if (type !== "screen") {
-      return null
-    }
-    if (active) {
+    if (active && type === "screen") {
       this.dismissAll()
-      Navigation.popTo(component.id)
-    } else {
-      navAction.goHome()
+      return Navigation.popTo(component.id)
     }
-    return this.updateComponent(name, true)
+    return navAction.goHome()
+  }
+
+  @action
+  goBack() {
+    this.dismissAll()
+    Navigation.pop(this.currentStack)
+    return this.currentStack
+  }
+
+  @action
+  push(name, id, props = {}, onTo = this.currentStack) {
+    const component = this.resolveComponent(name)
+    if (component.setId) {
+      component.id = component.setId(id)
+    }
+    if (component.type === "modal") {
+      return this.toggle(component.id, null, props)
+    }
+    const child = this.makeChild(component, props)
+    return Navigation.push(onTo, child)
   }
 
   @action
   toggleModal(component, state, props) {
     const child = this.makeChild(component, props)
     if (state) {
-      navAction.launchModal(child)
-    } else {
-      Navigation.dismissModal(component.id)
+      return navAction.launchModal(child)
     }
+    return Navigation.dismissModal(component.id)
   }
 
-  @action
-  toggleMenu(component, state) {
-    navAction.toggleMenu({ menu: component.id, status: state })
-    this.updateComponent(component.name, state)
-  }
+  toggleMenu = (component, state) => navAction.toggleMenu({ menu: component.id, status: state })
 
-  resolveComponent(key) {
-    let comp = this.components.find(c => c.name === key)
+  resolveComponent(id) {
+    let comp = this.components.find(c => c.id === id)
     if (!comp) {
-      comp = this.components.find(c => c.id === key)
+      comp = this.components.find(c => c.name === id)
     }
     return comp
   }
 
   @action
-  updateComponent(name, state) {
-    const component = this.resolveComponent(name)
-    if (component.type === "screen") {
-      this.currentStack = component.name
+  updateComponent(id, state, name = null) {
+    let component = this.resolveComponent(id)
+    if (!component) {
+      component = this.resolveComponent(name)
+    }
+    if (component.type !== "menu" && state) {
+      this.currentStack = id
     }
     component.active = state
     return component

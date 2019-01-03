@@ -37,6 +37,7 @@ Navigation.events().registerAppLaunchedListener(() => {
     root: {
       component: {
         name: "Initializing",
+        id: "Initializing",
       },
     },
   })
