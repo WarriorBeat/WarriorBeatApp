@@ -5,7 +5,7 @@
  */
 
 import {
-  observable, computed, action, reaction, when,
+  observable, computed, action, reaction,
 } from "mobx"
 import { Navigation } from "react-native-navigation"
 import DeviceInfo from "react-native-device-info"

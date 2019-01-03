@@ -12,7 +12,6 @@ import ParallaxScrollView from "react-native-parallax-scroll-view"
 import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
 import { Icon } from "react-native-elements"
-import { Navigation } from "react-native-navigation"
 import { icons } from "config/styles"
 import { observer } from "mobx-react/native"
 import { PropTypes } from "prop-types"
@@ -34,9 +33,7 @@ class GenericPost extends React.Component {
   }
 
   render() {
-    const {
-      childComponentId, backgroundSource, children, uiStore,
-    } = this.props
+    const { backgroundSource, children, uiStore } = this.props
     return (
       <ReactionButton ref={rxnButton => (this._rxnButton = rxnButton)}>
         <ParallaxScrollView
@@ -88,7 +85,6 @@ class GenericPost extends React.Component {
 }
 
 GenericPost.propTypes = {
-  childComponentId: PropTypes.string.isRequired,
   backgroundSource: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }

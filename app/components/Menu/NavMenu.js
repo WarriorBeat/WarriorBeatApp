@@ -9,7 +9,6 @@ import React from "react"
 import { View } from "react-native"
 import brandMedia from "config/assets"
 import { icons } from "config/styles"
-import { PropTypes } from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { SideMenu, MenuButton } from "./index"
 

@@ -75,6 +75,7 @@ class RelatedPost extends React.Component {
 
 RelatedPost.wrappedComponent.propTypes = {
   postStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 RelatedPostItem.propTypes = {
