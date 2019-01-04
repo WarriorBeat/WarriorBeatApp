@@ -7,5 +7,8 @@
 import AuthorSummary from "./AuthorSummary"
 import AuthorAvatar from "./AuthorAvatar"
 import AuthorInfo from "./AuthorInfo"
+import AuthorSubscribe from "./AuthorSubscribe"
 
-export { AuthorSummary, AuthorAvatar, AuthorInfo }
+export {
+  AuthorSummary, AuthorAvatar, AuthorInfo, AuthorSubscribe,
+}
