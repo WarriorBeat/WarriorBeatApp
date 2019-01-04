@@ -6,5 +6,6 @@
 
 import AuthorSummary from "./AuthorSummary"
 import AuthorAvatar from "./AuthorAvatar"
+import AuthorInfo from "./AuthorInfo"
 
-export { AuthorSummary, AuthorAvatar }
+export { AuthorSummary, AuthorAvatar, AuthorInfo }

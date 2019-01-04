@@ -52,6 +52,12 @@ function registerScreens() {
     Provider,
     store,
   )
+  Navigation.registerComponentWithRedux(
+    "Author.Profile",
+    () => require("screens/Author").default,
+    Provider,
+    store,
+  )
 }
 
 export default registerScreens

@@ -67,6 +67,13 @@ class UIStore {
       setId: id => `PollView${id}`,
       type: "modal",
     },
+    {
+      active: false,
+      name: "Author.Profile",
+      id: "",
+      setId: id => `AuthorProfileView${id}`,
+      type: "screen",
+    },
   ]
 
   @observable

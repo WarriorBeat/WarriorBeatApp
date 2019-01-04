@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { Avatar } from "react-native-elements"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import Image from "react-native-fast-image"
-import styles from "./styles"
+import { avatarStyles as styles } from "./styles"
 
 const AuthorAvatar = inject("uiStore")(
   observer(({
@@ -41,7 +41,7 @@ AuthorAvatar.propTypes = {
 
 AuthorAvatar.defaultProps = {
   size: "large",
-  openProfile: false,
+  openProfile: true,
   shadowStyle: styles.avatar_shadow,
 }
 
