@@ -19,7 +19,7 @@ const AuthorSubscribe = props => (
     <Button
       buttonStyle={styles.button}
       iconContainerStyle={styles.iconContainer}
-      icon={subscribeButton.subscribed}
+      icon={subscribeButton.default}
       raised
       {...props}
     />

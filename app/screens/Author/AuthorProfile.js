@@ -26,6 +26,11 @@ class AuthorProfile extends React.Component {
           <View style={styles.subContainer}>
             <AuthorSubscribe containerStyle={styles.subButtonContainer} author={author} />
           </View>
+          <View style={styles.bioContainer}>
+            <Text Type="footnote" Color="primaryDark">
+              {author.description}
+            </Text>
+          </View>
         </View>
       </View>
     )

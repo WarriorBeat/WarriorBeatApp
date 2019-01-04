@@ -18,8 +18,14 @@ const authorProfile = StyleSheet.create({
     paddingHorizontal: wp("5%"),
     paddingVertical: hp("10%"),
   },
+  subHeader: {
+    flexDirection: "row",
+  },
+  bioContainer: {
+    marginVertical: hp("2%"),
+  },
   subContainer: {
-    marginTop: wp("-6%"),
+    marginTop: wp("-7%"),
     marginRight: wp("1%"),
   },
   subButton: {
