@@ -11,7 +11,7 @@ import AuthorInfo from "components/Author/AuthorInfo"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable } from "mobx"
 import { icons, colors } from "config/styles"
-import { AuthorSubscribe } from "components/Author"
+import { AuthorSubscribe, AuthorStats } from "components/Author"
 import styles from "./styles"
 
 class AuthorProfile extends React.Component {
@@ -31,6 +31,7 @@ class AuthorProfile extends React.Component {
               {author.description}
             </Text>
           </View>
+          <AuthorStats author={author} />
         </View>
       </View>
     )
