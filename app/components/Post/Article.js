@@ -7,7 +7,7 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import AuthorSummary from "components/Author"
+import { AuthorSummary } from "components/Author"
 import { Divider } from "react-native-elements"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { PropTypes } from "prop-types"

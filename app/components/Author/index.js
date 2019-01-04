@@ -5,5 +5,6 @@
  */
 
 import AuthorSummary from "./AuthorSummary"
+import AuthorAvatar from "./AuthorAvatar"
 
-export default AuthorSummary
+export { AuthorSummary, AuthorAvatar }
