@@ -11,10 +11,10 @@ import Text from "components/Text"
 import { infoStyles as styles } from "./styles"
 import AuthorAvatar from "./AuthorAvatar"
 
-const AuthorInfo = ({ author }) => (
+const AuthorInfo = ({ author, avatarSize }) => (
   <View style={styles.root}>
     <View style={styles.container}>
-      <AuthorAvatar openProfile={false} author={author} />
+      <AuthorAvatar openProfile={false} author={author} size={avatarSize} />
       <View style={styles.titleContainer}>
         <Text Type="title" Color="primaryDark" Weight="black">
           {author.name}
@@ -29,6 +29,11 @@ const AuthorInfo = ({ author }) => (
 
 AuthorInfo.propTypes = {
   author: MobxTypes.observableObject.isRequired,
+  avatarSize: AuthorAvatar.propTypes.size,
+}
+
+AuthorInfo.defaultProps = {
+  avatarSize: AuthorAvatar.defaultProps.size,
 }
 
 export default observer(AuthorInfo)
