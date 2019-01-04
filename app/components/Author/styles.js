@@ -5,12 +5,11 @@
  */
 
 import { StyleSheet } from "react-native"
-import { colors } from "config/styles"
+import { colors, icons } from "config/styles"
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from "react-native-responsive-screen"
-import { icons } from "config/styles"
 
 export const summaryStyles = StyleSheet.create({
   summary_container: {
@@ -85,3 +84,15 @@ export const subscribeButton = {
     color: colors.ios.gray,
   },
 }
+
+export const statStyles = StyleSheet.create({
+  root: {},
+  container: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    paddingVertical: hp("2%"),
+  },
+  item: {
+    justifyContent: "center",
+  },
+})
