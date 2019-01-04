@@ -41,6 +41,9 @@ export class Author {
       title: this.title,
       description: this.description,
       profileImage: this.profileImage,
+      postCount: this.postCount,
+      staffYear: this.staffYear,
+      gradeYear: this.gradeYear,
     }
   }
 
@@ -51,6 +54,9 @@ export class Author {
     this.name = json.name
     this.description = json.description
     this.profileImage = this.store.rootStore.mediaStore.resolveMedia(json.profile_image)
+    this.postCount = json.post_count
+    this.staffYear = json.staff_year
+    this.gradeYear = json.grade_year
     this.autoSave = true
   }
 }
