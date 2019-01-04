@@ -6,7 +6,8 @@
 
 import React from "react"
 import { View } from "react-native"
-import { Tile, Avatar, Badge } from "react-native-elements"
+import { Tile, Badge } from "react-native-elements"
+import { AuthorAvatar } from "components/Author"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
@@ -24,14 +25,12 @@ class NewsBlock extends React.Component {
 
   _renderAuthor = author => (
     <View style={styles.author_container}>
-      <View style={styles.author_img_shadow}>
-        <Avatar
-          rounded
-          size="medium"
-          source={{ uri: author.profileImage.url }}
-          ImageComponent={Image}
-        />
-      </View>
+      <AuthorAvatar
+        author={author}
+        openProfile={false}
+        size="medium"
+        shadowStyle={styles.author_img_shadow}
+      />
     </View>
   )
 
