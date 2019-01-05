@@ -6,6 +6,7 @@
 
 import React from "react"
 import { View, ViewPropTypes } from "react-native"
+import PropTypes from "prop-types"
 import { Divider } from "react-native-elements"
 import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import Text from "components/Text"
@@ -34,6 +35,11 @@ const AuthorStats = ({ author, containerStyle }) => (
     <Divider />
   </View>
 )
+
+Stat.propTypes = {
+  title: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+}
 
 AuthorStats.propTypes = {
   author: MobxTypes.observableObject.isRequired,
