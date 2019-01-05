@@ -104,13 +104,6 @@ export const postStyles = StyleSheet.create({
   seperator: {
     marginVertical: hp("2%"),
   },
-  listContainer: {
-    height: hp("35%"),
-    width: wp("90%"),
-  },
-  listContentContainer: {
-    width: wp("90%"),
-  },
   postImageContainer: {
     shadowColor: colors.primary,
     shadowOpacity: 0.4,

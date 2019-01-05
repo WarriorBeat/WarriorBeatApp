@@ -48,6 +48,7 @@ class AuthorPosts extends React.Component {
     return (
       <View style={styles.root}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           style={{ ...styles.listContainer, ...containerStyle }}
           contentContainerStyle={styles.listContentContainer}
           keyExtractor={this._keyExtractor}

@@ -15,8 +15,11 @@ const authorProfile = StyleSheet.create({
   root: {
     flex: 1,
     backgroundColor: softColors.white,
+  },
+  rootContent: {
+    backgroundColor: softColors.white,
     paddingHorizontal: wp("5%"),
-    paddingTop: hp("10%"),
+    paddingVertical: hp("7%"),
   },
   subHeader: {
     flexDirection: "row",
@@ -37,7 +40,12 @@ const authorProfile = StyleSheet.create({
     alignSelf: "flex-end",
   },
   postsContainer: {
-    width: wp("90%"),
+    flex: 1,
+    marginTop: hp("2%"),
+  },
+  authorPosts: {
+    flex: 1,
+    marginTop: hp("2%"),
   },
 })
 
