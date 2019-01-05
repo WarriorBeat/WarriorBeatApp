@@ -65,6 +65,9 @@ export const color = StyleSheet.create({
   ios_blue: {
     color: iOSColors.blue,
   },
+  ios_gray: {
+    color: iOSColors.gray,
+  },
 })
 
 export const decoration = StyleSheet.create({

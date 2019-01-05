@@ -38,3 +38,16 @@ export function hexToRGB(hex, alpha) {
   }
   return `rgb(${r}, ${g}, ${b})`
 }
+/**
+ * Return Number with Proper Ordinal
+ * @see https://stackoverflow.com/a/31615643
+ *
+ * @export
+ * @param {number} n - Number to add ordinal
+ * @returns number with with proper ordinal
+ */
+export function getNumberWithOrdinal(n) {
+  const s = ["th", "st", "nd", "rd"]
+  const v = n % 100
+  return n + (s[(v - 20) % 10] || s[v] || s[0])
+}

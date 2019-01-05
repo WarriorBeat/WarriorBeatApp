@@ -7,8 +7,8 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import { PropTypes as MobxTypes } from "mobx-react/native"
-import styles from "./styles"
+import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { summaryStyles as styles } from "./styles"
 import AuthorAvatar from "./AuthorAvatar"
 
 const AuthorSummary = ({ author }) => {
@@ -32,4 +32,4 @@ AuthorSummary.propTypes = {
   author: MobxTypes.observableObject.isRequired,
 }
 
-export default AuthorSummary
+export default observer(AuthorSummary)

@@ -134,4 +134,8 @@ export const icons = {
     name: "check",
     type: "font-awesome",
   },
+  heart: {
+    name: "heart",
+    type: "font-awesome",
+  },
 }

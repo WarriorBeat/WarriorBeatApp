@@ -35,16 +35,12 @@ Header.wrappedComponent.propTypes = {
 }
 
 Header.propTypes = {
-  activeColor: PropTypes.string,
-  inActiveColor: PropTypes.string,
   activeIconColor: PropTypes.string,
   inActiveIconColor: PropTypes.string,
   active: PropTypes.bool,
 }
 
 Header.defaultProps = {
-  activeColor: colors.primary,
-  inActiveColor: colors.transparent,
   activeIconColor: colors.white,
   inActiveIconColor: colors.primaryDark,
   active: false,
