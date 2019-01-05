@@ -5,5 +5,6 @@
  */
 
 import TabbedHeader from "./TabbedHeader"
+import Header from "./Header"
 
-export default TabbedHeader
+export { Header, TabbedHeader }

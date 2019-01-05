@@ -8,7 +8,7 @@ import React from "react"
 import { View } from "react-native"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable, when } from "mobx"
-import TabbedHeader from "components/Header"
+import { TabbedHeader } from "components/Header"
 import { icons, colors } from "config/styles"
 import styles from "./styles"
 
