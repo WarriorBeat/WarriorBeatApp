@@ -96,3 +96,46 @@ export const statStyles = StyleSheet.create({
     justifyContent: "center",
   },
 })
+
+export const postStyles = StyleSheet.create({
+  postContainer: {
+    flexDirection: "row",
+  },
+  seperator: {
+    marginVertical: hp("2%"),
+  },
+  listContainer: {
+    height: hp("35%"),
+    width: wp("90%"),
+  },
+  listContentContainer: {
+    width: wp("90%"),
+  },
+  postImageContainer: {
+    shadowColor: colors.primary,
+    shadowOpacity: 0.4,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 1 },
+    elevation: 8,
+  },
+  postInfoContainer: {
+    width: wp("50%"),
+    justifyContent: "space-between",
+    paddingVertical: hp(".1%"),
+    paddingLeft: wp("3%"),
+    paddingRight: wp("1%"),
+  },
+  postImage: {
+    height: wp("35%"),
+    width: wp("35%"),
+    borderRadius: 6,
+  },
+  postTitleContainer: {
+    flexWrap: "wrap",
+    flex: 1,
+  },
+  postFooterContainer: {
+    justifyContent: "space-between",
+    flexDirection: "row",
+  },
+})
