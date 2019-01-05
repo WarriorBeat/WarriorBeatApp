@@ -111,7 +111,7 @@ class UIStore {
   updateHistory(newStack) {
     const { length } = this.stackHistory
     this.watchHistory = false
-    if (length >= 5) {
+    if (length >= 10) {
       this.stackHistory.shift()
     }
     this.stackHistory.push(newStack)
@@ -152,7 +152,6 @@ class UIStore {
       }
       return null
     })
-    Navigation.dismissAllModals()
     this.menus.map((c) => {
       if (c.active) {
         return this.toggleMenu(c, false)
@@ -174,8 +173,11 @@ class UIStore {
 
   @action
   goBack() {
+    const component = this.resolveComponent(this.currentStack)
     this.dismissAll()
-    Navigation.pop(this.currentStack)
+    if (component.type === "screen") {
+      Navigation.pop(this.currentStack)
+    }
     return this.currentStack
   }
 
