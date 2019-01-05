@@ -16,7 +16,7 @@ const authorProfile = StyleSheet.create({
     flex: 1,
     backgroundColor: softColors.white,
     paddingHorizontal: wp("5%"),
-    paddingVertical: hp("10%"),
+    paddingTop: hp("10%"),
   },
   subHeader: {
     flexDirection: "row",
@@ -35,6 +35,9 @@ const authorProfile = StyleSheet.create({
   },
   subButtonContainer: {
     alignSelf: "flex-end",
+  },
+  postsContainer: {
+    width: wp("90%"),
   },
 })
 

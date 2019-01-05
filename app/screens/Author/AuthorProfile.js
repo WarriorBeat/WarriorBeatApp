@@ -11,7 +11,7 @@ import AuthorInfo from "components/Author/AuthorInfo"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable } from "mobx"
 import { icons, colors } from "config/styles"
-import { AuthorSubscribe, AuthorStats } from "components/Author"
+import { AuthorSubscribe, AuthorStats, AuthorPosts } from "components/Author"
 import styles from "./styles"
 
 class AuthorProfile extends React.Component {
@@ -21,7 +21,7 @@ class AuthorProfile extends React.Component {
     const { author } = this.props
     return (
       <View style={styles.root}>
-        <View style={styles.header}>
+        <View style={styles.container}>
           <AuthorInfo author={author} />
           <View style={styles.subContainer}>
             <AuthorSubscribe containerStyle={styles.subButtonContainer} author={author} />
@@ -32,6 +32,12 @@ class AuthorProfile extends React.Component {
             </Text>
           </View>
           <AuthorStats author={author} />
+          <View style={styles.postsContainer}>
+            <Text Type="titlesm" Weight="bold" Color="primaryDark">
+              Posts
+            </Text>
+            <AuthorPosts containerStyle={styles.authorPosts} author={author} />
+          </View>
         </View>
       </View>
     )
