@@ -59,6 +59,13 @@ export class Author {
     this.gradeYear = json.grade_year
     this.autoSave = true
   }
+
+  @computed
+  get posts() {
+    const { postStore } = this.store.rootStore
+    const posts = postStore.getPostsByAuthor(this.id)
+    return posts
+  }
 }
 
 export class AuthorStore {

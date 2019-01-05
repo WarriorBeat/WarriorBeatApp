@@ -187,4 +187,16 @@ export class PostStore {
     const post = this.posts.find(p => p.id === id)
     return post !== null ? post : null
   }
+
+  /**
+   * Get all posts by a certain Author
+   *
+   * @param {string} authorId - ID of Author
+   * @returns All Posts by Author
+   * @memberof PostStore
+   */
+  getPostsByAuthor(authorId) {
+    const posts = this.posts.filter(p => p.author.id === authorId)
+    return posts
+  }
 }
