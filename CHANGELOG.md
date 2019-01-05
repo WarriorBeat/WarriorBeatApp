@@ -1,3 +1,22 @@
+# [0.12.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.11.0...v0.12.0) (2019-01-05)
+
+
+### ✨ Features
+
+* **Author:** Author Profile Screen ([#51](https://github.com/WarriorBeat/WarriorBeatApp/issues/51)) ([0a51ba2](https://github.com/WarriorBeat/WarriorBeatApp/commit/0a51ba2))
+* **Author:** AuthorAvatar Component ([#50](https://github.com/WarriorBeat/WarriorBeatApp/issues/50)) ([4e0a26b](https://github.com/WarriorBeat/WarriorBeatApp/commit/4e0a26b))
+* **AuthorStore:** Added posts Computed Property ([a37ad6e](https://github.com/WarriorBeat/WarriorBeatApp/commit/a37ad6e))
+* **AuthorStore:** Update to latest Author Schema ([e9a490d](https://github.com/WarriorBeat/WarriorBeatApp/commit/e9a490d))
+* **Header:** New Header Component ([d194b10](https://github.com/WarriorBeat/WarriorBeatApp/commit/d194b10))
+
+
+### 🐛 Bug Fixes
+
+* **uiStore:** Ensure Unique Component IDs in uiStore ([78d3e63](https://github.com/WarriorBeat/WarriorBeatApp/commit/78d3e63)), closes [#49](https://github.com/WarriorBeat/WarriorBeatApp/issues/49)
+* **uiStore:** Fixed Popping Non-Screen Components ([fad3cad](https://github.com/WarriorBeat/WarriorBeatApp/commit/fad3cad))
+
+
+
 # [0.11.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.10.1...v0.11.0) (2019-01-03)
 
 
@@ -7,6 +26,11 @@
 * **Auth:** User Authentication UI ([#45](https://github.com/WarriorBeat/WarriorBeatApp/issues/45)) ([86acf22](https://github.com/WarriorBeat/WarriorBeatApp/commit/86acf22))
 * **uiStore:** Global UI Store for observing Navigation and more ([#48](https://github.com/WarriorBeat/WarriorBeatApp/issues/48)) ([edb9f91](https://github.com/WarriorBeat/WarriorBeatApp/commit/edb9f91))
 * **UserStore:** Basic User Store Implementation ([#44](https://github.com/WarriorBeat/WarriorBeatApp/issues/44)) ([93a7cb5](https://github.com/WarriorBeat/WarriorBeatApp/commit/93a7cb5))
+
+
+### ♻️ Chores
+
+* **release:** 0.11.0 ([6a8bc2b](https://github.com/WarriorBeat/WarriorBeatApp/commit/6a8bc2b))
 
 
 
