@@ -11,6 +11,7 @@ import { Navigation } from "react-native-navigation"
 import DeviceInfo from "react-native-device-info"
 import * as navAction from "actions/navigation"
 import { Dimensions, Platform } from "react-native"
+import _ from "lodash"
 
 class UIStore {
   @observable.struct
@@ -183,6 +184,10 @@ class UIStore {
     const component = this.resolveComponent(name)
     if (component.setId) {
       component.id = component.setId(id)
+    }
+    if (this.stackHistory.includes(component.id)) {
+      const occurs = _.countBy(this.stackHistory)[component.id]
+      component.id = `${component.id}#${occurs + 1}`
     }
     if (component.type === "modal") {
       return this.toggle(component.id, null, props)
