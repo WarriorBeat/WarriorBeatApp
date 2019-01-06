@@ -1,3 +1,14 @@
+## [0.12.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.12.0...v0.12.1) (2019-01-06)
+
+
+### 🐛 Bug Fixes
+
+* **uiStore:** Fixed uiStore goTo, Fixed NavMenu News Button ([2bd0df9](https://github.com/WarriorBeat/WarriorBeatApp/commit/2bd0df9))
+* **uiStore:** Fixed View Components not Resolving ([e3c9a99](https://github.com/WarriorBeat/WarriorBeatApp/commit/e3c9a99)), closes [#53](https://github.com/WarriorBeat/WarriorBeatApp/issues/53)
+* **uiStore:** Overcome StackHistory Size Limit by Parsing the Last fo... ([08b243a](https://github.com/WarriorBeat/WarriorBeatApp/commit/08b243a))
+
+
+
 # [0.12.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.11.0...v0.12.0) (2019-01-05)
 
 
@@ -14,6 +25,11 @@
 
 * **uiStore:** Ensure Unique Component IDs in uiStore ([78d3e63](https://github.com/WarriorBeat/WarriorBeatApp/commit/78d3e63)), closes [#49](https://github.com/WarriorBeat/WarriorBeatApp/issues/49)
 * **uiStore:** Fixed Popping Non-Screen Components ([fad3cad](https://github.com/WarriorBeat/WarriorBeatApp/commit/fad3cad))
+
+
+### ♻️ Chores
+
+* **release:** 0.12.0 ([de82336](https://github.com/WarriorBeat/WarriorBeatApp/commit/de82336))
 
 
 
