@@ -162,11 +162,12 @@ class UIStore {
 
   @action
   goTo(name) {
-    const component = this.resolveComponent(name)
-    const { type, active } = component
-    if (active && type === "screen") {
+    const component = this.resolveComponent(this.currentStack)
+    const toComponent = this.resolveComponent(name)
+    const { type, active, id } = component
+    if (active && type === "screen" && id !== "Initializing") {
       this.dismissAll()
-      return Navigation.popTo(component.id)
+      return Navigation.popTo(toComponent.id)
     }
     return navAction.goHome()
   }
