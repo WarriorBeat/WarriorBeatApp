@@ -8,6 +8,7 @@ import {
   observable, flow, computed, reaction, action,
 } from "mobx"
 import { Auth } from "aws-amplify"
+import _ from "lodash"
 
 export class User {
   id = null
@@ -20,6 +21,9 @@ export class User {
 
   @observable
   cognitoId
+
+  @observable
+  subscriptions
 
   constructor(store, id) {
     this.store = store
@@ -58,6 +62,27 @@ export class User {
     if (username !== this.cognitoId) {
       this.cognitoId = username
     }
+  }
+
+  @action.bound
+  subscribe(authorId) {
+    if (!this.subscriptions.includes(authorId)) {
+      this.subscriptions.push(authorId)
+    }
+    return authorId
+  }
+
+  @action.bound
+  unsubscribe(authorId) {
+    this.autoSave = false
+    this.subscriptions = this.subscriptions.filter(s => s !== authorId)
+    this.autoSave = true
+    return authorId
+  }
+
+  isSubbed(authorId) {
+    const author = this.subscriptions.find(s => s === authorId)
+    return author
   }
 }
 
@@ -208,6 +233,14 @@ export class UserStore {
   @action
   resolve() {
     return (this.state = "ready")
+  }
+
+  @action
+  toggleSubscribe(authorId) {
+    if (this.user.isSubbed(authorId)) {
+      return this.user.unsubscribe(authorId)
+    }
+    return this.user.subscribe(authorId)
   }
 
   @computed
