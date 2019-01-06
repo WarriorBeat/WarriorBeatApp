@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Header Component renders as expected 1`] = `
+<Themed.Header
+  barStyle="dark-content"
+  leftComponent={
+    <Return
+      onPress={[Function]}
+    />
+  }
+/>
+`;
+
+exports[`Testing Header Component renders as expected 2`] = `
+<Themed.Header
+  barStyle="light-content"
+  leftComponent={
+    <Return
+      onPress={[Function]}
+    />
+  }
+/>
+`;
