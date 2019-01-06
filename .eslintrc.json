@@ -4,7 +4,8 @@
     "node": true,
     "commonjs": false,
     "es6": true,
-    "react-native/react-native": true
+    "react-native/react-native": true,
+    "jest": true
   },
   "extends": "airbnb",
   "parser": "babel-eslint",
