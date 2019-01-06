@@ -57,22 +57,22 @@ class UIStore {
     {
       active: false,
       name: "Post.Article",
-      id: "",
-      setId: id => `ArticleView${id}`,
+      id: "ArticleView",
+      isView: true,
       type: "screen",
     },
     {
       active: false,
       name: "Post.Poll",
-      id: "",
-      setId: id => `PollView${id}`,
+      id: "PollView",
+      isView: true,
       type: "modal",
     },
     {
       active: false,
       name: "Author.Profile",
-      id: "",
-      setId: id => `AuthorProfileView${id}`,
+      id: "AuthorProfileView",
+      isView: true,
       type: "screen",
     },
   ]
@@ -182,14 +182,10 @@ class UIStore {
   }
 
   @action
-  push(name, id, props = {}, onTo = this.currentStack) {
-    const component = this.resolveComponent(name)
-    if (component.setId) {
-      component.id = component.setId(id)
-    }
-    if (this.stackHistory.includes(component.id)) {
-      const occurs = _.countBy(this.stackHistory)[component.id]
-      component.id = `${component.id}#${occurs + 1}`
+  push(name, viewId, props = {}, onTo = this.currentStack) {
+    let component = this.resolveComponent(name)
+    if (component.isView) {
+      component = this.generateComponent(component, viewId)
     }
     if (component.type === "modal") {
       return this.toggle(component.id, null, props)
@@ -210,11 +206,28 @@ class UIStore {
   toggleMenu = (component, state) => navAction.toggleMenu({ menu: component.id, status: state })
 
   resolveComponent(id) {
-    let comp = this.components.find(c => c.id === id)
+    const compId = this.getComponentParent(id)
+    let comp = this.components.find(c => c.id === compId)
     if (!comp) {
-      comp = this.components.find(c => c.name === id)
+      comp = this.components.find(c => c.name === compId)
     }
     return comp
+  }
+
+  getComponentParent = (childId) => {
+    const [parentId] = childId.split("@")
+    return parentId
+  }
+
+  @action
+  generateComponent(component, viewId) {
+    let newId = `${component.id}@${viewId}`
+    if (this.stackHistory.includes(newId)) {
+      const occurs = _.countBy(this.stackHistory)[newId]
+      newId = `${newId}#${occurs + 1}`
+    }
+    const child = { ...component, id: newId }
+    return child
   }
 
   @action
