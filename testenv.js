@@ -16,3 +16,10 @@ configure({ adapter: new Adapter() })
 jest.mock("react-native-device-info", () => ({
   getUniqueID: jest.fn(),
 }))
+
+// Mock Ui Store
+jest.mock("stores/uiStore", () => {
+  return jest.fn().mockImplementation(() => ({
+    goBack: jest.fn(),
+  }))
+})

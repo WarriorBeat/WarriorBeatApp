@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing Input Component renders as expected 1`] = `
+<ForwardRef(Themed.Input)
+  clearButtonMode="always"
+  containerStyle={
+    Object {
+      "borderWidth": 0,
+      "paddingHorizontal": 0,
+      "paddingVertical": 40,
+    }
+  }
+  inputContainerStyle={
+    Object {
+      "backgroundColor": "rgba(255,255,255,1)",
+      "borderBottomWidth": 0,
+      "borderRadius": 7.5,
+      "elevation": 8,
+      "height": 93.5,
+      "marginTop": 13.5,
+      "shadowColor": "#393939",
+      "shadowOffset": Object {
+        "height": 0,
+        "width": 0,
+      },
+      "shadowOpacity": 0.25,
+      "shadowRadius": 10,
+    }
+  }
+  inputStyle={
+    Object {
+      "paddingHorizontal": 22.5,
+    }
+  }
+  label={
+    <Text
+      Color="black_light"
+      Italic={false}
+      NoPadding={false}
+      Shadow={false}
+      Type="header"
+      Uppercase={false}
+      Weight={false}
+      fontSize={null}
+      style={Object {}}
+    >
+      Label
+    </Text>
+  }
+  onChangeText={[Function]}
+  secureTextEntry={false}
+  underlineColorAndroid="transparent"
+/>
+`;
