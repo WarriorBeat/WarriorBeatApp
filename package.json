@@ -67,6 +67,7 @@
     "conventional-changelog-metahub": "^2.0.2",
     "cz-conventional-changelog": "2.1.0",
     "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
     "enzyme-to-json": "^3.3.5",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",
@@ -84,12 +85,6 @@
     "react-native-version": "^2.6.6",
     "react-test-renderer": "16.6.3",
     "standard-version": "^4.4.0"
-  },
-  "jest": {
-    "preset": "react-native",
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ]
   },
   "config": {
     "commitizen": {
