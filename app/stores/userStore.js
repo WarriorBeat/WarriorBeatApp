@@ -18,6 +18,9 @@ export class User {
 
   saveHandler = null
 
+  @observable
+  cognitoId
+
   constructor(store, id) {
     this.store = store
     this.id = id
@@ -25,7 +28,7 @@ export class User {
       () => this.asJson,
       (json) => {
         if (this.autoSave) {
-          this.store.updateUser(json)
+          this.store.resourceClient.patch(this.id, json)
         }
       },
     )
@@ -35,13 +38,26 @@ export class User {
   get asJson() {
     return {
       userId: this.id,
+      cognitoId: this.cognitoId,
+      subscriptions: this.subscriptions,
+      liked_posts: this.liked_posts,
     }
   }
 
   updateFromJson(json) {
     this.autoSave = false
     this.id = json.userId
+    this.cognitoId = json.cognitoId
+    this.subscriptions = json.subscriptions
+    this.liked_posts = json.liked_posts
     this.autoSave = true
+  }
+
+  @action.bound
+  onAuthenticate(username) {
+    if (username !== this.cognitoId) {
+      this.cognitoId = username
+    }
   }
 }
 
@@ -68,6 +84,7 @@ export class UserStore {
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
+    this.resourceClient.onReceiveUpdate = json => this.updateUser(json)
     this.deviceId = this.rootStore.uiStore.device.id
     this.loadUser()
   }
@@ -99,6 +116,7 @@ export class UserStore {
       user = yield Auth.signIn(email, password)
       this.cognito = user
       this.isAuthed = true
+      this.user.onAuthenticate(user.username)
     } catch (err) {
       return this.handleError(err)
     }
