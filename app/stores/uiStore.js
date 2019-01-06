@@ -222,9 +222,11 @@ class UIStore {
   @action
   generateComponent(component, viewId) {
     let newId = `${component.id}@${viewId}`
-    if (this.stackHistory.includes(newId)) {
-      const occurs = _.countBy(this.stackHistory)[newId]
-      newId = `${newId}#${occurs + 1}`
+    const lastComp = _.findLast(this.stackHistory, c => c.split("#")[0] === newId)
+    if (lastComp) {
+      const lastId = lastComp.split("#")[1]
+      const instance = Number.isNaN(Number(lastId)) ? 1 : Number(lastId)
+      newId = `${newId}#${Number(instance) + 1}`
     }
     const child = { ...component, id: newId }
     return child
