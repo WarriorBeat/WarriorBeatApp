@@ -10,14 +10,10 @@ import { Button } from "react-native-elements"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { subscribeStyles as styles, subscribeButton } from "./styles"
 
-/**
- * @todo Add Subscribe Functionality to AuthorSubscribe Component
- * @body When Author subscription functionality is ready, add onPress handler here
- */
 const AuthorSubscribe = inject("userStore")(
   observer(({ userStore, author, ...props }) => {
     const { normal, subscribed } = subscribeButton
-    const icon = userStore.user.isSubbed(author.id) ? subscribed : normal
+    const icon = userStore.profile.isSubbed(author.id) ? subscribed : normal
     return (
       <View style={styles.root}>
         <Button

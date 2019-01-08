@@ -32,7 +32,7 @@ export class User {
     this.store = store
     this.id = id
     this.saveHandler = reaction(
-      () => this.subscriptions,
+      () => this.asJson,
       (json) => {
         if (this.autoSave) {
           this.store.resourceClient.patch(this.id, json)
@@ -44,6 +44,7 @@ export class User {
   @computed
   get asJson() {
     return {
+      userId: this.id,
       subscriptions: this.subscriptions,
       liked_posts: this.liked_posts,
       voted_polls: this.voted_polls,
@@ -54,15 +55,15 @@ export class User {
     this.autoSave = false
     this.subscriptions = json.subscriptions
     this.likedPosts = json.liked_posts
-    this.votedPolls = json.votedPolls
+    this.votedPolls = json.voted_polls
     this.autoSave = true
   }
 
   @action.bound
   subscribe(authorId) {
-    if (!this.subscriptions.includes(authorId)) {
-      this.subscriptions.push(authorId)
-    }
+    const subList = [...this.subscriptions]
+    subList.push(authorId)
+    this.subscriptions = _.union(subList, this.subscriptions)
     return authorId
   }
 
@@ -98,7 +99,6 @@ export class UserStore {
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
-    this.resourceClient.onReceiveUpdate = json => this.updateUser(json)
     this.deviceId = this.rootStore.uiStore.device.id
     this.loadUser()
   }
@@ -244,5 +244,10 @@ export class UserStore {
   @computed
   get error() {
     return this.errorMessage
+  }
+
+  @computed
+  get profile() {
+    return this.user
   }
 }
