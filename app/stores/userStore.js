@@ -20,16 +20,19 @@ export class User {
   saveHandler = null
 
   @observable
-  cognitoId
+  subscriptions = []
 
   @observable
-  subscriptions
+  likedPosts = []
+
+  @observable
+  votedPolls = []
 
   constructor(store, id) {
     this.store = store
     this.id = id
     this.saveHandler = reaction(
-      () => this.asJson,
+      () => this.subscriptions,
       (json) => {
         if (this.autoSave) {
           this.store.resourceClient.patch(this.id, json)
@@ -41,27 +44,18 @@ export class User {
   @computed
   get asJson() {
     return {
-      userId: this.id,
-      cognitoId: this.cognitoId,
       subscriptions: this.subscriptions,
       liked_posts: this.liked_posts,
+      voted_polls: this.voted_polls,
     }
   }
 
   updateFromJson(json) {
     this.autoSave = false
-    this.id = json.userId
-    this.cognitoId = json.cognitoId
     this.subscriptions = json.subscriptions
-    this.liked_posts = json.liked_posts
+    this.likedPosts = json.liked_posts
+    this.votedPolls = json.votedPolls
     this.autoSave = true
-  }
-
-  @action.bound
-  onAuthenticate(username) {
-    if (username !== this.cognitoId) {
-      this.cognitoId = username
-    }
   }
 
   @action.bound
@@ -74,9 +68,7 @@ export class User {
 
   @action.bound
   unsubscribe(authorId) {
-    this.autoSave = false
     this.subscriptions = this.subscriptions.filter(s => s !== authorId)
-    this.autoSave = true
     return authorId
   }
 
@@ -93,9 +85,6 @@ export class UserStore {
 
   @observable
   user = null
-
-  @observable
-  cognito = null
 
   @observable
   isAuthed = false
@@ -115,13 +104,16 @@ export class UserStore {
   }
 
   @action
-  loadUser = flow(function* () {
+  loadUser = flow(function* (cognito = null) {
     this.state = "pending"
-    let user = yield this.resourceClient.get(this.deviceId)
-    if (user === null) {
-      user = yield this.resourceClient.post({ userId: this.deviceId })
+    if (cognito) {
+      let user = yield this.resourceClient.get(cognito.username)
+      if (!user) {
+        user = yield this.resourceClient.post({ userId: cognito.username })
+      }
+      this.updateUser(user)
+      this.isAuthed = true
     }
-    this.updateUser(user)
     this.state = "ready"
   })
 
@@ -139,14 +131,10 @@ export class UserStore {
     let user = null
     try {
       user = yield Auth.signIn(email, password)
-      this.cognito = user
-      this.isAuthed = true
-      this.user.onAuthenticate(user.username)
+      return this.loadUser(user)
     } catch (err) {
       return this.handleError(err)
     }
-    this.state = "ready"
-    return user
   })
 
   @action
