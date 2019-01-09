@@ -72,11 +72,6 @@ export class User {
     this.subscriptions = this.subscriptions.filter(s => s !== authorId)
     return authorId
   }
-
-  isSubbed(authorId) {
-    const author = this.subscriptions.find(s => s === authorId)
-    return author
-  }
 }
 
 export class UserStore {
@@ -225,10 +220,21 @@ export class UserStore {
 
   @action
   toggleSubscribe(authorId) {
-    if (this.user.isSubbed(authorId)) {
+    if (!this.authed) {
+      return false
+    }
+    if (this.isSubbed(authorId)) {
       return this.user.unsubscribe(authorId)
     }
     return this.user.subscribe(authorId)
+  }
+
+  isSubbed(authorId) {
+    if (!this.authed) {
+      return false
+    }
+    const author = this.user.subscriptions.find(s => s === authorId)
+    return author
   }
 
   @computed

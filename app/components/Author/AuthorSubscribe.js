@@ -13,7 +13,7 @@ import { subscribeStyles as styles, subscribeButton } from "./styles"
 const AuthorSubscribe = inject("userStore")(
   observer(({ userStore, author, ...props }) => {
     const { normal, subscribed } = subscribeButton
-    const icon = userStore.profile.isSubbed(author.id) ? subscribed : normal
+    const icon = userStore.isSubbed(author.id) ? subscribed : normal
     return (
       <View style={styles.root}>
         <Button
