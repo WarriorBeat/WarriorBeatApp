@@ -220,7 +220,7 @@ export class UserStore {
 
   @action
   toggleSubscribe(authorId) {
-    if (!this.authed) {
+    if (this.checkAuth() !== true) {
       return false
     }
     if (this.isSubbed(authorId)) {
@@ -230,11 +230,22 @@ export class UserStore {
   }
 
   isSubbed(authorId) {
-    if (!this.authed) {
+    if (this.checkAuth(false) !== true) {
       return false
     }
     const author = this.user.subscriptions.find(s => s === authorId)
     return author
+  }
+
+  checkAuth(onboard = true) {
+    const { uiStore } = this.rootStore
+    if (!this.authed) {
+      if (onboard) {
+        return uiStore.toggle("Account.Authenticator")
+      }
+      return false
+    }
+    return true
   }
 
   @computed
