@@ -73,6 +73,7 @@ MenuButton.propTypes = {
   onPress: PropTypes.func,
   buttonStyle: Text.propTypes.style,
   titleStyle: Text.propTypes.style,
+  requiresAuth: PropTypes.bool,
 }
 
 MenuButton.defaultProps = {
@@ -82,6 +83,7 @@ MenuButton.defaultProps = {
   onPress: () => {},
   buttonStyle: {},
   titleStyle: {},
+  requiresAuth: null,
 }
 
 SideMenu.propTypes = {
