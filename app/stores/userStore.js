@@ -147,9 +147,10 @@ export class UserStore {
   createUser = flow(function* (email, password) {
     this.state = "pending"
     let user = null
+    const username = email.toLowerCase()
     try {
       user = yield Auth.signUp({
-        username: email,
+        username,
         password,
         attributes: {
           email,
