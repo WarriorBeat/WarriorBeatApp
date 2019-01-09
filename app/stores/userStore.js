@@ -101,7 +101,7 @@ export class UserStore {
   @action
   loadUser = flow(function* (cognito = null) {
     this.state = "pending"
-    const session = cognito === null ? yield Auth.currentAuthenticatedUser() : cognito
+    const session = cognito === null ? yield this.retrieveUser() : cognito
     if (session) {
       let user = yield this.resourceClient.get(session.username)
       if (!user) {
@@ -111,6 +111,16 @@ export class UserStore {
       this.isAuthed = true
     }
     this.state = "ready"
+  })
+
+  retrieveUser = flow(function* () {
+    let user = false
+    try {
+      user = yield Auth.currentAuthenticatedUser()
+      return user
+    } catch (e) {
+      return false
+    }
   })
 
   @action
@@ -165,7 +175,6 @@ export class UserStore {
       }
     }
     this.authenticateUser(email, password)
-    this.state = "ready"
     return user
   })
 
