@@ -101,10 +101,11 @@ export class UserStore {
   @action
   loadUser = flow(function* (cognito = null) {
     this.state = "pending"
-    if (cognito) {
-      let user = yield this.resourceClient.get(cognito.username)
+    const session = cognito === null ? yield Auth.currentAuthenticatedUser() : cognito
+    if (session) {
+      let user = yield this.resourceClient.get(session.username)
       if (!user) {
-        user = yield this.resourceClient.post({ userId: cognito.username })
+        user = yield this.resourceClient.post({ userId: session.username })
       }
       this.updateUser(user)
       this.isAuthed = true
