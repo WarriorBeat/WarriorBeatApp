@@ -1,3 +1,12 @@
+# [0.13.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.12.1...v0.13.0) (2019-01-09)
+
+
+### ✨ Features
+
+* **Users:** User Account Persistence and Author Subscriptions ([#55](https://github.com/WarriorBeat/WarriorBeatApp/issues/55)) ([3c9ee0b](https://github.com/WarriorBeat/WarriorBeatApp/commit/3c9ee0b)), closes [#52](https://github.com/WarriorBeat/WarriorBeatApp/issues/52)
+
+
+
 ## [0.12.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.12.0...v0.12.1) (2019-01-06)
 
 
@@ -6,6 +15,11 @@
 * **uiStore:** Fixed uiStore goTo, Fixed NavMenu News Button ([2bd0df9](https://github.com/WarriorBeat/WarriorBeatApp/commit/2bd0df9))
 * **uiStore:** Fixed View Components not Resolving ([e3c9a99](https://github.com/WarriorBeat/WarriorBeatApp/commit/e3c9a99)), closes [#53](https://github.com/WarriorBeat/WarriorBeatApp/issues/53)
 * **uiStore:** Overcome StackHistory Size Limit by Parsing the Last fo... ([08b243a](https://github.com/WarriorBeat/WarriorBeatApp/commit/08b243a))
+
+
+### ♻️ Chores
+
+* **release:** 0.12.1 ([9074d43](https://github.com/WarriorBeat/WarriorBeatApp/commit/9074d43))
 
 
 
