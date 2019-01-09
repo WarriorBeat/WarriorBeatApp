@@ -14,23 +14,25 @@ import sideMenu from "./styles"
 
 export const MenuButton = (props) => {
   const {
-    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle,
+    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle, requiresAuth,
   } = props
   let btnTitleStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
   btnTitleStyle = isFooter ? sideMenu.buttonFooterText : btnTitleStyle
 
   const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
-
-  return (
-    <Button
-      type="clear"
-      titleStyle={{ ...btnTitleStyle, ...titleStyle }}
-      buttonStyle={{ ...btnStyle, ...buttonStyle }}
-      title={title}
-      icon={{ ...icon, color: "white" }}
-      onPress={onPress}
-    />
-  )
+  if (requiresAuth !== false || requiresAuth === undefined) {
+    return (
+      <Button
+        type="clear"
+        titleStyle={{ ...btnTitleStyle, ...titleStyle }}
+        buttonStyle={{ ...btnStyle, ...buttonStyle }}
+        title={title}
+        icon={{ ...icon, color: "white" }}
+        onPress={onPress}
+      />
+    )
+  }
+  return null
 }
 
 const SideMenu = (props) => {

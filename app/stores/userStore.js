@@ -195,6 +195,17 @@ export class UserStore {
   })
 
   @action
+  logout = flow(function* () {
+    this.state = "pending"
+    const user = yield Auth.signOut({ global: true })
+    this.user = null
+    this.cognito = null
+    this.isAuthed = false
+    this.state = "ready"
+    return user
+  })
+
+  @action
   handleError(error) {
     this.state = "failed"
     this.errorMessage = error

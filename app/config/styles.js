@@ -138,4 +138,8 @@ export const icons = {
     name: "heart",
     type: "font-awesome",
   },
+  logout: {
+    name: "logout",
+    type: "material-community",
+  },
 }
