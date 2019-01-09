@@ -8,6 +8,7 @@ import {
   observable, flow, computed, reaction, action,
 } from "mobx"
 import { Auth } from "aws-amplify"
+import _ from "lodash"
 
 export class User {
   id = null
@@ -18,6 +19,15 @@ export class User {
 
   saveHandler = null
 
+  @observable
+  subscriptions = []
+
+  @observable
+  likedPosts = []
+
+  @observable
+  votedPolls = []
+
   constructor(store, id) {
     this.store = store
     this.id = id
@@ -25,7 +35,7 @@ export class User {
       () => this.asJson,
       (json) => {
         if (this.autoSave) {
-          this.store.updateUser(json)
+          this.store.resourceClient.patch(this.id, json)
         }
       },
     )
@@ -35,13 +45,32 @@ export class User {
   get asJson() {
     return {
       userId: this.id,
+      subscriptions: this.subscriptions,
+      liked_posts: this.liked_posts,
+      voted_polls: this.voted_polls,
     }
   }
 
   updateFromJson(json) {
     this.autoSave = false
-    this.id = json.userId
+    this.subscriptions = json.subscriptions
+    this.likedPosts = json.liked_posts
+    this.votedPolls = json.voted_polls
     this.autoSave = true
+  }
+
+  @action.bound
+  subscribe(authorId) {
+    const subList = [...this.subscriptions]
+    subList.push(authorId)
+    this.subscriptions = _.union(subList, this.subscriptions)
+    return authorId
+  }
+
+  @action.bound
+  unsubscribe(authorId) {
+    this.subscriptions = this.subscriptions.filter(s => s !== authorId)
+    return authorId
   }
 }
 
@@ -52,9 +81,6 @@ export class UserStore {
 
   @observable
   user = null
-
-  @observable
-  cognito = null
 
   @observable
   isAuthed = false
@@ -73,14 +99,28 @@ export class UserStore {
   }
 
   @action
-  loadUser = flow(function* () {
+  loadUser = flow(function* (cognito = null) {
     this.state = "pending"
-    let user = yield this.resourceClient.get(this.deviceId)
-    if (user === null) {
-      user = yield this.resourceClient.post({ userId: this.deviceId })
+    const session = cognito === null ? yield this.retrieveUser() : cognito
+    if (session) {
+      let user = yield this.resourceClient.get(session.username)
+      if (!user) {
+        user = yield this.resourceClient.post({ userId: session.username })
+      }
+      this.updateUser(user)
+      this.isAuthed = true
     }
-    this.updateUser(user)
     this.state = "ready"
+  })
+
+  retrieveUser = flow(function* () {
+    let user = false
+    try {
+      user = yield Auth.currentAuthenticatedUser()
+      return user
+    } catch (e) {
+      return false
+    }
   })
 
   @action
@@ -97,22 +137,20 @@ export class UserStore {
     let user = null
     try {
       user = yield Auth.signIn(email, password)
-      this.cognito = user
-      this.isAuthed = true
+      return this.loadUser(user)
     } catch (err) {
       return this.handleError(err)
     }
-    this.state = "ready"
-    return user
   })
 
   @action
   createUser = flow(function* (email, password) {
     this.state = "pending"
     let user = null
+    const username = email.toLowerCase()
     try {
       user = yield Auth.signUp({
-        username: email,
+        username,
         password,
         attributes: {
           email,
@@ -138,7 +176,6 @@ export class UserStore {
       }
     }
     this.authenticateUser(email, password)
-    this.state = "ready"
     return user
   })
 
@@ -169,6 +206,17 @@ export class UserStore {
   })
 
   @action
+  logout = flow(function* () {
+    this.state = "pending"
+    const user = yield Auth.signOut({ global: true })
+    this.user = null
+    this.cognito = null
+    this.isAuthed = false
+    this.state = "ready"
+    return user
+  })
+
+  @action
   handleError(error) {
     this.state = "failed"
     this.errorMessage = error
@@ -192,6 +240,36 @@ export class UserStore {
     return (this.state = "ready")
   }
 
+  @action
+  toggleSubscribe(authorId) {
+    if (this.checkAuth() !== true) {
+      return false
+    }
+    if (this.isSubbed(authorId)) {
+      return this.user.unsubscribe(authorId)
+    }
+    return this.user.subscribe(authorId)
+  }
+
+  isSubbed(authorId) {
+    if (this.checkAuth(false) !== true) {
+      return false
+    }
+    const author = this.user.subscriptions.find(s => s === authorId)
+    return author
+  }
+
+  checkAuth(onboard = true) {
+    const { uiStore } = this.rootStore
+    if (!this.authed) {
+      if (onboard) {
+        return uiStore.toggle("Account.Authenticator")
+      }
+      return false
+    }
+    return true
+  }
+
   @computed
   get status() {
     return this.state
@@ -205,5 +283,10 @@ export class UserStore {
   @computed
   get error() {
     return this.errorMessage
+  }
+
+  @computed
+  get profile() {
+    return this.user
   }
 }

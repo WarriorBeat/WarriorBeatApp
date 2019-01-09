@@ -29,15 +29,19 @@ class NavMenu extends React.Component {
         )}
       >
         <MenuButton onPress={() => uiStore.goTo("Home")} title="News" icon={icons.news} />
-        {userStore.authed ? (
-          <MenuButton title="My Feed" icon={icons.home} />
-        ) : (
-          <MenuButton
-            onPress={() => uiStore.toggle("Account.Authenticator")}
-            title="Login / Signup"
-            icon={icons.user}
-          />
-        )}
+        <MenuButton title="My Feed" icon={icons.home} requiresAuth={userStore.authed} />
+        <MenuButton
+          title="Logout"
+          icon={icons.logout}
+          requiresAuth={userStore.authed}
+          onPress={() => userStore.logout()}
+        />
+        <MenuButton
+          onPress={() => uiStore.toggle("Account.Authenticator")}
+          title="Login / Signup"
+          icon={icons.user}
+          requiresAuth={!userStore.authed}
+        />
       </SideMenu>
     )
   }

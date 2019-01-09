@@ -79,7 +79,7 @@ export const subscribeButton = {
     ...icons.heart,
     color: colors.ios.red,
   },
-  default: {
+  normal: {
     ...icons.heart,
     color: colors.ios.gray,
   },
