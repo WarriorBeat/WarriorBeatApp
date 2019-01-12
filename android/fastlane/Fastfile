@@ -14,6 +14,9 @@
 # update_fastlane
 
 default_platform(:android)
+# Get Env Variables
+fastlane_require 'dotenv'
+
 
 platform :android do
   desc "Runs all the tests"
@@ -22,7 +25,7 @@ platform :android do
   end
 
   desc "Build and Release on App Center"
-  lane :build do
+  lane :stage do
     sh "./load_secret.sh"
     gradle(task: "app:assembleRelease")
     appcenter_upload(

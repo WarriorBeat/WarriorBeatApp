@@ -26,6 +26,7 @@
     "react": "16.6.3",
     "react-native": "0.57.8",
     "react-native-action-button": "^2.8.5",
+    "react-native-config": "^0.11.7",
     "react-native-device-info": "^0.24.3",
     "react-native-dotenv": "^0.2.0",
     "react-native-elements": "bradenm/react-native-elements#feat/tile-custom-image-component",
@@ -75,7 +76,6 @@
     "jest": "23.5.0",
     "metro-react-native-babel-preset": "^0.49.0",
     "prettier-eslint": "^8.8.2",
-    "react-native-config": "^0.11.7",
     "react-native-version": "^2.6.6",
     "react-test-renderer": "16.6.3",
     "standard-version": "^4.4.0"

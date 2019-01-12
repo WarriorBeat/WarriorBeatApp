@@ -14,11 +14,15 @@
 # update_fastlane
 
 default_platform(:ios)
+# Get Env Vars
+fastlane_require 'dotenv'
 
 platform :ios do
-  desc "Build and release to AppCenter" 
-  lane :release do
+  desc "Build and Release to AppCenter" 
+  lane :stage do
     sh("./load_secret.sh")
+    Dotenv.load(File.join(dir, '.env'))
+    Dotenv.load(File.join("../../", ".env.stage"))
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge
@@ -32,6 +36,8 @@ platform :ios do
 
   desc "Install Release on Device"
   lane :install_release do
+    Dotenv.load(File.join(dir, '.env'))
+    Dotenv.load(File.join("../../", ".env.stage"))
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge
