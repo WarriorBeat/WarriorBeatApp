@@ -14,8 +14,17 @@
 # update_fastlane
 
 default_platform(:android)
+
 # Get Env Variables
 fastlane_require 'dotenv'
+
+# Loads Env Variables by build type 
+def getEnv(buildType)
+  Dotenv.load(File.join(Dir.pwd, '.env'))
+  dir = File.expand_path('../..', Dir.pwd)
+  puts("DIR: %s" % dir)
+  Dotenv.load('%s/.env.%s' % [dir, buildType])
+end
 
 
 platform :android do
@@ -26,6 +35,7 @@ platform :android do
 
   desc "Build and Release on App Center"
   lane :stage do
+    getEnv('stage')
     sh "./load_secret.sh"
     gradle(task: "app:assembleRelease")
     appcenter_upload(
@@ -38,6 +48,7 @@ platform :android do
 
   desc "Install Release on Device"
   lane :install_release do
+    getEnv('stage')
     gradle(task: "app:assembleRelease")
     gradle(task: "app:installRelease")
   end
