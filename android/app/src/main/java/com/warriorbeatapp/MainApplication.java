@@ -3,6 +3,7 @@ package com.warriorbeatapp;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import io.sentry.RNSentryPackage;
@@ -48,6 +49,7 @@ public class MainApplication extends NavigationApplication {
   protected List<ReactPackage> getPackages() {
     // Additional Packages
     return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new ReactNativeConfigPackage(),
             new RNDeviceInfo(),
             new FastImageViewPackage(),
             new RNSentryPackage(),

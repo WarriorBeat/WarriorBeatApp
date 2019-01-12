@@ -72,6 +72,17 @@ import com.android.build.OutputFile
  * ]
  */
 
+// RN Config .env map
+ project.ext.envConfigFiles = [
+    debug: ".env.dev",
+    stage: ".env.stage",
+    release: ".env.release"
+]
+
+// React Native Config
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
+
 project.ext.react = [
     entryFile: "index.js"
 ]
@@ -105,6 +116,7 @@ android {
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
         versionCode 21
         versionName "0.13.0"
+        resValue "string", "build_config_package", "com.warriorbeatapp"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -167,6 +179,7 @@ configurations.all{
 }
 
 dependencies {
+    compile project(':react-native-config')
     compile project(':react-native-device-info')
     compile project(':react-native-fast-image')
     compile project(':react-native-sentry')
