@@ -52,15 +52,17 @@ def handleInstall(apk_path, suffix=nil)
   UI.header("Installing Application")
   UI.message("Bundle ID => #{bundle_id}")
   UI.message("Suffix => #{suffix}")
+  UI.message("Title => #{"WarriorBeat"}")
   begin
     adb(
       command: "uninstall #{bundle_id}"
     )
   rescue
     UI.important("Uninstall failed. Is the app present? Continuing...")
-  adb(
-    command: "install #{apk_path}"
-  )
+  ensure
+    adb(
+      command: "install #{apk_path}"
+    )
   end
   UI.success("App Installed Successfully.")
 end
