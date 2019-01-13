@@ -44,3 +44,35 @@ def getReleaseNotes()
   notes = sh('sed -n "/$(echo v%s)/,/$(echo %s)/ p" $CHANGELOG_PATH | head -n -2' % [VERSION, prev_version])
   return notes
 end
+
+
+def handleEnvAndOptions(environment, options, isString=false, default=nil)
+  # Tristate selector - env vars, cli options, defaults
+  # Handles string and boolean types
+
+  # see - https://github.com/TGPSKI/react-native-fastlane-boilerplate/blob/2afb85ea0993cb1cef43151d6e4cc6f30ef17913/Common#L35
+
+  output = nil
+  if isString == true
+    # Handle strings
+    if environment != nil
+      output = environment
+    elsif options != nil
+      output = options
+    elsif default != nil
+      output = default
+    else
+      output = nil
+    end
+  else
+    # Handle bools
+    if environment == true
+      output = true
+    elsif options == true
+      output = true
+    else
+      output = false
+    end
+  end
+  return output
+end

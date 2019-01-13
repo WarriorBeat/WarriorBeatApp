@@ -15,6 +15,21 @@
 
 import '../../fastlane/CommonFastFile'
 
+# Android Specific Constants
+APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
+
+# Dev
+DEV_BUNDLE_SUFFIX = 'dev'.freeze
+DEV_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/debug/app-debug.apk".freeze
+
+# Staging
+STAGE_BUNDLE_SUFFIX = 'stage'.freeze
+STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging.apk".freeze
+
+# Release
+RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-release.apk".freeze
+
+
 default_platform(:android)
 
 # Set Dir to Project Root
@@ -23,11 +38,22 @@ dir = File.expand_path('../../', Dir.pwd).freeze
 
 platform :android do
 
-  before_all do
-    yarn(
-      command: "install",
-      package_path: PACKAGE_JSON
-    )
+  before_all do |lane, options|
+    parsed_options = {
+      :skip_before => handleEnvAndOptions(
+        ENV['SKIP_BEFORE'],
+        options[:skip_before],
+        false,
+        false
+      )
+    }
+    
+    unless parsed_options[:skip_before]
+      yarn(
+        command: "install",
+        package_path: PACKAGE_JSON
+      )
+    end
   end
 
   desc "Runs all the tests"
@@ -35,6 +61,57 @@ platform :android do
     getEnv('dev')
     gradle(task: "test")
   end
+
+  desc "Android Dev Build"
+  lane :dev do |options|
+    getEnv('dev')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      )
+    }
+    if parsed_options[:badge]
+      add_badge(
+        glob: '%s/android/app/src/main/res/mipmap-*/ic_launcher.png' % ROOT
+      )
+    end
+
+    if parsed_options[:clean]
+      gradle(task: 'clean')
+    end
+
+    # Build
+    gradle(task: 'assemble', build_type: 'debug')
+
+    if parsed_options[:install]
+      begin
+        adb(
+          command: "uninstall #{APP_ID}.#{DEV_BUNDLE_SUFFIX}"
+        )
+      rescue
+        puts("Uninstall failed. Is the app present? Continuing...")
+      end
+      adb(
+        command: "install #{DEV_PRODUCTS_PATH}"
+      )
+    end
+  end
+
 
   desc "Build and Release on App Center"
   lane :stage do
