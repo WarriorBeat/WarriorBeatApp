@@ -12,7 +12,7 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
-import '../../CommonFastFile'
+import '../../fastlane/CommonFastFile'
 
 default_platform(:ios)
 
@@ -32,15 +32,16 @@ platform :ios do
   desc "Build and Release to AppCenter" 
   lane :stage do
     getEnv('stage')
-    sh("./load_secret.sh")
+    injectAppcenter("android", APPCENTER_ANDROIDCONFIG)
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge
     build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
     appcenter_upload(
       should_clip: false,
+      release_notes: getReleaseNotes
     )
-    sh("./load_secret.sh clean")
+    injectAppcenter("android", APPCENTER_ANDROIDCONFIG, clean: true)
   end
 
   desc "Install Release on Device"

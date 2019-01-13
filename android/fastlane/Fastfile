@@ -13,7 +13,7 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-import '../../CommonFastFile'
+import '../../fastlane/CommonFastFile'
 
 default_platform(:android)
 
@@ -39,18 +39,19 @@ platform :android do
   desc "Build and Release on App Center"
   lane :stage do
     getEnv('stage')
-    sh "./load_secret.sh"
+    injectAppcenter("android", APPCENTER_ANDROIDCONFIG)
     gradle(task: "app:assembleRelease")
     appcenter_upload(
       apk: ENV['GRADLE_APK_OUTPUT_PATH'],
       should_clip: false,
+      release_notes: getReleaseNotes
     )
-    sh "./load_secret.sh clean"
+    injectAppcenter("android", APPCENTER_ANDROIDCONFIG, clean:true)
   end
 
   desc "Install Release on Device"
   lane :install_release do
-    getEnv('stage')
+    getEnv('release')
     gradle(task: "app:assembleRelease")
     gradle(task: "app:installRelease")
   end

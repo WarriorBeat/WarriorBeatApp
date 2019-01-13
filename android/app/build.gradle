@@ -1,5 +1,16 @@
 apply plugin: "com.android.application"
 
+// RN Config .env map
+ project.ext.envConfigFiles = [
+    debug: ".env.dev",
+    stage: ".env.stage",
+    release: ".env.release"
+]
+
+// React Native Config
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
+
 import com.android.build.OutputFile
 
 /**
@@ -71,17 +82,6 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-
-// RN Config .env map
- project.ext.envConfigFiles = [
-    debug: ".env.dev",
-    stage: ".env.stage",
-    release: ".env.release"
-]
-
-// React Native Config
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
-
 
 project.ext.react = [
     entryFile: "index.js"
