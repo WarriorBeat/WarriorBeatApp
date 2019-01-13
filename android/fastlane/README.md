@@ -30,7 +30,7 @@ Android Dev Build
 ```
 fastlane android stage
 ```
-Build and Release on App Center
+Stage and Release on App Center
 ### android install_release
 ```
 fastlane android install_release

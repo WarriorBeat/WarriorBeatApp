@@ -23,7 +23,7 @@ DEV_BUNDLE_SUFFIX = 'dev'.freeze
 DEV_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/debug/app-debug.apk".freeze
 
 # Staging
-STAGE_BUNDLE_SUFFIX = 'stage'.freeze
+STAGE_BUNDLE_SUFFIX = 'staging'.freeze
 STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging.apk".freeze
 
 # Release
@@ -40,6 +40,30 @@ default_platform(:android)
 
 # Set Dir to Project Root
 dir = File.expand_path('../../', Dir.pwd).freeze
+
+# Handle Device/Sim Install
+def handleInstall(apk_path, suffix=nil)
+  if suffix != nil
+    bundle_id = "#{APP_ID}.#{suffix}"
+  else
+    bundle_id = APP_ID
+  end
+
+  UI.header("Installing Application")
+  UI.message("Bundle ID => #{bundle_id}")
+  UI.message("Suffix => #{suffix}")
+  begin
+    adb(
+      command: "uninstall #{bundle_id}"
+    )
+  rescue
+    UI.important("Uninstall failed. Is the app present? Continuing...")
+  adb(
+    command: "install #{apk_path}"
+  )
+  end
+  UI.success("App Installed Successfully.")
+end
 
 
 platform :android do
@@ -106,31 +130,77 @@ platform :android do
     gradle(task: 'assemble', build_type: 'debug')
 
     if parsed_options[:install]
-      begin
-        adb(
-          command: "uninstall #{APP_ID}.#{DEV_BUNDLE_SUFFIX}"
-        )
-      rescue
-        puts("Uninstall failed. Is the app present? Continuing...")
-      end
-      adb(
-        command: "install #{DEV_PRODUCTS_PATH}"
-      )
+      handleInstall(DEV_PRODUCTS_PATH, DEV_BUNDLE_SUFFIX)
     end
+
+    # Cleanup Badges
+    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
   end
 
 
-  desc "Build and Release on App Center"
-  lane :stage do
-    getEnv('stage')
-    injectAppcenter("android", APPCENTER_ANDROIDCONFIG)
-    gradle(task: "app:assembleRelease")
-    appcenter_upload(
-      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
-      should_clip: false,
-      release_notes: getReleaseNotes
-    )
-    injectAppcenter("android", APPCENTER_ANDROIDCONFIG, clean:true)
+  desc "Stage and Release on App Center"
+  lane :stage do |options|
+    getEnv('staging')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      ),
+      :release => handleEnvAndOptions(
+        ENV['RELEASE'],
+        options[:release],
+        false,
+        false
+      )
+    }
+
+    if parsed_options[:badge]
+      add_badge(
+        glob: "./**/res/**/ic_launcher.{png,PNG}"
+      )
+    end
+
+    if parsed_options[:clean]
+      gradle(task: 'clean')
+    end
+
+    if parsed_options[:release]
+      injectAppcenter('android', APPCENTER_ANDROIDCONFIG)
+    end
+
+    # Build
+    gradle(task: 'assemble', build_type: 'staging')
+
+    if parsed_options[:release]
+      appcenter_upload(
+        apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+        should_clip: false,
+        release_notes: getReleaseNotes
+      )
+      injectAppcenter('android', APPCENTER_ANDROIDCONFIG, clean:true)
+    end
+
+    if parsed_options[:install]
+      handleInstall(STAGE_PRODUCTS_PATH, STAGE_BUNDLE_SUFFIX)
+    end
+
+    # Cleanup Badges
+    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
+
   end
 
   desc "Install Release on Device"
