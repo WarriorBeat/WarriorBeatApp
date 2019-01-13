@@ -12,12 +12,8 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+
 import '../../fastlane/CommonFastFile'
-
-default_platform(:ios)
-
-# Set Dir to Project Root
-dir = File.expand_path('../../', Dir.pwd).freeze
 
 # IOS Specific Constants
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
@@ -31,14 +27,31 @@ VERSION = get_version_number(
 ).freeze
 
 
+default_platform(:ios)
+
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
+
 platform :ios do
 
-  before_all do
-    yarn(
-      command: "install",
-      package_path: PACKAGE_JSON
-    )
+  before_all do |lane, options|
+    parsed_options = {
+      :skip_before => handleEnvAndOptions(
+        ENV['SKIP_BEFORE'],
+        options[:skip_before],
+        false,
+        false
+      )
+    }
+    
+    unless parsed_options[:skip_before]
+      yarn(
+        command: "install",
+        package_path: PACKAGE_JSON
+      )
+    end
   end
+
 
   desc "Build and Release to AppCenter" 
   lane :stage do
