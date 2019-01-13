@@ -13,23 +13,26 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+import '../../CommonFastFile'
+
 default_platform(:android)
 
-# Get Env Variables
-fastlane_require 'dotenv'
-
-# Loads Env Variables by build type 
-def getEnv(buildType)
-  Dotenv.load(File.join(Dir.pwd, '.env'))
-  dir = File.expand_path('../..', Dir.pwd)
-  puts("DIR: %s" % dir)
-  Dotenv.load('%s/.env.%s' % [dir, buildType])
-end
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
 
 
 platform :android do
+
+  before_all do
+    yarn(
+      command: "install",
+      package_path: PACKAGE_JSON
+    )
+  end
+
   desc "Runs all the tests"
   lane :test do
+    getEnv('dev')
     gradle(task: "test")
   end
 
@@ -41,7 +44,6 @@ platform :android do
     appcenter_upload(
       apk: ENV['GRADLE_APK_OUTPUT_PATH'],
       should_clip: false,
-      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
     )
     sh "./load_secret.sh clean"
   end
@@ -57,9 +59,6 @@ platform :android do
   lane :beta do
     gradle(task: "clean assembleRelease")
     crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
   end
 
   desc "Deploy a new version to the Google Play"

@@ -12,21 +12,23 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+import '../../CommonFastFile'
 
 default_platform(:ios)
 
-# Get Env Vars
-fastlane_require 'dotenv'
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
 
-# Loads Env Variables by build type 
-def getEnv(buildType)
-  Dotenv.load(File.join(Dir.pwd, '.env'))
-  dir = File.expand_path('../..', Dir.pwd)
-  puts("DIR: %s" % dir)
-  Dotenv.load('%s/.env.%s' % [dir, buildType])
-end
 
 platform :ios do
+
+  before_all do
+    yarn(
+      command: "install",
+      package_path: PACKAGE_JSON
+    )
+  end
+
   desc "Build and Release to AppCenter" 
   lane :stage do
     getEnv('stage')
@@ -37,7 +39,6 @@ platform :ios do
     build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
     appcenter_upload(
       should_clip: false,
-      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
     )
     sh("./load_secret.sh clean")
   end
