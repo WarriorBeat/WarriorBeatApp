@@ -12,26 +12,53 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
+import '../../fastlane/CommonFastFile'
 
 default_platform(:ios)
 
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
+
+# IOS Specific Constants
+APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
+PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
+PROJECT_NAME = "warriorbeatapp".freeze
+
+# Version Constants
+VERSION = get_version_number(
+  xcodeproj: PROJECT_PATH,
+  target: PROJECT_NAME
+).freeze
+
+
 platform :ios do
-  desc "Build and release to AppCenter" 
-  lane :release do
-    sh("./load_secret.sh")
+
+  before_all do
+    yarn(
+      command: "install",
+      package_path: PACKAGE_JSON
+    )
+  end
+
+  desc "Build and Release to AppCenter" 
+  lane :stage do
+    getEnv('staging')
+    injectAppcenter("ios", APPCENTER_IOSCONFIG)
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge
     build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
     appcenter_upload(
       should_clip: false,
-      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
+      release_notes: getReleaseNotes
     )
-    sh("./load_secret.sh clean")
+    injectAppcenter("ios", APPCENTER_IOSCONFIG, clean: true)
+    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   end
 
   desc "Install Release on Device"
   lane :install_release do
+    getEnv('staging')
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge

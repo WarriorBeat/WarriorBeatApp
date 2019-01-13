@@ -15,3 +15,6 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# React Native Config
+-keep class com.warriorbeatapp.BuildConfig { *; }

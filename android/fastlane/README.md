@@ -21,11 +21,16 @@ or alternatively using `brew cask install fastlane`
 fastlane android test
 ```
 Runs all the tests
-### android build
+### android dev
 ```
-fastlane android build
+fastlane android dev
 ```
-Build and Release on App Center
+Android Dev Build
+### android stage
+```
+fastlane android stage
+```
+Stage and Release on App Center
 ### android install_release
 ```
 fastlane android install_release

@@ -16,11 +16,11 @@ or alternatively using `brew cask install fastlane`
 
 # Available Actions
 ## iOS
-### ios release
+### ios stage
 ```
-fastlane ios release
+fastlane ios stage
 ```
-Build and release to AppCenter
+Build and Release to AppCenter
 ### ios install_release
 ```
 fastlane ios install_release

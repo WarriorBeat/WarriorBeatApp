@@ -13,28 +13,232 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+import '../../fastlane/CommonFastFile'
+
+# Android Specific Constants
+APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
+
+# Paths
+APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle').freeze
+BUILD_OUTPUT = File.join(ANDROID_PATH, 'build').freeze
+APP_BUILD_OUTPUT = File.join(ANDROID_PATH, 'app/build').freeze
+
+# Dev
+DEV_BUNDLE_SUFFIX = 'dev'.freeze
+DEV_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/debug/app-debug.apk".freeze
+
+# Staging
+STAGE_BUNDLE_SUFFIX = 'staging'.freeze
+STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging.apk".freeze
+
+# Release
+RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-release.apk".freeze
+
+# Version Constants
+VERSION = get_version_name(
+  gradle_file_path: APP_GRADLE,
+  ext_constant_name: "versionName"
+)
+
 default_platform(:android)
 
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
+
+# Handle Device/Sim Install
+def handleInstall(apk_path, suffix=nil)
+  if suffix != nil
+    bundle_id = "#{APP_ID}.#{suffix}"
+  else
+    bundle_id = APP_ID
+  end
+
+  UI.header("Installing Application")
+  UI.message("Bundle ID => #{bundle_id}")
+  UI.message("Suffix => #{suffix}")
+  UI.message("Title => #{"WarriorBeat"}")
+  begin
+    adb(
+      command: "uninstall #{bundle_id}"
+    )
+  rescue
+    UI.important("Uninstall failed. Is the app present? Continuing...")
+  ensure
+    adb(
+      command: "install #{apk_path}"
+    )
+  end
+  UI.success("App Installed Successfully.")
+end
+
+# Clears existing build folders, prevents file duplicate bug
+def clear_builds()
+  UI.header("Clearing existing Build folders")
+  if Dir.exist?(BUILD_OUTPUT)
+    FileUtils.remove_dir(BUILD_OUTPUT)
+    UI.important("#{BUILD_OUTPUT} removed")
+  end
+
+  if Dir.exist?(APP_BUILD_OUTPUT)
+    FileUtils.remove_dir(APP_BUILD_OUTPUT)
+    UI.important("#{APP_BUILD_OUTPUT} removed")
+  end
+  UI.success("Build folders deleted.")
+end
+
+
+
 platform :android do
+
+  before_all do |lane, options|
+    parsed_options = {
+      :skip_before => handleEnvAndOptions(
+        ENV['SKIP_BEFORE'],
+        options[:skip_before],
+        false,
+        false
+      )
+    }
+    
+    unless parsed_options[:skip_before]
+      yarn(
+        command: "install",
+        package_path: PACKAGE_JSON
+      )
+    end
+  end
+
   desc "Runs all the tests"
   lane :test do
+    getEnv('dev')
     gradle(task: "test")
   end
 
-  desc "Build and Release on App Center"
-  lane :build do
-    sh "./load_secret.sh"
-    gradle(task: "app:assembleRelease")
-    appcenter_upload(
-      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
-      should_clip: false,
-      release_notes_link: "https://github.com/WarriorBeat/WarriorBeatApp/blob/develop/CHANGELOG.md"
-    )
-    sh "./load_secret.sh clean"
+  desc "Android Dev Build"
+  lane :dev do |options|
+    getEnv('dev')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      )
+    }
+    if parsed_options[:badge]
+      add_badge(
+        alpha: true,
+        glob: "./**/res/**/ic_launcher.{png,PNG}"
+      )
+    end
+
+    if parsed_options[:clean]
+      gradle(task: 'clean')
+    end
+
+    # Build
+    gradle(task: 'assemble', build_type: 'debug')
+
+    if parsed_options[:install]
+      handleInstall(DEV_PRODUCTS_PATH, DEV_BUNDLE_SUFFIX)
+    end
+
+    # Cleanup Badges
+    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
+  end
+
+
+  desc "Stage and Release on App Center"
+  lane :stage do |options|
+    getEnv('staging')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      ),
+      :release => handleEnvAndOptions(
+        ENV['RELEASE'],
+        options[:release],
+        false,
+        false
+      ),
+      :cleanBuilds => handleEnvAndOptions(
+        ENV['CLEAN_BUILDS'],
+        options[:cleanBuilds],
+        false,
+        true
+      )
+    }
+
+    # Temp Fix for duplicate file bug
+    if parsed_options[:cleanBuilds]
+      clear_builds
+    end
+
+    if parsed_options[:badge]
+      add_badge(
+        glob: "./**/res/**/ic_launcher.{png,PNG}"
+      )
+    end
+
+    if parsed_options[:clean]
+      gradle(task: 'clean')
+    end
+
+    if parsed_options[:release]
+      injectAppcenter('android', APPCENTER_ANDROIDCONFIG)
+    end
+
+    # Build
+    gradle(task: 'assemble', build_type: 'staging')
+
+    if parsed_options[:release]
+      appcenter_upload(
+        apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+        should_clip: false,
+        release_notes: getReleaseNotes
+      )
+      injectAppcenter('android', APPCENTER_ANDROIDCONFIG, clean:true)
+    end
+
+    if parsed_options[:install]
+      handleInstall(STAGE_PRODUCTS_PATH, STAGE_BUNDLE_SUFFIX)
+    end
+
+    # Cleanup Badges
+    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
+
   end
 
   desc "Install Release on Device"
   lane :install_release do
+    getEnv('release')
     gradle(task: "app:assembleRelease")
     gradle(task: "app:installRelease")
   end
@@ -43,9 +247,6 @@ platform :android do
   lane :beta do
     gradle(task: "clean assembleRelease")
     crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
   end
 
   desc "Deploy a new version to the Google Play"

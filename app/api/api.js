@@ -5,7 +5,7 @@
  */
 
 import { API as REQ } from "aws-amplify"
-import { API_DEV } from "react-native-dotenv"
+import Config from "react-native-config"
 
 /**
  * Handle API Resources
@@ -41,7 +41,7 @@ export default class API {
    * @memberof API
    */
   get gateway() {
-    switch (API_DEV) {
+    switch (Config.AWS_DEV) {
     case "local":
       return this.gateways.local
     case "awsdev":

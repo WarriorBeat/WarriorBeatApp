@@ -1,0 +1,72 @@
+
+# Common Functions and Requirements
+# across Android/iOS Fastfiles
+
+# Require Env
+fastlane_require 'dotenv'
+
+# Path Constants
+ROOT = File.expand_path('../../', Dir.pwd).freeze
+PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
+SECRET_SH = File.join(ROOT, 'fastlane/load_secret.sh').freeze
+
+ANDROID_PATH = File.join(ROOT, 'android').freeze
+IOS_PATH = File.join(ROOT, 'ios').freeze
+
+APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
+APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
+
+
+# Loads Env Variables by build type 
+def getEnv(buildType)
+  Dotenv.load(File.join(Dir.pwd, '.env'))
+  Dotenv.load('%s/.env.%s' % [ROOT, buildType])
+end
+
+# Inject/Remove Secret from AppCenter
+def injectAppcenter(platform, path, clean=false)
+  if clean
+    return sh("%s %s --clean %s" % [SECRET_SH, platform, path])
+  else
+    return sh("%s %s %s" % [SECRET_SH, platform, path])
+  end
+end
+
+# Retrieve Release notes from Changelog
+def getReleaseNotes()
+  prev_version = sh("git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`")
+  notes = sh('sed -n "/$(echo v%s)/,/$(echo %s)/ p" $CHANGELOG_PATH | head -n -2' % [VERSION, prev_version])
+  return notes
+end
+
+
+def handleEnvAndOptions(environment, options, isString=false, default=nil)
+  # Tristate selector - env vars, cli options, defaults
+  # Handles string and boolean types
+
+  # see - https://github.com/TGPSKI/react-native-fastlane-boilerplate/blob/2afb85ea0993cb1cef43151d6e4cc6f30ef17913/Common#L35
+
+  output = nil
+  if isString == true
+    # Handle strings
+    if environment != nil
+      output = environment
+    elsif options != nil
+      output = options
+    elsif default != nil
+      output = default
+    else
+      output = nil
+    end
+  else
+    # Handle bools
+    if environment == true
+      output = true
+    elsif options == true
+      output = true
+    else
+      output = false
+    end
+  end
+  return output
+end
