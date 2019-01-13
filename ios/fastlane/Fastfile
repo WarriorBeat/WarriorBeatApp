@@ -64,5 +64,6 @@ platform :ios do
     add_badge
     build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
     install_on_device(ipa: lane_context[SharedValues::IPA_OUTPUT_PATH])
+    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   end
 end
