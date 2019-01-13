@@ -163,6 +163,12 @@ android {
             }
         }
     }
+
+    // Heap Size
+    dexOptions {
+        preDexLibraries false
+        javaMaxHeapSize "4g"
+    }
 }
 
 configurations.all{
