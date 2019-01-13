@@ -93,7 +93,8 @@ platform :android do
     }
     if parsed_options[:badge]
       add_badge(
-        glob: '%s/android/app/src/main/res/mipmap-*/ic_launcher.png' % ROOT
+        alpha: true,
+        glob: "./**/res/**/ic_launcher.{png,PNG}"
       )
     end
 
