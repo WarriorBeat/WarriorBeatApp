@@ -16,12 +16,6 @@ IOS_PATH = File.join(ROOT, 'ios').freeze
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
 
-# Version Constants
-ANDROID_APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle')
-VERSION = get_version_name(
-  gradle_file_path: ANDROID_APP_GRADLE,
-  ext_constant_name: "versionName"
-)
 
 # Loads Env Variables by build type 
 def getEnv(buildType)

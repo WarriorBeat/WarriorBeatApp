@@ -29,6 +29,12 @@ STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging
 # Release
 RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-release.apk".freeze
 
+# Version Constants
+ANDROID_APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle')
+VERSION = get_version_name(
+  gradle_file_path: ANDROID_APP_GRADLE,
+  ext_constant_name: "versionName"
+)
 
 default_platform(:android)
 

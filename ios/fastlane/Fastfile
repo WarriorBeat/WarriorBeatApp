@@ -19,6 +19,17 @@ default_platform(:ios)
 # Set Dir to Project Root
 dir = File.expand_path('../../', Dir.pwd).freeze
 
+# IOS Specific Constants
+APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
+PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
+PROJECT_NAME = "warriorbeatapp".freeze
+
+# Version Constants
+VERSION = get_version_number(
+  xcodeproj: PROJECT_PATH,
+  target: PROJECT_NAME
+).freeze
+
 
 platform :ios do
 
@@ -32,7 +43,7 @@ platform :ios do
   desc "Build and Release to AppCenter" 
   lane :stage do
     getEnv('stage')
-    injectAppcenter("android", APPCENTER_ANDROIDCONFIG)
+    injectAppcenter("ios", APPCENTER_IOSCONFIG)
     get_certificates(development:true)
     get_provisioning_profile(development:true)
     add_badge
@@ -41,7 +52,8 @@ platform :ios do
       should_clip: false,
       release_notes: getReleaseNotes
     )
-    injectAppcenter("android", APPCENTER_ANDROIDCONFIG, clean: true)
+    injectAppcenter("ios", APPCENTER_IOSCONFIG, clean: true)
+    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   end
 
   desc "Install Release on Device"
