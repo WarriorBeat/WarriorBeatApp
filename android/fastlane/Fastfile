@@ -18,6 +18,11 @@ import '../../fastlane/CommonFastFile'
 # Android Specific Constants
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 
+# Paths
+APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle').freeze
+BUILD_OUTPUT = File.join(ANDROID_PATH, 'build').freeze
+APP_BUILD_OUTPUT = File.join(ANDROID_PATH, 'app/build').freeze
+
 # Dev
 DEV_BUNDLE_SUFFIX = 'dev'.freeze
 DEV_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/debug/app-debug.apk".freeze
@@ -30,9 +35,8 @@ STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging
 RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-release.apk".freeze
 
 # Version Constants
-ANDROID_APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle')
 VERSION = get_version_name(
-  gradle_file_path: ANDROID_APP_GRADLE,
+  gradle_file_path: APP_GRADLE,
   ext_constant_name: "versionName"
 )
 
@@ -66,6 +70,22 @@ def handleInstall(apk_path, suffix=nil)
   end
   UI.success("App Installed Successfully.")
 end
+
+# Clears existing build folders, prevents file duplicate bug
+def clear_builds()
+  UI.header("Clearing existing Build folders")
+  if Dir.exist?(BUILD_OUTPUT)
+    FileUtils.remove_dir(BUILD_OUTPUT)
+    UI.important("#{BUILD_OUTPUT} removed")
+  end
+
+  if Dir.exist?(APP_BUILD_OUTPUT)
+    FileUtils.remove_dir(APP_BUILD_OUTPUT)
+    UI.important("#{APP_BUILD_OUTPUT} removed")
+  end
+  UI.success("Build folders deleted.")
+end
+
 
 
 platform :android do
@@ -167,8 +187,19 @@ platform :android do
         options[:release],
         false,
         false
+      ),
+      :cleanBuilds => handleEnvAndOptions(
+        ENV['CLEAN_BUILDS'],
+        options[:cleanBuilds],
+        false,
+        true
       )
     }
+
+    # Temp Fix for duplicate file bug
+    if parsed_options[:cleanBuilds]
+      clear_builds
+    end
 
     if parsed_options[:badge]
       add_badge(
