@@ -1906,6 +1906,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/iOS",
 					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1951,6 +1952,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/iOS",
 					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2325,6 +2327,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/iOS",
 					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2354,6 +2357,7 @@
 				PRODUCT_NAME = warriorbeatapp;
 				PROVISIONING_PROFILE_SPECIFIER = "match Development org.lamarcountyschools.ogwarriorbeat";
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = NO;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Staging;
