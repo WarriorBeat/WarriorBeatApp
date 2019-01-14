@@ -10,6 +10,23 @@ import '../../fastlane/CommonFastFile'
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
+DISPLAY_NAME = "WarriorBeat"
+
+# Dev
+DEV_PRODUCT = "#{DISPLAY_NAME}-dev.app".freeze
+DEV_SCHEME = "#{PROJECT_NAME}-dev".freeze
+DEV_BUNDLE_SUFFIX = '.dev'.freeze
+
+# Staging
+STAGE_PRODUCT = "#{DISPLAY_NAME}-staging.app".freeze
+STAGE_SCHEME = "#{PROJECT_NAME}-staging".freeze
+STAGE_BUNDLE_SUFFIX = '.staging'.freeze
+
+# Release
+RELEASE_PRODUCT = "#{DISPLAY_NAME}.app".freeze
+RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
+
+
 
 # Version Constants
 VERSION = get_version_number(
@@ -43,6 +60,64 @@ platform :ios do
     end
   end
 
+  desc "iOS Dev Build"
+  lane :dev do |options|
+    getEnv('dev')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :simulator => handleEnvAndOptions(
+        ENV['SIMULATOR'],
+        options[:simulator],
+        false,
+        false
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      ),
+      :xcargs => handleEnvAndOptions(
+        ENV['XCARGS'],
+        options[:xcargs],
+        true,
+        ''
+      )
+    }
+
+    # Add Alpha Badge to Icon
+    if parsed_options[:badge]
+      add_badge(alpha:true)
+    end
+
+    # Load Dev Certs
+    match(type: 'development', readonly: true)
+
+    # Build
+    output_ipa = gym(
+      scheme: DEV_SCHEME,
+      clean: parsed_options[:clean],
+      xcargs: parsed_options[:xcargs],
+    )
+
+    # Install
+    if parsed_options[:install]
+      install_on_device(ipa: output_ipa)
+    end
+
+    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+  end
 
   desc "Build and Release to AppCenter" 
   lane :stage do

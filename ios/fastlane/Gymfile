@@ -1,0 +1,4 @@
+project 'warriorbeatapp.xcodeproj'
+clean true
+include_bitcode false
+export_method 'development'
