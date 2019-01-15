@@ -1908,6 +1908,7 @@
 					"$(PROJECT_DIR)/Vendor/AppCenterReactNativeShared",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/amazon-cognito-identity-js/ios/**",
@@ -1932,9 +1933,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.lamarcountyschools.ogwarriorbeat;
+				PRODUCT_BUNDLE_IDENTIFIER = org.lamarcountyschools.ogwarriorbeat.dev;
 				PRODUCT_NAME = warriorbeatapp;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.lamarcountyschools.ogwarriorbeat";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.lamarcountyschools.ogwarriorbeat.dev";
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -2255,6 +2256,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2303,6 +2305,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -2313,7 +2316,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "WarriorBeat-staging";
 				SDKROOT = iphoneos;
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Staging;
 		};
@@ -2355,9 +2358,9 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.lamarcountyschools.ogwarriorbeat;
+				PRODUCT_BUNDLE_IDENTIFIER = org.lamarcountyschools.ogwarriorbeat.staging;
 				PRODUCT_NAME = warriorbeatapp;
-				PROVISIONING_PROFILE_SPECIFIER = "match Development org.lamarcountyschools.ogwarriorbeat";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development org.lamarcountyschools.ogwarriorbeat.staging";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = NO;
 				VERSIONING_SYSTEM = "apple-generic";
