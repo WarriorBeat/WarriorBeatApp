@@ -12,6 +12,9 @@ PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
 DISPLAY_NAME = "WarriorBeat".freeze
 
+# Paths
+BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
+
 # Dev
 DEV_PRODUCT = "#{DISPLAY_NAME}-dev.app".freeze
 DEV_SCHEME = "#{PROJECT_NAME}-dev".freeze
@@ -27,6 +30,10 @@ STAGE_ID = "#{APP_ID}#{STAGE_BUNDLE_SUFFIX}"
 # Release
 RELEASE_PRODUCT = "#{DISPLAY_NAME}.app".freeze
 RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
+
+# App Center
+APPCENTER_APP_NAME = "WarriorBeatApp-1"
+APPCENTER_DSYM = "#{PROJECT_NAME}.app.dSYM.zip"
 
 
 # Version Constants
@@ -65,6 +72,7 @@ platform :ios do
   lane :certificates do
     match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
   end
+
 
   desc "iOS Dev Build"
   lane :dev do |options|
@@ -117,11 +125,25 @@ platform :ios do
       configuration: "Debug",
       clean: parsed_options[:clean],
       xcargs: parsed_options[:xcargs],
+      silent: true,
+      destination: (
+        parsed_options[:simulator] ?
+          'generic/platform=iOS Simulator' :
+          'generic/platform=iOS'
+      ),
+      skip_archive: parsed_options[:simulator] ? true : false,
+      skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
 
     # Install
     if parsed_options[:install]
-      install_on_device(ipa: output_ipa)
+      if parsed_options[:simulator]
+        bundle = "#{BUILT_PRODUCTS_PATH}/Debug-iphonesimulator/#{PROJECT_NAME}.app"
+        sh("xcrun simctl install booted #{bundle}")
+      else
+        bundle = "#{BUILT_PRODUCTS_PATH}/Debug-iphoneos/#{PROJECT_NAME}.app"
+        install_on_device(ipa: output_ipa)
+      end
     end
 
     sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
@@ -148,7 +170,7 @@ platform :ios do
         ENV['CLEAN'],
         options[:clean],
         false,
-        true
+        false
       ),
       :install => handleEnvAndOptions(
         ENV['INSTALL'],
@@ -190,18 +212,34 @@ platform :ios do
       configuration: "Staging",
       clean: parsed_options[:clean],
       xcargs: parsed_options[:xcargs],
+      silent: true,
+      destination: (
+        parsed_options[:simulator] ?
+          'generic/platform=iOS Simulator' :
+          'generic/platform=iOS'
+      ),
+      skip_archive: parsed_options[:simulator] ? true : false,
+      skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
 
     # Install
     if parsed_options[:install]
-      install_on_device(ipa: output_ipa)
+      if parsed_options[:simulator]
+        bundle = "#{BUILT_PRODUCTS_PATH}/Staging-iphonesimulator/#{PROJECT_NAME}.app"
+        sh("xcrun simctl install booted #{bundle}")
+      else
+        install_on_device(ipa: output_ipa)
+      end
     end
 
     # Release Appcenter
     if parsed_options[:release]
       appcenter_upload(
         should_clip: false,
-        release_notes: getReleaseNotes
+        release_notes: getReleaseNotes,
+        app_name: APPCENTER_APP_NAME,
+        ipa: output_ipa,
+        dsym: APPCENTER_DSYM
       )
       injectAppcenter('ios', APPCENTER_IOSCONFIG, clean:true)
     end
