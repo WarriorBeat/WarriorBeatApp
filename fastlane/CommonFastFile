@@ -19,8 +19,10 @@ APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
 
 # Loads Env Variables by build type 
 def getEnv(buildType)
+  dir = File.expand_path('..', Dir.pwd)
   Dotenv.load(File.join(Dir.pwd, '.env'))
   Dotenv.load('%s/.env.%s' % [ROOT, buildType])
+  sh('cp', '%s/.env.%s' % [ROOT, buildType], '%s/.env' % dir)
 end
 
 # Inject/Remove Secret from AppCenter
