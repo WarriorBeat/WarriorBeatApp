@@ -1,8 +1,4 @@
 app_identifier("org.lamarcountyschools.ogwarriorbeat") # The bundle identifier of your app
-apple_id("bradenmars02@gmail.com") # Your Apple email address
 
 itc_team_id("119454365") # App Store Connect Team ID
 team_id("6989X6SB48") # Developer Portal Team ID
-
-# For more information about the Appfile, see:
-#     https://docs.fastlane.tools/advanced/#appfile

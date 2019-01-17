@@ -15,6 +15,19 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### iosfasttest
+```
+fastlane iosfasttest
+```
+Get iOS Fastlane Data
+### fasttest
+```
+fastlane fasttest
+```
+
+
+----
+
 ## iOS
 ### ios certificates
 ```

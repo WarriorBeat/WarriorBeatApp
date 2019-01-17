@@ -6,7 +6,7 @@
 fastlane_require 'dotenv'
 
 # Path Constants
-ROOT = File.expand_path('../../', Dir.pwd).freeze
+ROOT = File.expand_path('../', Dir.pwd).freeze
 PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
 SECRET_SH = File.join(ROOT, 'fastlane/load_secret.sh').freeze
 
@@ -19,10 +19,15 @@ APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
 
 # Loads Env Variables by build type 
 def getEnv(buildType)
+  platform = ENV["FASTLANE_PLATFORM_NAME"]
   dir = File.expand_path('..', Dir.pwd)
-  Dotenv.load(File.join(Dir.pwd, '.env'))
   Dotenv.load('%s/.env.%s' % [ROOT, buildType])
-  sh('cp', '%s/.env.%s' % [ROOT, buildType], '%s/.env' % dir)
+  if platform
+    payload = '%s/.env.%s' % [ROOT, buildType]
+    target = '%s/%s/.env' % [dir, platform]
+    sh('cp', payload, target)
+    UI.success(".env loaded #{payload} => #{target}")
+  end
 end
 
 # Inject/Remove Secret from AppCenter
@@ -71,4 +76,38 @@ def handleEnvAndOptions(environment, options, isString=false, default=nil)
     end
   end
   return output
+end
+
+import "../ios/fastlane/Fastfile"
+
+lane :fasttest do |options|
+  getEnv('dev')
+  parsed_options = {
+    :dumpenv => handleEnvAndOptions(
+      ENV['TEST_DUMPENV'],
+      options[:dumpenv],
+      false,
+      false
+    )
+  }
+  UI.header("COMMON FASTLANE")
+  UI.important("\n
+  ROOT           | #{ROOT}
+  PACKAGE.JSON   | #{PACKAGE_JSON}
+  SECRET_SH      | #{SECRET_SH}
+  ANDROID_PATH   | #{ANDROID_PATH}
+  IOS_PATH       | #{IOS_PATH}
+  ANDROID_CONFIG | #{APPCENTER_ANDROIDCONFIG}
+  IOS_CONFIG:    | #{APPCENTER_IOSCONFIG}
+  ENV_NODE_PATH  | #{ENV['NODE_PATH']}
+  ENV_API_DEV    | #{ENV['API_DEV']}
+  ENV_DEBUG      | #{ENV['DEBUG']}
+  ")
+  iosfasttest
+  if options[:dumpenv]
+    UI.header("ENV DUMP")
+    ENV.each do |key, item|
+      UI.important("#{key} => #{item}\n")
+    end
+  end
 end
