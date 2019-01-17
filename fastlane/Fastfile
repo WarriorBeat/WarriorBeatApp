@@ -16,18 +16,17 @@ IOS_PATH = File.join(ROOT, 'ios').freeze
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
 
+# Load Primary .env
+Dotenv.load("%s/env/.env" % ROOT)
 
 # Loads Env Variables by build type 
 def getEnv(buildType)
-  platform = ENV["FASTLANE_PLATFORM_NAME"]
-  dir = File.expand_path('..', Dir.pwd)
-  Dotenv.load('%s/.env.%s' % [ROOT, buildType])
-  if platform
-    payload = '%s/.env.%s' % [ROOT, buildType]
-    target = '%s/%s/.env' % [dir, platform]
-    sh('cp', payload, target)
-    UI.success(".env loaded #{payload} => #{target}")
-  end
+  env = '%s/env/.env.%s' % [ROOT, buildType]
+  target = '%s/.env' % ROOT
+  UI.header("Environment")
+  Dotenv.load(env)
+  sh('cp', env, target)
+  UI.success("Loaded #{env} => #{target}")
 end
 
 # Inject/Remove Secret from AppCenter
