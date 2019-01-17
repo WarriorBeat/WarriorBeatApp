@@ -41,7 +41,7 @@ export default class API {
    * @memberof API
    */
   get gateway() {
-    switch (Config.AWS_DEV) {
+    switch (Config.API_DEV) {
     case "local":
       return this.gateways.local
     case "awsdev":

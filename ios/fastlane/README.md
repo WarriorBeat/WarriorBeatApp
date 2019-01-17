@@ -21,11 +21,6 @@ or alternatively using `brew cask install fastlane`
 fastlane ios certificates
 ```
 Update Match Certificates
-### ios test
-```
-fastlane ios test
-```
-
 ### ios dev
 ```
 fastlane ios dev
