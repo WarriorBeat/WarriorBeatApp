@@ -1,28 +1,40 @@
-# This file contains the fastlane.tools configuration
-# You can find the documentation at https://docs.fastlane.tools
+# WarriorBeat
+# IOS
 #
-# For a list of all available actions, check out
-#
-#     https://docs.fastlane.tools/actions
-#
-# For a list of all available plugins, check out
-#
-#     https://docs.fastlane.tools/plugins/available-plugins
-#
+# Fastfile
+# Build
 
-# Uncomment the line if you want fastlane to automatically update itself
-# update_fastlane
 import '../../fastlane/CommonFastFile'
-
-default_platform(:ios)
-
-# Set Dir to Project Root
-dir = File.expand_path('../../', Dir.pwd).freeze
 
 # IOS Specific Constants
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
+DISPLAY_NAME = "WarriorBeat".freeze
+
+# Paths
+BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
+
+# Dev
+DEV_PRODUCT = "#{DISPLAY_NAME}-dev.app".freeze
+DEV_SCHEME = "#{PROJECT_NAME}-dev".freeze
+DEV_BUNDLE_SUFFIX = '.dev'.freeze
+DEV_ID = "#{APP_ID}#{DEV_BUNDLE_SUFFIX}"
+
+# Staging
+STAGE_PRODUCT = "#{DISPLAY_NAME}-staging.app".freeze
+STAGE_SCHEME = "#{PROJECT_NAME}-staging".freeze
+STAGE_BUNDLE_SUFFIX = '.staging'.freeze
+STAGE_ID = "#{APP_ID}#{STAGE_BUNDLE_SUFFIX}"
+
+# Release
+RELEASE_PRODUCT = "#{DISPLAY_NAME}.app".freeze
+RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
+
+# App Center
+APPCENTER_APP_NAME = "WarriorBeatApp-1"
+APPCENTER_DSYM = "#{PROJECT_NAME}.app.dSYM.zip"
+
 
 # Version Constants
 VERSION = get_version_number(
@@ -31,38 +43,209 @@ VERSION = get_version_number(
 ).freeze
 
 
+default_platform(:ios)
+
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
+
 platform :ios do
 
-  before_all do
-    yarn(
-      command: "install",
-      package_path: PACKAGE_JSON
-    )
+  before_all do |lane, options|
+    parsed_options = {
+      :skip_before => handleEnvAndOptions(
+        ENV['SKIP_BEFORE'],
+        options[:skip_before],
+        false,
+        false
+      )
+    }
+    
+    unless parsed_options[:skip_before]
+      yarn(
+        command: "install",
+        package_path: PACKAGE_JSON
+      )
+    end
   end
 
-  desc "Build and Release to AppCenter" 
-  lane :stage do
-    getEnv('staging')
-    injectAppcenter("ios", APPCENTER_IOSCONFIG)
-    get_certificates(development:true)
-    get_provisioning_profile(development:true)
-    add_badge
-    build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
-    appcenter_upload(
-      should_clip: false,
-      release_notes: getReleaseNotes
+  desc "Update Match Certificates"
+  lane :certificates do
+    match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
+  end
+
+
+  desc "iOS Dev Build"
+  lane :dev do |options|
+    getEnv('dev')
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :simulator => handleEnvAndOptions(
+        ENV['SIMULATOR'],
+        options[:simulator],
+        false,
+        false
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        true
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      ),
+      :xcargs => handleEnvAndOptions(
+        ENV['XCARGS'],
+        options[:xcargs],
+        true,
+        ''
+      )
+    }
+
+    # Add Alpha Badge to Icon
+    if parsed_options[:badge]
+      add_badge(alpha:true)
+    end
+
+    # Load Dev Certs
+    certificates
+    match(type: 'development')
+
+    # Build
+    output_ipa = gym(
+      scheme: DEV_SCHEME,
+      configuration: "Debug",
+      clean: parsed_options[:clean],
+      xcargs: parsed_options[:xcargs],
+      silent: true,
+      destination: (
+        parsed_options[:simulator] ?
+          'generic/platform=iOS Simulator' :
+          'generic/platform=iOS'
+      ),
+      skip_archive: parsed_options[:simulator] ? true : false,
+      skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
-    injectAppcenter("ios", APPCENTER_IOSCONFIG, clean: true)
+
+    # Install
+    if parsed_options[:install]
+      if parsed_options[:simulator]
+        bundle = "#{BUILT_PRODUCTS_PATH}/Debug-iphonesimulator/#{PROJECT_NAME}.app"
+        sh("xcrun simctl install booted #{bundle}")
+      else
+        bundle = "#{BUILT_PRODUCTS_PATH}/Debug-iphoneos/#{PROJECT_NAME}.app"
+        install_on_device(ipa: output_ipa)
+      end
+    end
+
     sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   end
 
-  desc "Install Release on Device"
-  lane :install_release do
+  
+  desc "Stage and Release on App Center"
+  lane :stage do |options|
     getEnv('staging')
-    get_certificates(development:true)
-    get_provisioning_profile(development:true)
-    add_badge
-    build_app(scheme: "warriorbeatapp", export_options: {method: "development"})
-    install_on_device(ipa: lane_context[SharedValues::IPA_OUTPUT_PATH])
+    parsed_options = {
+      :badge => handleEnvAndOptions(
+        ENV['BADGE'],
+        options[:badge],
+        false,
+        true
+      ),
+      :simulator => handleEnvAndOptions(
+        ENV['SIMULATOR'],
+        options[:simulator],
+        false,
+        false
+      ),
+      :clean => handleEnvAndOptions(
+        ENV['CLEAN'],
+        options[:clean],
+        false,
+        false
+      ),
+      :install => handleEnvAndOptions(
+        ENV['INSTALL'],
+        options[:install],
+        false,
+        false
+      ),
+      :xcargs => handleEnvAndOptions(
+        ENV['XCARGS'],
+        options[:xcargs],
+        true,
+        ''
+      ),
+      :release => handleEnvAndOptions(
+        ENV['RELEASE'],
+        options[:release],
+        false,
+        false
+      )
+    }
+
+    # Add Alpha Badge to Icon
+    if parsed_options[:badge]
+      add_badge
+    end
+
+    # Load Certs
+    certificates
+    match(type: 'development')
+
+    # Inject Appcenter
+    if parsed_options[:release]
+      injectAppcenter('ios', APPCENTER_IOSCONFIG)
+    end
+
+    # Build
+    output_ipa = gym(
+      scheme: STAGE_SCHEME,
+      configuration: "Staging",
+      clean: parsed_options[:clean],
+      xcargs: parsed_options[:xcargs],
+      silent: true,
+      destination: (
+        parsed_options[:simulator] ?
+          'generic/platform=iOS Simulator' :
+          'generic/platform=iOS'
+      ),
+      skip_archive: parsed_options[:simulator] ? true : false,
+      skip_package_ipa: parsed_options[:simulator] ? true : false,
+    )
+
+    # Install
+    if parsed_options[:install]
+      if parsed_options[:simulator]
+        bundle = "#{BUILT_PRODUCTS_PATH}/Staging-iphonesimulator/#{PROJECT_NAME}.app"
+        sh("xcrun simctl install booted #{bundle}")
+      else
+        install_on_device(ipa: output_ipa)
+      end
+    end
+
+    # Release Appcenter
+    if parsed_options[:release]
+      appcenter_upload(
+        should_clip: false,
+        release_notes: getReleaseNotes,
+        app_name: APPCENTER_APP_NAME,
+        ipa: output_ipa,
+        dsym: APPCENTER_DSYM
+      )
+      injectAppcenter('ios', APPCENTER_IOSCONFIG, clean:true)
+    end
+
+    # Cleanup Badges
+    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   end
+
 end
