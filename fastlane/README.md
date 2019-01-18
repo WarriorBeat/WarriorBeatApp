@@ -25,6 +25,11 @@ Prints Data Loaded by Fastlane
 fastlane sentry
 ```
 Finalize release on Sentry
+### travis
+```
+fastlane travis
+```
+Setup Travis Build
 ### cleanup
 ```
 fastlane cleanup
