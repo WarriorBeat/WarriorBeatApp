@@ -4,13 +4,21 @@
 # Fastfile
 # Build
 
-import '../../fastlane/CommonFastFile'
+default_platform(:ios)
+
+# Set Dir to Project Root
+dir = File.expand_path('../../', Dir.pwd).freeze
 
 # IOS Specific Constants
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
 DISPLAY_NAME = "WarriorBeat".freeze
+
+# Set Gym Constants
+ENV['GYM_PROJECT'] = PROJECT_PATH
+ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
+ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
 
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
@@ -41,12 +49,6 @@ VERSION = get_version_number(
   xcodeproj: PROJECT_PATH,
   target: PROJECT_NAME
 ).freeze
-
-
-default_platform(:ios)
-
-# Set Dir to Project Root
-dir = File.expand_path('../../', Dir.pwd).freeze
 
 platform :ios do
 
@@ -146,7 +148,7 @@ platform :ios do
       end
     end
 
-    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+    resetIcons
   end
 
   
@@ -245,7 +247,20 @@ platform :ios do
     end
 
     # Cleanup Badges
-    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+    resetIcons
   end
 
+end
+
+desc "Get iOS Fastlane Data"
+private_lane :iosfasttest do 
+  UI.header("iOS FASTLANE")
+  UI.important("\n
+  APP_ID         | #{APP_ID}
+  PROJECT_PATH   | #{PROJECT_PATH}
+  BUILD PRODUCTS | #{BUILT_PRODUCTS_PATH}
+  VERSION        | #{VERSION}
+  GYM_BUILD      | #{ENV['GYM_BUILD_PATH']}
+  GYM_DERIVED    | #{ENV['GYM_DERIVED_DATA_PATH']}
+  ")
 end

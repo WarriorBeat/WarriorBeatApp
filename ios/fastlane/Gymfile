@@ -1,5 +1,0 @@
-project 'warriorbeatapp.xcodeproj'
-build_path "Build/Build"
-derived_data_path "Build"
-include_bitcode false
-export_method 'development'

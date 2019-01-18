@@ -15,6 +15,19 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
+### fasttest
+```
+fastlane fasttest
+```
+Prints Data Loaded by Fastlane
+### resetIcons
+```
+fastlane resetIcons
+```
+Reset App Icons after Badge
+
+----
+
 ## iOS
 ### ios certificates
 ```
@@ -31,6 +44,35 @@ iOS Dev Build
 fastlane ios stage
 ```
 Stage and Release on App Center
+
+----
+
+## Android
+### android test
+```
+fastlane android test
+```
+Runs all the tests
+### android install
+```
+fastlane android install
+```
+Install App on Device/Sim
+### android dev
+```
+fastlane android dev
+```
+Android Dev Build
+### android stage
+```
+fastlane android stage
+```
+Stage and Release on App Center
+### android install_release
+```
+fastlane android install_release
+```
+Install Release on Device
 
 ----
 

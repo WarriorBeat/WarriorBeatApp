@@ -54,7 +54,8 @@ buck-out/
 */fastlane/Preview.html
 */fastlane/screenshots
 */fastlane/test_output
-*/*app.dSYM.zip
+fastlane/report.xml
+*.dSYM.zip
 
 # Bundle artifact
 *.jsbundle

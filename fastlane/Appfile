@@ -1,0 +1,8 @@
+# iOS
+app_identifier("org.lamarcountyschools.ogwarriorbeat") # The bundle identifier of your app
+itc_team_id("119454365") # App Store Connect Team ID
+team_id("6989X6SB48") # Developer Portal Team ID
+
+# Android
+json_key_file("") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("org.lamarcountyschools.ogwarriorbeat") # e.g. com.krausefx.app

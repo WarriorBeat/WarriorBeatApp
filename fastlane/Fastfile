@@ -6,7 +6,7 @@
 fastlane_require 'dotenv'
 
 # Path Constants
-ROOT = File.expand_path('../../', Dir.pwd).freeze
+ROOT = File.expand_path('../', Dir.pwd).freeze
 PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
 SECRET_SH = File.join(ROOT, 'fastlane/load_secret.sh').freeze
 
@@ -16,13 +16,17 @@ IOS_PATH = File.join(ROOT, 'ios').freeze
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
 
+# Load Primary .env
+Dotenv.load("%s/env/.env" % ROOT)
 
 # Loads Env Variables by build type 
 def getEnv(buildType)
-  dir = File.expand_path('..', Dir.pwd)
-  Dotenv.load(File.join(Dir.pwd, '.env'))
-  Dotenv.load('%s/.env.%s' % [ROOT, buildType])
-  sh('cp', '%s/.env.%s' % [ROOT, buildType], '%s/.env' % dir)
+  env = '%s/env/.env.%s' % [ROOT, buildType]
+  target = '%s/.env' % ROOT
+  UI.header("Environment")
+  Dotenv.load(env)
+  sh('cp', env, target)
+  UI.success("Loaded #{env} => #{target}")
 end
 
 # Inject/Remove Secret from AppCenter
@@ -71,4 +75,48 @@ def handleEnvAndOptions(environment, options, isString=false, default=nil)
     end
   end
   return output
+end
+
+import "../ios/fastlane/Fastfile"
+import "../android/fastlane/Fastfile"
+
+desc("Prints Data Loaded by Fastlane")
+lane :fasttest do |options|
+  getEnv('dev')
+  parsed_options = {
+    :dumpenv => handleEnvAndOptions(
+      ENV['TEST_DUMPENV'],
+      options[:dumpenv],
+      false,
+      false
+    )
+  }
+  UI.header("COMMON FASTLANE")
+  UI.important("\n
+  ROOT           | #{ROOT}
+  PACKAGE.JSON   | #{PACKAGE_JSON}
+  SECRET_SH      | #{SECRET_SH}
+  ANDROID_PATH   | #{ANDROID_PATH}
+  IOS_PATH       | #{IOS_PATH}
+  ANDROID_CONFIG | #{APPCENTER_ANDROIDCONFIG}
+  IOS_CONFIG:    | #{APPCENTER_IOSCONFIG}
+  ENV_NODE_PATH  | #{ENV['NODE_PATH']}
+  ENV_API_DEV    | #{ENV['API_DEV']}
+  ENV_DEBUG      | #{ENV['DEBUG']}
+  ")
+  iosfasttest
+  andfasttest
+  if options[:dumpenv]
+    UI.header("ENV DUMP")
+    ENV.each do |key, item|
+      UI.important("#{key} => #{item}\n")
+    end
+  end
+end
+
+desc("Reset App Icons after Badge")
+lane :resetIcons do 
+  android = "#{ANDROID_PATH}/app/src/main/res"
+  ios = "#{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+  sh "git checkout -- #{android} #{ios}"
 end

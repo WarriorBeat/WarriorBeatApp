@@ -1,0 +1,2 @@
+include_bitcode false
+export_method 'development'

@@ -4,29 +4,30 @@
 # Fastfile
 # Build
 
-import '../../fastlane/CommonFastFile'
-
 # Android Specific Constants
-APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
+AND_APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 
 # Paths
 APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle').freeze
 BUILD_OUTPUT = File.join(ANDROID_PATH, 'build').freeze
 APP_BUILD_OUTPUT = File.join(ANDROID_PATH, 'app/build').freeze
 
+# Env
+ENV['FL_GRADLE_PROJECT_DIR'] = ANDROID_PATH
+
 # Dev
-DEV_BUNDLE_SUFFIX = 'dev'.freeze
+AND_DEV_BUNDLE_SUFFIX = 'dev'.freeze
 DEV_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/debug/app-debug.apk".freeze
 
 # Staging
-STAGE_BUNDLE_SUFFIX = 'staging'.freeze
+AND_STAGE_BUNDLE_SUFFIX = 'staging'.freeze
 STAGE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/staging/app-staging.apk".freeze
 
 # Release
 RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-release.apk".freeze
 
 # Version Constants
-VERSION = get_version_name(
+AND_VERSION = get_version_name(
   gradle_file_path: APP_GRADLE,
   ext_constant_name: "versionName"
 )
@@ -34,49 +35,7 @@ VERSION = get_version_name(
 default_platform(:android)
 
 # Set Dir to Project Root
-dir = File.expand_path('../../', Dir.pwd).freeze
-
-# Handle Device/Sim Install
-def handleInstall(apk_path, suffix=nil)
-  if suffix != nil
-    bundle_id = "#{APP_ID}.#{suffix}"
-  else
-    bundle_id = APP_ID
-  end
-
-  UI.header("Installing Application")
-  UI.message("Bundle ID => #{bundle_id}")
-  UI.message("Suffix => #{suffix}")
-  UI.message("Title => #{"WarriorBeat"}")
-  begin
-    adb(
-      command: "uninstall #{bundle_id}"
-    )
-  rescue
-    UI.important("Uninstall failed. Is the app present? Continuing...")
-  ensure
-    adb(
-      command: "install #{apk_path}"
-    )
-  end
-  UI.success("App Installed Successfully.")
-end
-
-# Clears existing build folders, prevents file duplicate bug
-def clear_builds()
-  UI.header("Clearing existing Build folders")
-  if Dir.exist?(BUILD_OUTPUT)
-    FileUtils.remove_dir(BUILD_OUTPUT)
-    UI.important("#{BUILD_OUTPUT} removed")
-  end
-
-  if Dir.exist?(APP_BUILD_OUTPUT)
-    FileUtils.remove_dir(APP_BUILD_OUTPUT)
-    UI.important("#{APP_BUILD_OUTPUT} removed")
-  end
-  UI.success("Build folders deleted.")
-end
-
+dir = File.expand_path('../', Dir.pwd).freeze
 
 
 platform :android do
@@ -99,10 +58,65 @@ platform :android do
     end
   end
 
+  # Clears existing build folders, prevents file duplicate bug
+  private_lane :clear_builds do
+    UI.header("Clearing existing Build folders")
+    if Dir.exist?(BUILD_OUTPUT)
+      FileUtils.remove_dir(BUILD_OUTPUT)
+      UI.important("#{BUILD_OUTPUT} removed")
+    end
+
+    if Dir.exist?(APP_BUILD_OUTPUT)
+      FileUtils.remove_dir(APP_BUILD_OUTPUT)
+      UI.important("#{APP_BUILD_OUTPUT} removed")
+    end
+    UI.success("Build folders deleted.")
+  end
+
   desc "Runs all the tests"
   lane :test do
     getEnv('dev')
     gradle(task: "test")
+  end
+
+  desc "Install App on Device/Sim"
+  lane :install do |options|
+    parsed_options = {
+      :apk => handleEnvAndOptions(
+        ENV['GRADLE_APK_OUTPUT_PATH'],
+        options[:apk],
+        false,
+        false
+      ),
+      :suffix => handleEnvAndOptions(
+        ENV['APK_SUFFIX'],
+        options[:suffix],
+        false,
+        false
+      )
+    }
+    if options[:suffix] != nil
+      bundle_id = "#{AND_APP_ID}.#{options[:suffix]}"
+    else
+      bundle_id = AND_APP_ID
+    end
+
+    UI.header("Installing Application")
+    UI.message("Bundle ID => #{bundle_id}")
+    UI.message("Suffix => #{options[:suffix]}")
+    UI.message("Title => #{"WarriorBeat"}")
+    begin
+      adb(
+        command: "uninstall #{bundle_id}"
+      )
+    rescue
+      UI.important("Uninstall failed. Is the app present? Continuing...")
+    ensure
+      adb(
+        command: "install #{options[:apk]}"
+      )
+    end
+    UI.success("App Installed Successfully.")
   end
 
   desc "Android Dev Build"
@@ -128,13 +142,15 @@ platform :android do
         false
       )
     }
+    # Add Badge
     if parsed_options[:badge]
       add_badge(
         alpha: true,
-        glob: "./**/res/**/ic_launcher.{png,PNG}"
+        glob: "./**/main/res/**/ic_launcher.{png,PNG}"
       )
     end
 
+    # Clean Build Folder
     if parsed_options[:clean]
       gradle(task: 'clean')
     end
@@ -142,12 +158,17 @@ platform :android do
     # Build
     gradle(task: 'assemble', build_type: 'debug')
 
+    # Handle Install
     if parsed_options[:install]
-      handleInstall(DEV_PRODUCTS_PATH, DEV_BUNDLE_SUFFIX)
+      install(
+        skip_before: true,
+        apk: DEV_PRODUCTS_PATH,
+        suffix: AND_DEV_BUNDLE_SUFFIX
+      )
     end
 
     # Cleanup Badges
-    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
+    resetIcons
   end
 
 
@@ -189,19 +210,22 @@ platform :android do
 
     # Temp Fix for duplicate file bug
     if parsed_options[:cleanBuilds]
-      clear_builds
+      clear_builds(skip_before:true)
     end
 
+    # Add Badge
     if parsed_options[:badge]
       add_badge(
         glob: "./**/res/**/ic_launcher.{png,PNG}"
       )
     end
 
+    # Clean Build Folder
     if parsed_options[:clean]
       gradle(task: 'clean')
     end
 
+    # Setup Release
     if parsed_options[:release]
       injectAppcenter('android', APPCENTER_ANDROIDCONFIG)
     end
@@ -209,6 +233,7 @@ platform :android do
     # Build
     gradle(task: 'assemble', build_type: 'staging')
 
+    # Execute Release
     if parsed_options[:release]
       appcenter_upload(
         apk: ENV['GRADLE_APK_OUTPUT_PATH'],
@@ -219,30 +244,26 @@ platform :android do
     end
 
     if parsed_options[:install]
-      handleInstall(STAGE_PRODUCTS_PATH, STAGE_BUNDLE_SUFFIX)
+      install(
+        skip_before: true,
+        apk: STAGE_PRODUCTS_PATH,
+        suffix: AND_STAGE_BUNDLE_SUFFIX
+      )
     end
 
     # Cleanup Badges
-    sh "git checkout -- #{ANDROID_PATH}/app/src/main/res"
-
+    resetIcons
   end
 
-  desc "Install Release on Device"
-  lane :install_release do
-    getEnv('release')
-    gradle(task: "app:assembleRelease")
-    gradle(task: "app:installRelease")
-  end
+end
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  end
-
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
-  end
+desc "Get Android Fastlane Data"
+private_lane :andfasttest do 
+  UI.header("ANDROID FASTLANE")
+  UI.important("\n
+  APP_ID         | #{AND_APP_ID}
+  APP_GRADLE     | #{APP_GRADLE}
+  BUILD_OUTPUT   | #{BUILD_OUTPUT}
+  VERSION        | #{AND_VERSION}
+  ")
 end
