@@ -2,9 +2,9 @@ apply plugin: "com.android.application"
 
 // RN Config .env map
  project.ext.envConfigFiles = [
-    debug: ".env.dev",
-    staging: ".env.staging",
-    release: ".env.release"
+    debug: "env/.env.dev",
+    staging: "env/.env.staging",
+    release: "env/.env.release"
 ]
 
 // React Native Config

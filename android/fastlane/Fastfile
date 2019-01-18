@@ -183,7 +183,7 @@ platform :android do
     end
 
     # Cleanup Badges
-    resetIcons
+    cleanup
   end
 
 
@@ -267,7 +267,7 @@ platform :android do
     end
 
     # Cleanup Badges
-    resetIcons
+    cleanup
   end
 
 end

@@ -162,7 +162,7 @@ platform :ios do
       end
     end
 
-    resetIcons
+    cleanup
   end
 
   
@@ -261,7 +261,7 @@ platform :ios do
     end
 
     # Cleanup Badges
-    resetIcons
+    cleanup
   end
 
 end

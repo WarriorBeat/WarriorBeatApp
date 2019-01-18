@@ -2,6 +2,9 @@
 
 # Inserts App Secret 
 
+# Script Path
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
 CLEAN_SECRET=0
 for arg in "$@"
 do
@@ -15,11 +18,7 @@ done
 CONFIG="${@: -1}"
 
 # POSIX Compatibility
-if hash gsed 2>/dev/null; then
-    ssed='gsed'
-else
-    ssed='sed'
-fi
+ssed=$($DIR/compat.sh sed)
 
 if [[ $CLEAN_SECRET = 1 ]]; then
     printf "\nRemoving $1 App Secret from: $CONFIG \n"

@@ -8,7 +8,11 @@ fastlane_require 'dotenv'
 # Path Constants
 ROOT = File.expand_path('../', Dir.pwd).freeze
 PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
-SECRET_SH = File.join(ROOT, 'fastlane/load_secret.sh').freeze
+
+# Scripts
+SECRET_SH = File.join(ROOT, 'fastlane/scripts/load_secret.sh').freeze
+CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
+CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
 ANDROID_PATH = File.join(ROOT, 'android').freeze
 IOS_PATH = File.join(ROOT, 'ios').freeze
@@ -27,13 +31,6 @@ def getEnv(buildType)
   Dotenv.load(env)
   sh('cp', env, target)
   UI.success("Loaded #{env} => #{target}")
-end
-
-# Retrieve Release notes from Changelog
-def getReleaseNotes()
-  prev_version = sh("git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`")
-  notes = sh('sed -n "/$(echo v%s)/,/$(echo %s)/ p" $CHANGELOG_PATH | head -n -2' % [VERSION, prev_version])
-  return notes
 end
 
 
@@ -94,6 +91,7 @@ lane :fasttest do |options|
   ENV_NODE_PATH  | #{ENV['NODE_PATH']}
   ENV_API_DEV    | #{ENV['API_DEV']}
   ENV_DEBUG      | #{ENV['DEBUG']}
+  RELEASE_NOTES  | #{getReleaseNotes}
   ")
   iosfasttest
   andfasttest
@@ -126,6 +124,11 @@ private_lane :injectAppcenter do |options|
   else
     sh("%s %s %s" % [SECRET_SH, parsed_options[:platform], path])
   end
+end
+
+desc("Retrieve Release notes from Changelog")
+private_lane :getReleaseNotes do
+  notes = sh("#{CHANGELOG_SH} #{CHANGELOG_PATH}")
 end
 
 desc("Reset App Icons/Edited Files")
