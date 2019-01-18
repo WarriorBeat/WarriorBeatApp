@@ -14,15 +14,22 @@ done
 
 CONFIG="${@: -1}"
 
+# POSIX Compatibility
+if hash gsed 2>/dev/null; then
+    ssed='gsed'
+else
+    ssed='sed'
+fi
+
 if [[ $CLEAN = 1 ]]; then
     printf "Removing $1 App Secret from: $CONFIG \n"
     echo
-    sed -i 's/'$SECRET'/APP_SECRET\$/g' $CONFIG
-    grep --color=always -z "APP_SECRET" $CONFIG
+    $ssed -i 's/'$SECRET'/APP_SECRET\$/g' $CONFIG
+    grep --color=always "APP_SECRET" $CONFIG
 else
     printf "Inserting $1 App Secret into: $CONFIG \n"
     echo
-    sed -i 's/APP_SECRET\$/'$SECRET'/g' $CONFIG
-    grep --color=always -z $SECRET $CONFIG
+    $ssed -i 's/APP_SECRET\$/'$SECRET'/g' $CONFIG
+    grep --color=always $SECRET $CONFIG
 fi
 
