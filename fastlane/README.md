@@ -20,6 +20,11 @@ or alternatively using `brew cask install fastlane`
 fastlane fasttest
 ```
 Prints Data Loaded by Fastlane
+### sentry
+```
+fastlane sentry
+```
+Finalize release on Sentry
 ### cleanup
 ```
 fastlane cleanup

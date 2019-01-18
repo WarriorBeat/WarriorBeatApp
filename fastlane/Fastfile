@@ -11,6 +11,7 @@ PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
 
 # Scripts
 SECRET_SH = File.join(ROOT, 'fastlane/scripts/load_secret.sh').freeze
+SENTRY_SH = File.join(ROOT, 'fastlane/scripts/sentry.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
@@ -130,6 +131,21 @@ desc("Retrieve Release notes from Changelog")
 private_lane :getReleaseNotes do
   notes = sh("#{CHANGELOG_SH} #{CHANGELOG_PATH}")
 end
+
+desc("Finalize release on Sentry")
+lane :sentry do |options|
+  parsed_options = {
+    :env => handleEnvAndOptions(
+      ENV['SENTRY_ENV_STAGE'],
+      options[:env],
+      true,
+      "staging"
+    )
+  }
+  sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
+  sh("#{SENTRY_SH} #{sentry_id}")
+end
+
 
 desc("Reset App Icons/Edited Files")
 lane :cleanup do 
