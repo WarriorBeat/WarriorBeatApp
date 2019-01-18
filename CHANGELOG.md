@@ -1,9 +1,28 @@
+## [0.13.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.0...v0.13.1) (2019-01-18)
+
+
+### 🛠 Builds
+
+* **android:** Performance Boost, Fixed Several Bugs, Fastlane Restructure ([#57](https://github.com/WarriorBeat/WarriorBeatApp/issues/57)) ([5994f4e](https://github.com/WarriorBeat/WarriorBeatApp/commit/5994f4e))
+* **fastlane:** Centralized Fastfile at Project Root ([#59](https://github.com/WarriorBeat/WarriorBeatApp/issues/59)) ([ebd258c](https://github.com/WarriorBeat/WarriorBeatApp/commit/ebd258c))
+* **fastlane:** Cleanup lane, After All Cleanup, and iOS Schema Fix ([e4a2cd6](https://github.com/WarriorBeat/WarriorBeatApp/commit/e4a2cd6))
+* **fastlane:** Made load_secret script POSIX Compatible ([b9c0275](https://github.com/WarriorBeat/WarriorBeatApp/commit/b9c0275))
+* **fastlane:** Moved Fastlane scripts to subfolder, added compat an... ([30e085a](https://github.com/WarriorBeat/WarriorBeatApp/commit/30e085a))
+* **iOS:** Fastlane Restructure, Match/Gym Integration, Performance Boost ([#58](https://github.com/WarriorBeat/WarriorBeatApp/issues/58)) ([02989fd](https://github.com/WarriorBeat/WarriorBeatApp/commit/02989fd))
+
+
+
 # [0.13.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.12.1...v0.13.0) (2019-01-09)
 
 
 ### ✨ Features
 
 * **Users:** User Account Persistence and Author Subscriptions ([#55](https://github.com/WarriorBeat/WarriorBeatApp/issues/55)) ([3c9ee0b](https://github.com/WarriorBeat/WarriorBeatApp/commit/3c9ee0b)), closes [#52](https://github.com/WarriorBeat/WarriorBeatApp/issues/52)
+
+
+### ♻️ Chores
+
+* **release:** 0.13.0 ([106b9f9](https://github.com/WarriorBeat/WarriorBeatApp/commit/106b9f9))
 
 
 

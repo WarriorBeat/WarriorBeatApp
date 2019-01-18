@@ -131,8 +131,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
-        versionCode 21
-        versionName "0.13.0"
+        versionCode 22
+        versionName "0.13.1"
         resValue "string", "build_config_package", "com.warriorbeatapp"
         ndk {
             abiFilters "armeabi-v7a", "x86"
