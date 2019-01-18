@@ -20,11 +20,11 @@ or alternatively using `brew cask install fastlane`
 fastlane fasttest
 ```
 Prints Data Loaded by Fastlane
-### resetIcons
+### cleanup
 ```
-fastlane resetIcons
+fastlane cleanup
 ```
-Reset App Icons after Badge
+Reset App Icons/Edited Files
 
 ----
 
@@ -68,11 +68,6 @@ Android Dev Build
 fastlane android stage
 ```
 Stage and Release on App Center
-### android install_release
-```
-fastlane android install_release
-```
-Install Release on Device
 
 ----
 

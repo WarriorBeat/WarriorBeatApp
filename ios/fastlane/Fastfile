@@ -70,6 +70,20 @@ platform :ios do
     end
   end
 
+  after_all do |lane, options|
+    parsed_options = {
+      :skip_after => handleEnvAndOptions(
+        ENV['SKIP_AFTER'],
+        options[:skip_after],
+        false,
+        false
+      )
+    }
+    unless parsed_options[:skip_after]
+      cleanup
+    end
+  end
+
   desc "Update Match Certificates"
   lane :certificates do
     match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
@@ -205,7 +219,7 @@ platform :ios do
 
     # Inject Appcenter
     if parsed_options[:release]
-      injectAppcenter('ios', APPCENTER_IOSCONFIG)
+      injectAppcenter
     end
 
     # Build
@@ -243,7 +257,7 @@ platform :ios do
         ipa: output_ipa,
         dsym: APPCENTER_DSYM
       )
-      injectAppcenter('ios', APPCENTER_IOSCONFIG, clean:true)
+      injectAppcenter(clean:true)
     end
 
     # Cleanup Badges

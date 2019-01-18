@@ -58,6 +58,21 @@ platform :android do
     end
   end
 
+  after_all do |lane, options|
+    parsed_options = {
+      :skip_after => handleEnvAndOptions(
+        ENV['SKIP_AFTER'],
+        options[:skip_after],
+        false,
+        false
+      )
+    }
+    unless parsed_options[:skip_after]
+      cleanup
+    end
+  end
+
+
   # Clears existing build folders, prevents file duplicate bug
   private_lane :clear_builds do
     UI.header("Clearing existing Build folders")
@@ -227,7 +242,7 @@ platform :android do
 
     # Setup Release
     if parsed_options[:release]
-      injectAppcenter('android', APPCENTER_ANDROIDCONFIG)
+      injectAppcenter
     end
 
     # Build
@@ -240,7 +255,7 @@ platform :android do
         should_clip: false,
         release_notes: getReleaseNotes
       )
-      injectAppcenter('android', APPCENTER_ANDROIDCONFIG, clean:true)
+      injectAppcenter(clean:true)
     end
 
     if parsed_options[:install]

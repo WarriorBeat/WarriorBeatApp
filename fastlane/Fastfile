@@ -29,15 +29,6 @@ def getEnv(buildType)
   UI.success("Loaded #{env} => #{target}")
 end
 
-# Inject/Remove Secret from AppCenter
-def injectAppcenter(platform, path, clean=false)
-  if clean
-    return sh("%s %s --clean %s" % [SECRET_SH, platform, path])
-  else
-    return sh("%s %s %s" % [SECRET_SH, platform, path])
-  end
-end
-
 # Retrieve Release notes from Changelog
 def getReleaseNotes()
   prev_version = sh("git describe --abbrev=0 --tags `git rev-list --tags --skip=1 --max-count=1`")
@@ -114,9 +105,34 @@ lane :fasttest do |options|
   end
 end
 
-desc("Reset App Icons after Badge")
-lane :resetIcons do 
+private_lane :injectAppcenter do |options|
+  parsed_options = {
+    :platform => handleEnvAndOptions(
+      ENV['FASTLANE_PLATFORM_NAME'],
+      options[:platform],
+      true,
+      ENV['FASTLANE_PLATFORM_NAME']
+    ),
+    :clean => handleEnvAndOptions(
+      nil,
+      options[:clean],
+      false,
+      false
+    )
+  }
+  path = parsed_options[:platform] == 'ios' ? APPCENTER_IOSCONFIG : APPCENTER_ANDROIDCONFIG
+  if parsed_options[:clean]
+    sh("%s %s --clean %s" % [SECRET_SH, parsed_options[:platform], path])
+  else
+    sh("%s %s %s" % [SECRET_SH, parsed_options[:platform], path])
+  end
+end
+
+desc("Reset App Icons/Edited Files")
+lane :cleanup do 
   android = "#{ANDROID_PATH}/app/src/main/res"
   ios = "#{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
   sh "git checkout -- #{android} #{ios}"
+  injectAppcenter(platform: 'ios', clean:true)
+  injectAppcenter(platform: 'android', clean:true)
 end
