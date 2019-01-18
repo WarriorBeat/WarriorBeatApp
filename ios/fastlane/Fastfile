@@ -148,7 +148,7 @@ platform :ios do
       end
     end
 
-    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+    resetIcons
   end
 
   
@@ -247,13 +247,13 @@ platform :ios do
     end
 
     # Cleanup Badges
-    sh "git checkout -- #{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+    resetIcons
   end
 
 end
 
 desc "Get iOS Fastlane Data"
-lane :iosfasttest do 
+private_lane :iosfasttest do 
   UI.header("iOS FASTLANE")
   UI.important("\n
   APP_ID         | #{APP_ID}

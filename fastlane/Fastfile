@@ -78,7 +78,9 @@ def handleEnvAndOptions(environment, options, isString=false, default=nil)
 end
 
 import "../ios/fastlane/Fastfile"
+import "../android/fastlane/Fastfile"
 
+desc("Prints Data Loaded by Fastlane")
 lane :fasttest do |options|
   getEnv('dev')
   parsed_options = {
@@ -103,10 +105,18 @@ lane :fasttest do |options|
   ENV_DEBUG      | #{ENV['DEBUG']}
   ")
   iosfasttest
+  andfasttest
   if options[:dumpenv]
     UI.header("ENV DUMP")
     ENV.each do |key, item|
       UI.important("#{key} => #{item}\n")
     end
   end
+end
+
+desc("Reset App Icons after Badge")
+lane :resetIcons do 
+  android = "#{ANDROID_PATH}/app/src/main/res"
+  ios = "#{IOS_PATH}/warriorbeatapp/Images.xcassets/AppIcon.appiconset"
+  sh "git checkout -- #{android} #{ios}"
 end
