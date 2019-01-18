@@ -255,14 +255,6 @@ platform :android do
     resetIcons
   end
 
-
-  desc "Install Release on Device"
-  lane :install_release do
-    getEnv('release')
-    gradle(task: "app:assembleRelease")
-    gradle(task: "app:installRelease")
-  end
-
 end
 
 desc "Get Android Fastlane Data"
