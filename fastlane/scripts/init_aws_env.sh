@@ -5,6 +5,7 @@
 set -e
 IFS='|'
 
+ROOT=$(git rev-parse --show-toplevel)
 AWSCONFIG=~/.aws/config
 AWSCREDS=~/.aws/credentials
 
@@ -19,6 +20,8 @@ if [ ! -f $AWSCREDS ]; then
     printf "Config Generated.\n"
 fi
 
+# Push Root Directory
+pushd $ROOT
 
 # Env Name
 AMPLIFY="{\
@@ -29,3 +32,9 @@ AMPLIFY="{\
 amplify init \
 --amplify $AMPLIFY \
 --yes
+
+# Sync Env
+amplify env pull
+
+# Return 
+popd
