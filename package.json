@@ -109,7 +109,7 @@
     ],
     "settings": {
       "fix-script": {
-        "nodeCommand": "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
+        "nodeCommand": "nvm use 11\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
       }
     }
   }

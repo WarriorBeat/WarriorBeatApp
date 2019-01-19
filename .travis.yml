@@ -25,6 +25,7 @@ before_install:
   - brew install -f tree
   - nvm install $NODE_VERSION
   - nvm alias default $NODE_VERSION
+  - nvm use $NODE_VERSION
   - travis_retry npm install --global yarn
   - yarn global add react-native-cli
 install:
