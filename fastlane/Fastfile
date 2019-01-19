@@ -190,6 +190,9 @@ lane :travis do
       sh(AWS_SH)
     end
   end
+  if (/darwin/ =~ RUBY_PLATFORM) == nil
+    next
+  end
   ci_pass = "fastlane_tmp_keychain_pass"
   ci_keychain = "fastlane_tmp_keychain"
   sh("security list-keychains -d user | grep #{ci_keychain}") do |status, result|

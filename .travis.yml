@@ -1,16 +1,12 @@
-language: objective-c
-os: osx
-osx_image: xcode10.1
-node_js: false
-sudo: required
 cache:
   yarn: true
   directories:
-    - $HOME/.yarn-cache
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - '$HOME/.yarn-cache'
+    - '$HOME/.gradle/caches/'
+    - '$HOME/.gradle/wrapper/'
     - node_modules
-    - $HOME/.rvm/
+    - '$HOME/.rvm/'
+
 env:
   global:
     - secure: FPMw2GGStbcoB0p0SKmVbmUhUWApPvnUGGaNabl8bzLnGki+iGgnnTXwHj1H6muK1DijHpBIPcU4LGYrTyCGOcrR98RgTHQzRD9WSy32yE9gjSy0d9Wa4BAA2yn1k0csB+/vRvND4sB0znyOafRNkM9VYTH6aUy+oz18QOFgSlZwaxcDBu1JBChGy3rZ0EFQV7+EhBW+owpbqKId0h1wlLXR2orQnPm76jfDPuNdWxfA0SmH2kiSFgUXvtrnHVfpq2bHGla4Nei96m8RdQqD5Gz3T5SsF75YJ51qVINt0V9R5RA1WzUSEkqrrNRZV6N5x4tFa50Nf6f5tX/OMk2aqSRpg6M2cA7Gspmce0C+601m6ys6vqm+3mVyOzi0TSpCuvBYocCGwErWcgTYI28wEh7NHuHCmYeAngi2twCExVrZLLHT081ed+ctHctJo8M4Vy/A6BP0oHBi8x9JhjTu4xG1y1QNTwLUdZfAlcYgC7aSBA5/tB4BBk3h4m1XGCnocw8hgwAPSMW7+LMzKAjAwvrJuFIpdYb0XZ9ivO9icuP/medi38sN8KUEABxgTIdhD0/BbduWlpknyx1a59hV3s9r/u4ZBvUBiyDukwJwzyPJDcai+e0ztuZvk2qqtwSbBCqtNs51KCV/F1e0/JN0nlsnxoEq++RhGdfY+LTzAmc=
@@ -18,24 +14,86 @@ env:
     - secure: i/yKLgM+vu0TePwHsVSOHn86zCIlTJkyjrYmavU7PzJf52HiJUJ14n96wh0mtqWrACZm/4p7Jn8KA3rR5kwVr/7bc0QRIaH2Kl6HLV1dZD58VsdIV8jrhwwH+Z8We7gL2KSvGPwYYjDMt3nb1LtczW/GYjqhcPiwUgNc1SJpKXaLgZKEFYmVn3QgcL2L5CfYNmiqR4Y4g16C2+ThmBW2TDr37xxbCearaCyX0m+NII9NreDFkDYuoGMAUPFMtbN9JWajskjvnm3ohrCg+r1MS5otZel+VW5d/9zO6yzk4B3zlo9ddSGtCCH/NW/flZ/KG9oEj5rVCUUR16uiamQMQsliluRanN4Zq9qlqeUSFKOU5PWXG0WiiyLyI1+e9urqHO+R/0ALL3RECl5PYdPGYDJUZT3UrrD9ljv8+vML5eZmTvTTgKPvx2HROoERowN8mCohpx+xZfAPsZ7yd/sY+wo+9as1riy2PVs5+NFQSpRLbVptITNEeBZpwwxq4ITo8N9464h56oXosBEgdGBiWAfg3GkEo00OwatuXSPU2TjUynC3X+k1EJuTx97W7u3/qTay5wNzTtwOcos1NwP0tioT+8ZMlxTvw2r6Asw6DWL6qsXBVy8mdS5zOKnUAdB9vQD0vrRPf2u0dsf2PeqrSa59g/hrxplhKRia60dwyRU=
     - secure: nNHElGeZ6bQ5u/wS0vfZ7aqTvsoe/yOMsJBhBDt5Ou1HWdjqiGY28G6saIhzMii5TCwsvnvJ2aVrLjqNpgxdxV63zo0wFhyEa9+hJmfdTcetuY5st6rbT9zbRy/oea34GndKuYYBKpSi+hSME42x7R9HnOGizbejDeKnCZf0MDEk+whE7S2FCCcM7GouHlDLnalNle4Th/3OTBcoI2y53igFvOO8t2eUdaKOjOeF+BDJrwh4s+MArtXDA/xjyJtyVEvkqubwG/spqH64PMeROizJWi0vF1Dhm7MF6/SP5TH5FaTW1Jz0KGXqBCjmbp5QqAGBbQKcHYnG+VgGFA58ZKT1dK26w9pNd3lqT1605HgABqXAShmBn2DHNX34Vm3EsL0B9q+gjK5oWWPvH8zmuu8khKrGm5Dm8IbHMlHaLLsVbLSfPrjPDzHvK/Ep9TLCNqaD1x2/Gtw5gBv6/FDHWRGND0YkN/NnK3xz3grA0IMTxaHzw5hq0FocXcupMIBmYhRJzdleT4/kTGAuj587D+StrpwHnIf1mYonMyZUhwYF1QC9MIuxTWgfMHY6XMko0Brt7Tum/1VlYOEJvfj4jNDSNcI0yguMkfXMSDCaG8HfUn4mxoDekZHw4tGl16ZgpuQVLaKlSkuPj8vZVovqgdvjjn5F2DDeAxJf31HKwhY=
     - secure: bM54YNCvtGybkxKmVSzq3ufdH75JjCJBwmpyn2BSmH2MQyjSfGc7o/Mux2rZHTpyQ40uWza23JpSvBXOBDmGgCCJYQ0UNYW5YpIcb/vBaufmKI/PCq89E5hoDAGE8H3+c0Qq1pnHIlJXGvGEBkBhdT5gqhuvxk2S/34Jjpbpu/Jt4pcrLaKXZFhI2COUnlN3KiXER9Zbixlg46ZbflnP4Ao0suRciRE4pkWvW2jNiguGbdMdWdveIy3yI0+6NsUHhUU0riStY2Z3Mv0eumC3AurwwN/1AdJ/OvNMuQITUJAH5hYisDVGna86Fqc80mP3xMvGvNhhYgXQuO3LxVKsCyG7wPARoNf6swJ3d/J91ELNRVAVKSV5n2P4M7alRoUDZgH3yjdp8UlZ6Fjjw/YBcHVq0/Yk+wJxgqosFW+NV6RfALfW42wb1xxmUweV2AW4vFN/uRZSNDImH49jZV6WrHs1s4ljBrFSUp8DoLPobPWBe9hZ5crLe4QogW5xFgel59nhXDuFJZpRTv8HOv6X9VfKdgVwi7gdDiu61pNeoWgI1awEfscnv6+m1qGTyWfb6qdZwnagYYunp/u/QTc6MACSp3bo23Wkw9CO6Wi611e3rM5QCCpaYdEozkRRBDTayrNxS0bCQOAJeowz661QqxUiJygtmhaa0kkA9XL7k1Q=
-before_install:
-  - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
-  - brew install -f imagemagick
-  - brew install -f librsvg
-  - brew install -f tree
-  - nvm install $NODE_VERSION
-  - nvm alias default $NODE_VERSION
-  - nvm use $NODE_VERSION
-  - travis_retry npm install --global yarn
-  - yarn global add react-native-cli
-  - yarn global add @aws-amplify/cli
-  - yarn global add @aws-amplify/cli@multienv
-install:
-  - travis_retry yarn
-  - travis_retry bundle install
-script:
-  - fastlane travis
-  - fastlane fasttest
-  - fastlane ios stage clean:false badge:true install:false release:false simulator:false
-after_failure:
-  - tree /Users/travis/build/WarriorBeat/WarriorBeatApp/ios/Build
+    - secure: NvApT/EGqBQzistatGsu5t7HkE7i0cIasksdPdW/6jJWuiVxghuz+Q4cvMv2HYLnDI9XyxYdjQG0Gj4ISYYTnBimiyf7Hq3bFSbTIeyFsI8URfGykmHeCbBxI47a3lFF75WPjpWmgHWjeS+nEccDE4Mq9E5kSs+psavprH+HhsMSDYZOM/WUuqkL2rZQ3za1OyF8VL+ABiRsVwz0GCLxwUT3rCDo1+KY/OsT9q92C3SYpVC35C1B/QjugkdbXCOj/PMQjuSXnqwevioh1NqPtbCDQFmTumgriHyQ/EIvCF83wp/QE9eWL4NELVGI/6fM1uZzYTxTYlTQvtab2490Gagg/TIfhRIDjkYGGdre1aE8ZyB0WF714pvPQb/m69jm/5E/4r3QVaHyXpKwWfHOV6PXvrxwRDNT4ozOqtCk8fsaY4bE4DeL1RwnaZwTNzV5WjiZT94ycvzUCyDWLXpef+NpEiAQpC+3l4sNbEGAocyRZv3OAtok1gQbjv3+XE6cVEHqWszwzZG5iSt2DwU0ivo2i23PJpafRDdQ3gv8aH88Lcee/QgBFJQMTXbGo2IQSiR0jO63KdcQ5hE//1Sx6K3nHtl4IIZSRurtV72MdogU+PavQUf4oWXOSKxucpWRQzrAWELZSaaIi1KWH3NQU6oW0kXSciYUYeGlGLd9svM=
+
+matrix:
+  include:
+    - language: android
+      jdk: oraclejdk8
+      sudo: required
+      dist: precise
+      before_cache:
+        - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      android:
+      components:
+        - platform-tools
+        - tools
+        - build-tools-26.0.3
+        - android-26
+        - ndk-bundle
+        - extra-android-m2repository
+        - extra-google-google_play_services
+        - extra-google-m2repository
+        - add-on
+        - extra
+      licenses:
+        - 'android-sdk-preview-license-.+'
+        - 'android-sdk-license-.+'
+        - 'google-gdk-license-.+'
+
+      before_install:
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+        - curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash
+        - rbenv install
+        - sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+        - test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv) || echo "LB T1 Failed"
+        - test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv) || echo "LB T2 Failed"
+        - test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile || echo "LB T3 Failed"
+        - echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile || echo "LB T4 Failed"
+        - brew install -f imagemagick
+        - brew install -f librsvg
+        - brew install rbenv
+        - chmod +x ./android/gradlew
+        - openssl aes-256-cbc -K $encrypted_aab2467d5b7c_key -iv $encrypted_aab2467d5b7c_iv -in ./android/app/release-key.keystore.enc -out ./android/app/release-key.keystore -d
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - fastlane fasttest
+        - fastlane travis
+        - fastlane android stage badge:true clean:false install:false release:false simulator:false
+      after_failure:
+        - fastlane fasttest
+
+    - language: objective-c
+      os: osx
+      osx_image: xcode10.1
+      node_js: false
+      sudo: required
+      before_install:
+        - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+        - brew install -f imagemagick
+        - brew install -f librsvg
+        - brew install -f gnu-sed
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - fastlane travis
+        - fastlane ios stage clean:false badge:true install:false release:false simulator:false
+      after_failure:
+        - fastlane fasttest
