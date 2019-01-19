@@ -43,9 +43,6 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
 APPCENTER_DSYM = "#{PROJECT_NAME}.app.dSYM.zip"
 
-# Handle Travis
-MATCH_READ = ENV['IS_TRAVIS'] ? true : false
-
 # Version Constants
 VERSION = get_version_number(
   xcodeproj: PROJECT_PATH,
@@ -63,6 +60,9 @@ platform :ios do
         false
       )
     }
+    
+    # Run Travis Setup if on CI
+    travis
     
     unless parsed_options[:skip_before]
       yarn(
@@ -88,7 +88,7 @@ platform :ios do
 
   desc "Update Match Certificates"
   lane :certificates do
-    match(app_identifier: [DEV_ID, STAGE_ID, APP_ID], readonly: MATCH_READ)
+    match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
   end
 
 
@@ -135,7 +135,7 @@ platform :ios do
 
     # Load Dev Certs
     certificates
-    match(type: 'development', readonly: MATCH_READ)
+    match(type: 'development')
 
     # Build
     output_ipa = gym(
@@ -217,7 +217,7 @@ platform :ios do
 
     # Load Certs
     certificates
-    match(type: 'development', readonly: MATCH_READ)
+    match(type: 'development')
 
     # Inject Appcenter
     if parsed_options[:release]

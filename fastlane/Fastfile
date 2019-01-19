@@ -148,21 +148,52 @@ lane :sentry do |options|
   sh("#{SENTRY_SH} #{sentry_id}")
 end
 
+# Create Temporary Keychain for Match (Travis CI)
+private_lane :create_temp_keychain do |options|
+  UI.important("Creating temporary keychain...")
+  UI.important("Keychain Name: #{options[:name]} -- Password: #{options[:pass]}")
+  # Load Env
+  sh("#{TRAVIS_SH} #{ROOT}/env")
+  # Create Temp Key Chain
+  create_keychain(
+    name: options[:name],
+    password: options[:pass],
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    add_to_search_list: true
+  )
+  # Unlock Keychain
+  unlock_keychain(
+    path: options[:name],
+    add_to_search_list: :replace,
+    password: options[:pass]
+
+  )
+end
+
 
 desc("Setup Travis Build")
 lane :travis do
-  UI.header("SETTING TRAVIS UP")
-  ci_pass = ""
+  # Stop if not executed by CI
+  if !Helper.ci?
+    UI.message("Currently not running on CI system, skipping travis setup...")
+    next
+  end
+  # Travis Setup
+  UI.header("TRAVIS SETUP")
+  ci_pass = "fastlane_tmp_keychain_pass"
   ci_keychain = "fastlane_tmp_keychain"
   sh("security list-keychains -d user | grep #{ci_keychain}") do |status, result|
     if !status.success?
-      setup_travis
+      create_temp_keychain(name: ci_keychain, pass: ci_pass)
     else
-      ENV["MATCH_KEYCHAIN_NAME"] = ci_keychain
-      ENV["MATCH_KEYCHAIN_PASSWORD"] = ci_pass
+      UI.important("Temporary Keychain #{ci_keychain} already exists, skipping...")
     end
+    # Set Travis Keychain Vars
+    ENV["MATCH_KEYCHAIN_NAME"] = ci_keychain
+    ENV["MATCH_KEYCHAIN_PASSWORD"] = ci_pass
   end
-  sh("#{TRAVIS_SH} #{ROOT}/env")
 end
 
 
