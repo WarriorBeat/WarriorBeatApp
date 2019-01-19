@@ -28,6 +28,9 @@ before_install:
   - nvm use $NODE_VERSION
   - travis_retry npm install --global yarn
   - yarn global add react-native-cli
+  - yarn global add @aws-amplify/cli
+  - yarn global add @aws-amplify/cli@multienv
+  - amplify env checkout dev
 install:
   - travis_retry yarn
   - travis_retry bundle install
