@@ -2,6 +2,7 @@ language: objective-c
 os: osx
 osx_image: xcode10.1
 node_js: false
+sudo: required
 cache:
   yarn: true
   directories:
@@ -11,8 +12,6 @@ cache:
     - node_modules
     - $HOME/.rvm/
 env:
-  matrix:
-    - NODE_VERSION="11"
   global:
     - secure: FPMw2GGStbcoB0p0SKmVbmUhUWApPvnUGGaNabl8bzLnGki+iGgnnTXwHj1H6muK1DijHpBIPcU4LGYrTyCGOcrR98RgTHQzRD9WSy32yE9gjSy0d9Wa4BAA2yn1k0csB+/vRvND4sB0znyOafRNkM9VYTH6aUy+oz18QOFgSlZwaxcDBu1JBChGy3rZ0EFQV7+EhBW+owpbqKId0h1wlLXR2orQnPm76jfDPuNdWxfA0SmH2kiSFgUXvtrnHVfpq2bHGla4Nei96m8RdQqD5Gz3T5SsF75YJ51qVINt0V9R5RA1WzUSEkqrrNRZV6N5x4tFa50Nf6f5tX/OMk2aqSRpg6M2cA7Gspmce0C+601m6ys6vqm+3mVyOzi0TSpCuvBYocCGwErWcgTYI28wEh7NHuHCmYeAngi2twCExVrZLLHT081ed+ctHctJo8M4Vy/A6BP0oHBi8x9JhjTu4xG1y1QNTwLUdZfAlcYgC7aSBA5/tB4BBk3h4m1XGCnocw8hgwAPSMW7+LMzKAjAwvrJuFIpdYb0XZ9ivO9icuP/medi38sN8KUEABxgTIdhD0/BbduWlpknyx1a59hV3s9r/u4ZBvUBiyDukwJwzyPJDcai+e0ztuZvk2qqtwSbBCqtNs51KCV/F1e0/JN0nlsnxoEq++RhGdfY+LTzAmc=
     - secure: Aum7LKD0L2SnY5RczD0LlzD3JuVjLGAFk+CnIbvJtJ8xVak1ODNdsPo8Hi/9+z9p0xkxclEMX76e6eTJJYdepfb1ejsEVLkuSzEhmBi/xL2g59nw6QY56bfcmG4Uukl6P9UJroS9NFJUFw09t5PuXIUmyx0vsUis1Z86eXDVRjs2QVJeLdmgj55UA0uIt/cojQzFeu5jX+jt8iWfBQCz0wxWWJcLC3yOzJlyY7fW6SNxuXKrP2xtCH+HymoKxThJPvHUXTEP4yG+fIhuOD9eGMwtow39S90UjbHkv71wEYVr+anNW0KEXGalpUmD1SHTaJsI87LcnjaxJgyKNRFR3gTmnHYIbgvo2HFDLXKed9w1BFRm3d4PkTSTR9G3aQKlbqawC2233u3BU2icPkgzLaIL6BR5KRaTcaOzwm5O4TNLkwnzkSpz3uSeaZpT+bq1PlrUkaEpzULt6zmvvllZzMqqUYTFO6FKgGO39QHTGW8gtxavvvfvoZaE2yvdD5Wakd04EzuNOT77fKu2RYgDWiAbHba0HsyrJGCacLDuIa9iTDuiBVVPsz+T1OGg8BwvYkbG9hJVbWLFWQJYP3Pq6Jm0rfyToqUV6DkzQScp168Z60CuqYr9UzzJuMkagSf11+HrXPQJcwbLLcIR4h+Ju+pTMqfv9Y0l0Cxzg5pzDJE=
@@ -27,6 +26,7 @@ before_install:
   - nvm install $NODE_VERSION
   - nvm alias default $NODE_VERSION
   - travis_retry npm install --global yarn
+  - yarn global add react-native-cli
 install:
   - travis_retry yarn
   - travis_retry bundle install

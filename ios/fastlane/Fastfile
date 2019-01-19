@@ -138,6 +138,10 @@ platform :ios do
     match(type: 'development')
 
     # Build
+    yarn(
+      command: "ios:bundle",
+      package_path: PACKAGE_JSON
+    )
     output_ipa = gym(
       scheme: DEV_SCHEME,
       configuration: "Debug",

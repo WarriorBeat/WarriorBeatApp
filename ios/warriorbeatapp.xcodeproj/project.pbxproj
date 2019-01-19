@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -69,6 +70,7 @@
 		A83DC509218E8F8700E562CE /* AppCenterPush.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC508218E8F8700E562CE /* AppCenterPush.framework */; };
 		A83DC50A218E8FEF00E562CE /* libAppCenterReactNativePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC501218E8BF800E562CE /* libAppCenterReactNativePush.a */; };
 		A8486F2C21CA08DD00C6E276 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8486EFB21CA08C600C6E276 /* libART.a */; };
+		A862FED421F2FF230083D356 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		A8BE7BF8213FA80600B5790D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BE7BF5213FA78200B5790D /* libReactNativeNavigation.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BA4EC2BEEDF243B6B63249C8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 176BEFDA33DC44E683FA4A17 /* Entypo.ttf */; };
@@ -1668,6 +1670,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A862FED421F2FF230083D356 /* main.jsbundle in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BA4EC2BEEDF243B6B63249C8 /* Entypo.ttf in Resources */,
@@ -1719,8 +1722,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/zsh;
-			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Debug)\"\nexport NODE_BINARY=node\nexport SENTRY_PROPERTIES=sentry.properties
-../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
+			shellScript = "export DEVELOPMENT_BUILD_CONFIGURATIONS=\"+(Debug)\"\nexport NODE_BINARY=node\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
