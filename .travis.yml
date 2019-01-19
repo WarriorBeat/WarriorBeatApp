@@ -30,12 +30,10 @@ before_install:
   - yarn global add react-native-cli
   - yarn global add @aws-amplify/cli
   - yarn global add @aws-amplify/cli@multienv
-  - amplify env checkout dev
 install:
   - travis_retry yarn
   - travis_retry bundle install
 script:
-  - tree /Users/travis/build/WarriorBeat/WarriorBeatApp/ios/Build
   - fastlane travis
   - fastlane fasttest
   - fastlane ios stage clean:false badge:true install:false release:false simulator:false

@@ -13,6 +13,7 @@ PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
 SECRET_SH = File.join(ROOT, 'fastlane/scripts/load_secret.sh').freeze
 SENTRY_SH = File.join(ROOT, 'fastlane/scripts/sentry.sh').freeze
 TRAVIS_SH = File.join(ROOT, 'fastlane/scripts/travis.sh').freeze
+AWS_SH = File.join(ROOT, 'fastlane/scripts/init_aws_env.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
@@ -182,6 +183,13 @@ lane :travis do
   end
   # Travis Setup
   UI.header("TRAVIS SETUP")
+  # Init Amplify if needed
+  sh("amplify status") do |status, result|
+    if !status.success?
+      UI.important("Amplify env not initialized, doing so now...")
+      sh(AWS_SH)
+    end
+  end
   ci_pass = "fastlane_tmp_keychain_pass"
   ci_keychain = "fastlane_tmp_keychain"
   sh("security list-keychains -d user | grep #{ci_keychain}") do |status, result|
