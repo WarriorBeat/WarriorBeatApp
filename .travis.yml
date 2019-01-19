@@ -1,5 +1,15 @@
 language: objective-c
+os: osx
 osx_image: xcode10.1
+node_js: false
+cache:
+  yarn: true
+  directories:
+    - $HOME/.yarn-cache
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - node_modules
+    - $HOME/.rvm/
 env:
   matrix:
     - NODE_VERSION="11"
@@ -13,13 +23,17 @@ before_install:
   - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
   - brew install -f imagemagick
   - brew install -f librsvg
+  - brew install -f tree
   - nvm install $NODE_VERSION
   - nvm alias default $NODE_VERSION
-  - npm install --global yarn
+  - travis_retry npm install --global yarn
 install:
-  - yarn
-  - bundle install
+  - travis_retry yarn
+  - travis_retry bundle install
 script:
+  - tree /Users/travis/build/WarriorBeat/WarriorBeatApp/ios/Build
   - fastlane travis
   - fastlane fasttest
   - fastlane ios stage clean:false badge:true install:false release:false simulator:false
+after_failure:
+  - tree /Users/travis/build/WarriorBeat/WarriorBeatApp/ios/Build

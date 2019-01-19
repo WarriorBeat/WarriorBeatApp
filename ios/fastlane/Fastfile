@@ -15,11 +15,6 @@ PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
 DISPLAY_NAME = "WarriorBeat".freeze
 
-# Set Gym Constants
-ENV['GYM_PROJECT'] = PROJECT_PATH
-ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
-ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
-
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
 
@@ -60,10 +55,15 @@ platform :ios do
         false
       )
     }
+
+    # Set Gym Constants
+    ENV['GYM_PROJECT'] = PROJECT_PATH
+    ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
+    ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
     
     # Run Travis Setup if on CI
     travis
-    
+
     unless parsed_options[:skip_before]
       yarn(
         command: "install",
