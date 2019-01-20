@@ -32,6 +32,14 @@ AND_VERSION = get_version_name(
   ext_constant_name: "versionName"
 )
 
+# Gradle Properties
+GRADLE_PROPERTIES = {
+  "android.injected.signing.store.file" => "#{ANDROID_PATH}/app/#{ENV['RELEASE_STORE_FILE']}",
+  "android.injected.signing.store.password" => ENV["RELEASE_STORE_PASSWORD"],
+  "android.injected.signing.key.alias" => ENV["RELEASE_KEY_ALIAS"],
+  "android.injected.signing.key.password" => ENV["RELEASE_KEY_PASSWORD"],
+}
+
 default_platform(:android)
 
 # Set Dir to Project Root
@@ -246,7 +254,7 @@ platform :android do
     end
 
     # Build
-    gradle(task: 'assemble', build_type: 'staging')
+    gradle(task: 'assemble', build_type: 'staging', properties: GRADLE_PROPERTIES)
 
     # Execute Release
     if parsed_options[:release]
