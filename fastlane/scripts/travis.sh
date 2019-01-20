@@ -11,6 +11,7 @@ ENV_RELEASE="$ENV_DIR/.env.release"
 
 ENVIRONS=($ENV_DEV $ENV_STAGING $ENV_RELEASE)
 
+# Create Env Files
 touch $ENV_MAIN
 for file in "${ENVIRONS[@]}"; do
   echo "export NODE_PATH=${NODE_PATH}" > $file

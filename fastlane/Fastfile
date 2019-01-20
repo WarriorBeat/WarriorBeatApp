@@ -14,6 +14,7 @@ SECRET_SH = File.join(ROOT, 'fastlane/scripts/load_secret.sh').freeze
 SENTRY_SH = File.join(ROOT, 'fastlane/scripts/sentry.sh').freeze
 TRAVIS_SH = File.join(ROOT, 'fastlane/scripts/travis.sh').freeze
 AWS_SH = File.join(ROOT, 'fastlane/scripts/init_aws_env.sh').freeze
+INJ_GRADLE_SH = File.join(ROOT, 'fastlane/scripts/load_gradle.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
@@ -192,6 +193,9 @@ lane :travis do
   # Load Env
   sh("#{TRAVIS_SH} #{ROOT}/env")
   if (/darwin/ =~ RUBY_PLATFORM) == nil
+    UI.important("Injecting Gradle Properties...")
+    sh(INJ_GRADLE_SH)
+    UI.success("Injection complete.")
     UI.important("Currently not running in macOS environment, skipping ios setup...")
     next
   end

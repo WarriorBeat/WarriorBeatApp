@@ -45,10 +45,6 @@ matrix:
           - extra-google-m2repository
           - add-on
           - extra
-      licenses:
-        - android-sdk-preview-license-.+
-        - android-sdk-license-.+
-        - google-gdk-license-.+
       before_install:
         - chmod +x ./fastlane/scripts/dl_sdk_license.sh
         - './fastlane/scripts/dl_sdk_license.sh'
@@ -67,6 +63,7 @@ matrix:
         - sudo sysctl fs.inotify.max_user_watches=524288
         - sudo sysctl -p
         - openssl aes-256-cbc -K $encrypted_aab2467d5b7c_key -iv $encrypted_aab2467d5b7c_iv -in ./android/app/release-key.keystore.enc -out ./android/app/release-key.keystore -d
+        - if [ ! -f ./android/app/release-key.keystore ]; then echo "KEYSTORE NOT FOUND" && exit; fi
       install:
         - travis_retry yarn
         - travis_retry bundle install
