@@ -61,6 +61,8 @@ matrix:
         - yarn global add @aws-amplify/cli@multienv
         - export PATH="/home/travis/.yarn/bin:$PATH"
         - chmod +x ./android/gradlew
+        - sudo sysctl fs.inotify.max_user_watches=524288
+        - sudo sysctl -p
         - openssl aes-256-cbc -K $encrypted_aab2467d5b7c_key -iv $encrypted_aab2467d5b7c_iv -in ./android/app/release-key.keystore.enc -out ./android/app/release-key.keystore -d
       install:
         - travis_retry yarn
