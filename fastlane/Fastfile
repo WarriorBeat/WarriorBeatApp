@@ -86,6 +86,7 @@ lane :fasttest do |options|
   UI.header("COMMON FASTLANE")
   UI.important("\n
   ROOT           | #{ROOT}
+  PWD            | #{Dir.pwd}
   PACKAGE.JSON   | #{PACKAGE_JSON}
   SECRET_SH      | #{SECRET_SH}
   ANDROID_PATH   | #{ANDROID_PATH}
@@ -153,8 +154,6 @@ end
 private_lane :create_temp_keychain do |options|
   UI.important("Creating temporary keychain...")
   UI.important("Keychain Name: #{options[:name]} -- Password: #{options[:pass]}")
-  # Load Env
-  sh("#{TRAVIS_SH} #{ROOT}/env")
   # Create Temp Key Chain
   create_keychain(
     name: options[:name],
@@ -190,7 +189,10 @@ lane :travis do
       sh(AWS_SH)
     end
   end
+  # Load Env
+  sh("#{TRAVIS_SH} #{ROOT}/env")
   if (/darwin/ =~ RUBY_PLATFORM) == nil
+    UI.important("Currently not running in macOS environment, skipping ios setup...")
     next
   end
   ci_pass = "fastlane_tmp_keychain_pass"
