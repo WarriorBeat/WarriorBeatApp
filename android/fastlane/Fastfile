@@ -254,7 +254,7 @@ platform :android do
     end
 
     # Build
-    gradle(task: 'assemble', build_type: 'staging', properties: GRADLE_PROPERTIES)
+    gradle(task: 'assemble', build_type: 'staging', properties: GRADLE_PROPERTIES, print_command: false)
 
     # Execute Release
     if parsed_options[:release]

