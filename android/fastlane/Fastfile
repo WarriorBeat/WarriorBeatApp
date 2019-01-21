@@ -317,7 +317,7 @@ platform :android do
     APK => #{parsed_options[:apk]}
     ")
     appcenter_upload(
-      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+      apk: parsed_options[:apk],
       should_clip: false,
       release_notes: getReleaseNotes
     )
