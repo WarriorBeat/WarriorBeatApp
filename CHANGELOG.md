@@ -1,3 +1,7 @@
+## [0.13.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.1...v0.13.2) (2019-01-21)
+
+
+
 ## [0.13.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.0...v0.13.1) (2019-01-18)
 
 
@@ -9,6 +13,11 @@
 * **fastlane:** Made load_secret script POSIX Compatible ([b9c0275](https://github.com/WarriorBeat/WarriorBeatApp/commit/b9c0275))
 * **fastlane:** Moved Fastlane scripts to subfolder, added compat an... ([30e085a](https://github.com/WarriorBeat/WarriorBeatApp/commit/30e085a))
 * **iOS:** Fastlane Restructure, Match/Gym Integration, Performance Boost ([#58](https://github.com/WarriorBeat/WarriorBeatApp/issues/58)) ([02989fd](https://github.com/WarriorBeat/WarriorBeatApp/commit/02989fd))
+
+
+### ♻️ Chores
+
+* **release:** 0.13.1 ([9d57f9b](https://github.com/WarriorBeat/WarriorBeatApp/commit/9d57f9b))
 
 
 

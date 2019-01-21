@@ -1,4 +1,7 @@
-if: branch =~ /(master|develop)/ OR tag = true
+branches:
+  only:
+    - master
+    - /^v.*$/
 cache:
   yarn: true
   directories:
