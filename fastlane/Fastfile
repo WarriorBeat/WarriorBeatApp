@@ -4,6 +4,7 @@
 
 # Require Env
 fastlane_require 'dotenv'
+fastlane_require 'fileutils'
 
 # Path Constants
 ROOT = File.expand_path('../', Dir.pwd).freeze
@@ -17,8 +18,12 @@ AWS_SH = File.join(ROOT, 'fastlane/scripts/init_aws_env.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
+# Projects
 ANDROID_PATH = File.join(ROOT, 'android').freeze
 IOS_PATH = File.join(ROOT, 'ios').freeze
+
+# Outputs
+DIST_DIR = File.join(ROOT, 'dist')
 
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')

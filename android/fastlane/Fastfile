@@ -234,7 +234,7 @@ platform :android do
         options[:injectSentry],
         false,
         false
-      )
+      ),
       :cleanBuilds => handleEnvAndOptions(
         ENV['CLEAN_BUILDS'],
         options[:cleanBuilds],
@@ -273,12 +273,21 @@ platform :android do
     # Build
     gradle(task: 'assemble', build_type: 'staging', properties: GRADLE_PROPERTIES, print_command: false)
 
+    # Copy to Dist
+    output_apk = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+    UI.important("APK => #{output_apk}")
+    output_name = File.basename(output_apk)
+    dist_apk = File.join(DIST_DIR, output_name)
+    FileUtils.rm(dist_apk) if File.exists?(dist_apk)
+    Dir.mkdir(DIST_DIR) unless File.directory?(DIST_DIR)
+    FileUtils.cp(output_apk, DIST_DIR)
+
     # Skip Before Now
     ENV['SKIP_BEFORE'] = 'true'
 
     # Execute Release
     if parsed_options[:release]
-      release(apk: ENV['GRADLE_APK_OUTPUT_PATH'])
+      release(apk: output_apk)
     end
 
     if parsed_options[:install]

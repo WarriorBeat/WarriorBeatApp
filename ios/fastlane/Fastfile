@@ -36,7 +36,7 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 
 # App Center
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
-APPCENTER_DSYM = "#{PROJECT_NAME}.app.dSYM.zip"
+APPCENTER_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
 
 # Version Constants
 VERSION = get_version_number(
@@ -260,6 +260,18 @@ platform :ios do
       skip_archive: parsed_options[:simulator] ? true : false,
       skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
+
+    # Copy to Dist
+    UI.important("IPA => #{output_ipa}")
+    output_name = File.basename(output_ipa)
+    dsym_name = File.basename(APPCENTER_DSYM)
+    dist_ipa = File.join(DIST_DIR, output_name)
+    dist_dsym = File.join(DIST_DIR, dsym_name)
+    FileUtils.rm(dist_ipa) if File.exists?(dist_ipa)
+    FileUtils.rm(dist_dsym) if File.exists?(dist_dsym)
+    Dir.mkdir(DIST_DIR) unless File.directory?(DIST_DIR)
+    FileUtils.cp(output_ipa, DIST_DIR)
+    FileUtils.cp(APPCENTER_DSYM, DIST_DIR)
     
     # Skip Before Now
     ENV['SKIP_BEFORE'] = 'true'
