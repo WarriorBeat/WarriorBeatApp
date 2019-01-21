@@ -4,6 +4,7 @@
 
 # Require Env
 fastlane_require 'dotenv'
+fastlane_require 'fileutils'
 
 # Path Constants
 ROOT = File.expand_path('../', Dir.pwd).freeze
@@ -17,8 +18,12 @@ AWS_SH = File.join(ROOT, 'fastlane/scripts/init_aws_env.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
+# Projects
 ANDROID_PATH = File.join(ROOT, 'android').freeze
 IOS_PATH = File.join(ROOT, 'ios').freeze
+
+# Outputs
+DIST_DIR = File.join(ROOT, 'dist')
 
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
@@ -144,10 +149,21 @@ lane :sentry do |options|
       options[:env],
       true,
       "staging"
+    ),
+    :inject => handleEnvAndOptions(
+      ENV["SENTRY_INJECT"],
+      options[:inject],
+      false,
+      false
     )
   }
+  if parsed_options[:inject]
+    sh("#{SENTRY_SH} load")
+    next
+  end
   sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
-  sh("#{SENTRY_SH} #{sentry_id}")
+  UI.header("SENTRY RAN")
+  # sh("#{SENTRY_SH} release #{sentry_id}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
@@ -207,6 +223,30 @@ lane :travis do
     ENV["MATCH_KEYCHAIN_NAME"] = ci_keychain
     ENV["MATCH_KEYCHAIN_PASSWORD"] = ci_pass
   end
+end
+
+desc("Deploy Release")
+lane :deploy do |options|
+  ipa_file = Dir["#{DIST_DIR}/*.ipa"][0]
+  apk_file = Dir["#{DIST_DIR}/*.apk"][0]
+  dsym_file = Dir["#{DIST_DIR}/*.dSYM.zip"][0]
+  UI.header("Beginning Deploy")
+  UI.important("
+    IPA => #{ipa_file}
+    APK => #{apk_file}
+    DSYM => #{dsym_file}
+  ")
+  Fastlane::LaneManager.cruise_lane("ios", "release", {
+    :skip_before => true,
+    :ipa => ipa_file,
+    :dsym => dsym_file
+  })
+  Fastlane::LaneManager.cruise_lane("android", "release", {
+    :skip_before => true,
+    :apk => apk_file,
+  })
+  sentry
+  UI.success("Deploy Successful!")
 end
 
 
