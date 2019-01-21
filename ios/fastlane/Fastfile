@@ -213,6 +213,12 @@ platform :ios do
         options[:release],
         false,
         false
+      ),
+      :injectSentry => handleEnvAndOptions(
+        ENV['INJECT_SENTRY'],
+        options[:injectSentry],
+        false,
+        false
       )
     }
 
@@ -228,6 +234,11 @@ platform :ios do
     # Inject Appcenter
     if parsed_options[:forRelease] || parsed_options[:release] 
       injectAppcenter
+    end
+
+    # Inject Sentry
+    if parsed_options[:injectSentry]
+      sentry(inject:true)
     end
 
     # Build

@@ -144,10 +144,20 @@ lane :sentry do |options|
       options[:env],
       true,
       "staging"
+    ),
+    :inject => handleEnvAndOptions(
+      ENV["SENTRY_INJECT"],
+      options[:inject],
+      false,
+      false
     )
   }
+  if parsed_options[:inject]
+    sh("#{SENTRY_SH} load")
+    next
+  end
   sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
-  sh("#{SENTRY_SH} #{sentry_id}")
+  sh("#{SENTRY_SH} release #{sentry_id}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)

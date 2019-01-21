@@ -229,6 +229,12 @@ platform :android do
         false,
         false
       ),
+      :injectSentry => handleEnvAndOptions(
+        ENV['INJECT_SENTRY'],
+        options[:injectSentry],
+        false,
+        false
+      )
       :cleanBuilds => handleEnvAndOptions(
         ENV['CLEAN_BUILDS'],
         options[:cleanBuilds],
@@ -257,6 +263,11 @@ platform :android do
     # Setup Release
     if parsed_options[:forRelease] || parsed_options[:release]
       injectAppcenter
+    end
+
+    # Inject Sentry
+    if parsed_options[:injectSentry]
+      sentry(inject:true)
     end
 
     # Build
