@@ -144,6 +144,7 @@ matrix:
         - yarn global add react-native-cli
         - yarn global add @aws-amplify/cli
         - yarn global add @aws-amplify/cli@multienv
+        - yarn global add @sentry/cli
         - export PATH="/home/travis/.yarn/bin:$PATH"
         - pip install --user awscli
         - mkdir -p ./dist

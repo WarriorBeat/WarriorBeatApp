@@ -1,4 +1,18 @@
+## [0.13.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.2...v0.13.3) (2019-01-21)
+
+
+### 🐛 Bug Fixes
+
+* **travis:** Hotfix Android Deploy ([3e8dedd](https://github.com/WarriorBeat/WarriorBeatApp/commit/3e8dedd))
+
+
+
 ## [0.13.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.1...v0.13.2) (2019-01-21)
+
+
+### ♻️ Chores
+
+* **release:** 0.13.2 ([c02841d](https://github.com/WarriorBeat/WarriorBeatApp/commit/c02841d))
 
 
 
