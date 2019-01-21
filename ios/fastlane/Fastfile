@@ -15,11 +15,6 @@ PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
 DISPLAY_NAME = "WarriorBeat".freeze
 
-# Set Gym Constants
-ENV['GYM_PROJECT'] = PROJECT_PATH
-ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
-ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
-
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
 
@@ -41,8 +36,7 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 
 # App Center
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
-APPCENTER_DSYM = "#{PROJECT_NAME}.app.dSYM.zip"
-
+APPCENTER_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
 
 # Version Constants
 VERSION = get_version_number(
@@ -61,7 +55,15 @@ platform :ios do
         false
       )
     }
+
+    # Set Gym Constants
+    ENV['GYM_PROJECT'] = PROJECT_PATH
+    ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
+    ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
     
+    # Run Travis Setup if on CI
+    travis
+
     unless parsed_options[:skip_before]
       yarn(
         command: "install",
@@ -166,7 +168,7 @@ platform :ios do
   end
 
   
-  desc "Stage and Release on App Center"
+  desc "iOS Staging Build"
   lane :stage do |options|
     getEnv('staging')
     parsed_options = {
@@ -200,9 +202,21 @@ platform :ios do
         true,
         ''
       ),
+      :forRelease => handleEnvAndOptions(
+        ENV['FOR_RELEASE'],
+        options[:forRelease],
+        false,
+        false
+      ),
       :release => handleEnvAndOptions(
         ENV['RELEASE'],
         options[:release],
+        false,
+        false
+      ),
+      :injectSentry => handleEnvAndOptions(
+        ENV['INJECT_SENTRY'],
+        options[:injectSentry],
         false,
         false
       )
@@ -218,11 +232,20 @@ platform :ios do
     match(type: 'development')
 
     # Inject Appcenter
-    if parsed_options[:release]
+    if parsed_options[:forRelease] || parsed_options[:release] 
       injectAppcenter
     end
 
+    # Inject Sentry
+    if parsed_options[:injectSentry]
+      sentry(inject:true)
+    end
+
     # Build
+    yarn(
+      command: "ios:bundle",
+      package_path: PACKAGE_JSON
+    )
     output_ipa = gym(
       scheme: STAGE_SCHEME,
       configuration: "Staging",
@@ -238,6 +261,21 @@ platform :ios do
       skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
 
+    # Copy to Dist
+    UI.important("IPA => #{output_ipa}")
+    output_name = File.basename(output_ipa)
+    dsym_name = File.basename(APPCENTER_DSYM)
+    dist_ipa = File.join(DIST_DIR, output_name)
+    dist_dsym = File.join(DIST_DIR, dsym_name)
+    FileUtils.rm(dist_ipa) if File.exists?(dist_ipa)
+    FileUtils.rm(dist_dsym) if File.exists?(dist_dsym)
+    Dir.mkdir(DIST_DIR) unless File.directory?(DIST_DIR)
+    FileUtils.cp(output_ipa, DIST_DIR)
+    FileUtils.cp(APPCENTER_DSYM, DIST_DIR)
+    
+    # Skip Before Now
+    ENV['SKIP_BEFORE'] = 'true'
+
     # Install
     if parsed_options[:install]
       if parsed_options[:simulator]
@@ -250,20 +288,45 @@ platform :ios do
 
     # Release Appcenter
     if parsed_options[:release]
-      appcenter_upload(
-        should_clip: false,
-        release_notes: getReleaseNotes,
-        app_name: APPCENTER_APP_NAME,
-        ipa: output_ipa,
-        dsym: APPCENTER_DSYM
-      )
-      injectAppcenter(clean:true)
+      release(ipa: output_ipa)
     end
 
     # Cleanup Badges
     cleanup
   end
 
+  desc("Release IPA on App Center")
+  lane :release do |options| 
+    parsed_options = {
+      :ipa => handleEnvAndOptions(
+        ENV['IPA_OUTPUT'],
+        options[:ipa],
+        true,
+        "warriorbeatapp.ipa"
+      ),
+      :dsym => handleEnvAndOptions(
+        ENV["IOS_DSYM_OUTPUT"],
+        options[:dsym],
+        true,
+        APPCENTER_DSYM
+      )
+    }
+    UI.header("iOS Deploy")
+    UI.important("
+    
+    Releasing IPA on AppCenter...
+    IPA => #{parsed_options[:ipa]}
+    dSYM => #{parsed_options[:dsym]}
+    Name => #{APPCENTER_APP_NAME}
+    ")
+    appcenter_upload(
+      should_clip: false,
+      release_notes: getReleaseNotes,
+      app_name: APPCENTER_APP_NAME,
+      ipa: parsed_options[:ipa],
+      dsym: parsed_options[:dsym]
+    )
+  end
 end
 
 desc "Get iOS Fastlane Data"

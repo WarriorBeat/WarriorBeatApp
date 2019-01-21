@@ -20,6 +20,21 @@ or alternatively using `brew cask install fastlane`
 fastlane fasttest
 ```
 Prints Data Loaded by Fastlane
+### sentry
+```
+fastlane sentry
+```
+Finalize release on Sentry
+### travis
+```
+fastlane travis
+```
+Setup Travis Build
+### deploy
+```
+fastlane deploy
+```
+Deploy Release
 ### cleanup
 ```
 fastlane cleanup
@@ -43,7 +58,12 @@ iOS Dev Build
 ```
 fastlane ios stage
 ```
-Stage and Release on App Center
+iOS Staging Build
+### ios release
+```
+fastlane ios release
+```
+Release IPA on App Center
 
 ----
 
@@ -68,6 +88,11 @@ Android Dev Build
 fastlane android stage
 ```
 Stage and Release on App Center
+### android release
+```
+fastlane android release
+```
+Release APK on App Center
 
 ----
 

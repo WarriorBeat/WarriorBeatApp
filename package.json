@@ -9,7 +9,8 @@
     "lint": "node_modules/eslint/bin/eslint.js *.js **/*.js",
     "commit": "git cz",
     "version": "standard-version --commit-all",
-    "postinstall": "react-native-schemes-manager all"
+    "postinstall": "react-native-schemes-manager all",
+    "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",
@@ -108,7 +109,7 @@
     ],
     "settings": {
       "fix-script": {
-        "nodeCommand": "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
+        "nodeCommand": "nvm use 11\nexport SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode"
       }
     }
   }

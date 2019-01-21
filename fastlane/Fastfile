@@ -4,6 +4,7 @@
 
 # Require Env
 fastlane_require 'dotenv'
+fastlane_require 'fileutils'
 
 # Path Constants
 ROOT = File.expand_path('../', Dir.pwd).freeze
@@ -11,14 +12,22 @@ PACKAGE_JSON = File.join(ROOT, 'package.json').freeze
 
 # Scripts
 SECRET_SH = File.join(ROOT, 'fastlane/scripts/load_secret.sh').freeze
+SENTRY_SH = File.join(ROOT, 'fastlane/scripts/sentry.sh').freeze
+TRAVIS_SH = File.join(ROOT, 'fastlane/scripts/travis.sh').freeze
+AWS_SH = File.join(ROOT, 'fastlane/scripts/init_aws_env.sh').freeze
 CHANGELOG_SH = File.join(ROOT, 'fastlane/scripts/get_release_notes.sh').freeze
 CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 
+# Projects
 ANDROID_PATH = File.join(ROOT, 'android').freeze
 IOS_PATH = File.join(ROOT, 'ios').freeze
 
+# Outputs
+DIST_DIR = File.join(ROOT, 'dist')
+
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
 APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
+
 
 # Load Primary .env
 Dotenv.load("%s/env/.env" % ROOT)
@@ -82,6 +91,7 @@ lane :fasttest do |options|
   UI.header("COMMON FASTLANE")
   UI.important("\n
   ROOT           | #{ROOT}
+  PWD            | #{Dir.pwd}
   PACKAGE.JSON   | #{PACKAGE_JSON}
   SECRET_SH      | #{SECRET_SH}
   ANDROID_PATH   | #{ANDROID_PATH}
@@ -130,6 +140,114 @@ desc("Retrieve Release notes from Changelog")
 private_lane :getReleaseNotes do
   notes = sh("#{CHANGELOG_SH} #{CHANGELOG_PATH}")
 end
+
+desc("Finalize release on Sentry")
+lane :sentry do |options|
+  parsed_options = {
+    :env => handleEnvAndOptions(
+      ENV['SENTRY_ENV_STAGE'],
+      options[:env],
+      true,
+      "staging"
+    ),
+    :inject => handleEnvAndOptions(
+      ENV["SENTRY_INJECT"],
+      options[:inject],
+      false,
+      false
+    )
+  }
+  if parsed_options[:inject]
+    sh("#{SENTRY_SH} load")
+    next
+  end
+  sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
+  sh("#{SENTRY_SH} release #{sentry_id}")
+end
+
+# Create Temporary Keychain for Match (Travis CI)
+private_lane :create_temp_keychain do |options|
+  UI.important("Creating temporary keychain...")
+  UI.important("Keychain Name: #{options[:name]} -- Password: #{options[:pass]}")
+  # Create Temp Key Chain
+  create_keychain(
+    name: options[:name],
+    password: options[:pass],
+    default_keychain: true,
+    unlock: true,
+    timeout: 3600,
+    add_to_search_list: true
+  )
+  # Unlock Keychain
+  unlock_keychain(
+    path: options[:name],
+    add_to_search_list: :replace,
+    password: options[:pass]
+
+  )
+end
+
+
+desc("Setup Travis Build")
+lane :travis do
+  # Stop if not executed by CI
+  if !Helper.ci?
+    UI.message("Currently not running on CI system, skipping travis setup...")
+    next
+  end
+  # Travis Setup
+  UI.header("TRAVIS SETUP")
+  # Init Amplify if needed
+  sh("amplify status") do |status, result|
+    if !status.success?
+      UI.important("Amplify env not initialized, doing so now...")
+      sh(AWS_SH)
+    end
+  end
+  # Load Env
+  sh("#{TRAVIS_SH} #{ROOT}/env")
+  if (/darwin/ =~ RUBY_PLATFORM) == nil
+    UI.important("Currently not running in macOS environment, skipping ios setup...")
+    next
+  end
+  ci_pass = "fastlane_tmp_keychain_pass"
+  ci_keychain = "fastlane_tmp_keychain"
+  sh("security list-keychains -d user | grep #{ci_keychain}") do |status, result|
+    if !status.success?
+      create_temp_keychain(name: ci_keychain, pass: ci_pass)
+    else
+      UI.important("Temporary Keychain #{ci_keychain} already exists, skipping...")
+    end
+    # Set Travis Keychain Vars
+    ENV["MATCH_KEYCHAIN_NAME"] = ci_keychain
+    ENV["MATCH_KEYCHAIN_PASSWORD"] = ci_pass
+  end
+end
+
+desc("Deploy Release")
+lane :deploy do |options|
+  ipa_file = Dir["#{DIST_DIR}/*.ipa"][0]
+  apk_file = Dir["#{DIST_DIR}/*.apk"][0]
+  dsym_file = Dir["#{DIST_DIR}/*.dSYM.zip"][0]
+  UI.header("Beginning Deploy")
+  UI.important("
+    IPA => #{ipa_file}
+    APK => #{apk_file}
+    DSYM => #{dsym_file}
+  ")
+  Fastlane::LaneManager.cruise_lane("ios", "release", {
+    :skip_before => true,
+    :ipa => ipa_file,
+    :dsym => dsym_file
+  })
+  Fastlane::LaneManager.cruise_lane("android", "release", {
+    :skip_before => true,
+    :apk => apk_file,
+  })
+  sentry
+  UI.success("Deploy Successful!")
+end
+
 
 desc("Reset App Icons/Edited Files")
 lane :cleanup do 

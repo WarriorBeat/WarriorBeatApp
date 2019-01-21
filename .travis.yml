@@ -1,0 +1,156 @@
+if: branch =~ /(master|develop)/ OR tag = true
+cache:
+  yarn: true
+  directories:
+    - '$HOME/.yarn-cache'
+    - '$HOME/.gradle/caches/'
+    - '$HOME/.gradle/wrapper/'
+    - node_modules
+    - '$HOME/.rvm/'
+    - '/usr/local/android-sdk/licenses'
+env:
+  global:
+    - secure: FPMw2GGStbcoB0p0SKmVbmUhUWApPvnUGGaNabl8bzLnGki+iGgnnTXwHj1H6muK1DijHpBIPcU4LGYrTyCGOcrR98RgTHQzRD9WSy32yE9gjSy0d9Wa4BAA2yn1k0csB+/vRvND4sB0znyOafRNkM9VYTH6aUy+oz18QOFgSlZwaxcDBu1JBChGy3rZ0EFQV7+EhBW+owpbqKId0h1wlLXR2orQnPm76jfDPuNdWxfA0SmH2kiSFgUXvtrnHVfpq2bHGla4Nei96m8RdQqD5Gz3T5SsF75YJ51qVINt0V9R5RA1WzUSEkqrrNRZV6N5x4tFa50Nf6f5tX/OMk2aqSRpg6M2cA7Gspmce0C+601m6ys6vqm+3mVyOzi0TSpCuvBYocCGwErWcgTYI28wEh7NHuHCmYeAngi2twCExVrZLLHT081ed+ctHctJo8M4Vy/A6BP0oHBi8x9JhjTu4xG1y1QNTwLUdZfAlcYgC7aSBA5/tB4BBk3h4m1XGCnocw8hgwAPSMW7+LMzKAjAwvrJuFIpdYb0XZ9ivO9icuP/medi38sN8KUEABxgTIdhD0/BbduWlpknyx1a59hV3s9r/u4ZBvUBiyDukwJwzyPJDcai+e0ztuZvk2qqtwSbBCqtNs51KCV/F1e0/JN0nlsnxoEq++RhGdfY+LTzAmc=
+    - secure: Aum7LKD0L2SnY5RczD0LlzD3JuVjLGAFk+CnIbvJtJ8xVak1ODNdsPo8Hi/9+z9p0xkxclEMX76e6eTJJYdepfb1ejsEVLkuSzEhmBi/xL2g59nw6QY56bfcmG4Uukl6P9UJroS9NFJUFw09t5PuXIUmyx0vsUis1Z86eXDVRjs2QVJeLdmgj55UA0uIt/cojQzFeu5jX+jt8iWfBQCz0wxWWJcLC3yOzJlyY7fW6SNxuXKrP2xtCH+HymoKxThJPvHUXTEP4yG+fIhuOD9eGMwtow39S90UjbHkv71wEYVr+anNW0KEXGalpUmD1SHTaJsI87LcnjaxJgyKNRFR3gTmnHYIbgvo2HFDLXKed9w1BFRm3d4PkTSTR9G3aQKlbqawC2233u3BU2icPkgzLaIL6BR5KRaTcaOzwm5O4TNLkwnzkSpz3uSeaZpT+bq1PlrUkaEpzULt6zmvvllZzMqqUYTFO6FKgGO39QHTGW8gtxavvvfvoZaE2yvdD5Wakd04EzuNOT77fKu2RYgDWiAbHba0HsyrJGCacLDuIa9iTDuiBVVPsz+T1OGg8BwvYkbG9hJVbWLFWQJYP3Pq6Jm0rfyToqUV6DkzQScp168Z60CuqYr9UzzJuMkagSf11+HrXPQJcwbLLcIR4h+Ju+pTMqfv9Y0l0Cxzg5pzDJE=
+    - secure: i/yKLgM+vu0TePwHsVSOHn86zCIlTJkyjrYmavU7PzJf52HiJUJ14n96wh0mtqWrACZm/4p7Jn8KA3rR5kwVr/7bc0QRIaH2Kl6HLV1dZD58VsdIV8jrhwwH+Z8We7gL2KSvGPwYYjDMt3nb1LtczW/GYjqhcPiwUgNc1SJpKXaLgZKEFYmVn3QgcL2L5CfYNmiqR4Y4g16C2+ThmBW2TDr37xxbCearaCyX0m+NII9NreDFkDYuoGMAUPFMtbN9JWajskjvnm3ohrCg+r1MS5otZel+VW5d/9zO6yzk4B3zlo9ddSGtCCH/NW/flZ/KG9oEj5rVCUUR16uiamQMQsliluRanN4Zq9qlqeUSFKOU5PWXG0WiiyLyI1+e9urqHO+R/0ALL3RECl5PYdPGYDJUZT3UrrD9ljv8+vML5eZmTvTTgKPvx2HROoERowN8mCohpx+xZfAPsZ7yd/sY+wo+9as1riy2PVs5+NFQSpRLbVptITNEeBZpwwxq4ITo8N9464h56oXosBEgdGBiWAfg3GkEo00OwatuXSPU2TjUynC3X+k1EJuTx97W7u3/qTay5wNzTtwOcos1NwP0tioT+8ZMlxTvw2r6Asw6DWL6qsXBVy8mdS5zOKnUAdB9vQD0vrRPf2u0dsf2PeqrSa59g/hrxplhKRia60dwyRU=
+    - secure: nNHElGeZ6bQ5u/wS0vfZ7aqTvsoe/yOMsJBhBDt5Ou1HWdjqiGY28G6saIhzMii5TCwsvnvJ2aVrLjqNpgxdxV63zo0wFhyEa9+hJmfdTcetuY5st6rbT9zbRy/oea34GndKuYYBKpSi+hSME42x7R9HnOGizbejDeKnCZf0MDEk+whE7S2FCCcM7GouHlDLnalNle4Th/3OTBcoI2y53igFvOO8t2eUdaKOjOeF+BDJrwh4s+MArtXDA/xjyJtyVEvkqubwG/spqH64PMeROizJWi0vF1Dhm7MF6/SP5TH5FaTW1Jz0KGXqBCjmbp5QqAGBbQKcHYnG+VgGFA58ZKT1dK26w9pNd3lqT1605HgABqXAShmBn2DHNX34Vm3EsL0B9q+gjK5oWWPvH8zmuu8khKrGm5Dm8IbHMlHaLLsVbLSfPrjPDzHvK/Ep9TLCNqaD1x2/Gtw5gBv6/FDHWRGND0YkN/NnK3xz3grA0IMTxaHzw5hq0FocXcupMIBmYhRJzdleT4/kTGAuj587D+StrpwHnIf1mYonMyZUhwYF1QC9MIuxTWgfMHY6XMko0Brt7Tum/1VlYOEJvfj4jNDSNcI0yguMkfXMSDCaG8HfUn4mxoDekZHw4tGl16ZgpuQVLaKlSkuPj8vZVovqgdvjjn5F2DDeAxJf31HKwhY=
+    - secure: bM54YNCvtGybkxKmVSzq3ufdH75JjCJBwmpyn2BSmH2MQyjSfGc7o/Mux2rZHTpyQ40uWza23JpSvBXOBDmGgCCJYQ0UNYW5YpIcb/vBaufmKI/PCq89E5hoDAGE8H3+c0Qq1pnHIlJXGvGEBkBhdT5gqhuvxk2S/34Jjpbpu/Jt4pcrLaKXZFhI2COUnlN3KiXER9Zbixlg46ZbflnP4Ao0suRciRE4pkWvW2jNiguGbdMdWdveIy3yI0+6NsUHhUU0riStY2Z3Mv0eumC3AurwwN/1AdJ/OvNMuQITUJAH5hYisDVGna86Fqc80mP3xMvGvNhhYgXQuO3LxVKsCyG7wPARoNf6swJ3d/J91ELNRVAVKSV5n2P4M7alRoUDZgH3yjdp8UlZ6Fjjw/YBcHVq0/Yk+wJxgqosFW+NV6RfALfW42wb1xxmUweV2AW4vFN/uRZSNDImH49jZV6WrHs1s4ljBrFSUp8DoLPobPWBe9hZ5crLe4QogW5xFgel59nhXDuFJZpRTv8HOv6X9VfKdgVwi7gdDiu61pNeoWgI1awEfscnv6+m1qGTyWfb6qdZwnagYYunp/u/QTc6MACSp3bo23Wkw9CO6Wi611e3rM5QCCpaYdEozkRRBDTayrNxS0bCQOAJeowz661QqxUiJygtmhaa0kkA9XL7k1Q=
+    - secure: NvApT/EGqBQzistatGsu5t7HkE7i0cIasksdPdW/6jJWuiVxghuz+Q4cvMv2HYLnDI9XyxYdjQG0Gj4ISYYTnBimiyf7Hq3bFSbTIeyFsI8URfGykmHeCbBxI47a3lFF75WPjpWmgHWjeS+nEccDE4Mq9E5kSs+psavprH+HhsMSDYZOM/WUuqkL2rZQ3za1OyF8VL+ABiRsVwz0GCLxwUT3rCDo1+KY/OsT9q92C3SYpVC35C1B/QjugkdbXCOj/PMQjuSXnqwevioh1NqPtbCDQFmTumgriHyQ/EIvCF83wp/QE9eWL4NELVGI/6fM1uZzYTxTYlTQvtab2490Gagg/TIfhRIDjkYGGdre1aE8ZyB0WF714pvPQb/m69jm/5E/4r3QVaHyXpKwWfHOV6PXvrxwRDNT4ozOqtCk8fsaY4bE4DeL1RwnaZwTNzV5WjiZT94ycvzUCyDWLXpef+NpEiAQpC+3l4sNbEGAocyRZv3OAtok1gQbjv3+XE6cVEHqWszwzZG5iSt2DwU0ivo2i23PJpafRDdQ3gv8aH88Lcee/QgBFJQMTXbGo2IQSiR0jO63KdcQ5hE//1Sx6K3nHtl4IIZSRurtV72MdogU+PavQUf4oWXOSKxucpWRQzrAWELZSaaIi1KWH3NQU6oW0kXSciYUYeGlGLd9svM=
+    - secure: IIZA3qPPZvzqJYwRsys1pqaDXOujV6lBWu03yQ8FhqW564YkPrYedyidp2wO+g/HrrkIAIDiF0e84j+eMTFMBPPGa4Zuwrvm60zJQ5pqM3Qe9w3ywhAL8y/bo9fseKkZ9lnGUn2lsx7fxl1qAD/k59RYkvGG2gkyWYjt6h+9E2joy+Yr5DqaZj95232k2RPL+UR4VXkrD27IclBMQj8U4oQood6Kj8UPDehOYuMTlxBarIK91NxgGFst0+wu8CAxweYHCLLSzLIyAliJSbogQbXrIeYiBouUOC0G/V9O6Oy9e53cmgTwZkc0tAQXc5xpnfIuvK3DLInlDaqOHETDskknjrYE/eVDGZOKRp3nHEXnbRF/2n4wwXyiK+4ybqAiwhLrRiDb9sXQKc639ydktopZdVhOhzNvc9IKRkgr2Umau4jEt2tkeaO2QIcPgJ3dTNJF+ZbaIdlfFm/ifXCu2XVkV0vibx9pPTta3dkiSyIM2ezOnyQCFUHi2ibJLnruWMU5uxxnIN8YSD6StU1/HcbBRstW3jjVe6d4JExZlF+4R6zalnNvahDiAz4AJ4fMELj20WLK62E3vvOMfNpxyGGOUZNpDfbMhSO0TWh8Tyj+186OmJSn6SjZCWQzXmE3GbY3JYpvtaMCUcoFJXVyY1fdgvGkRGlEPwl3hZHNOXE=
+    - secure: QvR1xFm904/c0NQi4V+2ZrfA8bxkW0hsnl/rzSK2O8naXs2EAg3cwnEKEkrSv0EAjdNXHRA5NZoL8LtD3sAt8J8GocrHvjfmZcpmnC5sgOXbPUxFOOr9LLDFYNNuPjJ8sfnPBgKtcjRttivvRy2CBQFsbDvmp616YNJaEYl0SfL2cgzDuRI89C5rsak9g+uPoCFGaCRByBnZjwuPypf4C68VCIUWq9VYz7gImHX8JbVt2hFOUPR4sj/vaKjsdr+SFboDsavroIE7BY6v7x5wMZDivrpwOFlJzlOgrd4CfuaCuBdk1uhNexUSSIefK8L5DR563W1Ou9g/PeGxNFS9aPKnAMongnKsW93Bo31Yiu2ezfztsqCYF/2h6wsaNpyH+owBNUat+Z8SG4Jg1g29DKQGVQ7oOAsYgyUS6tDVCyDk36qIwxYud4LmB8nZe129zhqcJ5Q/d5AF689PMakKbBlN268MT/o5wOXJ1zhT0Kh/wmuvuppjSshD2yPpYGsJG7IABJYTX4XE2UHJ2U69yZVu0EBpmqACvJbOWFKSDDXd2HAi2ZH923muCBZMTM1mXpOkY8SOigWGcaGFWCQV3RKyAQTlVz/suONpWifo6E7waByL1ySkGHwpHA30xD2J67obCWuST2wBhLZ7fHZNZsQ4PV5j7d+8JFAozV6it8M=
+    - secure: R6E6nJ7GHBSEddV3hRRrutB+wl7GXeSStUak3bsJ8MxMimRo/DiYc7qbS28cZhIWjaj3hDM5+a4uyFFAh+XcAhcKBqnQampim5G23LdJf62Mulrz+KXske0jUPIg9b5pNWtKaW/dV2gqKkTC4mWoyEWfMLiWaduVQF2ZgABJvECZo0h+NtIpFNPRxId8Rmuw3ywEsAhvWRfu2tVfhJhvbI4Bz0Qraj0iguh0GxVYzJD3gWKMFtGkHgTQZj+a5l+Gc4NTcEtDQBRiQ00uTF0YSQEeTEjhykFG4723Y5bUij1ksnrx85n/2acYyiqZiA6eHbasNgebZEad8m0yzysYGBaKQRMVI8HskDUN0XMpAISUjrsWNPIONqQF3ZmLXtgw9ZAN4EvSIOO64KzhuSJ+tj0O0Teo3jouJyJ9h4t4JF7ZOqU4QqOdaEEfcGqL/PB1Ftk09QuYbbefGD+lWJ9/Ib7p15+Ra5N2+X3/dQzBnjjBiK6JSWhhEDB7bIrMK9PkfufBHgVEM1/4q6zfHDkV6pLXm3i7dvmVdSE47nS0d8tb/SRad4dB5UhBuWckNop8WSA9qEEuQdpGiKqlYSuOkeYruGYKQsXmKfCvitRaiptIPeumuLXNqO7UlROzBL7sWS3MwjTZJhaH/vjWbrGGPN18yGppK2XdPnyVQ0r1Bxw=
+    - secure: W6RoN3MjVLZEetNhCoPDGErLQouhSW76hubAW6svJ2WN0783iipKIP0Yb79fe4vsuHOYPGQC0qD4l98ySmWbIZZ2U796HUg3z5tzCZqUzrk4/RmoaWWVWvPFmzg65CKCDfZ0wlR2LArfPJX6rmDPTS/BY8CV2NzWDJLOarEohG4BnuNiQd506EKLM7rjIM7dsyGuZOu3ohY+mfayaLC7njfsleefMjw24ZmXUHmK6N4trum38jlfAJh7r0fpZjmSgnzw1qupsOgZLqepCDvxDbaYgE5fVhrHWs3QM+elPtGO+puCLPiE2Nb4jrwhknpGbLcccZmWYtmMwiBsz94c8kNEV6hf3YlxBfqYJW+MAXDHXGFNZahyS9NAKqBqlvOnaCkSu6HE4u/n4SNt1fWeCZWPVRx/MSBLb1PAz1v738mBDWuQEvTrO0bkI8FMf54HMloHWiyJ0QaNpc/IRsQ8Qv7n/R8dlk27P74ZfLtib4nojoBs5T/PWnOppKYsvN1cjTgu7QgeQKQuKslazujjs+4ME12cM82Ez9jnCGsnopS09bZ3D0QNrG/InxXvEZVFqGSFItROvV+BQwJcTfRx8Ciwwx6IeXuwLlpJTs0BpM3YCfg9/kuMc4AgVEE0j8QrFawA6hfvIF2Vtfcrd1zNhrYTnKEmc+Nke/SZ4/CIN/c=
+    - secure: ml64zokf5mvh2dwgXguvFB3A83sSJpQas0Jg87XyJbmXGrWUC7hiVFYyCSoBBHyoDbgvLkoJnRaB3HcgWOQc+ea/EDf07bvMPHmg7+TuyGwzTStGjUn+W8dtOPaEU+qPwgcAj1CiGKds6m7RsXVkMVSi73pbcFsq6gBr5K1b1s+Nv+nHATBAUattLesfxjYiTYwIwZKFHtCFfhQ11owuACsdfNtw4BmPocf0SzncaWl7uc2A/WhrBC9qYSwCJK2fHE4ohaXnaGiGdcOoXtbEBXkNl3BYfc5pgiss/Wj6rh5zaJIbD80745jirKgbclJRGjo3EbDg4iHtjzzzrETEdTmyvC2OJZ2h3GIgA71HlRIoZ/gxNaWG7fZw1lzyno0g1pu33Qge56O1GaCHEmpwUaNDxe2zpd8q9nPxmjU9ATaO8nAX8lzV73VKYeoy28ZWbdqH2pNM+x97tEbta2T5Lls0ZKzoe9thhK6MFmRd70xjwcVLuujEjKzCtXP4jWDB8/SDRbykHnIi+N0dBXyKeBJ9PLx/xxV+NofX6Gzs2QS/mOLhnNcF8htZH0rqgiYpGcqHPhCumQvHa7ZPT82lsL9xhSZ90XUR22dq/tVZVsiNH5uiWHvHplGw86j/NQ0oJ815gh7BhUDLD1odVxJa8lAX4hl176r9Hb9E7paAANM=
+    - secure: ZgmaDmCO5w2FCRkJrN2jWvuHpoL2wGf/GFAtbZxgPW0/EJD7MRY05BfSVpZW9TDv0Ouqc9m5UeBZsv5sp/hMqBNJgo1f+xUk24Sa1SHJjGSerV5bxNCYaAadOFo18H+Q/6ISQDEl5JV0GqK7Ejy1S9voZPYSAEih1Ply4hGF515Eb4iWCRgqZ/u8tFu8Pfclf0nYRzjXUQW1nLeKWuK34XgEJENQO5yhiifD9aNN5I9YhHyrgIx2E0jBCTE8JtXaudxZFLlGfluspWtvl62bzYhsJ3VReL/Yxv6t9KfP6a1PXP+So0LXhumGOOhDNkFJT7CSZvLumlC+RluR0l0HWqjf7EBm79OfLnB/G7o1a9CLjB1+6RtH4XH0Eg+oaMeL+VeULUNeHf0hxQRK5X4WmuH9r3hPNR6iSLCtsta/QvnpLdFdTzfUdOo9NXhOSLpxfMZeJHEeSckK+MgmAiNwNjiHaIrZwcG/I8bFQE0ianeMoy7g82QQa+TFlRDTqrv93FDXK3Nps8k8h3fY3WUf5mYPu7+b+ke+bCpJjsrEZRSexPS4AzJdopr5rdPobjhlZ/CpSG3kzmozXTu7qqloeeeRXWKBY1lNERLOQLxas70U/1jbygQ2UPtUSszYmiJkiJPOvy221Wr2xGaKP5fgaSqEA7+X34hoPK4jXOgAz9U=
+    - secure: PRIcEIpN6Q0NLRhmy6uUqwcJ4gvBP9XHnOkvhQJxMcZsPuCeTNEPgwsuQD2xAfoL8gLNj1RrxvxpaHSQFxlgRXeMKk1iy9ZYcgGS5VBz0JL8Z9ikEybRsrQKfiui6aSBtbrWJ6dfnFub5oacvbFDQeGo85rJTx+rx4tLi6byx9B+/HtdZxnlPMZerBeORa+2riDVFSlaM658g/QkW6elbiYjmoxDRGnr4gbfEFeocqUv35Tbu4VJ5dxX7Gco1/OLTdE1HqQfdyDhNlYNbdL8tDAvFmHcBnqgFbLL9HIMz2r2AJcMJp6TmTiJ+eUfR+/7vuwVD+iIZoUW72NypsqqzIsFWkvVjpamFTFCN6JCGlgpfr8yN0KzIdj1HutoMxL3fVDC6VgAb6EaH3IxNai4lYn381N2jJn6jjS46h/oJpTeuLq5RfARWldMVy+2RBr0+WY0kRU72cS16AAp8vC57TMQvRTVupWQXwI2yHoH5lOLdzH81BHGpefeqH9xqFWub+RZYk68MHms5BgMByPj8lBFDs4tfISFPZ4uJmmRgg4JqLWwQCXuwyISb6KKgv+sP6KZOc1hG09Xo4TudKxLNz8DGfH0c4EewzCecZ7iHdKHiPkplWXYCq6c/t6O1QXu9WIaIFbFAexhaNRs7zq91k6JY53Omhews5AAGFGn2rI=
+matrix:
+  include:
+    - language: android
+      jdk: oraclejdk8
+      sudo: required
+      dist: precise
+      before_cache:
+        - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+      addons:
+        apt:
+          packages:
+            - librsvg2-bin
+            - librsvg2-dev
+      android:
+        components:
+          - platform-tools
+          - tools
+          - build-tools-27.0.3
+          - android-26
+          - ndk-bundle
+          - extra-android-m2repository
+          - extra-google-google_play_services
+          - extra-google-m2repository
+          - add-on
+          - extra
+      before_install:
+        - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+        - rvm install 2.5.3
+        - rvm use --default 2.5.3
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+        - export PATH="/home/travis/.yarn/bin:$PATH"
+        - chmod +x ./android/gradlew
+        - sudo sysctl fs.inotify.max_user_watches=524288
+        - sudo sysctl -p
+        - openssl aes-256-cbc -K $encrypted_aab2467d5b7c_key -iv $encrypted_aab2467d5b7c_iv -in ./android/app/release-key.keystore.enc -out ./android/app/release-key.keystore -d
+        - if [ ! -f ./android/app/release-key.keystore ]; then echo "KEYSTORE NOT FOUND" && exit; fi
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - bundle exec fastlane travis
+        - bundle exec fastlane android stage badge:true clean:false install:false forRelease:true injectSentry:true simulator:false
+      after_failure:
+        - bundle exec fastlane fasttest
+        - ruby -ropen-uri -e 'eval open("https://git.io/vQhWq").read'
+      deploy:
+        provider: s3
+        secret_access_key:
+          secure: oVbLFsTr2NsH1FcjOVKeIWn8U3lBWJtJ2FqeGe/f5oF+64QV5rNUAdwAPg0tlYoHd3c39txa9x1I4LWTrL01wZsS5U1I2TIaMkebROqnNr97PnBSKg95mib1CmhEcNMPpy0XmVIMtvPDVNJBU/UWVle02s+sWo280CzcDZ/g60oe4hdtvqFL1Ovt7uR327qAMjlIViy4QvgvA6ORyEjqpSrisICepPZ2C38CG3rj1S5E5xGsUzvzBMz4JlhdxLdPqlzDD8ZOX1Jn8kFxR3K8zHVnLKeeOow/ItVSFqKE1aElX/Z/D/Sw9iRvx6MIKuPcHERw9E4VvCVwyzeR7q4jC2RFZrUQaqb1NHhRSdr6yDrBVcMz6Zgi0HYUQAFfEKx8JjFWi+1VNRgHXhV77AVkly3ZaAnd1UvB46WZrss8P//bI6cRF2FjIQAQtHeItI+9Hm4EjCatnpcSHcWF6ytw2D87Ste2dk50ODgQMEVckmDQ90VsYHQ9CgTitZ0rXoCPBqzykqE8t4iTk01XkoAheQP3DSqvpMxjMks/kTvJggZ8chVY/sk6KG2C00lXLHZnA4qJXoE3tcX4C+cpXeMO0B2KsNayZLOZGcu9EzGHlhIbRxB6psxy7bnsYX15YGOfsAQx28aIGvtHkRYm0c5lJo3HFfhummprW0gLDfkgwjw=
+        bucket: bmars-resources
+        local-dir: dist
+        upload-dir: warriorbeat/dist/$TRAVIS_BUILD_ID
+        acl: private
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - language: objective-c
+      os: osx
+      osx_image: xcode10.1
+      node_js: false
+      sudo: required
+      addons:
+        homebrew:
+          packages:
+            - imagemagick
+            - librsvg
+            - coreutils
+            - gnu-sed
+      before_install:
+        - echo -e "machine github.com\n  login $CI_USER_TOKEN" >> ~/.netrc
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - fastlane travis
+        - fastlane ios stage clean:false badge:true install:false forRelease:true simulator:false injectSentry:true
+      after_failure:
+        - fastlane fasttest
+      deploy:
+        provider: s3
+        secret_access_key:
+          secure: oVbLFsTr2NsH1FcjOVKeIWn8U3lBWJtJ2FqeGe/f5oF+64QV5rNUAdwAPg0tlYoHd3c39txa9x1I4LWTrL01wZsS5U1I2TIaMkebROqnNr97PnBSKg95mib1CmhEcNMPpy0XmVIMtvPDVNJBU/UWVle02s+sWo280CzcDZ/g60oe4hdtvqFL1Ovt7uR327qAMjlIViy4QvgvA6ORyEjqpSrisICepPZ2C38CG3rj1S5E5xGsUzvzBMz4JlhdxLdPqlzDD8ZOX1Jn8kFxR3K8zHVnLKeeOow/ItVSFqKE1aElX/Z/D/Sw9iRvx6MIKuPcHERw9E4VvCVwyzeR7q4jC2RFZrUQaqb1NHhRSdr6yDrBVcMz6Zgi0HYUQAFfEKx8JjFWi+1VNRgHXhV77AVkly3ZaAnd1UvB46WZrss8P//bI6cRF2FjIQAQtHeItI+9Hm4EjCatnpcSHcWF6ytw2D87Ste2dk50ODgQMEVckmDQ90VsYHQ9CgTitZ0rXoCPBqzykqE8t4iTk01XkoAheQP3DSqvpMxjMks/kTvJggZ8chVY/sk6KG2C00lXLHZnA4qJXoE3tcX4C+cpXeMO0B2KsNayZLOZGcu9EzGHlhIbRxB6psxy7bnsYX15YGOfsAQx28aIGvtHkRYm0c5lJo3HFfhummprW0gLDfkgwjw=
+        bucket: bmars-resources
+        local-dir: dist
+        upload-dir: warriorbeat/dist/$TRAVIS_BUILD_ID
+        acl: private
+        skip_cleanup: true
+        on:
+          tags: true
+
+    - stage: deploy
+      if: tag =~ ^v
+      before_install:
+        - export PATH=$HOME/.local/bin:$PATH
+        - rvm install 2.5.3
+        - rvm use --default 2.5.3
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+        - export PATH="/home/travis/.yarn/bin:$PATH"
+        - pip install --user awscli
+        - mkdir -p ./dist
+        - aws s3 cp --recursive s3://bmars-resources/warriorbeat/dist/$TRAVIS_BUILD_ID ./dist
+
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - fastlane travis
+        - fastlane deploy
+      after_success:
+        - aws s3 rm --recursive s3://bmars-resources/warriorbeat/dist/$TRAVIS_BUILD_ID
