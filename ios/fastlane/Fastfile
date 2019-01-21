@@ -317,15 +317,15 @@ platform :ios do
     Releasing IPA on AppCenter...
     IPA => #{parsed_options[:ipa]}
     dSYM => #{parsed_options[:dsym]}
+    Name => #{APPCENTER_APP_NAME}
     ")
-    appcenter_upload(
-      should_clip: false,
-      release_notes: getReleaseNotes,
-      app_name: APPCENTER_APP_NAME,
-      ipa: parsed_options[:ipa],
-      dsym: parsed_options[:dsym]
-    )
-    injectAppcenter(clean:true)
+    # appcenter_upload(
+    #   should_clip: false,
+    #   release_notes: getReleaseNotes,
+    #   app_name: APPCENTER_APP_NAME,
+    #   ipa: parsed_options[:ipa],
+    #   dsym: parsed_options[:dsym]
+    # )
   end
 end
 

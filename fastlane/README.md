@@ -30,6 +30,11 @@ Finalize release on Sentry
 fastlane travis
 ```
 Setup Travis Build
+### deploy
+```
+fastlane deploy
+```
+Deploy Release
 ### cleanup
 ```
 fastlane cleanup

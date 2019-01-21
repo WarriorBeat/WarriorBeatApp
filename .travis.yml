@@ -80,8 +80,9 @@ matrix:
           secure: oVbLFsTr2NsH1FcjOVKeIWn8U3lBWJtJ2FqeGe/f5oF+64QV5rNUAdwAPg0tlYoHd3c39txa9x1I4LWTrL01wZsS5U1I2TIaMkebROqnNr97PnBSKg95mib1CmhEcNMPpy0XmVIMtvPDVNJBU/UWVle02s+sWo280CzcDZ/g60oe4hdtvqFL1Ovt7uR327qAMjlIViy4QvgvA6ORyEjqpSrisICepPZ2C38CG3rj1S5E5xGsUzvzBMz4JlhdxLdPqlzDD8ZOX1Jn8kFxR3K8zHVnLKeeOow/ItVSFqKE1aElX/Z/D/Sw9iRvx6MIKuPcHERw9E4VvCVwyzeR7q4jC2RFZrUQaqb1NHhRSdr6yDrBVcMz6Zgi0HYUQAFfEKx8JjFWi+1VNRgHXhV77AVkly3ZaAnd1UvB46WZrss8P//bI6cRF2FjIQAQtHeItI+9Hm4EjCatnpcSHcWF6ytw2D87Ste2dk50ODgQMEVckmDQ90VsYHQ9CgTitZ0rXoCPBqzykqE8t4iTk01XkoAheQP3DSqvpMxjMks/kTvJggZ8chVY/sk6KG2C00lXLHZnA4qJXoE3tcX4C+cpXeMO0B2KsNayZLOZGcu9EzGHlhIbRxB6psxy7bnsYX15YGOfsAQx28aIGvtHkRYm0c5lJo3HFfhummprW0gLDfkgwjw=
         bucket: bmars-resources
         local-dir: dist
-        upload-dir: warriorbeat
+        upload-dir: warriorbeat/dist/$TRAVIS_BUILD_ID
         acl: private
+        skip_cleanup: true
         on:
           repo: WarriorBeat/WarriorBeatApp
           branch: build/deploy
@@ -110,7 +111,7 @@ matrix:
         - travis_retry bundle install
       script:
         - fastlane travis
-        - fastlane ios stage clean:false badge:true install:false release:false forRelease:true simulator:false injectSentry:true
+        - fastlane ios stage clean:false badge:true install:false forRelease:true simulator:false injectSentry:true
       after_failure:
         - fastlane fasttest
       deploy:
@@ -119,8 +120,31 @@ matrix:
           secure: oVbLFsTr2NsH1FcjOVKeIWn8U3lBWJtJ2FqeGe/f5oF+64QV5rNUAdwAPg0tlYoHd3c39txa9x1I4LWTrL01wZsS5U1I2TIaMkebROqnNr97PnBSKg95mib1CmhEcNMPpy0XmVIMtvPDVNJBU/UWVle02s+sWo280CzcDZ/g60oe4hdtvqFL1Ovt7uR327qAMjlIViy4QvgvA6ORyEjqpSrisICepPZ2C38CG3rj1S5E5xGsUzvzBMz4JlhdxLdPqlzDD8ZOX1Jn8kFxR3K8zHVnLKeeOow/ItVSFqKE1aElX/Z/D/Sw9iRvx6MIKuPcHERw9E4VvCVwyzeR7q4jC2RFZrUQaqb1NHhRSdr6yDrBVcMz6Zgi0HYUQAFfEKx8JjFWi+1VNRgHXhV77AVkly3ZaAnd1UvB46WZrss8P//bI6cRF2FjIQAQtHeItI+9Hm4EjCatnpcSHcWF6ytw2D87Ste2dk50ODgQMEVckmDQ90VsYHQ9CgTitZ0rXoCPBqzykqE8t4iTk01XkoAheQP3DSqvpMxjMks/kTvJggZ8chVY/sk6KG2C00lXLHZnA4qJXoE3tcX4C+cpXeMO0B2KsNayZLOZGcu9EzGHlhIbRxB6psxy7bnsYX15YGOfsAQx28aIGvtHkRYm0c5lJo3HFfhummprW0gLDfkgwjw=
         bucket: bmars-resources
         local-dir: dist
-        upload-dir: warriorbeat
+        upload-dir: warriorbeat/dist/$TRAVIS_BUILD_ID
         acl: private
+        skip_cleanup: true
         on:
           repo: WarriorBeat/WarriorBeatApp
           branch: build/deploy
+
+    - stage: deploy
+      before_install:
+        - export PATH=$HOME/.local/bin:$PATH
+        - rvm install 2.5.3
+        - rvm use --default 2.5.3
+        - nvm install $NODE_VERSION
+        - nvm alias default $NODE_VERSION
+        - nvm use $NODE_VERSION
+        - travis_retry npm install --global yarn
+        - pip install --user awscli
+        - mkdir -p ./dist
+        - aws s3 cp --recursive s3://bmars-resources/warriorbeat/dist/$TRAVIS_BUILD_ID ./dist
+
+      install:
+        - travis_retry yarn
+        - travis_retry bundle install
+      script:
+        - fastlane travis
+        - fastlane deploy
+      after_success:
+        - aws s3 rm --recursive s3://bmars-resources/warriorbeat/dist/$TRAVIS_BUILD_ID
