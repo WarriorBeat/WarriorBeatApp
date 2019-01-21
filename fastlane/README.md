@@ -53,7 +53,12 @@ iOS Dev Build
 ```
 fastlane ios stage
 ```
-Stage and Release on App Center
+iOS Staging Build
+### ios release
+```
+fastlane ios release
+```
+Release IPA on App Center
 
 ----
 
@@ -78,6 +83,11 @@ Android Dev Build
 fastlane android stage
 ```
 Stage and Release on App Center
+### android release
+```
+fastlane android release
+```
+Release APK on App Center
 
 ----
 

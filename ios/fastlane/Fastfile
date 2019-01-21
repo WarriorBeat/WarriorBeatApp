@@ -168,7 +168,7 @@ platform :ios do
   end
 
   
-  desc "Stage and Release on App Center"
+  desc "iOS Staging Build"
   lane :stage do |options|
     getEnv('staging')
     parsed_options = {
@@ -202,6 +202,12 @@ platform :ios do
         true,
         ''
       ),
+      :forRelease => handleEnvAndOptions(
+        ENV['FOR_RELEASE'],
+        options[:forRelease],
+        false,
+        false
+      ),
       :release => handleEnvAndOptions(
         ENV['RELEASE'],
         options[:release],
@@ -220,7 +226,7 @@ platform :ios do
     match(type: 'development')
 
     # Inject Appcenter
-    if parsed_options[:release]
+    if parsed_options[:forRelease] || parsed_options[:release] 
       injectAppcenter
     end
 
@@ -243,6 +249,9 @@ platform :ios do
       skip_archive: parsed_options[:simulator] ? true : false,
       skip_package_ipa: parsed_options[:simulator] ? true : false,
     )
+    
+    # Skip Before Now
+    ENV['SKIP_BEFORE'] = 'true'
 
     # Install
     if parsed_options[:install]
@@ -256,20 +265,45 @@ platform :ios do
 
     # Release Appcenter
     if parsed_options[:release]
-      appcenter_upload(
-        should_clip: false,
-        release_notes: getReleaseNotes,
-        app_name: APPCENTER_APP_NAME,
-        ipa: output_ipa,
-        dsym: APPCENTER_DSYM
-      )
-      injectAppcenter(clean:true)
+      release(ipa: output_ipa)
     end
 
     # Cleanup Badges
     cleanup
   end
 
+  desc("Release IPA on App Center")
+  lane :release do |options| 
+    parsed_options = {
+      :ipa => handleEnvAndOptions(
+        ENV['IPA_OUTPUT'],
+        options[:ipa],
+        true,
+        "warriorbeatapp.ipa"
+      ),
+      :dsym => handleEnvAndOptions(
+        ENV["IOS_DSYM_OUTPUT"],
+        options[:dsym],
+        true,
+        APPCENTER_DSYM
+      )
+    }
+    UI.header("iOS Deploy")
+    UI.important("
+    
+    Releasing IPA on AppCenter...
+    IPA => #{parsed_options[:ipa]}
+    dSYM => #{parsed_options[:dsym]}
+    ")
+    appcenter_upload(
+      should_clip: false,
+      release_notes: getReleaseNotes,
+      app_name: APPCENTER_APP_NAME,
+      ipa: parsed_options[:ipa],
+      dsym: parsed_options[:dsym]
+    )
+    injectAppcenter(clean:true)
+  end
 end
 
 desc "Get iOS Fastlane Data"

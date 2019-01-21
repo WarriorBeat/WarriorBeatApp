@@ -223,6 +223,12 @@ platform :android do
         false,
         false
       ),
+      :forRelease => handleEnvAndOptions(
+        ENV['FOR_RELEASE'],
+        options[:forRelease],
+        false,
+        false
+      ),
       :cleanBuilds => handleEnvAndOptions(
         ENV['CLEAN_BUILDS'],
         options[:cleanBuilds],
@@ -249,26 +255,23 @@ platform :android do
     end
 
     # Setup Release
-    if parsed_options[:release]
+    if parsed_options[:forRelease] || parsed_options[:release]
       injectAppcenter
     end
 
     # Build
     gradle(task: 'assemble', build_type: 'staging', properties: GRADLE_PROPERTIES, print_command: false)
 
+    # Skip Before Now
+    ENV['SKIP_BEFORE'] = 'true'
+
     # Execute Release
     if parsed_options[:release]
-      appcenter_upload(
-        apk: ENV['GRADLE_APK_OUTPUT_PATH'],
-        should_clip: false,
-        release_notes: getReleaseNotes
-      )
-      injectAppcenter(clean:true)
+      release(apk: ENV['GRADLE_APK_OUTPUT_PATH'])
     end
 
     if parsed_options[:install]
       install(
-        skip_before: true,
         apk: STAGE_PRODUCTS_PATH,
         suffix: AND_STAGE_BUNDLE_SUFFIX
       )
@@ -276,6 +279,29 @@ platform :android do
 
     # Cleanup Badges
     cleanup
+  end
+
+  desc("Release APK on App Center")
+  lane :release do |options| 
+    parsed_options = {
+      :apk => handleEnvAndOptions(
+        ENV['GRADLE_APK_OUTPUT_PATH'],
+        options[:apk],
+        true,
+      )
+    }
+    UI.header("Android Deploy")
+    UI.important("
+    
+    Releasing APK on AppCenter...
+    APK => #{parsed_options[:apk]}
+    ")
+    appcenter_upload(
+      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+      should_clip: false,
+      release_notes: getReleaseNotes
+    )
+    injectAppcenter(clean:true)
   end
 
 end
