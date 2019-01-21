@@ -316,11 +316,11 @@ platform :android do
     Releasing APK on AppCenter...
     APK => #{parsed_options[:apk]}
     ")
-    # appcenter_upload(
-    #   apk: ENV['GRADLE_APK_OUTPUT_PATH'],
-    #   should_clip: false,
-    #   release_notes: getReleaseNotes
-    # )
+    appcenter_upload(
+      apk: ENV['GRADLE_APK_OUTPUT_PATH'],
+      should_clip: false,
+      release_notes: getReleaseNotes
+    )
   end
 
 end

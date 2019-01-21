@@ -85,7 +85,7 @@ matrix:
         skip_cleanup: true
         on:
           repo: WarriorBeat/WarriorBeatApp
-          branch: build/deploy
+          branch: master
     - language: objective-c
       os: osx
       osx_image: xcode10.1
@@ -126,9 +126,10 @@ matrix:
         skip_cleanup: true
         on:
           repo: WarriorBeat/WarriorBeatApp
-          branch: build/deploy
+          branch: master
 
     - stage: deploy
+      if: branch = master
       before_install:
         - export PATH=$HOME/.local/bin:$PATH
         - rvm install 2.5.3
@@ -137,6 +138,10 @@ matrix:
         - nvm alias default $NODE_VERSION
         - nvm use $NODE_VERSION
         - travis_retry npm install --global yarn
+        - yarn global add react-native-cli
+        - yarn global add @aws-amplify/cli
+        - yarn global add @aws-amplify/cli@multienv
+        - export PATH="/home/travis/.yarn/bin:$PATH"
         - pip install --user awscli
         - mkdir -p ./dist
         - aws s3 cp --recursive s3://bmars-resources/warriorbeat/dist/$TRAVIS_BUILD_ID ./dist
