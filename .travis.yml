@@ -1,3 +1,4 @@
+if: branch =~ /(master|develop)/ OR tag = true
 cache:
   yarn: true
   directories:
@@ -84,8 +85,8 @@ matrix:
         acl: private
         skip_cleanup: true
         on:
-          repo: WarriorBeat/WarriorBeatApp
-          branch: master
+          tags: true
+
     - language: objective-c
       os: osx
       osx_image: xcode10.1
@@ -125,11 +126,10 @@ matrix:
         acl: private
         skip_cleanup: true
         on:
-          repo: WarriorBeat/WarriorBeatApp
-          branch: master
+          tags: true
 
     - stage: deploy
-      if: branch = master
+      if: tag =~ ^v
       before_install:
         - export PATH=$HOME/.local/bin:$PATH
         - rvm install 2.5.3

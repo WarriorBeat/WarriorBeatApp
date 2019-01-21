@@ -162,8 +162,7 @@ lane :sentry do |options|
     next
   end
   sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
-  UI.header("SENTRY RAN")
-  # sh("#{SENTRY_SH} release #{sentry_id}")
+  sh("#{SENTRY_SH} release #{sentry_id}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
