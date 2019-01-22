@@ -53,6 +53,7 @@
     "@babel/helpers": "^7.1.5",
     "@babel/preset-flow": "^7.0.0",
     "@metahub/cz-conventional-commit": "^3.0.2",
+    "@sentry/cli": "^1.37.4",
     "appcenter": "1.9.0",
     "appcenter-analytics": "1.9.0",
     "appcenter-crashes": "1.9.0",
