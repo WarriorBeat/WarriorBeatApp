@@ -1,9 +1,29 @@
+## [0.13.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.3...v0.13.4) (2019-01-24)
+
+
+### 🐛 Bug Fixes
+
+* **aws:** Fixed Amplify MultiEnv Setup ([61177ed](https://github.com/WarriorBeat/WarriorBeatApp/commit/61177ed))
+* **sentry:** Added missing [@sentry](https://github.com/sentry)/cli dev dependency ([50c03e1](https://github.com/WarriorBeat/WarriorBeatApp/commit/50c03e1))
+
+
+### 🛠 Builds
+
+* **iOS:** Fixed Dev Build Status Bar Issue and Derived Data Path ([93ac908](https://github.com/WarriorBeat/WarriorBeatApp/commit/93ac908))
+
+
+
 ## [0.13.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.2...v0.13.3) (2019-01-21)
 
 
 ### 🐛 Bug Fixes
 
 * **travis:** Hotfix Android Deploy ([3e8dedd](https://github.com/WarriorBeat/WarriorBeatApp/commit/3e8dedd))
+
+
+### ♻️ Chores
+
+* **release:** 0.13.3 ([0f84f99](https://github.com/WarriorBeat/WarriorBeatApp/commit/0f84f99))
 
 
 
