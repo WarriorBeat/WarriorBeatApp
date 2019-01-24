@@ -10,7 +10,8 @@
     "commit": "git cz",
     "version": "standard-version --commit-all",
     "postinstall": "react-native-schemes-manager all",
-    "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
+    "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
+    "ios:bundledev": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=true --platform='ios'"
   },
   "dependencies": {
     "@babel/core": "^7.0.0",

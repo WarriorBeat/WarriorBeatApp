@@ -1,3 +1,2 @@
 include_bitcode false
 export_method 'development'
-derived_data_path

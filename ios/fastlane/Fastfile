@@ -137,7 +137,18 @@ platform :ios do
     certificates
     match(type: 'development')
 
+    # Deal with StatusBar Bug
+    set_info_plist_value(
+      path: "#{IOS_PATH}/#{PROJECT_NAME}/Info.plist", 
+      key: "UIViewControllerBasedStatusBarAppearance",
+      value: !parsed_options[:simulator]
+      )
+
     # Build
+    yarn(
+      command: "ios:bundledev",
+      package_path: PACKAGE_JSON
+    )
     output_ipa = gym(
       scheme: DEV_SCHEME,
       configuration: "Debug",
