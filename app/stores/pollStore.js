@@ -7,8 +7,12 @@
 import {
   observable, flow, computed, reaction, when, action,
 } from "mobx"
+import { persist } from "mobx-persist"
+import _ from "lodash"
 
 export class Poll {
+  @persist
+  @observable
   id = null
 
   autoSave = false
@@ -17,9 +21,23 @@ export class Poll {
 
   saveHandler = null
 
+  @persist
+  @observable
+  question = ""
+
+  @persist
+  @observable
+  status = ""
+
+  @persist
+  @observable
+  createDate = ""
+
+  @persist("list")
   @observable
   answers = []
 
+  @persist
   @observable
   totalVotes = 0
 
@@ -29,7 +47,7 @@ export class Poll {
     this.saveHandler = reaction(
       () => this.asJson,
       (json) => {
-        if (this.autoSave) {
+        if (this.autoSave && this.store) {
           this.store.resourceClient.patch(this.id, json)
         }
       },
@@ -42,8 +60,9 @@ export class Poll {
       pollId: this.id,
       question: this.question,
       status: this.status,
-      date: this.date,
+      date: this.createDate,
       answers: this.answers,
+      total_votes: this.totalVotes,
     }
   }
 
@@ -52,7 +71,7 @@ export class Poll {
     this.id = json.pollId
     this.question = json.question
     this.status = json.status
-    this.date = new Date(json.date)
+    this.createDate = new Date(json.date).toISOString()
     this.answers = json.answers
     this.totalVotes = json.total_votes
     this.autoSave = true
@@ -69,16 +88,24 @@ export class Poll {
       return a
     })
   }
+
+  @computed
+  get date() {
+    return new Date(this.createDate)
+  }
 }
 
 export class PollStore {
   resourceClient
 
+  @persist("list", Poll)
   @observable
   polls = []
 
   @observable
   state = "pending"
+
+  rehydrate = null
 
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
@@ -87,7 +114,7 @@ export class PollStore {
     this.loadPolls()
   }
 
-  loadPolls = flow(function* () {
+  fetchPolls = flow(function* () {
     this.state = "pending"
     this.polls = []
     const polls = yield this.resourceClient.fetchAll()
@@ -98,6 +125,45 @@ export class PollStore {
         this.state = "ready"
       },
     )
+  })
+
+  /**
+   * Uses Hydrate Result to populate pollStore
+   * from the cache
+   *
+   * @param {IHydrateResult} hydrate - Hydration Result
+   * @memberof PollStore
+   */
+  popPolls = (hydrate) => {
+    this.state = "pending"
+    const { polls } = hydrate
+    when(
+      () => this.rootStore.authorStore.status === "ready",
+      () => {
+        this.polls = []
+        polls.forEach(p => this.updatePoll(p.asJson))
+        this.state = "ready"
+      },
+    )
+  }
+
+  loadPolls = flow(function* () {
+    this.state = "pending"
+    const hydration = this.rootStore.hydrate("pollStore", this)
+    const { rehydrate } = hydration
+    const cache = yield hydration
+    try {
+      if (cache.polls.length >= 1) {
+        this.popPolls(cache)
+      } else {
+        this.fetchPolls()
+      }
+    } catch (error) {
+      this.fetchPolls()
+    } finally {
+      rehydrate("pollStore", this)
+    }
+    this.state = "ready"
   })
 
   updatePoll(json) {

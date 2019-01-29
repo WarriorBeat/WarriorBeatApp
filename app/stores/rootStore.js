@@ -5,14 +5,19 @@
  */
 
 import API from "api"
+import { AsyncStorage } from "react-native"
+import { create } from "mobx-persist"
 import {
   PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore, UIStore,
 } from "."
 
 export default class RootStore {
   constructor() {
-    this.uiStore = new UIStore(this)
+    this.hydrate = create({
+      storage: AsyncStorage,
+    })
 
+    this.uiStore = new UIStore(this)
     this.userResource = new API("users", "userId")
     this.mediaResource = new API("media", "mediaId")
     this.authorResource = new API("authors", "categoryId")
