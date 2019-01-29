@@ -8,7 +8,6 @@ import {
   observable, flow, computed, reaction, when, action,
 } from "mobx"
 import { persist } from "mobx-persist"
-import _ from "lodash"
 
 export class Poll {
   @persist
