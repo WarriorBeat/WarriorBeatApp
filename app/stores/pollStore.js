@@ -46,7 +46,7 @@ export class Poll {
     this.saveHandler = reaction(
       () => this.asJson,
       (json) => {
-        if (this.autoSave && this.store) {
+        if (this.autoSave) {
           this.store.resourceClient.patch(this.id, json)
         }
       },
@@ -65,8 +65,11 @@ export class Poll {
     }
   }
 
-  updateFromJson(json) {
+  updateFromJson(json, store = null) {
     this.autoSave = false
+    if (store !== null) {
+      this.store = store
+    }
     this.id = json.pollId
     this.question = json.question
     this.status = json.status
@@ -104,8 +107,6 @@ export class PollStore {
   @observable
   state = "pending"
 
-  rehydrate = null
-
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
     this.resourceClient = resourceClient
@@ -117,33 +118,23 @@ export class PollStore {
     this.state = "pending"
     this.polls = []
     const polls = yield this.resourceClient.fetchAll()
-    when(
-      () => this.rootStore.authorStore.status === "ready",
-      () => {
-        polls.forEach(json => this.updatePoll(json))
-        this.state = "ready"
-      },
-    )
+    polls.forEach(json => this.updatePoll(json))
+    return polls
   })
 
   /**
    * Uses Hydrate Result to populate pollStore
    * from the cache
    *
-   * @param {IHydrateResult} hydrate - Hydration Result
+   * @param {object} hydrate - IHydrateResult Object
    * @memberof PollStore
    */
   popPolls = (hydrate) => {
     this.state = "pending"
     const { polls } = hydrate
-    when(
-      () => this.rootStore.authorStore.status === "ready",
-      () => {
-        this.polls = []
-        polls.forEach(p => this.updatePoll(p.asJson))
-        this.state = "ready"
-      },
-    )
+    this.polls = []
+    polls.forEach(p => this.updatePoll(p.asJson))
+    return polls
   }
 
   loadPolls = flow(function* () {
@@ -151,18 +142,24 @@ export class PollStore {
     const hydration = this.rootStore.hydrate("pollStore", this)
     const { rehydrate } = hydration
     const cache = yield hydration
-    try {
-      if (cache.polls.length >= 1) {
-        this.popPolls(cache)
-      } else {
-        this.fetchPolls()
-      }
-    } catch (error) {
-      this.fetchPolls()
-    } finally {
-      rehydrate("pollStore", this)
-    }
-    this.state = "ready"
+    when(
+      () => this.rootStore.authorStore.status === "ready",
+      () => {
+        try {
+          if (cache.polls.length >= 1) {
+            this.popPolls(cache)
+          } else {
+            this.fetchPolls()
+          }
+        } catch (error) {
+          this.fetchPolls()
+          rehydrate("pollStore", this)
+        } finally {
+          console.warn("WOULD HAVE REHYDRATE")
+        }
+        this.state = "ready"
+      },
+    )
   })
 
   updatePoll(json) {
@@ -171,7 +168,7 @@ export class PollStore {
       poll = new Poll(this, json.pollId)
       this.polls.push(poll)
     }
-    poll.updateFromJson(json)
+    poll.updateFromJson(json, this)
   }
 
   resolvePoll(id) {

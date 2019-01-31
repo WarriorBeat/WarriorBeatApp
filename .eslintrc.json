@@ -45,10 +45,11 @@
     "import/resolver": {
       "babel-module": {
         "alias": {
-          "root": "app",
+          "root": "./app",
           "components": "./app/components",
           "actions": "./app/actions",
-          "config": "./app/config"
+          "config": "./app/config",
+          "api": "./app/api"
         }
       }
     }
