@@ -9,20 +9,24 @@ import { View } from "react-native"
 import PropTypes from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { ArticleBlock, PollBlock } from "components/NewsBlock"
+import { compose } from "react-apollo"
 import styles from "./styles"
+import * as GraphQL from "/api/graphql"
 
-@inject("postStore", "pollStore")
+@inject("postStore")
 @observer
 class GenericFeed extends React.Component {
   render() {
     const {
-      categoryId, postStore, pollStore, withPolls,
+      categoryId, postStore, polls, withPolls, loading,
     } = this.props
     const { posts } = postStore
-    const { polls } = pollStore
+    // const { polls } = pollStore
     return (
       <View style={styles.list_container}>
-        {withPolls ? polls.map(p => <PollBlock key={`poll${p.id}`} pollId={p.id} />) : null}
+        {withPolls && !loading
+          ? polls.map(p => <PollBlock key={`poll${p.id}`} pollId={p.id} />)
+          : null}
         {posts.map((p) => {
           if (categoryId) {
             return p.categories.find(cat => cat.id === categoryId) ? (
@@ -51,4 +55,4 @@ GenericFeed.defaultProps = {
   withPolls: false,
 }
 
-export default GenericFeed
+export default compose(GraphQL.operations.FetchPolls)(GenericFeed)
