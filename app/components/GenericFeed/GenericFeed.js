@@ -12,6 +12,7 @@ import { ArticleBlock, PollBlock } from "components/NewsBlock"
 import { compose } from "react-apollo"
 import queries from "graphql/queries"
 import styles from "./styles"
+import * as GraphQL from "/api/graphql"
 
 @inject("postStore")
 @observer
