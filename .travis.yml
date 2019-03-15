@@ -45,6 +45,7 @@ matrix:
           - platform-tools
           - tools
           - build-tools-27.0.3
+          - build-tools-28.0.3
           - android-26
           - ndk-bundle
           - extra-android-m2repository
