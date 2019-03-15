@@ -34,7 +34,7 @@
     "react-native-fast-image": "^5.1.1",
     "react-native-lightbox": "^0.8.0",
     "react-native-linear-gradient": "react-native-community/react-native-linear-gradient",
-    "react-native-navigation": "2.2.0",
+    "react-native-navigation": "2.13.1",
     "react-native-parallax-scroll-view": "^0.21.3",
     "react-native-progress": "^3.5.0",
     "react-native-render-html": "^3.10.0",

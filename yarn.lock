@@ -7730,9 +7730,10 @@ react-native-linear-gradient@react-native-community/react-native-linear-gradient
   version "2.5.3"
   resolved "https://codeload.github.com/react-native-community/react-native-linear-gradient/tar.gz/7c8c71af2f4e26bd59bcd8ffd907f97592781a31"
 
-react-native-navigation@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.2.0.tgz#183eea45975f4a4b9d2ce8a6fef3cc7994f8a86f"
+react-native-navigation@2.13.1:
+  version "2.13.1"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-2.13.1.tgz#1aefe56a8b92541f110120d2aa079c8c0cdc7213"
+  integrity sha512-hKjPxKP3rM2OqZek7JVflol8+btrKaQ6hHXkD43L86n6r+rrTx7g6ltjSCyci6a7p5xHh3q8kI09SmL3ONdWkQ==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"
