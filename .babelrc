@@ -20,10 +20,16 @@
     [
       "module-resolver",
       {
-        "root": ["./app"]
+        "root": [
+          "./app"
+        ]
       }
     ],
-    ["lodash"],
-    ["functional-hmr"]
+    [
+      "lodash"
+    ],
+    [
+      "functional-hmr"
+    ]
   ]
 }
