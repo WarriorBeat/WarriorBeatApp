@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Headless Init of AWS Environment
 
@@ -35,6 +35,9 @@ amplify init \
 
 # Sync Env
 amplify env pull
+
+# Pull Latest Exports File
+curl "$AWS_EXPORTS_URL" -o aws-exports.js
 
 # Return 
 popd

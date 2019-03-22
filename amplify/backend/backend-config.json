@@ -1,8 +1,13 @@
 {
-	"auth": {
-		"WarriorBeatCognito": {
-			"service": "Cognito",
-			"providerPlugin": "awscloudformation"
-		}
-	}
+  "auth": {
+    "WarriorBeatCognito": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "api": {
+    "WarriorBeatAppSync": {
+      "service": "AppSync"
+    }
+  }
 }

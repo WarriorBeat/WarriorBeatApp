@@ -13,6 +13,9 @@
     "categories": {
       "auth": {
         "WarriorBeatCognito": {}
+      },
+      "api": {
+        "WarriorBeatAppSync": {}
       }
     }
   }
