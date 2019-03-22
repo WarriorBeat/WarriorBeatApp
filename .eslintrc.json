@@ -48,7 +48,8 @@
           "root": "app",
           "components": "./app/components",
           "actions": "./app/actions",
-          "config": "./app/config"
+          "config": "./app/config",
+          "graphql": "./app/graphql"
         }
       }
     }

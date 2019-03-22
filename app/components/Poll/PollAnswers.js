@@ -16,7 +16,7 @@ const AnswerItem = (props) => {
   const {
     answerObj, isActive, onPress, animVal,
   } = props
-  const { answerId, answer } = answerObj
+  const { id, text } = answerObj
   const buttonProps = isActive ? polls.activeButton : polls.button
   const textColor = isActive ? "white" : "primaryDark"
   const translateY = animVal.interpolate({
@@ -26,10 +26,10 @@ const AnswerItem = (props) => {
   return (
     <Animated.View style={{ opacity: animVal, transform: [{ translateY }] }}>
       <Button
-        onPress={() => onPress(answerId)}
+        onPress={() => onPress(id)}
         title={(
           <Text Type="titlexsm" Color={textColor} Weight="semibold">
-            {answer}
+            {text}
           </Text>
         )}
         {...buttonProps}
@@ -42,20 +42,20 @@ const AnswerItem = (props) => {
 class PollAnswers extends React.Component {
   constructor(props) {
     super(props)
-    const { poll } = this.props
+    const { pollOptions } = this.props
     this.animatedAnswers = []
-    poll.answers.forEach((p, i) => {
+    pollOptions.forEach((p, i) => {
       this.animatedAnswers[i] = new Animated.Value(0)
     })
   }
 
   componentDidMount() {
-    const { poll } = this.props
-    this.animate(poll)
+    const { pollOptions } = this.props
+    this.animate(pollOptions)
   }
 
-  animate(poll, toVal = 1, callback) {
-    const animations = poll.answers.map((p, i) => Animated.timing(this.animatedAnswers[i], {
+  animate(pollOptions, toVal = 1, callback) {
+    const animations = pollOptions.map((p, i) => Animated.timing(this.animatedAnswers[i], {
       toValue: toVal,
       duration: 550,
       useNativeDriver: true,
@@ -65,14 +65,14 @@ class PollAnswers extends React.Component {
   }
 
   render() {
-    const { poll, onPress, active } = this.props
+    const { pollOptions, onPress, active } = this.props
     return (
       <View style={styles.answerContainer}>
-        {poll.answers.map((a, i) => (
+        {pollOptions.map((a, i) => (
           <AnswerItem
             onPress={onPress}
             answerObj={a}
-            isActive={a.answerId === active}
+            isActive={a.id === active}
             animVal={this.animatedAnswers[i]}
           />
         ))}

@@ -35,13 +35,13 @@ function registerScreens() {
   )
   Navigation.registerComponentWithRedux(
     "Post.Article",
-    () => require("components/Post").Article,
+    () => ApolloProviderHOC(require("components/Post").Article),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "Post.Poll",
-    () => require("components/Poll").default,
+    () => ApolloProviderHOC(require("components/Poll").default),
     Provider,
     store,
   )

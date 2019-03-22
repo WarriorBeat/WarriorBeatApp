@@ -12,13 +12,15 @@ import { PropTypes } from "prop-types"
 import Text from "components/Text"
 import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { Circle as CircleProgress } from "react-native-progress"
+import queries from "graphql/queries"
+import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 
 const ResultItem = (props) => {
   const {
     answerObj, totalVotes, didVote, animVal,
   } = props
-  const { answer, votes } = answerObj
+  const { text, votes } = answerObj
   const votePercent = votes / totalVotes
   const percentProps = didVote ? polls.resultVotedProg : polls.resultProg
   const translateY = animVal.interpolate({
@@ -31,7 +33,7 @@ const ResultItem = (props) => {
     >
       <View style={styles.resultTextContainer}>
         <Text Type="titlesm" Color="primaryDark" Weight="bold">
-          {answer}
+          {text}
         </Text>
         <Text Type="header" Color="black_light" Weight="semibold">
           {`${votes} Votes`}
@@ -50,22 +52,8 @@ const ResultItem = (props) => {
 
 @observer
 class PollResults extends React.Component {
-  constructor(props) {
-    super(props)
-    const { poll } = this.props
-    this.animatedResults = []
-    poll.answers.forEach((p, i) => {
-      this.animatedResults[i] = new Animated.Value(0)
-    })
-  }
-
-  componentDidMount() {
-    const { poll } = this.props
-    this.animate(poll)
-  }
-
   animate(poll, toVal = 1, callback) {
-    const animations = poll.answers.map((p, i) => Animated.timing(this.animatedResults[i], {
+    const animations = poll.options.map((p, i) => Animated.timing(this.animatedResults[i], {
       toValue: toVal,
       duration: 500,
       useNativeDriver: true,
@@ -74,10 +62,28 @@ class PollResults extends React.Component {
     Animated.stagger(200, animations).start(callback)
   }
 
+  getTotalVotes = (options) => {
+    const totalVotes = options.reduce((total, opt) => {
+      let votes = total
+      return (votes += opt.votes)
+    }, 0)
+    return totalVotes
+  }
+
   render() {
-    const { poll, votedOn } = this.props
+    const { poll, loading, votedOn } = this.props
+    if (loading) {
+      return (null)
+    }
+    if (!this.animatedResults) {
+      this.animatedResults = []
+      poll.options.forEach((p, i) => {
+        this.animatedResults[i] = new Animated.Value(0)
+      })
+      this.animate(poll)
+    }
     const AnimatedText = Animated.createAnimatedComponent(Text)
-    const opacity = this.animatedResults[0]
+    const opacity = this.animatedResults ? this.animatedResults[0] : 0
     return (
       <ScrollView
         style={styles.resultContainer}
@@ -87,12 +93,12 @@ class PollResults extends React.Component {
         <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
           Results
         </AnimatedText>
-        {poll.answers.map((a, i) => (
+        {poll.options.map((a, i) => (
           <ResultItem
             answerObj={a}
-            totalVotes={poll.totalVotes}
-            didVote={a.answerId === votedOn}
-            animVal={this.animatedResults[i]}
+            totalVotes={this.getTotalVotes(poll.options)}
+            didVote={a.id === votedOn}
+            animVal={this.animatedResults ? this.animatedResults[i] : 0}
           />
         ))}
       </ScrollView>
@@ -105,4 +111,4 @@ PollResults.propTypes = {
   votedOn: PropTypes.string.isRequired,
 }
 
-export default PollResults
+export default compose(queries.getPoll)(PollResults)
