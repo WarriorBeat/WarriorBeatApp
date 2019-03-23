@@ -122,8 +122,8 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
-        versionCode 27
-        versionName "0.14.0-alpha.1"
+        versionCode 28
+        versionName "0.14.0-alpha.2"
         resValue "string", "build_config_package", "com.warriorbeatapp"
     }
     signingConfigs {
