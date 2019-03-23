@@ -41,6 +41,9 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		2F90964BD21C48C19917F5E0 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50233ABB87154E1DA8C4FC0F /* libRNDeviceInfo.a */; };
 		322030D5DAED482D96378FE8 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 34BD455F9DE842A7838125B5 /* Ionicons.ttf */; };
+		3945F5E16BB856F78F4309B9 /* libPods-warriorbeatapp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2303CEBFFECEDDA97FCF3371 /* libPods-warriorbeatapp-tvOSTests.a */; };
+		4329B90DE2FFE78BFC30E9F8 /* libPods-warriorbeatappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30B512DC1CCE23212BD9A255 /* libPods-warriorbeatappTests.a */; };
+		443DEC2C78D1B35A22981362 /* libPods-warriorbeatapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 012EE807489C7822401F75FC /* libPods-warriorbeatapp.a */; };
 		4C82FA428CCB4D14B64819E5 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E953EE8B799A452289593430 /* FontAwesome5_Solid.ttf */; };
 		4CF67FD6682143E0B3D7D5C2 /* libReactNativeConfig.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF198796D2A453596D81A2D /* libReactNativeConfig.a */; };
 		4DCE2B69DA604E958853941B /* libRNAWSCognito.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A4B0040C14149A0BEAB8D86 /* libRNAWSCognito.a */; };
@@ -58,18 +61,12 @@
 		A076B65473CE46688A26DD86 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4D695F27534103BBF22CB1 /* libz.tbd */; };
 		A26915DC2831433686DDE105 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94894969AAEE47588FC43A9A /* Feather.ttf */; };
 		A801AFED218668520010EDDD /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A801AFC1218668140010EDDD /* libBVLinearGradient.a */; };
-		A839F7522245FD3100BA9C30 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4EA218E8ABF00E562CE /* libAppCenterReactNative.a */; };
-		A839F7532245FD3100BA9C30 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4F0218E8ACE00E562CE /* libAppCenterReactNativeAnalytics.a */; };
-		A839F7542245FD3100BA9C30 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4F6218E8AE600E562CE /* libAppCenterReactNativeCrashes.a */; };
-		A839F7552245FD5800BA9C30 /* AppCenterReactNativeShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC506218E8F5400E562CE /* AppCenterReactNativeShared.framework */; };
-		A839F7562245FD6B00BA9C30 /* AppCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4DD218E8A1300E562CE /* AppCenter.framework */; };
-		A839F7572245FD6B00BA9C30 /* AppCenterAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4DF218E8A2400E562CE /* AppCenterAnalytics.framework */; };
-		A839F7582245FD6B00BA9C30 /* AppCenterCrashes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4E1218E8A3500E562CE /* AppCenterCrashes.framework */; };
-		A839F75D2245FD6B00BA9C30 /* AppCenterDistribute.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A839F75A2245FD6B00BA9C30 /* AppCenterDistribute.framework */; };
-		A839F75E2245FD6B00BA9C30 /* AppCenterReactNativeShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A839F75B2245FD6B00BA9C30 /* AppCenterReactNativeShared.framework */; };
 		A8486F2C21CA08DD00C6E276 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8486EFB21CA08C600C6E276 /* libART.a */; };
 		A8B828D3223B6D080044BFBE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B828D2223B6D080044BFBE /* JavaScriptCore.framework */; };
 		A8BE7BF8213FA80600B5790D /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A8BE7BF5213FA78200B5790D /* libReactNativeNavigation.a */; };
+		A8EF13D322461C130069E418 /* libAppCenterReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4EA218E8ABF00E562CE /* libAppCenterReactNative.a */; };
+		A8EF13D422461C130069E418 /* libAppCenterReactNativeAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4F0218E8ACE00E562CE /* libAppCenterReactNativeAnalytics.a */; };
+		A8EF13D522461C130069E418 /* libAppCenterReactNativeCrashes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A83DC4F6218E8AE600E562CE /* libAppCenterReactNativeCrashes.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		BA4EC2BEEDF243B6B63249C8 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 176BEFDA33DC44E683FA4A17 /* Entypo.ttf */; };
 		BF738FFCAE544419847EC7F7 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6A6B8F0D42C4657B6457B29 /* libRNVectorIcons.a */; };
@@ -77,6 +74,7 @@
 		DBFFD648664B4BBA8189764A /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A57DBF104568450594A520C3 /* libRNDeviceInfo-tvOS.a */; };
 		DEB26D0AF63C4275982AAFAD /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D482EFD21EB4C69AE766FC2 /* AppCenter-Config.plist */; };
 		F9D64297510047F6975446DD /* libRNSentry-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C407660CCC4655B0375537 /* libRNSentry-tvOS.a */; };
+		FD9CBA89ADABA5665E3B477A /* libPods-warriorbeatapp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3F7E44A5ABDAEBCD624F13 /* libPods-warriorbeatapp-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -498,6 +496,7 @@
 		00E356EE1AD99517003FC87E /* warriorbeatappTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = warriorbeatappTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* warriorbeatappTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = warriorbeatappTests.m; sourceTree = "<group>"; };
+		012EE807489C7822401F75FC /* libPods-warriorbeatapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-warriorbeatapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08551BD54F9B41F188B27F64 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		0A4B0040C14149A0BEAB8D86 /* libRNAWSCognito.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNAWSCognito.a; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
@@ -512,49 +511,57 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		176BEFDA33DC44E683FA4A17 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		1BCC69450E3D465AA6DF6A5C /* RNAWSCognito.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNAWSCognito.xcodeproj; path = "../node_modules/amazon-cognito-identity-js/ios/RNAWSCognito.xcodeproj"; sourceTree = "<group>"; };
+		2303CEBFFECEDDA97FCF3371 /* libPods-warriorbeatapp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-warriorbeatapp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		281C05C574EE4B5EA2AABB2C /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		2B7FD0A6F6B4408E84B40DB1 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* warriorbeatapp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "warriorbeatapp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* warriorbeatapp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "warriorbeatapp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30B512DC1CCE23212BD9A255 /* libPods-warriorbeatappTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-warriorbeatappTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32C407660CCC4655B0375537 /* libRNSentry-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSentry-tvOS.a"; sourceTree = "<group>"; };
 		34BD455F9DE842A7838125B5 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		37BF8317E06D41038F6BB80E /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNDeviceInfo.xcodeproj; path = "../node_modules/react-native-device-info/ios/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; };
+		408B4AABCD73C82362D80A40 /* Pods-warriorbeatapp-tvOS.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOS.staging.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOS/Pods-warriorbeatapp-tvOS.staging.xcconfig"; sourceTree = "<group>"; };
+		4AAB31EFD669DFEAC8747788 /* Pods-warriorbeatappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatappTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatappTests/Pods-warriorbeatappTests.debug.xcconfig"; sourceTree = "<group>"; };
 		50233ABB87154E1DA8C4FC0F /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNDeviceInfo.a; sourceTree = "<group>"; };
+		50FFAB827812884B6C2929F8 /* Pods-warriorbeatappTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatappTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatappTests/Pods-warriorbeatappTests.staging.xcconfig"; sourceTree = "<group>"; };
+		537E73A9D27CEE1207E0FAE4 /* Pods-warriorbeatappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatappTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatappTests/Pods-warriorbeatappTests.release.xcconfig"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		62AF205B42494D6B9C7C445B /* libRNSentry.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNSentry.a; sourceTree = "<group>"; };
+		6580CCCC1037ECDAFFBDCCEF /* Pods-warriorbeatapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp/Pods-warriorbeatapp.release.xcconfig"; sourceTree = "<group>"; };
 		6D482EFD21EB4C69AE766FC2 /* AppCenter-Config.plist */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "warriorbeatapp/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		77A6B672294749DAA4442F8C /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		789A806D7B094B6AADE697C8 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
+		8A3F7E44A5ABDAEBCD624F13 /* libPods-warriorbeatapp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-warriorbeatapp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CF198796D2A453596D81A2D /* libReactNativeConfig.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libReactNativeConfig.a; sourceTree = "<group>"; };
 		94894969AAEE47588FC43A9A /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		94ADE11CDCF0778485D488FE /* Pods-warriorbeatapp.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp.staging.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp/Pods-warriorbeatapp.staging.xcconfig"; sourceTree = "<group>"; };
+		95A342A0BEFC057C7635C7CE /* Pods-warriorbeatapp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOSTests/Pods-warriorbeatapp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		9AAF330E68CC4B5DAF327AD2 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		A11C06DA829B4CF99657F7B2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		A263C01ACB2C4E2EA8572308 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		A303E536627C4A96A4A15537 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		A57DBF104568450594A520C3 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; };
 		A801AFBB218668140010EDDD /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BVLinearGradient.xcodeproj; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; };
-		A839F7592245FD6B00BA9C30 /* AppCenterDistributeResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AppCenterDistributeResources.bundle; path = Vendor/iOS/AppCenterDistributeResources.bundle; sourceTree = "<group>"; };
-		A839F75A2245FD6B00BA9C30 /* AppCenterDistribute.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterDistribute.framework; path = Vendor/iOS/AppCenterDistribute.framework; sourceTree = "<group>"; };
-		A839F75B2245FD6B00BA9C30 /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = Vendor/iOS/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
-		A83DC4DD218E8A1300E562CE /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = Vendor/iOS/AppCenter.framework; sourceTree = "<group>"; };
-		A83DC4DF218E8A2400E562CE /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = Vendor/iOS/AppCenterAnalytics.framework; sourceTree = "<group>"; };
-		A83DC4E1218E8A3500E562CE /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = Vendor/iOS/AppCenterCrashes.framework; sourceTree = "<group>"; };
 		A83DC4E5218E8ABF00E562CE /* AppCenterReactNative.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNative.xcodeproj; path = ../node_modules/appcenter/ios/AppCenterReactNative.xcodeproj; sourceTree = "<group>"; };
 		A83DC4EB218E8ACE00E562CE /* AppCenterReactNativeAnalytics.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeAnalytics.xcodeproj; path = "../node_modules/appcenter-analytics/ios/AppCenterReactNativeAnalytics.xcodeproj"; sourceTree = "<group>"; };
 		A83DC4F1218E8AE600E562CE /* AppCenterReactNativeCrashes.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AppCenterReactNativeCrashes.xcodeproj; path = "../node_modules/appcenter-crashes/ios/AppCenterReactNativeCrashes.xcodeproj"; sourceTree = "<group>"; };
-		A83DC506218E8F5400E562CE /* AppCenterReactNativeShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterReactNativeShared.framework; path = Vendor/AppCenterReactNativeShared/AppCenterReactNativeShared.framework; sourceTree = "<group>"; };
 		A8486EF121CA08C600C6E276 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		A8B828D2223B6D080044BFBE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		A8BE7BEF213FA78200B5790D /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/lib/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		AAB7512D88A27AD5E682F028 /* Pods-warriorbeatapp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOS/Pods-warriorbeatapp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		B30887EE182143928ED613A2 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		B5A71C180F140304A9B8B882 /* Pods-warriorbeatapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp/Pods-warriorbeatapp.debug.xcconfig"; sourceTree = "<group>"; };
+		B5BB757DCAA87661E4AA80B5 /* Pods-warriorbeatapp-tvOSTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOSTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOSTests/Pods-warriorbeatapp-tvOSTests.staging.xcconfig"; sourceTree = "<group>"; };
 		C43E69274B0D4DA9807D7E20 /* RNSentry.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNSentry.xcodeproj; path = "../node_modules/react-native-sentry/ios/RNSentry.xcodeproj"; sourceTree = "<group>"; };
+		C6D2A0939FCE37FE3F0F5B0B /* Pods-warriorbeatapp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOS/Pods-warriorbeatapp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D0EE7111BA9D44B29B893AFB /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		D7ACD5B9DCA34ACEAB4C016D /* FastImage.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = FastImage.xcodeproj; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; };
 		D92A9E05BD63441AA5CBA063 /* libFastImage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libFastImage.a; sourceTree = "<group>"; };
+		DF2E4207BBD31E9DF3C8BADA /* Pods-warriorbeatapp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-warriorbeatapp-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-warriorbeatapp-tvOSTests/Pods-warriorbeatapp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E367ADDBD94C431BA8C6810A /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		E6A6B8F0D42C4657B6457B29 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		E953EE8B799A452289593430 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -569,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
+				4329B90DE2FFE78BFC30E9F8 /* libPods-warriorbeatappTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -593,15 +601,9 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				A839F75D2245FD6B00BA9C30 /* AppCenterDistribute.framework in Frameworks */,
-				A839F75E2245FD6B00BA9C30 /* AppCenterReactNativeShared.framework in Frameworks */,
-				A839F7562245FD6B00BA9C30 /* AppCenter.framework in Frameworks */,
-				A839F7572245FD6B00BA9C30 /* AppCenterAnalytics.framework in Frameworks */,
-				A839F7582245FD6B00BA9C30 /* AppCenterCrashes.framework in Frameworks */,
-				A839F7522245FD3100BA9C30 /* libAppCenterReactNative.a in Frameworks */,
-				A839F7532245FD3100BA9C30 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
-				A839F7542245FD3100BA9C30 /* libAppCenterReactNativeCrashes.a in Frameworks */,
-				A839F7552245FD5800BA9C30 /* AppCenterReactNativeShared.framework in Frameworks */,
+				A8EF13D322461C130069E418 /* libAppCenterReactNative.a in Frameworks */,
+				A8EF13D422461C130069E418 /* libAppCenterReactNativeAnalytics.a in Frameworks */,
+				A8EF13D522461C130069E418 /* libAppCenterReactNativeCrashes.a in Frameworks */,
 				4DCE2B69DA604E958853941B /* libRNAWSCognito.a in Frameworks */,
 				BF738FFCAE544419847EC7F7 /* libRNVectorIcons.a in Frameworks */,
 				091E19510C09475EA295538E /* libRNSentry.a in Frameworks */,
@@ -609,6 +611,7 @@
 				89DCD7EC4AD743789D9E3FDF /* libFastImage.a in Frameworks */,
 				2F90964BD21C48C19917F5E0 /* libRNDeviceInfo.a in Frameworks */,
 				4CF67FD6682143E0B3D7D5C2 /* libReactNativeConfig.a in Frameworks */,
+				443DEC2C78D1B35A22981362 /* libPods-warriorbeatapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +630,7 @@
 				F9D64297510047F6975446DD /* libRNSentry-tvOS.a in Frameworks */,
 				DBFFD648664B4BBA8189764A /* libRNDeviceInfo-tvOS.a in Frameworks */,
 				8DEAF8FD23374A319C1C6C13 /* libReactNativeConfig-tvOS.a in Frameworks */,
+				FD9CBA89ADABA5665E3B477A /* libPods-warriorbeatapp-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */,
+				3945F5E16BB856F78F4309B9 /* libPods-warriorbeatapp-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,12 +765,13 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A839F75A2245FD6B00BA9C30 /* AppCenterDistribute.framework */,
-				A839F7592245FD6B00BA9C30 /* AppCenterDistributeResources.bundle */,
-				A839F75B2245FD6B00BA9C30 /* AppCenterReactNativeShared.framework */,
 				A8B828D2223B6D080044BFBE /* JavaScriptCore.framework */,
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				EA4D695F27534103BBF22CB1 /* libz.tbd */,
+				012EE807489C7822401F75FC /* libPods-warriorbeatapp.a */,
+				8A3F7E44A5ABDAEBCD624F13 /* libPods-warriorbeatapp-tvOS.a */,
+				2303CEBFFECEDDA97FCF3371 /* libPods-warriorbeatapp-tvOSTests.a */,
+				30B512DC1CCE23212BD9A255 /* libPods-warriorbeatappTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -840,6 +846,7 @@
 				A8BE7BC4213FA63800B5790D /* Recovered References */,
 				A5F56DEE23EB4612B3A1DA0D /* Resources */,
 				6D482EFD21EB4C69AE766FC2 /* AppCenter-Config.plist */,
+				9AA5ACA430EBFBED899D3FBB /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -855,6 +862,25 @@
 				2D02E4901E0B4A5D006451C7 /* warriorbeatapp-tvOSTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9AA5ACA430EBFBED899D3FBB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B5A71C180F140304A9B8B882 /* Pods-warriorbeatapp.debug.xcconfig */,
+				6580CCCC1037ECDAFFBDCCEF /* Pods-warriorbeatapp.release.xcconfig */,
+				94ADE11CDCF0778485D488FE /* Pods-warriorbeatapp.staging.xcconfig */,
+				C6D2A0939FCE37FE3F0F5B0B /* Pods-warriorbeatapp-tvOS.debug.xcconfig */,
+				AAB7512D88A27AD5E682F028 /* Pods-warriorbeatapp-tvOS.release.xcconfig */,
+				408B4AABCD73C82362D80A40 /* Pods-warriorbeatapp-tvOS.staging.xcconfig */,
+				DF2E4207BBD31E9DF3C8BADA /* Pods-warriorbeatapp-tvOSTests.debug.xcconfig */,
+				95A342A0BEFC057C7635C7CE /* Pods-warriorbeatapp-tvOSTests.release.xcconfig */,
+				B5BB757DCAA87661E4AA80B5 /* Pods-warriorbeatapp-tvOSTests.staging.xcconfig */,
+				4AAB31EFD669DFEAC8747788 /* Pods-warriorbeatappTests.debug.xcconfig */,
+				537E73A9D27CEE1207E0FAE4 /* Pods-warriorbeatappTests.release.xcconfig */,
+				50FFAB827812884B6C2929F8 /* Pods-warriorbeatappTests.staging.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		A5F56DEE23EB4612B3A1DA0D /* Resources */ = {
@@ -909,10 +935,6 @@
 		A83DC4DC218E891800E562CE /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				A83DC506218E8F5400E562CE /* AppCenterReactNativeShared.framework */,
-				A83DC4E1218E8A3500E562CE /* AppCenterCrashes.framework */,
-				A83DC4DF218E8A2400E562CE /* AppCenterAnalytics.framework */,
-				A83DC4DD218E8A1300E562CE /* AppCenter.framework */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -1025,6 +1047,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "warriorbeatappTests" */;
 			buildPhases = (
+				51393AF212A78E632A8FDEE0 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -1043,6 +1066,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "warriorbeatapp" */;
 			buildPhases = (
+				D40BC0E839303CE8B4349F18 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
@@ -1062,6 +1086,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "warriorbeatapp-tvOS" */;
 			buildPhases = (
+				0BF22A6B61BC1E2FDB786834 /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
@@ -1080,6 +1105,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "warriorbeatapp-tvOSTests" */;
 			buildPhases = (
+				36131F7F8670DAC8590F591A /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -1703,6 +1729,24 @@
 export SENTRY_PROPERTIES=sentry.properties
 ../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native-schemes-manager/lib/react-native-xcode.sh";
 		};
+		0BF22A6B61BC1E2FDB786834 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-warriorbeatapp-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1717,6 +1761,42 @@ export SENTRY_PROPERTIES=sentry.properties
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\nexport NODE_BINARY=node\n../node_modules/@sentry/cli/bin/sentry-cli react-native xcode ../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		36131F7F8670DAC8590F591A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-warriorbeatapp-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51393AF212A78E632A8FDEE0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-warriorbeatappTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		A88FEB38090B4041A62AF6DF /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1730,6 +1810,24 @@ export SENTRY_PROPERTIES=sentry.properties
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export SENTRY_PROPERTIES=sentry.properties\n../node_modules/@sentry/cli/bin/sentry-cli upload-dsym\n";
+		};
+		D40BC0E839303CE8B4349F18 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-warriorbeatapp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1798,6 +1896,7 @@ export SENTRY_PROPERTIES=sentry.properties
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AAB31EFD669DFEAC8747788 /* Pods-warriorbeatappTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1838,6 +1937,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 537E73A9D27CEE1207E0FAE4 /* Pods-warriorbeatappTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -1875,6 +1975,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5A71C180F140304A9B8B882 /* Pods-warriorbeatapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1924,6 +2025,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6580CCCC1037ECDAFFBDCCEF /* Pods-warriorbeatapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1970,6 +2072,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6D2A0939FCE37FE3F0F5B0B /* Pods-warriorbeatapp-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2015,6 +2118,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAB7512D88A27AD5E682F028 /* Pods-warriorbeatapp-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2060,6 +2164,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF2E4207BBD31E9DF3C8BADA /* Pods-warriorbeatapp-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2104,6 +2209,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95A342A0BEFC057C7635C7CE /* Pods-warriorbeatapp-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2303,6 +2409,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		A829A68121EBF61E0033218B /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94ADE11CDCF0778485D488FE /* Pods-warriorbeatapp.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2350,6 +2457,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		A829A68221EBF61E0033218B /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 50FFAB827812884B6C2929F8 /* Pods-warriorbeatappTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -2387,6 +2495,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		A829A68321EBF61E0033218B /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 408B4AABCD73C82362D80A40 /* Pods-warriorbeatapp-tvOS.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2432,6 +2541,7 @@ export SENTRY_PROPERTIES=sentry.properties
 		};
 		A829A68421EBF61E0033218B /* Staging */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5BB757DCAA87661E4AA80B5 /* Pods-warriorbeatapp-tvOSTests.staging.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
