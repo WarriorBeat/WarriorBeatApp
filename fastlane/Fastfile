@@ -26,7 +26,7 @@ IOS_PATH = File.join(ROOT, 'ios').freeze
 DIST_DIR = File.join(ROOT, 'dist')
 
 APPCENTER_ANDROIDCONFIG = File.join(ANDROID_PATH, 'app/src/main/assets/appcenter-config.json')
-APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'AppCenter-Config.plist')
+APPCENTER_IOSCONFIG = File.join(IOS_PATH, 'warriorbeatapp/AppCenter-Config.plist')
 
 
 # Load Primary .env

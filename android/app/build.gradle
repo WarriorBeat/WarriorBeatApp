@@ -10,7 +10,6 @@ apply plugin: "com.android.application"
 // React Native Config
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
-
 import com.android.build.OutputFile
 
 /**
@@ -84,19 +83,11 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
+    "root": "../../",
     entryFile: "index.js",
-    nodeExecutableAndArgs: hasProperty("NODE_BINARY")?[NODE_BINARY]:   ["node"],
     bundleInDebug: false,
     bundleInStaging: true,
     bundleInRelease: true,
-    jsBundleDirDebug: "$buildDir/intermediates/assets/debug",
-    resourcesDirDebug: "$buildDir/intermediates/res/merged/debug",
-    jsBundleDirStaging: "$buildDir/intermediates/assets/staging",
-    resourcesDirStaging: 
-        "$buildDir/intermediates/res/merged/staging",
-    jsBundleDirRelease: "$buildDir/intermediates/assets/release",
-    resourcesDirRelease: 
-        "$buildDir/intermediates/res/merged/release",
     devDisabledInDebug: false,
     devDisabledInStaging: true,
     devDisabledInRelease: true,
@@ -130,13 +121,10 @@ android {
         applicationIdSuffix ""
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57"
+        missingDimensionStrategy "RNN.reactNativeVersion", "reactNative57_5"
         versionCode 27
         versionName "0.14.0-alpha.1"
         resValue "string", "build_config_package", "com.warriorbeatapp"
-        ndk {
-            abiFilters "armeabi-v7a", "x86"
-        }
     }
     signingConfigs {
         release {
@@ -182,7 +170,7 @@ android {
         variant.outputs.each { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a":1, "x86":2]
+            def versionCodes = ["armeabi-v7a":1, "x86":2, "arm64-v8a": 3, "x86_64": 4]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
@@ -199,10 +187,6 @@ android {
 }
 
 configurations.all{
-    resolutionStrategy{
-        // JSC-Android
-        force 'org.webkit:android-jsc:r236355'
-    }
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
         def requested = details.requested
         if (requested.group == 'com.android.support' && requested.name != 'multidex') {
@@ -223,7 +207,7 @@ dependencies {
     compile project(':react-native-linear-gradient') // Linear Gradient
     implementation project(':amazon-cognito-identity-js')
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'com.android.support:design:25.4.0'
+    implementation "com.android.support:design:27.1.0"
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-navigation')
