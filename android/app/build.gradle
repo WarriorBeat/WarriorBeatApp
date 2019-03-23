@@ -10,7 +10,6 @@ apply plugin: "com.android.application"
 // React Native Config
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
-
 import com.android.build.OutputFile
 
 /**
