@@ -1,3 +1,28 @@
+# [0.14.0-alpha.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.0...v0.14.0-alpha.1) (2019-03-22)
+
+
+### 🐛 Bug Fixes
+
+* **aws:** AWS Amplify Hotfix ([a3a27a6](https://github.com/WarriorBeat/WarriorBeatApp/commit/a3a27a6))
+
+
+
+# [0.14.0-alpha.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.4...v0.14.0-alpha.0) (2019-03-22)
+
+
+### ✨ Features
+
+* **api:** Setup Basic AWS Appsync Integration ([ef983c1](https://github.com/WarriorBeat/WarriorBeatApp/commit/ef983c1))
+* **Polls:** Implemented Polls with GraphQL API, Added GraphQL Files ([be5332d](https://github.com/WarriorBeat/WarriorBeatApp/commit/be5332d))
+* **react:** Upgraded to React Native v0.59.1, Updated Dependencies ([#63](https://github.com/WarriorBeat/WarriorBeatApp/issues/63)) ([56ed2eb](https://github.com/WarriorBeat/WarriorBeatApp/commit/56ed2eb))
+
+
+### ♻️ Chores
+
+* **release:** 0.14.0-alpha.0 ([eb7c73c](https://github.com/WarriorBeat/WarriorBeatApp/commit/eb7c73c))
+
+
+
 ## [0.13.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.3...v0.13.4) (2019-01-24)
 
 
@@ -10,6 +35,11 @@
 ### 🛠 Builds
 
 * **iOS:** Fixed Dev Build Status Bar Issue and Derived Data Path ([93ac908](https://github.com/WarriorBeat/WarriorBeatApp/commit/93ac908))
+
+
+### ♻️ Chores
+
+* **release:** 0.13.4 ([0c52954](https://github.com/WarriorBeat/WarriorBeatApp/commit/0c52954))
 
 
 

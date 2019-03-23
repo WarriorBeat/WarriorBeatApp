@@ -40,6 +40,7 @@ export class Poll {
   get asJson() {
     return {
       pollId: this.id,
+      total_votes: this.totalVotes,
       question: this.question,
       status: this.status,
       date: this.date,
@@ -68,6 +69,7 @@ export class Poll {
       }
       return a
     })
+    this.totalVotes += 1
   }
 }
 
@@ -106,7 +108,7 @@ export class PollStore {
       poll = new Poll(this, json.pollId)
       this.polls.push(poll)
     }
-    poll.updateFromJson(json)
+    return poll.updateFromJson(json)
   }
 
   resolvePoll(id) {
