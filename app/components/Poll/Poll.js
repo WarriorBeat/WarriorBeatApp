@@ -12,11 +12,14 @@ import Text from "components/Text"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
+import queries from "graphql/queries"
+import mutations from "graphql/mutations"
+import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 import PollAnswers from "./PollAnswers"
 import PollResults from "./PollResults"
 
-@inject("pollStore", "uiStore")
+@inject("uiStore")
 @observer
 class Poll extends React.Component {
   @observable
@@ -43,16 +46,20 @@ class Poll extends React.Component {
     }).start()
   }
 
-  submitPoll = (poll) => {
+  submitPoll = async (poll) => {
+    const { onPollVote } = this.props
     if (!this.activeId) {
       return null
     }
-    const answer = poll.answers.find(a => a.answerId === this.activeId)
-    const newVotes = String(Number(answer.votes) + 1)
-    poll.voteOn(this.activeId, newVotes)
+    const x = await onPollVote(this.activeId)
     this.animate(0)
-    this._answers.animate(poll, 0, () => (this.hasVoted = true))
+    this._answers.animate(poll.options, 0, () => (this.hasVoted = true))
     return poll
+  }
+
+  _renderDate = (dateString) => {
+    const date = new Date(dateString)
+    return date.toDateString().toUpperCase()
   }
 
   _renderSubmit = poll => (
@@ -72,9 +79,8 @@ class Poll extends React.Component {
 
   render() {
     const {
-      pollStore, pollId, componentId, uiStore,
+      poll, componentId, uiStore, loading,
     } = this.props
-    const poll = pollStore.resolvePoll(pollId)
     const AnimatedText = Animated.createAnimatedComponent(Text)
     const opacity = this.activeId === null ? this.animIn : 1
     return (
@@ -87,22 +93,22 @@ class Poll extends React.Component {
         />
         <View style={styles.header}>
           <AnimatedText style={{ opacity }} Type="footnote" Weight="black" Color="ios_blue">
-            {poll.date.toDateString().toUpperCase()}
+            {this._renderDate(poll.created_at)}
           </AnimatedText>
           <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
             {poll.question}
           </AnimatedText>
         </View>
-        {!this.hasVoted ? (
+        {!this.hasVoted && !loading ? (
           <PollAnswers
             ref={answers => (this._answers = answers)}
             onPress={id => (this.activeId = id)}
             active={this.activeId}
-            poll={poll}
+            pollOptions={poll.options}
           />
         ) : null}
-        {this.hasVoted ? <PollResults poll={poll} votedOn={this.activeId} /> : null}
-        {!this.hasVoted ? this._renderSubmit(poll) : null}
+        {this.hasVoted ? <PollResults pollId={poll.id} votedOn={this.activeId} /> : null}
+        {!this.hasVoted && !loading ? this._renderSubmit(poll) : null}
       </View>
     )
   }
@@ -117,4 +123,4 @@ Poll.propTypes = {
   componentId: PropTypes.string.isRequired,
 }
 
-export default Poll
+export default compose(mutations.votePollOption)(Poll)

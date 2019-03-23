@@ -9,31 +9,38 @@ import { PropTypes } from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import NewsBlock from "./NewsBlock"
 
-@inject("pollStore")
 @observer
 class PollBlock extends React.Component {
+  getTotalVotes = (options) => {
+    const totalVotes = options.reduce((total, opt) => {
+      let votes = total
+      return (votes += opt.votes)
+    }, 0)
+    return totalVotes
+  }
+
   render() {
-    const { pollStore, pollId } = this.props
-    const poll = pollStore.resolvePoll(pollId)
+    const { poll } = this.props
     const pollView = {
       id: poll.id,
       type: "Poll",
-      props: { pollId: poll.id },
+      props: { poll },
       modal: true,
     }
-    const badge = `${poll.totalVotes} Votes`
+    const badge = `${this.getTotalVotes(poll.options)} Votes`
+    const pollDate = new Date(poll.created_at)
     return (
-      <NewsBlock title={poll.question} date={poll.date} viewComponent={pollView} badge={badge} />
+      <NewsBlock title={poll.question} date={pollDate} viewComponent={pollView} badge={badge} />
     )
   }
 }
 
-PollBlock.wrappedComponent.propTypes = {
-  pollStore: MobxTypes.observableObject.isRequired,
-}
+// PollBlock.wrappedComponent.propTypes = {
+//   // pollStore: MobxTypes.observableObject.isRequired,
+// }
 
-PollBlock.propTypes = {
-  pollId: PropTypes.string.isRequired,
-}
+// PollBlock.propTypes = {
+//   // pollId: PropTypes.string.isRequired,
+// }
 
 export default PollBlock

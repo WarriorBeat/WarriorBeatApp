@@ -1,6 +1,6 @@
 {
   "name": "warriorbeatapp",
-  "version": "0.13.4",
+  "version": "0.14.0-alpha.1",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -16,7 +16,10 @@
   "dependencies": {
     "aws-amplify": "^1.1.18",
     "aws-amplify-react-native": "^2.1.6",
+    "aws-appsync": "^1.7.1",
+    "aws-appsync-react": "^1.2.6",
     "axios": "^0.18.0",
+    "graphql-tag": "^2.10.1",
     "jsc-android": "^236355.1.1",
     "lodash": "^4.17.11",
     "loglevel": "^1.6.1",
@@ -25,6 +28,7 @@
     "prop-types": "^15.6.2",
     "react": "16.8.4",
     "react-native": "0.59.1",
+    "react-apollo": "^2.5.2",
     "react-native-action-button": "^2.8.5",
     "react-native-config": "^0.11.7",
     "react-native-device-info": "^0.24.3",

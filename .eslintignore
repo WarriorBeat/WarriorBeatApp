@@ -3,3 +3,4 @@ node_modules/*
 app/lib/*
 amplify/*
 aws-exports*
+app/config/ApolloProviderHOC.js
