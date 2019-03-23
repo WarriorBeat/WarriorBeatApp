@@ -12,6 +12,7 @@ dir = File.expand_path('../../', Dir.pwd).freeze
 # IOS Specific Constants
 APP_ID = 'org.lamarcountyschools.ogwarriorbeat'.freeze
 PROJECT_PATH = "#{IOS_PATH}/warriorbeatapp.xcodeproj".freeze
+WORKSPACE_PATH = "#{IOS_PATH}/warriorbeatapp.xcworkspace".freeze
 PROJECT_NAME = "warriorbeatapp".freeze
 DISPLAY_NAME = "WarriorBeat".freeze
 
@@ -57,7 +58,7 @@ platform :ios do
     }
 
     # Set Gym Constants
-    ENV['GYM_PROJECT'] = PROJECT_PATH
+    ENV['GYM_WORKSPACE'] = WORKSPACE_PATH
     ENV['GYM_BUILD_PATH'] = "#{IOS_PATH}/Build/Build"
     ENV['GYM_DERIVED_DATA_PATH'] = "#{IOS_PATH}/Build"
     

@@ -48,6 +48,8 @@ matrix:
           - build-tools-27.0.3
           - build-tools-28.0.3
           - android-26
+          - android-27
+          - android-28
           - ndk-bundle
           - extra-android-m2repository
           - extra-google-google_play_services
