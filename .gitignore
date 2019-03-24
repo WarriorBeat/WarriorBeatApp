@@ -23,6 +23,7 @@ DerivedData
 project.xcworkspace
 *.p12
 ios/warriorbeatapp-release/*
+ios/bundle/*
 
 # Android/IntelliJ
 #

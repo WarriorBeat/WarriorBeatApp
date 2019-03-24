@@ -21,6 +21,7 @@ CHANGELOG_PATH = File.join(ROOT, "CHANGELOG.md").freeze
 # Projects
 ANDROID_PATH = File.join(ROOT, 'android').freeze
 IOS_PATH = File.join(ROOT, 'ios').freeze
+TAG_VERSION = sh('VER=$(git describe --tags `git rev-list --tags --max-count=1`) && echo "${VER#v}"').strip
 
 # Outputs
 DIST_DIR = File.join(ROOT, 'dist')
@@ -234,17 +235,27 @@ lane :deploy do |options|
     IPA => #{ipa_file}
     APK => #{apk_file}
     DSYM => #{dsym_file}
+    RELEASE => #{TAG_VERSION}
   ")
+  sentry_create_release(
+    version: TAG_VERSION,
+    app_identifier: APP_ID,
+    finalize: false
+  )
   Fastlane::LaneManager.cruise_lane("ios", "release", {
     :skip_before => true,
     :ipa => ipa_file,
-    :dsym => dsym_file
+    :dsym => dsym_file,
   })
   Fastlane::LaneManager.cruise_lane("android", "release", {
     :skip_before => true,
     :apk => apk_file,
   })
-  sentry
+  UI.important("Finalizing Sentry Release...")
+  sentry_finalize_release(
+    version: TAG_VERSION,
+    app_identifier: APP_ID,
+  )
   UI.success("Deploy Successful!")
 end
 

@@ -10,7 +10,7 @@
     "commit": "git cz",
     "version": "standard-version --commit-all",
     "postinstall": "react-native-schemes-manager all && ./fastlane/scripts/fix_deprecated.sh",
-    "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'",
+    "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/bundle/main.jsbundle' --reset-cache --sourcemap-output='./ios/bundle/main.jsbundle.map' --dev=false --platform='ios'",
     "ios:bundledev": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=true --platform='ios'"
   },
   "dependencies": {

@@ -18,6 +18,7 @@ DISPLAY_NAME = "WarriorBeat".freeze
 
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
+ART_BUNDLE_PATH = "#{IOS_PATH}/bundle".freeze
 
 # Dev
 DEV_PRODUCT = "#{DISPLAY_NAME}-dev.app".freeze
@@ -37,7 +38,11 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 
 # App Center
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
-APPCENTER_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
+
+# Build Artifacts
+ARTIFACT_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
+ARTIFACT_BUNDLE = File.join(ART_BUNDLE_PATH, "main.jsbundle")
+ARTIFACT_BUNDLE_MAP = File.join(ART_BUNDLE_PATH, "main.jsbundle.map")
 
 # Version Constants
 VERSION = get_version_number(
@@ -90,6 +95,43 @@ platform :ios do
   desc "Update Match Certificates"
   lane :certificates do
     match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
+  end
+
+  desc "Upload iOS Artifacts to Sentry"
+  lane :upload_artifacts do |options|
+    parsed_options = {
+      :dsym => handleEnvAndOptions(
+        ENV["IOS_DSYM_OUTPUT"],
+        options[:dsym],
+        true,
+        ARTIFACT_DSYM
+      ),
+    }
+
+    UI.important("Uploading iOS Build Artifacts to Sentry...")
+    sentry_upload_dsym(
+      dsym_path: parsed_options[:dsym]
+    )
+    UI.important("Generating Bundle for Sentry...")
+    FileUtils.rm(ARTIFACT_BUNDLE) if File.exists?(ARTIFACT_BUNDLE)
+    FileUtils.rm(ARTIFACT_BUNDLE_MAP) if File.exists?(ARTIFACT_BUNDLE_MAP)
+    Dir.mkdir(ART_BUNDLE_PATH) unless File.directory?(ART_BUNDLE_PATH)
+    yarn(
+      command: "ios:bundle",
+      package_path: PACKAGE_JSON
+    )
+    sentry_upload_file(
+      version: VERSION,
+      app_identifier: APP_ID,
+      file: ARTIFACT_BUNDLE
+    )
+    sentry_upload_sourcemap(
+      version: VERSION,
+      app_identifier: APP_ID,
+      sourcemap: ARTIFACT_BUNDLE_MAP,
+      rewrite: true
+    )
+    UI.success("iOS Build Artifacts Uploaded.")
   end
 
 
@@ -261,14 +303,14 @@ platform :ios do
     # Copy to Dist
     UI.important("IPA => #{output_ipa}")
     output_name = File.basename(output_ipa)
-    dsym_name = File.basename(APPCENTER_DSYM)
+    dsym_name = File.basename(ARTIFACT_DSYM)
     dist_ipa = File.join(DIST_DIR, output_name)
     dist_dsym = File.join(DIST_DIR, dsym_name)
     FileUtils.rm(dist_ipa) if File.exists?(dist_ipa)
     FileUtils.rm(dist_dsym) if File.exists?(dist_dsym)
     Dir.mkdir(DIST_DIR) unless File.directory?(DIST_DIR)
     FileUtils.cp(output_ipa, DIST_DIR)
-    FileUtils.cp(APPCENTER_DSYM, DIST_DIR)
+    FileUtils.cp(ARTIFACT_DSYM, DIST_DIR)
     
     # Skip Before Now
     ENV['SKIP_BEFORE'] = 'true'
@@ -305,10 +347,11 @@ platform :ios do
         ENV["IOS_DSYM_OUTPUT"],
         options[:dsym],
         true,
-        APPCENTER_DSYM
+        ARTIFACT_DSYM
       )
     }
     UI.header("iOS Deploy")
+    upload_artifacts(skip_before:true, skip_after: true, dsym: parsed_options[:dsym])
     UI.important("
     
     Releasing IPA on AppCenter...
