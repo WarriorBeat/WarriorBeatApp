@@ -9,11 +9,12 @@ import { graphql } from "react-apollo"
 
 export const FetchPolls = gql`
   query FetchPolls {
-    listPolls {
+    pollList {
       items {
         id
         question
-        created_at
+        createdOn
+        isOpen
         options {
           id
           text
@@ -26,11 +27,12 @@ export const FetchPolls = gql`
 
 export const GetPoll = gql`
   query getPoll($id: ID!) {
-    getPoll(id: $id) {
+    pollGet(id: $id) {
       id
       question
-      created_at
-      updated_at
+      createdOn
+      isOpen
+      lastUpdated
       options {
         id
         text
@@ -47,7 +49,7 @@ const queries = {
     },
     props: ({ data }) => ({
       loading: data.loading,
-      polls: data.listPolls ? data.listPolls.items : [],
+      polls: data.pollList ? data.pollList.items : [],
     }),
   }),
   getPoll: graphql(GetPoll, {
@@ -59,7 +61,7 @@ const queries = {
     }),
     props: ({ data }) => ({
       loading: data.loading,
-      poll: data.getPoll ? data.getPoll : {},
+      poll: data.pollGet ? data.pollGet : {},
     }),
   }),
 }

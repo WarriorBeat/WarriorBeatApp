@@ -93,7 +93,7 @@ class Poll extends React.Component {
         />
         <View style={styles.header}>
           <AnimatedText style={{ opacity }} Type="footnote" Weight="black" Color="ios_blue">
-            {this._renderDate(poll.created_at)}
+            {this._renderDate(poll.createdOn)}
           </AnimatedText>
           <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
             {poll.question}
