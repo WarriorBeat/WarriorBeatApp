@@ -18,6 +18,7 @@ DISPLAY_NAME = "WarriorBeat".freeze
 
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
+INFO_PLIST_PATH = "#{IOS_PATH}/warriorbeatapp/Info.plist".freeze
 ART_BUNDLE_PATH = "#{IOS_PATH}/bundle".freeze
 
 # Dev
@@ -49,6 +50,10 @@ VERSION = get_version_number(
   xcodeproj: PROJECT_PATH,
   target: PROJECT_NAME
 ).freeze
+BUILD_NUMBER = get_info_plist_value(
+  path: INFO_PLIST_PATH,
+  key: "CFBundleVersion"
+)
 
 platform :ios do
 
@@ -106,6 +111,12 @@ platform :ios do
         true,
         ARTIFACT_DSYM
       ),
+      :sentry_id => handleEnvAndOptions(
+        ENV["SENTRY_APP_ID"],
+        options[:sentry_id],
+        true,
+        APP_ID
+      ),
     }
 
     UI.important("Uploading iOS Build Artifacts to Sentry...")
@@ -122,13 +133,15 @@ platform :ios do
     )
     sentry_upload_file(
       version: VERSION,
-      app_identifier: APP_ID,
-      file: ARTIFACT_BUNDLE
+      app_identifier: parsed_options[:sentry_id],
+      file: ARTIFACT_BUNDLE,
+      dist: BUILD_NUMBER
     )
     sentry_upload_sourcemap(
       version: VERSION,
-      app_identifier: APP_ID,
+      app_identifier: parsed_options[:sentry_id],
       sourcemap: ARTIFACT_BUNDLE_MAP,
+      dist: BUILD_NUMBER,
       rewrite: true
     )
     UI.success("iOS Build Artifacts Uploaded.")
@@ -348,10 +361,16 @@ platform :ios do
         options[:dsym],
         true,
         ARTIFACT_DSYM
-      )
+      ),
+      :sentry_id => handleEnvAndOptions(
+        ENV["SENTRY_APP_ID"],
+        options[:sentry_id],
+        true,
+        APP_ID
+      ),
     }
     UI.header("iOS Deploy")
-    upload_artifacts(skip_before:true, skip_after: true, dsym: parsed_options[:dsym])
+    upload_artifacts(skip_before:true, skip_after: true, dsym: parsed_options[:dsym], sentry_id:parsed_options[:sentry_id])
     UI.important("
     
     Releasing IPA on AppCenter...
@@ -377,6 +396,7 @@ private_lane :iosfasttest do
   PROJECT_PATH   | #{PROJECT_PATH}
   BUILD PRODUCTS | #{BUILT_PRODUCTS_PATH}
   VERSION        | #{VERSION}
+  BUILD_NUM      | #{BUILD_NUMBER}
   GYM_BUILD      | #{ENV['GYM_BUILD_PATH']}
   GYM_DERIVED    | #{ENV['GYM_DERIVED_DATA_PATH']}
   ")
