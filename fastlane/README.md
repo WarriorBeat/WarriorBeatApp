@@ -49,6 +49,11 @@ Reset App Icons/Edited Files
 fastlane ios certificates
 ```
 Update Match Certificates
+### ios upload_artifacts
+```
+fastlane ios upload_artifacts
+```
+Upload iOS Artifacts to Sentry
 ### ios dev
 ```
 fastlane ios dev
