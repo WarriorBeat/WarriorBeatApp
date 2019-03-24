@@ -33,16 +33,18 @@ load() {
 
 # Associates commits and Finalizes release on sentry
 release() {
-    printf "Creating Sentry Release...\n"
-    # Get Version ID
-    VERSION_PREFIX=$1
-    VERSION_ID=$(git describe --tags `git rev-list --tags --max-count=1`)
-    VERSION="${VERSION_PREFIX}-${VERSION_ID#'v'}"
+    printf "Preparing Sentry Release...\n"
+    # Get Args
+    VERSION=$1
+    SENTRY_ENV=$2
 
-    # Associate commits and finalize release
+    # Associate commits
     sentry-cli releases set-commits --auto "$VERSION"
-    sentry-cli releases finalize "$VERSION"
     sentry-cli releases list  --no-abbrev
+
+    # Set Environment
+    sentry-cli releases deploys "$VERSION" new -e "$SENTRY_ENV"
+    printf "Sentry Release Ready to Finalize\n"
 }
 
 # Handle args
@@ -50,6 +52,6 @@ for arg in "$@"
 do
     case $arg in
         "load" ) load;;
-        "release" ) release "$2";;
+        "release" ) release "$2" "$3";;
     esac
 done

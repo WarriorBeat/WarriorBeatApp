@@ -156,14 +156,20 @@ lane :sentry do |options|
       options[:inject],
       false,
       false
+    ),
+    :sentry_id => handleEnvAndOptions(
+      ENV["SENTRY_APP_ID"],
+      options[:sentry_id],
+      true,
+      APP_ID
     )
   }
   if parsed_options[:inject]
     sh("#{SENTRY_SH} load")
     next
   end
-  sentry_id = "#{APP_ID}.#{parsed_options[:env]}"
-  sh("#{SENTRY_SH} release #{sentry_id}")
+  sentry_env = parsed_options[:env].capitalize
+  sh("#{SENTRY_SH} release #{parsed_options[:sentry_id]} #{sentry_env}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
@@ -227,6 +233,14 @@ end
 
 desc("Deploy Release")
 lane :deploy do |options|
+  parsed_options = {
+    :env => handleEnvAndOptions(
+      ENV['SENTRY_ENV_STAGE'],
+      options[:env],
+      true,
+      "staging"
+    ),
+  }
   ipa_file = Dir["#{DIST_DIR}/*.ipa"][0]
   apk_file = Dir["#{DIST_DIR}/*.apk"][0]
   dsym_file = Dir["#{DIST_DIR}/*.dSYM.zip"][0]
@@ -235,7 +249,7 @@ lane :deploy do |options|
     IPA => #{ipa_file}
     APK => #{apk_file}
     DSYM => #{dsym_file}
-    RELEASE => #{TAG_VERSION}
+    RELEASE => #{APP_ID}
   ")
   sentry_create_release(
     version: TAG_VERSION,
@@ -246,12 +260,14 @@ lane :deploy do |options|
     :skip_before => true,
     :ipa => ipa_file,
     :dsym => dsym_file,
+    :sentry_id => APP_ID
   })
   Fastlane::LaneManager.cruise_lane("android", "release", {
     :skip_before => true,
     :apk => apk_file,
   })
   UI.important("Finalizing Sentry Release...")
+  sentry(sentry_id:APP_ID, env:parsed_options[:env])
   sentry_finalize_release(
     version: TAG_VERSION,
     app_identifier: APP_ID,
