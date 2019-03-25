@@ -1,3 +1,18 @@
+# [0.14.0-alpha.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.2...v0.14.0-alpha.3) (2019-03-25)
+
+
+### ✨ Features
+
+* **fastlane:** Handle Sentry Release with Sentry FL Plugin ([fa58ff0](https://github.com/WarriorBeat/WarriorBeatApp/commit/fa58ff0))
+
+
+### 🐛 Bug Fixes
+
+* **api:** Updated to new GraphQL API Design ([bd9d927](https://github.com/WarriorBeat/WarriorBeatApp/commit/bd9d927))
+* **sentry:** Fixed Sentry Environment, Added iOS Artifact Dist Version ([6b6f9de](https://github.com/WarriorBeat/WarriorBeatApp/commit/6b6f9de))
+
+
+
 # [0.14.0-alpha.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.4...v0.14.0-alpha.2) (2019-03-23)
 
 
@@ -11,6 +26,11 @@
 
 * **ios:** Fixed Workspace and Pods Setup ([bfd07e3](https://github.com/WarriorBeat/WarriorBeatApp/commit/bfd07e3))
 * Broken Android Build, Fixed Partial Update Issues, Updated Build Scripts ([#65](https://github.com/WarriorBeat/WarriorBeatApp/issues/65)) ([7e5e278](https://github.com/WarriorBeat/WarriorBeatApp/commit/7e5e278))
+
+
+### ♻️ Chores
+
+* **release:** 0.14.0-alpha.2 ([d1449b2](https://github.com/WarriorBeat/WarriorBeatApp/commit/d1449b2))
 
 
 
