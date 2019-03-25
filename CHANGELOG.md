@@ -1,3 +1,17 @@
+# [0.14.0-alpha.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.3...v0.14.0-alpha.4) (2019-03-25)
+
+
+### ✨ Features
+
+* **polls:** Updated to make use of New API Features ([2296c41](https://github.com/WarriorBeat/WarriorBeatApp/commit/2296c41))
+
+
+### 🐛 Bug Fixes
+
+* **sentry:** Fixed Android Auto Release ([792e09a](https://github.com/WarriorBeat/WarriorBeatApp/commit/792e09a))
+
+
+
 # [0.14.0-alpha.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.2...v0.14.0-alpha.3) (2019-03-25)
 
 
@@ -10,6 +24,11 @@
 
 * **api:** Updated to new GraphQL API Design ([bd9d927](https://github.com/WarriorBeat/WarriorBeatApp/commit/bd9d927))
 * **sentry:** Fixed Sentry Environment, Added iOS Artifact Dist Version ([6b6f9de](https://github.com/WarriorBeat/WarriorBeatApp/commit/6b6f9de))
+
+
+### ♻️ Chores
+
+* **release:** 0.14.0-alpha.3 ([3bab114](https://github.com/WarriorBeat/WarriorBeatApp/commit/3bab114))
 
 
 
