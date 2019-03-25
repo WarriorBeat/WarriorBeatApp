@@ -12,6 +12,9 @@ APP_GRADLE = File.join(ANDROID_PATH, 'app/build.gradle').freeze
 BUILD_OUTPUT = File.join(ANDROID_PATH, 'build').freeze
 APP_BUILD_OUTPUT = File.join(ANDROID_PATH, 'app/build').freeze
 
+# Release Artifacts
+AND_BUNDLE_PARENT = File.join(APP_BUILD_OUTPUT, "generated/assets/react")
+
 # Env
 ENV['FL_GRADLE_PROJECT_DIR'] = ANDROID_PATH
 
@@ -30,6 +33,10 @@ RELEASE_PRODUCTS_PATH = "#{ROOT}/android/app/build/outputs/apk/release/app-relea
 AND_VERSION = get_version_name(
   gradle_file_path: APP_GRADLE,
   ext_constant_name: "versionName"
+)
+AND_BUILD_NUMBER = get_version_name(
+  gradle_file_path: APP_GRADLE,
+  ext_constant_name: "versionCode"
 )
 
 # Gradle Properties
@@ -78,6 +85,41 @@ platform :android do
     unless parsed_options[:skip_after]
       cleanup
     end
+  end
+
+  desc "Upload Android Artifacts to Sentry"
+  lane :upload_artifacts do |options|
+    parsed_options = {
+      :sentry_id => handleEnvAndOptions(
+        ENV["SENTRY_APP_ID"],
+        options[:sentry_id],
+        true,
+        AND_APP_ID
+      ),
+      :env => handleEnvAndOptions(
+        ENV['SENTRY_ENV_STAGE'],
+        options[:env],
+        true,
+        "staging"
+      ),
+    }
+    bundle_artifact = File.join(AND_BUNDLE_PARENT, "#{parsed_options[:env]}/index.android.bundle")
+    bundle_map = File.join(AND_BUNDLE_PARENT, "#{parsed_options[:env]}/index.android.bundle.map")
+    UI.important("Uploading Android Build Artifacts to Sentry...")
+    sentry_upload_file(
+      version: AND_VERSION,
+      app_identifier: parsed_options[:sentry_id],
+      file: bundle_artifact,
+      dist: AND_BUILD_NUMBER
+    )
+    sentry_upload_sourcemap(
+      version: AND_VERSION,
+      app_identifier: parsed_options[:sentry_id],
+      sourcemap: bundle_map,
+      dist: AND_BUILD_NUMBER,
+      rewrite: true
+    )
+    UI.success("Android Build Artifacts Uploaded.")
   end
 
 
@@ -308,14 +350,28 @@ platform :android do
         ENV['GRADLE_APK_OUTPUT_PATH'],
         options[:apk],
         true,
-      )
+      ),
+      :sentry_id => handleEnvAndOptions(
+        ENV['SENTRY_APP_ID'],
+        options[:sentry_id],
+        true,
+        AND_APP_ID
+      ),
+      :env => handleEnvAndOptions(
+        ENV['SENTRY_ENV_STAGE'],
+        options[:env],
+        true,
+        "staging"
+      ),
     }
     UI.header("Android Deploy")
     UI.important("
     
     Releasing APK on AppCenter...
     APK => #{parsed_options[:apk]}
+    RELEASE => #{parsed_options[:sentry_id]}
     ")
+    upload_artifacts(skip_before:true, skip_after:true, sentry_id:parsed_options[:sentry_id], env: parsed_options[:env])
     appcenter_upload(
       apk: parsed_options[:apk],
       should_clip: false,

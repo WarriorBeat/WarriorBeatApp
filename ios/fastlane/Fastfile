@@ -121,7 +121,8 @@ platform :ios do
 
     UI.important("Uploading iOS Build Artifacts to Sentry...")
     sentry_upload_dsym(
-      dsym_path: parsed_options[:dsym]
+      dsym_path: parsed_options[:dsym],
+      info_plist: INFO_PLIST_PATH
     )
     UI.important("Generating Bundle for Sentry...")
     FileUtils.rm(ARTIFACT_BUNDLE) if File.exists?(ARTIFACT_BUNDLE)

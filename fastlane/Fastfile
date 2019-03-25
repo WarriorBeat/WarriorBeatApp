@@ -156,12 +156,6 @@ lane :sentry do |options|
       options[:inject],
       false,
       false
-    ),
-    :sentry_id => handleEnvAndOptions(
-      ENV["SENTRY_APP_ID"],
-      options[:sentry_id],
-      true,
-      APP_ID
     )
   }
   if parsed_options[:inject]
@@ -169,7 +163,7 @@ lane :sentry do |options|
     next
   end
   sentry_env = parsed_options[:env].capitalize
-  sh("#{SENTRY_SH} release #{parsed_options[:sentry_id]} #{sentry_env}")
+  sh("#{SENTRY_SH} release #{TAG_VERSION} #{sentry_env}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
@@ -265,9 +259,11 @@ lane :deploy do |options|
   Fastlane::LaneManager.cruise_lane("android", "release", {
     :skip_before => true,
     :apk => apk_file,
+    :sentry_id => APP_ID,
+    :env => parsed_options[:env]
   })
   UI.important("Finalizing Sentry Release...")
-  sentry(sentry_id:APP_ID, env:parsed_options[:env])
+  sentry(env:parsed_options[:env])
   sentry_finalize_release(
     version: TAG_VERSION,
     app_identifier: APP_ID,
