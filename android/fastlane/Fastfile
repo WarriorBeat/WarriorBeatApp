@@ -95,16 +95,10 @@ platform :android do
         options[:sentry_id],
         true,
         AND_APP_ID
-      ),
-      :env => handleEnvAndOptions(
-        ENV['SENTRY_ENV_STAGE'],
-        options[:env],
-        true,
-        "staging"
-      ),
+      )
     }
-    bundle_artifact = File.join(AND_BUNDLE_PARENT, "#{parsed_options[:env]}/index.android.bundle")
-    bundle_map = File.join(AND_BUNDLE_PARENT, "#{parsed_options[:env]}/index.android.bundle.map")
+    bundle_artifact = File.join(DIST_DIR, "index.android.bundle")
+    bundle_map = File.join(DIST_DIR, "index.android.bundle.map")
     UI.important("Uploading Android Build Artifacts to Sentry...")
     sentry_upload_file(
       version: AND_VERSION,
@@ -317,12 +311,20 @@ platform :android do
 
     # Copy to Dist
     output_apk = lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+    bundle_artifact = File.join(AND_BUNDLE_PARENT, "staging/index.android.bundle")
+    bundle_map = File.join(AND_BUNDLE_PARENT, "staging/index.android.bundle.map")
     UI.important("APK => #{output_apk}")
     output_name = File.basename(output_apk)
     dist_apk = File.join(DIST_DIR, output_name)
+    dist_bundle = File.join(DIST_DIR, "index.android.bundle")
+    dist_map = File.join(DIST_DIR, "index.android.bundle.map")
     FileUtils.rm(dist_apk) if File.exists?(dist_apk)
+    FileUtils.rm(dist_bundle) if File.exists?(dist_bundle)
+    FileUtils.rm(dist_map) if File.exists?(dist_map)
     Dir.mkdir(DIST_DIR) unless File.directory?(DIST_DIR)
     FileUtils.cp(output_apk, DIST_DIR)
+    FileUtils.cp(bundle_artifact, DIST_DIR)
+    FileUtils.cp(bundle_map, DIST_DIR)
 
     # Skip Before Now
     ENV['SKIP_BEFORE'] = 'true'
@@ -356,13 +358,7 @@ platform :android do
         options[:sentry_id],
         true,
         AND_APP_ID
-      ),
-      :env => handleEnvAndOptions(
-        ENV['SENTRY_ENV_STAGE'],
-        options[:env],
-        true,
-        "staging"
-      ),
+      )
     }
     UI.header("Android Deploy")
     UI.important("
@@ -371,7 +367,7 @@ platform :android do
     APK => #{parsed_options[:apk]}
     RELEASE => #{parsed_options[:sentry_id]}
     ")
-    upload_artifacts(skip_before:true, skip_after:true, sentry_id:parsed_options[:sentry_id], env: parsed_options[:env])
+    upload_artifacts(skip_before:true, skip_after:true, sentry_id:parsed_options[:sentry_id])
     appcenter_upload(
       apk: parsed_options[:apk],
       should_clip: false,

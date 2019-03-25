@@ -62,14 +62,6 @@ class PollResults extends React.Component {
     Animated.stagger(200, animations).start(callback)
   }
 
-  getTotalVotes = (options) => {
-    const totalVotes = options.reduce((total, opt) => {
-      let votes = total
-      return (votes += opt.votes)
-    }, 0)
-    return totalVotes
-  }
-
   render() {
     const { poll, loading, votedOn } = this.props
     if (loading) {
@@ -96,7 +88,7 @@ class PollResults extends React.Component {
         {poll.options.map((a, i) => (
           <ResultItem
             answerObj={a}
-            totalVotes={this.getTotalVotes(poll.options)}
+            totalVotes={poll.totalVotes}
             didVote={a.id === votedOn}
             animVal={this.animatedResults ? this.animatedResults[i] : 0}
           />

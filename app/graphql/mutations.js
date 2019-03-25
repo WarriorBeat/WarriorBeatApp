@@ -10,8 +10,9 @@ import { FetchPolls } from "./queries"
 
 // Vote Poll
 const votePollOption = gql`
-  mutation pollAddVote($optionId: ID!) {
-    pollAddVote(optionId: $optionId) {
+  mutation pollAddVote($pollId: ID!, $optionId: ID!) {
+    pollAddVote(pollId:$pollId optionId: $optionId) {
+      pollId
       optionId
     }
   }
@@ -20,16 +21,17 @@ const votePollOption = gql`
 const mutations = {
   votePollOption: graphql(votePollOption, {
     props: props => ({
-      onPollVote: optionId => props.mutate({
+      onPollVote: (pollId, optionId) => props.mutate({
         options: {
           errorPolicy: "ignore",
         },
         variables: {
+          pollId,
           optionId,
         },
         optimisticResponse: {
           __typename: "Mutation",
-          pollAddVote: { optionId, __typename: "PollOption" },
+          pollAddVote: { pollId, optionId, __typename: "PollOption" },
         },
         update: (proxy, { data: { pollAddVote } }) => {
           const data = proxy.readQuery({ query: FetchPolls })

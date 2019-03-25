@@ -260,7 +260,6 @@ lane :deploy do |options|
     :skip_before => true,
     :apk => apk_file,
     :sentry_id => APP_ID,
-    :env => parsed_options[:env]
   })
   UI.important("Finalizing Sentry Release...")
   sentry(env:parsed_options[:env])

@@ -51,15 +51,10 @@ class Poll extends React.Component {
     if (!this.activeId) {
       return null
     }
-    const x = await onPollVote(this.activeId)
+    const result = await onPollVote(poll.id, this.activeId)
     this.animate(0)
     this._answers.animate(poll.options, 0, () => (this.hasVoted = true))
     return poll
-  }
-
-  _renderDate = (dateString) => {
-    const date = new Date(dateString)
-    return date.toDateString().toUpperCase()
   }
 
   _renderSubmit = poll => (
@@ -93,7 +88,7 @@ class Poll extends React.Component {
         />
         <View style={styles.header}>
           <AnimatedText style={{ opacity }} Type="footnote" Weight="black" Color="ios_blue">
-            {this._renderDate(poll.createdOn)}
+            {poll.createdOn}
           </AnimatedText>
           <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
             {poll.question}
