@@ -73,6 +73,11 @@ Release IPA on App Center
 ----
 
 ## Android
+### android upload_artifacts
+```
+fastlane android upload_artifacts
+```
+Upload Android Artifacts to Sentry
 ### android test
 ```
 fastlane android test

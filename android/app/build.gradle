@@ -219,3 +219,11 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+// Disable Automatic Sentry Release Creation
+gradle.projectsEvaluated {
+    def tasksToSkip = project.tasks.matching {
+        it.name.contains("SentryUpload")
+    }
+    tasksToSkip.all { enabled = false }
+}
