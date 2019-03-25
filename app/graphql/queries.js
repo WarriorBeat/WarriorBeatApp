@@ -13,8 +13,10 @@ export const FetchPolls = gql`
       items {
         id
         question
-        createdOn
+        createdOn(format: "MMM dd yyyy")
         isOpen
+        lastUpdated
+        totalVotes
         options {
           id
           text
@@ -30,9 +32,10 @@ export const GetPoll = gql`
     pollGet(id: $id) {
       id
       question
-      createdOn
+      createdOn(format: "MMM dd yyyy")
       isOpen
       lastUpdated
+      totalVotes
       options {
         id
         text

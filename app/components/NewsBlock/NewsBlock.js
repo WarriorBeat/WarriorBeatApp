@@ -58,7 +58,7 @@ class NewsBlock extends React.Component {
   _renderDateStamp = date => (
     <View style={styles.dateStamp}>
       <Text style={styles.date} Type="subhead" Color="black_light" Weight="bold">
-        {date.toDateString()}
+        {date instanceof Date ? date.toDateString() : date}
       </Text>
     </View>
   )

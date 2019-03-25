@@ -11,14 +11,6 @@ import NewsBlock from "./NewsBlock"
 
 @observer
 class PollBlock extends React.Component {
-  getTotalVotes = (options) => {
-    const totalVotes = options.reduce((total, opt) => {
-      let votes = total
-      return (votes += opt.votes)
-    }, 0)
-    return totalVotes
-  }
-
   render() {
     const { poll } = this.props
     const pollView = {
@@ -27,10 +19,14 @@ class PollBlock extends React.Component {
       props: { poll },
       modal: true,
     }
-    const badge = `${this.getTotalVotes(poll.options)} Votes`
-    const pollDate = new Date(poll.createdOn)
+    const badge = `${poll.totalVotes} Votes`
     return (
-      <NewsBlock title={poll.question} date={pollDate} viewComponent={pollView} badge={badge} />
+      <NewsBlock
+        title={poll.question}
+        date={poll.createdOn}
+        viewComponent={pollView}
+        badge={badge}
+      />
     )
   }
 }
