@@ -12,8 +12,7 @@ import Text from "components/Text"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
-import queries from "graphql/queries"
-import mutations from "graphql/mutations"
+import { mutations } from "graphql"
 import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 import PollAnswers from "./PollAnswers"
@@ -47,11 +46,15 @@ class Poll extends React.Component {
   }
 
   submitPoll = async (poll) => {
-    const { onPollVote } = this.props
+    const { pollAddVote } = this.props
     if (!this.activeId) {
       return null
     }
-    const result = await onPollVote(poll.id, this.activeId)
+    const optionIndex = poll.options.findIndex(opt => opt.id === this.activeId)
+    const optiOptions = poll.options.slice()
+    optiOptions[optionIndex].votes += 1
+    const optiVotes = poll.totalVotes + 1
+    pollAddVote({ optionId: this.activeId, options: optiOptions, totalVotes: optiVotes })
     this.animate(0)
     this._answers.animate(poll.options, 0, () => (this.hasVoted = true))
     return poll
@@ -118,4 +121,4 @@ Poll.propTypes = {
   componentId: PropTypes.string.isRequired,
 }
 
-export default compose(mutations.votePollOption)(Poll)
+export default compose(mutations.poll.pollAddVote)(Poll)

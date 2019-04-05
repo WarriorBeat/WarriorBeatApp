@@ -12,7 +12,7 @@ import { PropTypes } from "prop-types"
 import Text from "components/Text"
 import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { Circle as CircleProgress } from "react-native-progress"
-import queries from "graphql/queries"
+import { queries } from "graphql"
 import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 
@@ -103,4 +103,4 @@ PollResults.propTypes = {
   votedOn: PropTypes.string.isRequired,
 }
 
-export default compose(queries.getPoll)(PollResults)
+export default compose(queries.poll.getPoll)(PollResults)
