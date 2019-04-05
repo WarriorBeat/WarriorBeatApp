@@ -1,3 +1,18 @@
+# [0.14.0-alpha.5](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.4...v0.14.0-alpha.5) (2019-04-05)
+
+
+### ✨ Features
+
+* **graphql:** Reorganized GraphQL Structure, Made Use of Offline Fun... ([d75e208](https://github.com/WarriorBeat/WarriorBeatApp/commit/d75e208))
+
+
+### 🐛 Bug Fixes
+
+* **poll:** Fixed Offline Sync, Updated to GraphQL restructure ([08e1e30](https://github.com/WarriorBeat/WarriorBeatApp/commit/08e1e30))
+* **sentry:** Fix Sentry Deploy on Travis Release ([e00c1b1](https://github.com/WarriorBeat/WarriorBeatApp/commit/e00c1b1))
+
+
+
 # [0.14.0-alpha.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.3...v0.14.0-alpha.4) (2019-03-25)
 
 
@@ -9,6 +24,11 @@
 ### 🐛 Bug Fixes
 
 * **sentry:** Fixed Android Auto Release ([792e09a](https://github.com/WarriorBeat/WarriorBeatApp/commit/792e09a))
+
+
+### ♻️ Chores
+
+* **release:** 0.14.0-alpha.4 ([aecd4f9](https://github.com/WarriorBeat/WarriorBeatApp/commit/aecd4f9))
 
 
 
