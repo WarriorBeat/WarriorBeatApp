@@ -163,7 +163,8 @@ lane :sentry do |options|
     next
   end
   sentry_env = parsed_options[:env].capitalize
-  sh("#{SENTRY_SH} release #{TAG_VERSION} #{sentry_env}")
+  sentry_tag = "#{APP_ID}-#{TAG_VERSION}"
+  sh("#{SENTRY_SH} release #{sentry_tag} #{sentry_env}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
