@@ -5,10 +5,9 @@
  */
 
 import gql from "graphql-tag"
-import { graphql } from "react-apollo"
 
-export const FetchPolls = gql`
-  query FetchPolls {
+export const pollList = gql`
+  query pollList {
     pollList {
       items {
         id
@@ -27,8 +26,8 @@ export const FetchPolls = gql`
   }
 `
 
-export const GetPoll = gql`
-  query getPoll($id: ID!) {
+export const pollGet = gql`
+  query pollGet($id: ID!) {
     pollGet(id: $id) {
       id
       question
@@ -44,29 +43,3 @@ export const GetPoll = gql`
     }
   }
 `
-
-const queries = {
-  fetchPolls: graphql(FetchPolls, {
-    options: {
-      fetchPolicy: "cache-and-network",
-    },
-    props: ({ data }) => ({
-      loading: data.loading,
-      polls: data.pollList ? data.pollList.items : [],
-    }),
-  }),
-  getPoll: graphql(GetPoll, {
-    options: ({ pollId }) => ({
-      fetchPolicy: "network-only",
-      variables: {
-        id: pollId,
-      },
-    }),
-    props: ({ data }) => ({
-      loading: data.loading,
-      poll: data.pollGet ? data.pollGet : {},
-    }),
-  }),
-}
-
-export default queries
