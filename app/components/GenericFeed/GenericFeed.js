@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { ArticleBlock, PollBlock } from "components/NewsBlock"
 import { compose } from "react-apollo"
-import queries from "graphql/queries"
+import { queries } from "graphql"
 import styles from "./styles"
 
 @inject("postStore")
@@ -52,4 +52,4 @@ GenericFeed.defaultProps = {
   withPolls: false,
 }
 
-export default compose(queries.fetchPolls)(GenericFeed)
+export default compose(queries.poll.pollList)(GenericFeed)
