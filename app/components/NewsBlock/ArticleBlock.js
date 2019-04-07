@@ -5,16 +5,14 @@
  */
 
 import React from "react"
-import { PropTypes } from "prop-types"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
+import { PropTypes as gqlTypes } from "graphql"
 import NewsBlock from "./NewsBlock"
 
-@inject("postStore")
 @observer
 class ArticleBlock extends React.Component {
   render() {
-    const { postStore, postId } = this.props
-    const post = postStore.resolvePost(postId)
+    const { post } = this.props
     const postView = {
       id: post.id,
       type: "Article",
@@ -31,12 +29,8 @@ class ArticleBlock extends React.Component {
   }
 }
 
-ArticleBlock.wrappedComponent.propTypes = {
-  postStore: MobxTypes.observableObject.isRequired,
-}
-
 ArticleBlock.propTypes = {
-  postId: PropTypes.string.isRequired,
+  post: gqlTypes.article.isRequired,
 }
 
 export default ArticleBlock
