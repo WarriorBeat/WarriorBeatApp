@@ -7,7 +7,8 @@
 import React from "react"
 import { View } from "react-native"
 import { Button } from "react-native-elements"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer, inject } from "mobx-react/native"
+import { PropTypes as gqlTypes } from "graphql"
 import { subscribeStyles as styles, subscribeButton } from "./styles"
 
 const AuthorSubscribe = inject("userStore")(
@@ -30,7 +31,7 @@ const AuthorSubscribe = inject("userStore")(
 )
 
 AuthorSubscribe.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTypes.author.isRequired,
 }
 
 export default AuthorSubscribe
