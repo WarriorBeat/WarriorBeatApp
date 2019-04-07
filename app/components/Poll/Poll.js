@@ -12,7 +12,7 @@ import Text from "components/Text"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
-import { mutations } from "graphql"
+import { mutations, PropTypes as gqlTypes } from "graphql"
 import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 import PollAnswers from "./PollAnswers"
@@ -113,12 +113,18 @@ class Poll extends React.Component {
 }
 
 Poll.wrappedComponent.propTypes = {
-  pollStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 Poll.propTypes = {
-  pollId: PropTypes.string.isRequired,
+  poll: gqlTypes.poll.isRequired,
   componentId: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  pollAddVote: PropTypes.func.isRequired,
+}
+
+Poll.defaultProps = {
+  loading: false,
 }
 
 export default compose(mutations.poll.pollAddVote)(Poll)

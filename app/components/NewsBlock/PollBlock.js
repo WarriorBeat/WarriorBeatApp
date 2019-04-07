@@ -5,8 +5,8 @@
  */
 
 import React from "react"
-import { PropTypes } from "prop-types"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { PropTypes as gqlTypes } from "graphql"
+import { observer } from "mobx-react/native"
 import NewsBlock from "./NewsBlock"
 
 @observer
@@ -31,12 +31,8 @@ class PollBlock extends React.Component {
   }
 }
 
-// PollBlock.wrappedComponent.propTypes = {
-//   // pollStore: MobxTypes.observableObject.isRequired,
-// }
-
-// PollBlock.propTypes = {
-//   // pollId: PropTypes.string.isRequired,
-// }
+PollBlock.propTypes = {
+  poll: gqlTypes.poll.isRequired,
+}
 
 export default PollBlock

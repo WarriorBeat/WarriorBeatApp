@@ -6,7 +6,7 @@
 
 import API from "api"
 import {
-  PostStore, AuthorStore, MediaStore, CategoryStore, PollStore, UserStore, UIStore,
+  PostStore, AuthorStore, MediaStore, CategoryStore, UserStore, UIStore,
 } from "."
 
 export default class RootStore {
@@ -18,13 +18,11 @@ export default class RootStore {
     this.authorResource = new API("authors", "categoryId")
     this.categoryResource = new API("categories", "categoryId")
     this.postResource = new API("posts", "postId")
-    this.pollResource = new API("polls", "pollId")
 
     this.userStore = new UserStore(this, this.userResource)
     this.mediaStore = new MediaStore(this, this.mediaResource)
     this.categoryStore = new CategoryStore(this, this.categoryResource)
     this.authorStore = new AuthorStore(this, this.authorResource)
     this.postStore = new PostStore(this, this.postResource)
-    this.pollStore = new PollStore(this, this.pollResource)
   }
 }
