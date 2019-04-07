@@ -12,7 +12,7 @@ import { enableLayoutAnimations } from "config/utils"
 import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
-import { inject, observer } from "mobx-react/native"
+import { inject, observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
@@ -20,7 +20,7 @@ import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
-@inject("rootStore")
+@inject("categoryStore", "uiStore")
 @observer
 class Home extends React.Component {
   @observable
@@ -152,8 +152,7 @@ class Home extends React.Component {
   )
 
   render() {
-    const { rootStore } = this.props
-    const { categoryStore, uiStore } = rootStore
+    const { categoryStore, uiStore } = this.props
     const sortOrder = ["News", "Sports"]
     const categories = categoryStore.sortCategories(sortOrder)
     const iconStyle = navIconStyles(this.headerVisible)
@@ -200,6 +199,11 @@ class Home extends React.Component {
       </ParallaxScrollView>
     )
   }
+}
+
+Home.wrappedComponent.propTypes = {
+  categoryStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 export default Home

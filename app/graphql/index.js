@@ -6,6 +6,7 @@
 
 import { graphql } from "react-apollo"
 import { graphqlMutation } from "aws-appsync-react"
+import { PropTypes as types } from "prop-types"
 import * as query from "./queries"
 import * as mutate from "./mutations"
 
@@ -39,4 +40,30 @@ export const mutations = {
   poll: {
     pollAddVote: graphqlMutation(mutate.pollAddVote, query.pollList, "Poll"),
   },
+}
+
+/*
+  PropTypes for GraphQL Sourced Data
+*/
+export const PropTypes = {
+  poll: types.shape({
+    id: types.string,
+    question: types.string,
+    createdOn: types.string,
+    isOpen: types.bool,
+    lastUpdated: types.string,
+    totalVotes: types.number,
+    options: types.arrayOf(
+      types.shape({
+        id: types.string,
+        text: types.string,
+        votes: types.number,
+      }),
+    ),
+  }),
+  pollOption: types.shape({
+    id: types.string,
+    text: types.string,
+    votes: types.number,
+  }),
 }

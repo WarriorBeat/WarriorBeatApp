@@ -106,22 +106,28 @@ class NewsBlock extends React.Component {
   }
 }
 
+NewsBlock.wrappedComponent.propTypes = {
+  uiStore: MobxTypes.observableObject.isRequired,
+}
+
 NewsBlock.propTypes = {
   title: PropTypes.string.isRequired,
   viewComponent: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    props: PropTypes.objectOf(PropTypes.string).isRequired,
+    id: PropTypes.string,
+    type: PropTypes.string,
+    props: PropTypes.object,
   }).isRequired,
   imageSrc: PropTypes.objectOf(PropTypes.string),
   author: MobxTypes.observableObject,
-  date: PropTypes.instanceOf(Date),
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
+  badge: PropTypes.string,
 }
 
 NewsBlock.defaultProps = {
   imageSrc: null,
   author: null,
   date: null,
+  badge: null,
 }
 
 export default NewsBlock

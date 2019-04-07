@@ -13,7 +13,7 @@ import RenderHTML from "react-native-render-html"
 import Lightbox from "react-native-lightbox"
 import { Icon } from "react-native-elements"
 import { icons } from "config/styles"
-import { observer } from "mobx-react/native"
+import { observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { PropTypes } from "prop-types"
 import Image from "react-native-fast-image"
 import { inject } from "mobx-react"
@@ -82,6 +82,10 @@ class GenericPost extends React.Component {
       </ReactionButton>
     )
   }
+}
+
+GenericPost.wrappedCompnent.propTypes = {
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 GenericPost.propTypes = {
