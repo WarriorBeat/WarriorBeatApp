@@ -12,7 +12,6 @@ function registerScreens() {
     uiStore: rootStore.uiStore,
     postStore: rootStore.postStore,
     categoryStore: rootStore.categoryStore,
-    pollStore: rootStore.pollStore,
     userStore: rootStore.userStore,
   }
   Navigation.registerComponentWithRedux(
