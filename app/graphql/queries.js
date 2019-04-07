@@ -43,3 +43,42 @@ export const pollGet = gql`
     }
   }
 `
+
+export const categoryList = gql`
+  query categoryList {
+    categoryList {
+      items {
+        id
+        name
+      }
+    }
+  }
+`
+
+export const articleGetByCategory = gql`
+  query articleGetByCategory($categoryId: ID!) {
+    articleGetByCategory(categoryId: $categoryId) {
+      id
+      createdOn(format: "MMM dd yyyy")
+      lastUpdated
+      title
+      content
+      coverImage {
+        id
+        url
+      }
+      author {
+        id
+        name
+        title
+        bio
+        staffYear
+        gradeYear
+        profileImage {
+          id
+          url
+        }
+      }
+    }
+  }
+`
