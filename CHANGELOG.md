@@ -1,75 +1,34 @@
-# [0.14.0-alpha.5](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.4...v0.14.0-alpha.5) (2019-04-05)
+# [0.14.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.4...v0.14.0) (2019-04-07)
 
 
 ### ✨ Features
 
-* **graphql:** Reorganized GraphQL Structure, Made Use of Offline Fun... ([d75e208](https://github.com/WarriorBeat/WarriorBeatApp/commit/d75e208))
+* **api:** Basic AWS AppSync Integration ([#64](https://github.com/WarriorBeat/WarriorBeatApp/issues/64)) ([95e86b2](https://github.com/WarriorBeat/WarriorBeatApp/commit/95e86b2))
+* **fastlane:** Handle Sentry Release with Sentry FL Plugin ([ba2e31c](https://github.com/WarriorBeat/WarriorBeatApp/commit/ba2e31c))
+* **graphql:** Reorganized GraphQL Structure, Made Use of Offline Fun... ([3dd60b7](https://github.com/WarriorBeat/WarriorBeatApp/commit/3dd60b7))
+* **polls:** Updated to make use of New API Features ([8464588](https://github.com/WarriorBeat/WarriorBeatApp/commit/8464588))
+* **react:** Upgraded to React Native v0.59.1, Updated Dependencies ([#63](https://github.com/WarriorBeat/WarriorBeatApp/issues/63)) ([9e8511f](https://github.com/WarriorBeat/WarriorBeatApp/commit/9e8511f))
 
 
 ### 🐛 Bug Fixes
 
-* **poll:** Fixed Offline Sync, Updated to GraphQL restructure ([08e1e30](https://github.com/WarriorBeat/WarriorBeatApp/commit/08e1e30))
-* **sentry:** Fix Sentry Deploy on Travis Release ([e00c1b1](https://github.com/WarriorBeat/WarriorBeatApp/commit/e00c1b1))
-
-
-
-# [0.14.0-alpha.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.3...v0.14.0-alpha.4) (2019-03-25)
-
-
-### ✨ Features
-
-* **polls:** Updated to make use of New API Features ([2296c41](https://github.com/WarriorBeat/WarriorBeatApp/commit/2296c41))
-
-
-### 🐛 Bug Fixes
-
-* **sentry:** Fixed Android Auto Release ([792e09a](https://github.com/WarriorBeat/WarriorBeatApp/commit/792e09a))
+* **sentry:** Fixed Sentry ID ([87bd742](https://github.com/WarriorBeat/WarriorBeatApp/commit/87bd742))
+* Linting Errors, Added/Fixed PropTypes, Code Cleanup ([#66](https://github.com/WarriorBeat/WarriorBeatApp/issues/66)) ([f061965](https://github.com/WarriorBeat/WarriorBeatApp/commit/f061965))
+* **api:** Updated to new GraphQL API Design ([c66736f](https://github.com/WarriorBeat/WarriorBeatApp/commit/c66736f))
+* **ios:** Fixed Workspace and Pods Setup ([4ef38b1](https://github.com/WarriorBeat/WarriorBeatApp/commit/4ef38b1))
+* **poll:** Fixed Offline Sync, Updated to GraphQL restructure ([5a39485](https://github.com/WarriorBeat/WarriorBeatApp/commit/5a39485))
+* **sentry:** Fix Sentry Deploy on Travis Release ([24ce7bc](https://github.com/WarriorBeat/WarriorBeatApp/commit/24ce7bc))
+* **sentry:** Fixed Android Auto Release ([10992c3](https://github.com/WarriorBeat/WarriorBeatApp/commit/10992c3))
+* **sentry:** Fixed Sentry Environment, Added iOS Artifact Dist Version ([086528c](https://github.com/WarriorBeat/WarriorBeatApp/commit/086528c))
+* Broken Android Build, Fixed Partial Update Issues, Updated Build Scripts ([#65](https://github.com/WarriorBeat/WarriorBeatApp/issues/65)) ([ba3750c](https://github.com/WarriorBeat/WarriorBeatApp/commit/ba3750c))
 
 
 ### ♻️ Chores
 
-* **release:** 0.14.0-alpha.4 ([aecd4f9](https://github.com/WarriorBeat/WarriorBeatApp/commit/aecd4f9))
-
-
-
-# [0.14.0-alpha.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0-alpha.2...v0.14.0-alpha.3) (2019-03-25)
-
-
-### ✨ Features
-
-* **fastlane:** Handle Sentry Release with Sentry FL Plugin ([fa58ff0](https://github.com/WarriorBeat/WarriorBeatApp/commit/fa58ff0))
-
-
-### 🐛 Bug Fixes
-
-* **api:** Updated to new GraphQL API Design ([bd9d927](https://github.com/WarriorBeat/WarriorBeatApp/commit/bd9d927))
-* **sentry:** Fixed Sentry Environment, Added iOS Artifact Dist Version ([6b6f9de](https://github.com/WarriorBeat/WarriorBeatApp/commit/6b6f9de))
-
-
-### ♻️ Chores
-
-* **release:** 0.14.0-alpha.3 ([3bab114](https://github.com/WarriorBeat/WarriorBeatApp/commit/3bab114))
-
-
-
-# [0.14.0-alpha.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.4...v0.14.0-alpha.2) (2019-03-23)
-
-
-### ✨ Features
-
-* **api:** Basic AWS AppSync Integration ([#64](https://github.com/WarriorBeat/WarriorBeatApp/issues/64)) ([208741d](https://github.com/WarriorBeat/WarriorBeatApp/commit/208741d))
-* **react:** Upgraded to React Native v0.59.1, Updated Dependencies ([#63](https://github.com/WarriorBeat/WarriorBeatApp/issues/63)) ([56ed2eb](https://github.com/WarriorBeat/WarriorBeatApp/commit/56ed2eb))
-
-
-### 🐛 Bug Fixes
-
-* **ios:** Fixed Workspace and Pods Setup ([bfd07e3](https://github.com/WarriorBeat/WarriorBeatApp/commit/bfd07e3))
-* Broken Android Build, Fixed Partial Update Issues, Updated Build Scripts ([#65](https://github.com/WarriorBeat/WarriorBeatApp/issues/65)) ([7e5e278](https://github.com/WarriorBeat/WarriorBeatApp/commit/7e5e278))
-
-
-### ♻️ Chores
-
-* **release:** 0.14.0-alpha.2 ([d1449b2](https://github.com/WarriorBeat/WarriorBeatApp/commit/d1449b2))
+* **release:** 0.14.0-alpha.2 ([1803c10](https://github.com/WarriorBeat/WarriorBeatApp/commit/1803c10))
+* **release:** 0.14.0-alpha.3 ([8cd21ae](https://github.com/WarriorBeat/WarriorBeatApp/commit/8cd21ae))
+* **release:** 0.14.0-alpha.4 ([4b21382](https://github.com/WarriorBeat/WarriorBeatApp/commit/4b21382))
+* **release:** 0.14.0-alpha.5 ([ead924f](https://github.com/WarriorBeat/WarriorBeatApp/commit/ead924f))
 
 
 
