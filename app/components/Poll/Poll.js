@@ -124,11 +124,13 @@ Poll.propTypes = {
     isOpen: PropTypes.bool,
     lastUpdated: PropTypes.string,
     totalVotes: PropTypes.number,
-    options: PropTypes.shape({
-      id: PropTypes.string,
-      text: PropTypes.string,
-      votes: PropTypes.number,
-    }),
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        text: PropTypes.string,
+        votes: PropTypes.number,
+      }),
+    ),
   }).isRequired,
   componentId: PropTypes.string.isRequired,
   loading: PropTypes.bool,

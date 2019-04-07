@@ -106,11 +106,25 @@ ResultItem.propTypes = {
   }).isRequired,
   totalVotes: PropTypes.number.isRequired,
   didVote: PropTypes.bool.isRequired,
-  animVal: PropTypes.number.isRequired,
+  animVal: PropTypes.instanceOf(Animated.Value).isRequired,
 }
 
 PollResults.propTypes = {
-  poll: MobxTypes.observableObject.isRequired,
+  poll: PropTypes.shape({
+    id: PropTypes.string,
+    question: PropTypes.string,
+    createdOn: PropTypes.string,
+    isOpen: PropTypes.bool,
+    lastUpdated: PropTypes.string,
+    totalVotes: PropTypes.number,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        text: PropTypes.string,
+        votes: PropTypes.number,
+      }),
+    ),
+  }).isRequired,
   votedOn: PropTypes.string.isRequired,
   loading: PropTypes.bool,
 }

@@ -113,9 +113,9 @@ NewsBlock.wrappedComponent.propTypes = {
 NewsBlock.propTypes = {
   title: PropTypes.string.isRequired,
   viewComponent: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    props: PropTypes.objectOf(PropTypes.string).isRequired,
+    id: PropTypes.string,
+    type: PropTypes.string,
+    props: PropTypes.object,
   }).isRequired,
   imageSrc: PropTypes.objectOf(PropTypes.string),
   author: MobxTypes.observableObject,

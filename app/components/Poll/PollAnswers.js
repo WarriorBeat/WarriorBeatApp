@@ -89,7 +89,7 @@ AnswerItem.propTypes = {
   }).isRequired,
   isActive: PropTypes.bool.isRequired,
   onPress: PropTypes.func.isRequired,
-  animVal: PropTypes.number.isRequired,
+  animVal: PropTypes.instanceOf(Animated.Value).isRequired,
 }
 
 PollAnswers.propTypes = {
@@ -101,7 +101,11 @@ PollAnswers.propTypes = {
     }),
   ).isRequired,
   onPress: PropTypes.func.isRequired,
-  active: PropTypes.string.isRequired,
+  active: PropTypes.string,
+}
+
+PollAnswers.defaultProps = {
+  active: false,
 }
 
 export default PollAnswers
