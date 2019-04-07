@@ -32,7 +32,7 @@
     "react-native-config": "^0.11.7",
     "react-native-device-info": "^0.24.3",
     "react-native-dotenv": "^0.2.0",
-    "react-native-elements": "bradenm/react-native-elements#feat/tile-custom-image-component",
+    "react-native-elements": "^1.1.0",
     "react-native-emoji": "^1.3.1",
     "react-native-fast-image": "^5.1.1",
     "react-native-lightbox": "^0.8.0",
