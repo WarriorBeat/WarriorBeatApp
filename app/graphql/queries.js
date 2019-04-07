@@ -50,6 +50,7 @@ export const categoryList = gql`
       items {
         id
         name
+        slug
       }
     }
   }
