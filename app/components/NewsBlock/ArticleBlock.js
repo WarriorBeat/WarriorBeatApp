@@ -16,7 +16,7 @@ class ArticleBlock extends React.Component {
     const postView = {
       id: post.id,
       type: "Article",
-      props: { postId: post.id },
+      props: { post },
     }
     return (
       <NewsBlock

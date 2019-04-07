@@ -84,7 +84,7 @@ class GenericPost extends React.Component {
   }
 }
 
-GenericPost.wrappedCompnent.propTypes = {
+GenericPost.wrappedComponent.propTypes = {
   uiStore: MobxTypes.observableObject.isRequired,
 }
 
