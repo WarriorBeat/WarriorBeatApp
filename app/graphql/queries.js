@@ -59,12 +59,40 @@ export const articleGetByCategory = gql`
   query articleGetByCategory($categoryId: ID!) {
     articleGetByCategory(categoryId: $categoryId) {
       id
+      title
+      coverImage {
+        id
+        url
+      }
+      author {
+        id
+        profileImage {
+          id
+          url
+        }
+      }
+    }
+  }
+`
+
+export const articleGet = gql`
+  query articleGet($id: ID!) {
+    articleGet(id: $id) {
+      id
       createdOn(format: "MMM dd yyyy")
       lastUpdated
       title
       content
+      categories {
+        id
+        name
+      }
       coverImage {
         id
+        createdOn(format: "MMM dd yyyy")
+        lastUpdated
+        credits
+        caption
         url
       }
       author {

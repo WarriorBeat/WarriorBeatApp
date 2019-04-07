@@ -40,7 +40,7 @@ const categoryQueries = {
   category: {
     categoryList: graphql(query.categoryList, {
       options: {
-        fetchPolicy: "network-only",
+        fetchPolicy: "cache-and-network",
       },
       props: ({ data }) => ({
         loading: data.loading,
@@ -52,9 +52,21 @@ const categoryQueries = {
 
 const articleQueries = {
   article: {
+    articleGet: graphql(query.articleGet, {
+      options: ({ post }) => ({
+        fetchPolicy: "cache-and-network",
+        variables: {
+          id: post.id,
+        },
+      }),
+      props: ({ data }) => ({
+        loading: data.loading,
+        post: data.articleGet ? data.articleGet : {},
+      }),
+    }),
     articleGetByCategory: graphql(query.articleGetByCategory, {
       options: ({ category }) => ({
-        fetchPolicy: "network-only",
+        fetchPolicy: "cache-and-network",
         variables: {
           categoryId: category.id,
         },
