@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 
 @inject("uiStore")
 @observer
-export default class Initializing extends React.Component {
+class Initializing extends React.Component {
   componentDidMount() {
     const { uiStore } = this.props
     uiStore.goTo("Home")
@@ -35,3 +35,5 @@ export default class Initializing extends React.Component {
 Initializing.wrappedComponent.propTypes = {
   uiStore: MobxTypes.observableObject.isRequired,
 }
+
+export default Initializing

@@ -7,6 +7,7 @@
 import React from "react"
 import { Input as REInput } from "react-native-elements"
 import Text from "components/Text"
+import { PropTypes } from "prop-types"
 import styles from "./styles"
 
 const Input = (props) => {
@@ -31,6 +32,20 @@ const Input = (props) => {
       onChangeText={val => handleChange(name, val)}
     />
   )
+}
+
+Input.propTypes = {
+  label: PropTypes.string,
+  hideText: PropTypes.bool,
+  name: PropTypes.string,
+  handleChange: PropTypes.func,
+}
+
+Input.defaultProps = {
+  label: "",
+  hideText: false,
+  name: "",
+  handleChange: () => null,
 }
 
 export default Input

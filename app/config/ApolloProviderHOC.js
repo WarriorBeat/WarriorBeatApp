@@ -19,16 +19,17 @@ const client = new AWSAppSyncClient({
   },
 })
 
-const ApolloProviderHOC = WrappedComponent => class Parent extends Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <Rehydrated>
-          <WrappedComponent {...this.props} />
-        </Rehydrated>
-      </ApolloProvider>
-    )
+const apolloProviderHOC = WrappedComponent =>
+  class Parent extends Component {
+    render() {
+      return (
+        <ApolloProvider client={client}>
+          <Rehydrated>
+            <WrappedComponent {...this.props} />
+          </Rehydrated>
+        </ApolloProvider>
+      )
+    }
   }
-}
 
-export default ApolloProviderHOC
+export default apolloProviderHOC

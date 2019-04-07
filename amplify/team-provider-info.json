@@ -1,22 +1,22 @@
 {
-  "dev": {
-    "awscloudformation": {
-      "AuthRoleName": "warriorbeatapp-20181228000540-authRole",
-      "UnauthRoleArn": "arn:aws:iam::881433986874:role/warriorbeatapp-20181228000540-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::881433986874:role/warriorbeatapp-20181228000540-authRole",
-      "Region": "us-east-1",
-      "DeploymentBucketName": "warriorbeatapp-20181228000540-deployment",
-      "UnauthRoleName": "warriorbeatapp-20181228000540-unauthRole",
-      "StackName": "warriorbeatapp-20181228000540",
-      "StackId": "arn:aws:cloudformation:us-east-1:881433986874:stack/warriorbeatapp-20181228000540/390da570-0a5e-11e9-bd7e-0a00a1b75a8c"
-    },
-    "categories": {
-      "auth": {
-        "WarriorBeatCognito": {}
-      },
-      "api": {
-        "WarriorBeatAppSync": {}
-      }
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "warriorbeatapp-20181228000540-authRole",
+            "UnauthRoleArn": "arn:aws:iam::881433986874:role/warriorbeatapp-20181228000540-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::881433986874:role/warriorbeatapp-20181228000540-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "warriorbeatapp-20181228000540-deployment",
+            "UnauthRoleName": "warriorbeatapp-20181228000540-unauthRole",
+            "StackName": "warriorbeatapp-20181228000540",
+            "StackId": "arn:aws:cloudformation:us-east-1:881433986874:stack/warriorbeatapp-20181228000540/390da570-0a5e-11e9-bd7e-0a00a1b75a8c"
+        },
+        "categories": {
+            "auth": {
+                "WarriorBeatCognito": {}
+            },
+            "api": {
+                "WarriorBeatAppSync": {}
+            }
+        }
     }
-  }
 }

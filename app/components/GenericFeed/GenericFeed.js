@@ -39,17 +39,32 @@ class GenericFeed extends React.Component {
 
 GenericFeed.wrappedComponent.propTypes = {
   postStore: MobxTypes.observableObject.isRequired,
-  // pollStore: MobxTypes.observableObject.isRequired,
 }
 
 GenericFeed.propTypes = {
   categoryId: PropTypes.string,
   withPolls: PropTypes.bool,
+  polls: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      question: PropTypes.string,
+      createdOn: PropTypes.string,
+      isOpen: PropTypes.bool,
+      lastUpdated: PropTypes.string,
+      totalVotes: PropTypes.number,
+      options: PropTypes.shape({
+        id: PropTypes.string,
+        text: PropTypes.string,
+        votes: PropTypes.number,
+      }),
+    }),
+  ),
 }
 
 GenericFeed.defaultProps = {
   categoryId: false,
   withPolls: false,
+  polls: [],
 }
 
 export default compose(queries.poll.pollList)(GenericFeed)

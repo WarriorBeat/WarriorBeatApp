@@ -6,7 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
-    "lint": "node_modules/eslint/bin/eslint.js *.js **/*.js",
+    "lint": "node_modules/eslint/bin/eslint.js '*.js' '**/*.js'",
     "commit": "git cz",
     "version": "standard-version --commit-all",
     "postinstall": "react-native-schemes-manager all && ./fastlane/scripts/fix_deprecated.sh",

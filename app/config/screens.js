@@ -3,7 +3,7 @@
 import { Navigation } from "react-native-navigation"
 import Provider from "lib/RNNProvider"
 import RootStore from "stores/rootStore"
-import ApolloProviderHOC from "./ApolloProviderHOC"
+import apolloProviderHOC from "./ApolloProviderHOC"
 
 function registerScreens() {
   const rootStore = new RootStore()
@@ -17,31 +17,31 @@ function registerScreens() {
   }
   Navigation.registerComponentWithRedux(
     "Home",
-    () => ApolloProviderHOC(require("screens").Home),
+    () => apolloProviderHOC(require("screens").Home),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "Initializing",
-    () => ApolloProviderHOC(require("screens").Initializing),
+    () => apolloProviderHOC(require("screens").Initializing),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "FeedView",
-    () => ApolloProviderHOC(require("screens").FeedView),
+    () => apolloProviderHOC(require("screens").FeedView),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "Post.Article",
-    () => ApolloProviderHOC(require("components/Post").Article),
+    () => apolloProviderHOC(require("components/Post").Article),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "Post.Poll",
-    () => ApolloProviderHOC(require("components/Poll").default),
+    () => apolloProviderHOC(require("components/Poll").default),
     Provider,
     store,
   )

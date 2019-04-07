@@ -9,7 +9,7 @@ import { View, Animated, Easing } from "react-native"
 import { PropTypes } from "prop-types"
 import { Button } from "react-native-elements"
 import Text from "components/Text"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
 import { pollStyles as styles, polls } from "./styles"
 
 const AnswerItem = (props) => {
@@ -81,8 +81,25 @@ class PollAnswers extends React.Component {
   }
 }
 
+AnswerItem.propTypes = {
+  answerObj: PropTypes.shape({
+    id: PropTypes.string,
+    text: PropTypes.string,
+    votes: PropTypes.number,
+  }).isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+  animVal: PropTypes.number.isRequired,
+}
+
 PollAnswers.propTypes = {
-  poll: MobxTypes.observableObject.isRequired,
+  pollOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+      votes: PropTypes.number,
+    }),
+  ).isRequired,
   onPress: PropTypes.func.isRequired,
   active: PropTypes.string.isRequired,
 }

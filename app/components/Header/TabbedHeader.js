@@ -9,7 +9,7 @@ import { View, ViewPropTypes, TouchableOpacity } from "react-native"
 import { Header, Button, Icon } from "react-native-elements"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
-import { observer, inject } from "mobx-react/native"
+import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable } from "mobx"
 import Image from "react-native-fast-image"
 import { colors, icons } from "config/styles"
@@ -97,6 +97,10 @@ class TabbedHeader extends React.Component {
       </View>
     )
   }
+}
+
+TabbedHeader.wrappedComponent.propTypes = {
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 TabbedHeader.propTypes = {

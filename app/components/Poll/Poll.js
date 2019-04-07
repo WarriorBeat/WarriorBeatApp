@@ -113,12 +113,30 @@ class Poll extends React.Component {
 }
 
 Poll.wrappedComponent.propTypes = {
-  pollStore: MobxTypes.observableObject.isRequired,
+  uiStore: MobxTypes.observableObject.isRequired,
 }
 
 Poll.propTypes = {
-  pollId: PropTypes.string.isRequired,
+  poll: PropTypes.shape({
+    id: PropTypes.string,
+    question: PropTypes.string,
+    createdOn: PropTypes.string,
+    isOpen: PropTypes.bool,
+    lastUpdated: PropTypes.string,
+    totalVotes: PropTypes.number,
+    options: PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+      votes: PropTypes.number,
+    }),
+  }).isRequired,
   componentId: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  pollAddVote: PropTypes.func.isRequired,
+}
+
+Poll.defaultProps = {
+  loading: false,
 }
 
 export default compose(mutations.poll.pollAddVote)(Poll)

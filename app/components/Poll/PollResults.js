@@ -65,7 +65,7 @@ class PollResults extends React.Component {
   render() {
     const { poll, loading, votedOn } = this.props
     if (loading) {
-      return (null)
+      return null
     }
     if (!this.animatedResults) {
       this.animatedResults = []
@@ -98,9 +98,25 @@ class PollResults extends React.Component {
   }
 }
 
+ResultItem.propTypes = {
+  answerObj: PropTypes.shape({
+    id: PropTypes.string,
+    text: PropTypes.string,
+    votes: PropTypes.number,
+  }).isRequired,
+  totalVotes: PropTypes.number.isRequired,
+  didVote: PropTypes.bool.isRequired,
+  animVal: PropTypes.number.isRequired,
+}
+
 PollResults.propTypes = {
   poll: MobxTypes.observableObject.isRequired,
   votedOn: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+}
+
+PollResults.defaultProps = {
+  loading: false,
 }
 
 export default compose(queries.poll.getPoll)(PollResults)

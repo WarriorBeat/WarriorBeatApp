@@ -6,7 +6,7 @@
 
 import React from "react"
 import { PropTypes } from "prop-types"
-import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
 import NewsBlock from "./NewsBlock"
 
 @observer
@@ -31,12 +31,20 @@ class PollBlock extends React.Component {
   }
 }
 
-// PollBlock.wrappedComponent.propTypes = {
-//   // pollStore: MobxTypes.observableObject.isRequired,
-// }
-
-// PollBlock.propTypes = {
-//   // pollId: PropTypes.string.isRequired,
-// }
+PollBlock.propTypes = {
+  poll: PropTypes.shape({
+    id: PropTypes.string,
+    question: PropTypes.string,
+    createdOn: PropTypes.string,
+    isOpen: PropTypes.bool,
+    lastUpdated: PropTypes.string,
+    totalVotes: PropTypes.number,
+    options: PropTypes.shape({
+      id: PropTypes.string,
+      text: PropTypes.string,
+      votes: PropTypes.number,
+    }),
+  }).isRequired,
+}
 
 export default PollBlock
