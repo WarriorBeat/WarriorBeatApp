@@ -102,7 +102,8 @@ lane :fasttest do |options|
   ENV_NODE_PATH  | #{ENV['NODE_PATH']}
   ENV_API_DEV    | #{ENV['API_DEV']}
   ENV_DEBUG      | #{ENV['DEBUG']}
-  RELEASE_NOTES  | #{getReleaseNotes}
+  SENTRY_ID      | #{"#{APP_ID}.#{ENV['APP_ENV']}-#{TAG_VERSION}"}
+  RELEASE_NOTES  | #{"\n#{getReleaseNotes}"}
   ")
   iosfasttest
   andfasttest
@@ -145,6 +146,12 @@ end
 desc("Finalize release on Sentry")
 lane :sentry do |options|
   parsed_options = {
+    :tag => handleEnvAndOptions(
+      ENV['SENTRY_APP_ID'],
+      options[:tag],
+      true,
+      APP_ID
+    ),
     :env => handleEnvAndOptions(
       ENV['SENTRY_ENV_STAGE'],
       options[:env],
@@ -163,8 +170,8 @@ lane :sentry do |options|
     next
   end
   sentry_env = parsed_options[:env].capitalize
-  sentry_tag = "#{APP_ID}-#{TAG_VERSION}"
-  sh("#{SENTRY_SH} release #{sentry_tag} #{sentry_env}")
+  sentry_id = "#{parsed_options[:tag]}-#{TAG_VERSION}"
+  sh("#{SENTRY_SH} release #{sentry_id} #{sentry_env}")
 end
 
 # Create Temporary Keychain for Match (Travis CI)
@@ -239,34 +246,35 @@ lane :deploy do |options|
   ipa_file = Dir["#{DIST_DIR}/*.ipa"][0]
   apk_file = Dir["#{DIST_DIR}/*.apk"][0]
   dsym_file = Dir["#{DIST_DIR}/*.dSYM.zip"][0]
+  sentry_tag = "#{APP_ID}.#{parsed_options[:env]}"
   UI.header("Beginning Deploy")
   UI.important("
     IPA => #{ipa_file}
     APK => #{apk_file}
     DSYM => #{dsym_file}
-    RELEASE => #{APP_ID}
+    RELEASE => #{sentry_tag}
   ")
   sentry_create_release(
     version: TAG_VERSION,
-    app_identifier: APP_ID,
+    app_identifier: sentry_tag,
     finalize: false
   )
   Fastlane::LaneManager.cruise_lane("ios", "release", {
     :skip_before => true,
     :ipa => ipa_file,
     :dsym => dsym_file,
-    :sentry_id => APP_ID
+    :sentry_id => sentry_tag
   })
   Fastlane::LaneManager.cruise_lane("android", "release", {
     :skip_before => true,
     :apk => apk_file,
-    :sentry_id => APP_ID,
+    :sentry_id => sentry_tag,
   })
   UI.important("Finalizing Sentry Release...")
-  sentry(env:parsed_options[:env])
+  sentry(tag:sentry_tag, env:parsed_options[:env])
   sentry_finalize_release(
     version: TAG_VERSION,
-    app_identifier: APP_ID,
+    app_identifier: sentry_tag,
   )
   UI.success("Deploy Successful!")
 end
