@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { ArticleBlock, PollBlock } from "components/NewsBlock"
 import { compose } from "react-apollo"
-import { queries } from "graphql"
+import { queries, PropTypes as gqlTypes } from "graphql"
 import styles from "./styles"
 
 @inject("postStore")
@@ -44,23 +44,7 @@ GenericFeed.wrappedComponent.propTypes = {
 GenericFeed.propTypes = {
   categoryId: PropTypes.string,
   withPolls: PropTypes.bool,
-  polls: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      question: PropTypes.string,
-      createdOn: PropTypes.string,
-      isOpen: PropTypes.bool,
-      lastUpdated: PropTypes.string,
-      totalVotes: PropTypes.number,
-      options: PropTypes.arrayOf(
-        PropTypes.shape({
-          id: PropTypes.string,
-          text: PropTypes.string,
-          votes: PropTypes.number,
-        }),
-      ),
-    }),
-  ),
+  polls: PropTypes.arrayOf(gqlTypes.poll),
 }
 
 GenericFeed.defaultProps = {
