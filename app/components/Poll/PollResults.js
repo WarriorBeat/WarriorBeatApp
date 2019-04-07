@@ -10,9 +10,9 @@ import {
 } from "react-native"
 import { PropTypes } from "prop-types"
 import Text from "components/Text"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
 import { Circle as CircleProgress } from "react-native-progress"
-import { queries } from "graphql"
+import { queries, PropTypes as gqlTypes } from "graphql"
 import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 
@@ -99,32 +99,14 @@ class PollResults extends React.Component {
 }
 
 ResultItem.propTypes = {
-  answerObj: PropTypes.shape({
-    id: PropTypes.string,
-    text: PropTypes.string,
-    votes: PropTypes.number,
-  }).isRequired,
+  answerObj: gqlTypes.pollOption.isRequired,
   totalVotes: PropTypes.number.isRequired,
   didVote: PropTypes.bool.isRequired,
   animVal: PropTypes.instanceOf(Animated.Value).isRequired,
 }
 
 PollResults.propTypes = {
-  poll: PropTypes.shape({
-    id: PropTypes.string,
-    question: PropTypes.string,
-    createdOn: PropTypes.string,
-    isOpen: PropTypes.bool,
-    lastUpdated: PropTypes.string,
-    totalVotes: PropTypes.number,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        text: PropTypes.string,
-        votes: PropTypes.number,
-      }),
-    ),
-  }).isRequired,
+  poll: gqlTypes.poll.isRequired,
   votedOn: PropTypes.string.isRequired,
   loading: PropTypes.bool,
 }

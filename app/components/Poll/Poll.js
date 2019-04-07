@@ -12,7 +12,7 @@ import Text from "components/Text"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { icons } from "config/styles"
 import { observable } from "mobx"
-import { mutations } from "graphql"
+import { mutations, PropTypes as gqlTypes } from "graphql"
 import { compose } from "react-apollo"
 import { pollStyles as styles, polls } from "./styles"
 import PollAnswers from "./PollAnswers"
@@ -117,21 +117,7 @@ Poll.wrappedComponent.propTypes = {
 }
 
 Poll.propTypes = {
-  poll: PropTypes.shape({
-    id: PropTypes.string,
-    question: PropTypes.string,
-    createdOn: PropTypes.string,
-    isOpen: PropTypes.bool,
-    lastUpdated: PropTypes.string,
-    totalVotes: PropTypes.number,
-    options: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-        text: PropTypes.string,
-        votes: PropTypes.number,
-      }),
-    ),
-  }).isRequired,
+  poll: gqlTypes.poll.isRequired,
   componentId: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   pollAddVote: PropTypes.func.isRequired,
