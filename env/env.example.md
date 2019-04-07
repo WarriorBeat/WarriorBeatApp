@@ -14,6 +14,7 @@ Required Variables
 
 * `API_DEV=(local|awsdev|aws)`
 * `NODE_PATH="./app"`
+* `APP_ENV=(dev|staging)`
 
 
 
