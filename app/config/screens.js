@@ -51,13 +51,13 @@ function registerScreens() {
   Navigation.registerComponent("NavMenu.SubMenu", () => require("components/Menu").SubMenu)
   Navigation.registerComponentWithRedux(
     "Account.Authenticator",
-    () => require("screens/Account").Authenticator,
+    () => apolloProviderHOC(require("screens/Account").Authenticator),
     Provider,
     store,
   )
   Navigation.registerComponentWithRedux(
     "Author.Profile",
-    () => require("screens/Author").default,
+    () => apolloProviderHOC(require("screens/Author").default),
     Provider,
     store,
   )
