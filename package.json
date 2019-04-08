@@ -11,7 +11,8 @@
     "version": "standard-version --commit-all",
     "postinstall": "react-native-schemes-manager all && ./fastlane/scripts/fix_deprecated.sh",
     "ios:bundle": "react-native bundle --entry-file='index.js' --bundle-output='./ios/bundle/main.jsbundle' --reset-cache --sourcemap-output='./ios/bundle/main.jsbundle.map' --dev=false --platform='ios'",
-    "ios:bundledev": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=true --platform='ios'"
+    "ios:bundledev": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=true --platform='ios'",
+    "gen:changelog": "conventional-changelog -p metahub -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "aws-amplify": "^1.1.18",
@@ -70,7 +71,7 @@
     "babel-plugin-module-resolver": "^3.1.1",
     "commitizen": "^3.0.5",
     "conventional-changelog-cli": "^2.0.12",
-    "conventional-changelog-metahub": "^2.0.2",
+    "conventional-changelog-metahub": "BradenM/conventional-changelog-metahub",
     "cz-conventional-changelog": "2.1.0",
     "eslint": "^5.10.0",
     "eslint-config-airbnb": "^17.1.0",

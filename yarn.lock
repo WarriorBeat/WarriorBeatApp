@@ -3007,7 +3007,14 @@ conventional-changelog-jshint@^2.0.1:
     compare-func "^1.3.1"
     q "^1.5.1"
 
-conventional-changelog-metahub@^2.0.1, conventional-changelog-metahub@^2.0.2:
+conventional-changelog-metahub@BradenM/conventional-changelog-metahub:
+  version "0.0.0-development"
+  resolved "https://codeload.github.com/BradenM/conventional-changelog-metahub/tar.gz/756e1fc7ebb0a8684bfda312e8d838f866f87add"
+  dependencies:
+    conventional-changelog-angular "^5.0.0"
+    lodash "^4.17.4"
+
+conventional-changelog-metahub@^2.0.1:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/conventional-changelog-metahub/-/conventional-changelog-metahub-2.0.2.tgz#9fd6869005d3c5cb0d58c80e35b094c2adcb5369"
   integrity sha512-3lyW6bEXUSYtXD4ykcO1hG4o4VNYoM6ZHtlNvNlPyWX3LpIk9IKPjXZqKY34lS7Rqmq3AXG5fyqJa+wRpEq/4Q==
