@@ -89,8 +89,12 @@ GenericPost.wrappedComponent.propTypes = {
 }
 
 GenericPost.propTypes = {
-  backgroundSource: PropTypes.string.isRequired,
+  backgroundSource: PropTypes.string,
   children: PropTypes.node.isRequired,
+}
+
+GenericPost.defaultProps = {
+  backgroundSource: "",
 }
 
 export default GenericPost
