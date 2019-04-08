@@ -67,6 +67,15 @@ const articleQueries = {
         post: data.articleGet ? data.articleGet : {},
       }),
     }),
+    articleList: graphql(query.articleList, {
+      options: {
+        fetchPolicy: "cache-and-network",
+      },
+      props: ({ data }) => ({
+        loading: data.loading,
+        articles: data.articleList ? data.articleList.items : [],
+      }),
+    }),
     articleGetByCategory: graphql(query.articleGetByCategory, {
       options: ({ category }) => ({
         fetchPolicy: "cache-and-network",

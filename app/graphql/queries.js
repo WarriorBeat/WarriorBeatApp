@@ -111,3 +111,19 @@ export const articleGet = gql`
     }
   }
 `
+
+export const articleList = gql`
+  query articleList {
+    articleList {
+      items {
+        id
+        createdOn(format: "MMM dd yyyy")
+        title
+        coverImage {
+          id
+          url
+        }
+      }
+    }
+  }
+`
