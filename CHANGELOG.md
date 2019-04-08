@@ -23,14 +23,6 @@
 * Broken Android Build, Fixed Partial Update Issues, Updated Build Scripts ([#65](https://github.com/WarriorBeat/WarriorBeatApp/issues/65)) ([ba3750c](https://github.com/WarriorBeat/WarriorBeatApp/commit/ba3750c))
 
 
-### ♻️ Chores
-
-* **release:** 0.14.0-alpha.2 ([1803c10](https://github.com/WarriorBeat/WarriorBeatApp/commit/1803c10))
-* **release:** 0.14.0-alpha.3 ([8cd21ae](https://github.com/WarriorBeat/WarriorBeatApp/commit/8cd21ae))
-* **release:** 0.14.0-alpha.4 ([4b21382](https://github.com/WarriorBeat/WarriorBeatApp/commit/4b21382))
-* **release:** 0.14.0-alpha.5 ([ead924f](https://github.com/WarriorBeat/WarriorBeatApp/commit/ead924f))
-
-
 
 ## [0.13.4](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.3...v0.13.4) (2019-01-24)
 
@@ -46,11 +38,6 @@
 * **iOS:** Fixed Dev Build Status Bar Issue and Derived Data Path ([93ac908](https://github.com/WarriorBeat/WarriorBeatApp/commit/93ac908))
 
 
-### ♻️ Chores
-
-* **release:** 0.13.4 ([0c52954](https://github.com/WarriorBeat/WarriorBeatApp/commit/0c52954))
-
-
 
 ## [0.13.3](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.2...v0.13.3) (2019-01-21)
 
@@ -60,18 +47,8 @@
 * **travis:** Hotfix Android Deploy ([3e8dedd](https://github.com/WarriorBeat/WarriorBeatApp/commit/3e8dedd))
 
 
-### ♻️ Chores
-
-* **release:** 0.13.3 ([0f84f99](https://github.com/WarriorBeat/WarriorBeatApp/commit/0f84f99))
-
-
 
 ## [0.13.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.1...v0.13.2) (2019-01-21)
-
-
-### ♻️ Chores
-
-* **release:** 0.13.2 ([c02841d](https://github.com/WarriorBeat/WarriorBeatApp/commit/c02841d))
 
 
 
@@ -88,11 +65,6 @@
 * **iOS:** Fastlane Restructure, Match/Gym Integration, Performance Boost ([#58](https://github.com/WarriorBeat/WarriorBeatApp/issues/58)) ([02989fd](https://github.com/WarriorBeat/WarriorBeatApp/commit/02989fd))
 
 
-### ♻️ Chores
-
-* **release:** 0.13.1 ([9d57f9b](https://github.com/WarriorBeat/WarriorBeatApp/commit/9d57f9b))
-
-
 
 # [0.13.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.12.1...v0.13.0) (2019-01-09)
 
@@ -100,11 +72,6 @@
 ### ✨ Features
 
 * **Users:** User Account Persistence and Author Subscriptions ([#55](https://github.com/WarriorBeat/WarriorBeatApp/issues/55)) ([3c9ee0b](https://github.com/WarriorBeat/WarriorBeatApp/commit/3c9ee0b)), closes [#52](https://github.com/WarriorBeat/WarriorBeatApp/issues/52)
-
-
-### ♻️ Chores
-
-* **release:** 0.13.0 ([106b9f9](https://github.com/WarriorBeat/WarriorBeatApp/commit/106b9f9))
 
 
 
@@ -116,11 +83,6 @@
 * **uiStore:** Fixed uiStore goTo, Fixed NavMenu News Button ([2bd0df9](https://github.com/WarriorBeat/WarriorBeatApp/commit/2bd0df9))
 * **uiStore:** Fixed View Components not Resolving ([e3c9a99](https://github.com/WarriorBeat/WarriorBeatApp/commit/e3c9a99)), closes [#53](https://github.com/WarriorBeat/WarriorBeatApp/issues/53)
 * **uiStore:** Overcome StackHistory Size Limit by Parsing the Last fo... ([08b243a](https://github.com/WarriorBeat/WarriorBeatApp/commit/08b243a))
-
-
-### ♻️ Chores
-
-* **release:** 0.12.1 ([9074d43](https://github.com/WarriorBeat/WarriorBeatApp/commit/9074d43))
 
 
 
@@ -142,11 +104,6 @@
 * **uiStore:** Fixed Popping Non-Screen Components ([fad3cad](https://github.com/WarriorBeat/WarriorBeatApp/commit/fad3cad))
 
 
-### ♻️ Chores
-
-* **release:** 0.12.0 ([de82336](https://github.com/WarriorBeat/WarriorBeatApp/commit/de82336))
-
-
 
 # [0.11.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.10.1...v0.11.0) (2019-01-03)
 
@@ -157,11 +114,6 @@
 * **Auth:** User Authentication UI ([#45](https://github.com/WarriorBeat/WarriorBeatApp/issues/45)) ([86acf22](https://github.com/WarriorBeat/WarriorBeatApp/commit/86acf22))
 * **uiStore:** Global UI Store for observing Navigation and more ([#48](https://github.com/WarriorBeat/WarriorBeatApp/issues/48)) ([edb9f91](https://github.com/WarriorBeat/WarriorBeatApp/commit/edb9f91))
 * **UserStore:** Basic User Store Implementation ([#44](https://github.com/WarriorBeat/WarriorBeatApp/issues/44)) ([93a7cb5](https://github.com/WarriorBeat/WarriorBeatApp/commit/93a7cb5))
-
-
-### ♻️ Chores
-
-* **release:** 0.11.0 ([6a8bc2b](https://github.com/WarriorBeat/WarriorBeatApp/commit/6a8bc2b))
 
 
 
@@ -189,11 +141,6 @@
 * Changed Conventional Commit/Changelog Preset to MetaHub ([#41](https://github.com/WarriorBeat/WarriorBeatApp/issues/41)) ([d38b8cf](https://github.com/WarriorBeat/WarriorBeatApp/commit/d38b8cf))
 
 
-### ♻️ Chores
-
-* **release:** 0.10.1 ([51b5d50](https://github.com/WarriorBeat/WarriorBeatApp/commit/51b5d50))
-
-
 
 # [0.10.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.9.0...v0.10.0) (2018-12-22)
 
@@ -206,11 +153,6 @@
 ### 🐛 Bug Fixes
 
 * **deps:** Update to RN-Elements@v1.0.0-beta7, Refactor to Changes ([#38](https://github.com/WarriorBeat/WarriorBeatApp/issues/38)) ([98b4877](https://github.com/WarriorBeat/WarriorBeatApp/commit/98b4877))
-
-
-### ♻️ Chores
-
-* **release:** 0.10.0 ([b880fed](https://github.com/WarriorBeat/WarriorBeatApp/commit/b880fed))
 
 
 
@@ -227,11 +169,6 @@
 
 * **Categories:** Fixed Category Icon Lookup ([6712472](https://github.com/WarriorBeat/WarriorBeatApp/commit/6712472))
 * **PostStore:** Fixed Posts loading before CategoryStore was ready ([67b399e](https://github.com/WarriorBeat/WarriorBeatApp/commit/67b399e)), closes [#36](https://github.com/WarriorBeat/WarriorBeatApp/issues/36)
-
-
-### ♻️ Chores
-
-* **release:** 0.9.0 ([28e1b68](https://github.com/WarriorBeat/WarriorBeatApp/commit/28e1b68))
 
 
 
@@ -256,11 +193,6 @@
 * **stores:** Added PostStore docs ([616223a](https://github.com/WarriorBeat/WarriorBeatApp/commit/616223a))
 
 
-### ♻️ Chores
-
-* **release:** 0.8.0 ([31e1372](https://github.com/WarriorBeat/WarriorBeatApp/commit/31e1372))
-
-
 
 # [0.7.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.6.0...v0.7.0) (2018-12-17)
 
@@ -277,11 +209,6 @@
 * **android:** Fix LayoutAnimations on Android ([#28](https://github.com/WarriorBeat/WarriorBeatApp/issues/28)) ([98325ff](https://github.com/WarriorBeat/WarriorBeatApp/commit/98325ff))
 
 
-### ♻️ Chores
-
-* **release:** 0.7.0 ([6da1af9](https://github.com/WarriorBeat/WarriorBeatApp/commit/6da1af9))
-
-
 
 # [0.6.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.5.0...v0.6.0) (2018-12-15)
 
@@ -291,11 +218,6 @@
 * Redesigned Home Page with Parallax Header and Carousel Categories ([#26](https://github.com/WarriorBeat/WarriorBeatApp/issues/26)) ([0001c82](https://github.com/WarriorBeat/WarriorBeatApp/commit/0001c82))
 
 
-### ♻️ Chores
-
-* **release:** 0.6.0 ([9450ef6](https://github.com/WarriorBeat/WarriorBeatApp/commit/9450ef6))
-
-
 
 # [0.5.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.5.0-rc.1...v0.5.0) (2018-12-15)
 
@@ -303,11 +225,6 @@
 ### 📚 Documentation
 
 * **api:** API Docs ([036ea04](https://github.com/WarriorBeat/WarriorBeatApp/commit/036ea04))
-
-
-### ♻️ Chores
-
-* **release:** 0.5.0 ([505f779](https://github.com/WarriorBeat/WarriorBeatApp/commit/505f779))
 
 
 
@@ -320,11 +237,6 @@
 * Viewing Posts by Category Crashes App ([#24](https://github.com/WarriorBeat/WarriorBeatApp/issues/24)) ([7fe76c6](https://github.com/WarriorBeat/WarriorBeatApp/commit/7fe76c6)), closes [#23](https://github.com/WarriorBeat/WarriorBeatApp/issues/23)
 
 
-### ♻️ Chores
-
-* **release:** 0.5.0-rc.1 ([5384c79](https://github.com/WarriorBeat/WarriorBeatApp/commit/5384c79))
-
-
 
 # [0.5.0-rc.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.4.1...v0.5.0-rc.0) (2018-12-13)
 
@@ -335,11 +247,6 @@
 * **store:** Restructured Mobx Stores, Added Root and other Stores ([#20](https://github.com/WarriorBeat/WarriorBeatApp/issues/20)) ([e38caec](https://github.com/WarriorBeat/WarriorBeatApp/commit/e38caec))
 
 
-### ♻️ Chores
-
-* **release:** 0.5.0-rc.0 ([830e9b1](https://github.com/WarriorBeat/WarriorBeatApp/commit/830e9b1))
-
-
 
 ## [0.4.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.4.1-rc.0...v0.4.1) (2018-12-12)
 
@@ -348,13 +255,6 @@
 
 * Add Fastlane Integration ([#15](https://github.com/WarriorBeat/WarriorBeatApp/issues/15)) ([293ae2c](https://github.com/WarriorBeat/WarriorBeatApp/commit/293ae2c))
 * Added Install Release Fastlanes ([#18](https://github.com/WarriorBeat/WarriorBeatApp/issues/18)) ([3e956f9](https://github.com/WarriorBeat/WarriorBeatApp/commit/3e956f9))
-
-
-### ♻️ Chores
-
-* **deps:** Update React Native Navigation to v2.2.0  ([#17](https://github.com/WarriorBeat/WarriorBeatApp/issues/17)) ([ea6f4b5](https://github.com/WarriorBeat/WarriorBeatApp/commit/ea6f4b5))
-* **deps:** Update RN-Vector-Icons v5.0.0 => v6.1.0 ([#16](https://github.com/WarriorBeat/WarriorBeatApp/issues/16)) ([96b927b](https://github.com/WarriorBeat/WarriorBeatApp/commit/96b927b))
-* **release:** 0.4.1 ([ab8eb0f](https://github.com/WarriorBeat/WarriorBeatApp/commit/ab8eb0f))
 
 
 
@@ -376,11 +276,6 @@
 
 * **api:** Update API to comply with v0.6.0 ([ef1076f](https://github.com/WarriorBeat/WarriorBeatApp/commit/ef1076f))
 * **PostStore:** Updated PostStore to Api Changes ([3af957d](https://github.com/WarriorBeat/WarriorBeatApp/commit/3af957d))
-
-
-### ♻️ Chores
-
-* **release:** 0.4.1-rc.0 ([8d27d3a](https://github.com/WarriorBeat/WarriorBeatApp/commit/8d27d3a))
 
 
 ### 💎 Styles
