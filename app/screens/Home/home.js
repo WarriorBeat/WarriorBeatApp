@@ -8,6 +8,7 @@ import {
   View, Animated, ScrollView, LayoutAnimation, Easing,
 } from "react-native"
 import { icons } from "config/styles"
+import { PropTypes } from "prop-types"
 import { enableLayoutAnimations } from "config/utils"
 import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
@@ -16,11 +17,13 @@ import { inject, observer, PropTypes as MobxTypes } from "mobx-react/native"
 import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
+import { compose } from "react-apollo"
+import { queries, PropTypes as gqlTypes } from "graphql"
 import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
-@inject("categoryStore", "uiStore")
+@inject("uiStore")
 @observer
 class Home extends React.Component {
   @observable
@@ -81,7 +84,7 @@ class Home extends React.Component {
 
   _renderCategory = ({ item, index }) => (
     <View onLayout={e => this._updateHeight(e, index)}>
-      <GenericFeed categoryId={item.id} withPolls={index === 0} />
+      <GenericFeed category={item} withPolls={index === 0} />
     </View>
   )
 
@@ -92,7 +95,7 @@ class Home extends React.Component {
         <Button
           type="clear"
           containerStyle={styles.tab_button_container}
-          icon={{ ...item.icon, color: "black" }}
+          icon={{ ...icons[item.slug], color: "black" }}
           title={(
             <Text Color="black" Weight={btnWeight}>
               {item.name}
@@ -152,9 +155,7 @@ class Home extends React.Component {
   )
 
   render() {
-    const { categoryStore, uiStore } = this.props
-    const sortOrder = ["News", "Sports"]
-    const categories = categoryStore.sortCategories(sortOrder)
+    const { uiStore, categories, loading } = this.props
     const iconStyle = navIconStyles(this.headerVisible)
     const iconScale = this.iconScale.interpolate({
       inputRange: [0, 1],
@@ -194,16 +195,24 @@ class Home extends React.Component {
           </View>
         )}
       >
-        {categoryStore.status === "ready" ? this._renderPagination(categories) : null}
-        {categoryStore.status === "ready" ? this._renderCarousel(categories) : null}
+        {!loading ? this._renderPagination(categories) : null}
+        {!loading ? this._renderCarousel(categories) : null}
       </ParallaxScrollView>
     )
   }
 }
 
 Home.wrappedComponent.propTypes = {
-  categoryStore: MobxTypes.observableObject.isRequired,
   uiStore: MobxTypes.observableObject.isRequired,
 }
 
-export default Home
+Home.propTypes = {
+  categories: PropTypes.arrayOf(gqlTypes.article).isRequired,
+  loading: PropTypes.bool,
+}
+
+Home.defaultProps = {
+  loading: true,
+}
+
+export default compose(queries.category.categoryList)(Home)

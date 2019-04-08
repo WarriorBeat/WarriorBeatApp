@@ -110,7 +110,7 @@ export const icons = {
     name: "md-school",
     type: "ionicon",
   },
-  reviews: {
+  reviews_previews: {
     name: "ticket",
     type: "entypo",
   },

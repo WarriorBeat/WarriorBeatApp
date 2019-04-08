@@ -6,8 +6,9 @@
 
 import React from "react"
 import { View } from "react-native"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
 import Text from "components/Text"
+import { PropTypes as gqlTpypes } from "graphql"
 import { infoStyles as styles } from "./styles"
 import AuthorAvatar from "./AuthorAvatar"
 
@@ -28,7 +29,7 @@ const AuthorInfo = ({ author, avatarSize }) => (
 )
 
 AuthorInfo.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTpypes.author.isRequired,
   avatarSize: AuthorAvatar.propTypes.size,
 }
 

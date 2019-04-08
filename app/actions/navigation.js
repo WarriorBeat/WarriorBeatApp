@@ -25,6 +25,12 @@ export const goHome = () => Navigation.setRoot({
               component: {
                 name: "Home",
                 id: "HomeScreen",
+                passProps: {
+                  categorySortOrder: {
+                    key: "name",
+                    values: ["News", "Sports"],
+                  },
+                },
               },
             },
           ],

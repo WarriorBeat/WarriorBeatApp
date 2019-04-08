@@ -10,6 +10,7 @@ import { Tile, Badge } from "react-native-elements"
 import { AuthorAvatar } from "components/Author"
 import Text from "components/Text"
 import { PropTypes } from "prop-types"
+import { PropTypes as gqlTypes } from "graphql"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import Image from "react-native-fast-image"
 import styles from "./styles"
@@ -118,7 +119,7 @@ NewsBlock.propTypes = {
     props: PropTypes.object,
   }).isRequired,
   imageSrc: PropTypes.objectOf(PropTypes.string),
-  author: MobxTypes.observableObject,
+  author: gqlTypes.author,
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
   badge: PropTypes.string,
 }

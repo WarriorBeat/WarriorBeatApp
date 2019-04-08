@@ -7,12 +7,13 @@
 import React from "react"
 import { View } from "react-native"
 import Text from "components/Text"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
+import { PropTypes as gqlTypes } from "graphql"
 import { summaryStyles as styles } from "./styles"
 import AuthorAvatar from "./AuthorAvatar"
 
 const AuthorSummary = ({ author }) => {
-  const { description } = author
+  const { bio } = author
   return (
     <View style={styles.summary_container}>
       <AuthorAvatar author={author} />
@@ -21,7 +22,7 @@ const AuthorSummary = ({ author }) => {
           About the Author
         </Text>
         <Text Type="caption" Weight="light" Color="primary">
-          {description}
+          {bio}
         </Text>
       </View>
     </View>
@@ -29,7 +30,7 @@ const AuthorSummary = ({ author }) => {
 }
 
 AuthorSummary.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTypes.author.isRequired,
 }
 
 export default observer(AuthorSummary)

@@ -84,13 +84,17 @@ class GenericPost extends React.Component {
   }
 }
 
-GenericPost.wrappedCompnent.propTypes = {
+GenericPost.wrappedComponent.propTypes = {
   uiStore: MobxTypes.observableObject.isRequired,
 }
 
 GenericPost.propTypes = {
-  backgroundSource: PropTypes.string.isRequired,
+  backgroundSource: PropTypes.string,
   children: PropTypes.node.isRequired,
+}
+
+GenericPost.defaultProps = {
+  backgroundSource: "",
 }
 
 export default GenericPost
