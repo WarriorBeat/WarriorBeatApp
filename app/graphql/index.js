@@ -39,9 +39,12 @@ const pollQueries = {
 const categoryQueries = {
   category: {
     categoryList: graphql(query.categoryList, {
-      options: {
+      options: ({ categorySortOrder }) => ({
         fetchPolicy: "cache-and-network",
-      },
+        variables: {
+          sortOrder: categorySortOrder,
+        },
+      }),
       props: ({ data }) => ({
         loading: data.loading,
         categories: data.categoryList ? data.categoryList.items : [],

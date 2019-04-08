@@ -45,8 +45,8 @@ export const pollGet = gql`
 `
 
 export const categoryList = gql`
-  query categoryList {
-    categoryList {
+  query categoryList($sortOrder: SortOrderInput!) {
+    categoryList(sortOrder: $sortOrder) {
       items {
         id
         name
