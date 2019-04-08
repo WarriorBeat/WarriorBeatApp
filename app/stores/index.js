@@ -5,7 +5,6 @@
  */
 
 import { MediaStore } from "./mediaStore"
-import { CategoryStore } from "./categoryStore"
 import { UserStore } from "./userStore"
 import UIStore from "./uiStore"
 
