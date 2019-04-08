@@ -19,6 +19,5 @@ export default class RootStore {
 
     this.userStore = new UserStore(this, this.userResource)
     this.mediaStore = new MediaStore(this, this.mediaResource)
-    this.categoryStore = new CategoryStore(this, this.categoryResource)
   }
 }
