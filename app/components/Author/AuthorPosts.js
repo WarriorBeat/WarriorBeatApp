@@ -10,10 +10,11 @@ import {
 import { observer, PropTypes as MobxTypes, inject } from "mobx-react/native"
 import Text from "components/Text"
 import Image from "react-native-fast-image"
+import { PropTypes as gqlTypes } from "graphql"
 import { postStyles as styles } from "./styles"
 
 const PostItem = observer(({ post, onPress }) => (
-  <TouchableOpacity onPress={() => onPress(post.id)}>
+  <TouchableOpacity onPress={() => onPress(post)}>
     <View style={styles.postContainer}>
       <View style={styles.postImageContainer}>
         <Image
@@ -34,7 +35,7 @@ const PostItem = observer(({ post, onPress }) => (
             {post.categories[0].name}
           </Text>
           <Text Type="footnote" Color="primary" Weight="semibold">
-            {post.date}
+            {post.createdOn}
           </Text>
         </View>
       </View>
@@ -47,10 +48,10 @@ const PostItem = observer(({ post, onPress }) => (
 class AuthorPosts extends React.Component {
   _keyExtractor = item => item.id
 
-  handlePress = (id) => {
+  handlePress = (post) => {
     const { uiStore } = this.props
-    const props = { postId: id }
-    return uiStore.push("Post.Article", id, props)
+    const props = { post }
+    return uiStore.push("Post.Article", post.id, props)
   }
 
   render() {
@@ -76,7 +77,7 @@ AuthorPosts.wrappedComponent.propTypes = {
 }
 
 AuthorPosts.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTypes.author.isRequired,
   containerStyle: ViewPropTypes.style,
 }
 

@@ -29,7 +29,7 @@ const AuthorStats = ({ author, containerStyle }) => (
   <View style={containerStyle}>
     <Divider />
     <View style={styles.container}>
-      <Stat title="Posts" value={author.postCount} />
+      <Stat title="Posts" value={author.posts.length} />
       <Stat title="Year" value={getNumberWithOrdinal(author.staffYear)} />
       <Stat title="Grade" value={getNumberWithOrdinal(author.gradeYear)} />
     </View>
