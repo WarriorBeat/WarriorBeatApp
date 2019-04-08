@@ -127,3 +127,33 @@ export const articleList = gql`
     }
   }
 `
+
+export const authorGet = gql`
+  query authorGet($id: ID!) {
+    authorGet(id: $id) {
+      id
+      name
+      title
+      bio
+      staffYear
+      gradeYear
+      profileImage {
+        id
+        url
+      }
+      posts {
+        id
+        title
+        createdOn(format: "MMM dd yyyy")
+        categories {
+          id
+          name
+        }
+        coverImage {
+          id
+          url
+        }
+      }
+    }
+  }
+`

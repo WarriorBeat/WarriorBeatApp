@@ -91,10 +91,28 @@ const articleQueries = {
   },
 }
 
+const authorQueries = {
+  author: {
+    authorGet: graphql(query.authorGet, {
+      options: ({ author }) => ({
+        fetchPolicy: "cache-and-network",
+        variables: {
+          id: author.id,
+        },
+      }),
+      props: ({ data }) => ({
+        loading: data.loading,
+        author: data.authorGet ? data.authorGet : {},
+      }),
+    }),
+  },
+}
+
 export const queries = {
   ...pollQueries,
   ...categoryQueries,
   ...articleQueries,
+  ...authorQueries,
 }
 
 export const mutations = {
