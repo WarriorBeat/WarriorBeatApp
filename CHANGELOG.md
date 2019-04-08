@@ -1,3 +1,27 @@
+# [0.15.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0...v0.15.0-beta.0) (2019-04-08)
+
+
+### ✨ Features
+
+* **gql:** Updated Author Screen with GraphQL Api ([#70](https://github.com/WarriorBeat/WarriorBeatApp/issues/70)) ([30af5ce](https://github.com/WarriorBeat/WarriorBeatApp/commit/30af5ce))
+* Removed Deprecated MediaStore ([9b1334d](https://github.com/WarriorBeat/WarriorBeatApp/commit/9b1334d))
+* **gql:** Implemented Posts/Articles with GraphQL Api ([#68](https://github.com/WarriorBeat/WarriorBeatApp/issues/68)) ([125ae1a](https://github.com/WarriorBeat/WarriorBeatApp/commit/125ae1a))
+
+
+### 🐛 Bug Fixes
+
+* Remove Orphaned FeedView Screen ([d0e599a](https://github.com/WarriorBeat/WarriorBeatApp/commit/d0e599a))
+* Removed Deprecated CategoryStore ([6d71326](https://github.com/WarriorBeat/WarriorBeatApp/commit/6d71326))
+* Removed Deprecated Post/Author Stores ([a06b5c8](https://github.com/WarriorBeat/WarriorBeatApp/commit/a06b5c8))
+* **types:** Fixed GenericFeed not using Poll PropType ([ab112dd](https://github.com/WarriorBeat/WarriorBeatApp/commit/ab112dd))
+
+
+### 📚 Documentation
+
+* Removed Chore commit type from Changelog ([a5e48cf](https://github.com/WarriorBeat/WarriorBeatApp/commit/a5e48cf))
+
+
+
 # [0.14.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.13.4...v0.14.0) (2019-04-07)
 
 
