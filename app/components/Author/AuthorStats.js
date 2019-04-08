@@ -8,9 +8,10 @@ import React from "react"
 import { View, ViewPropTypes } from "react-native"
 import PropTypes from "prop-types"
 import { Divider } from "react-native-elements"
-import { observer, PropTypes as MobxTypes } from "mobx-react/native"
+import { observer } from "mobx-react/native"
 import Text from "components/Text"
 import { getNumberWithOrdinal } from "config/utils"
+import { PropTypes as gqlTypes } from "graphql"
 import { statStyles as styles } from "./styles"
 
 const Stat = ({ title, value }) => (
@@ -42,7 +43,7 @@ Stat.propTypes = {
 }
 
 AuthorStats.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTypes.author.isRequired,
   containerStyle: ViewPropTypes.style,
 }
 AuthorStats.defaultProps = {

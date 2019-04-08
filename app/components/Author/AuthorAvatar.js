@@ -9,6 +9,7 @@ import { View, ViewPropTypes } from "react-native"
 import PropTypes from "prop-types"
 import { Avatar } from "react-native-elements"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { PropTypes as gqlTypes } from "graphql"
 import Image from "react-native-fast-image"
 import { avatarStyles as styles } from "./styles"
 
@@ -33,7 +34,7 @@ AuthorAvatar.wrappedComponent.propTypes = {
 }
 
 AuthorAvatar.propTypes = {
-  author: MobxTypes.observableObject.isRequired,
+  author: gqlTypes.author.isRequired,
   openProfile: PropTypes.bool,
   size: PropTypes.oneOf(["small", "medium", "large", "xlarge"]),
   shadowStyle: ViewPropTypes.style,
