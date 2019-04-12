@@ -32,6 +32,7 @@ Navigation.events().registerAppLaunchedListener(() => {
       backgroundColor: "#00000039",
       drawBehind: true,
     },
+    popGesture: false,
   })
   Navigation.setRoot({
     root: {
