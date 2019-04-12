@@ -1,5 +1,10 @@
 module.exports = {
   presets: ["module:metro-react-native-babel-preset", "module:react-native-dotenv"],
+  env: {
+    development: {
+      plugins: [["functional-hmr"]],
+    },
+  },
   plugins: [
     [
       "@babel/plugin-proposal-decorators",
@@ -20,6 +25,5 @@ module.exports = {
       },
     ],
     ["lodash"],
-    ["functional-hmr"],
   ],
 }

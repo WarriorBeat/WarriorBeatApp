@@ -5700,13 +5700,21 @@ jest-worker@^24.0.0-alpha.6, jest-worker@^24.6.0:
     merge-stream "^1.0.1"
     supports-color "^6.1.0"
 
-jest@24.5.0:
-  version "24.5.0"
-  resolved "https://registry.yarnpkg.com/jest/-/jest-24.5.0.tgz#38f11ae2c2baa2f86c2bc4d8a91d2b51612cd19a"
-  integrity sha512-lxL+Fq5/RH7inxxmfS2aZLCf8MsS+YCUBfeiNO6BWz/MmjhDGaIEA/2bzEf9q4Q0X+mtFHiinHFvQ0u+RvW/qQ==
+jest-worker@^24.6.0:
+  version "24.6.0"
+  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-24.6.0.tgz#7f81ceae34b7cde0c9827a6980c35b7cdc0161b3"
+  integrity sha512-jDwgW5W9qGNvpI1tNnvajh0a5IE/PuGLFmHk6aR/BZFz8tSgGw17GsDPXAJ6p91IvYDjOw8GpFbvvZGAK+DPQQ==
+  dependencies:
+    merge-stream "^1.0.1"
+    supports-color "^6.1.0"
+
+jest@24.7.1:
+  version "24.7.1"
+  resolved "https://registry.yarnpkg.com/jest/-/jest-24.7.1.tgz#0d94331cf510c75893ee32f87d7321d5bf8f2501"
+  integrity sha512-AbvRar5r++izmqo5gdbAjTeA6uNRGoNRuj5vHB0OnDXo2DXWZJVuaObiGgtlvhKb+cWy2oYbQSfxv7Q7GjnAtA==
   dependencies:
     import-local "^2.0.0"
-    jest-cli "^24.5.0"
+    jest-cli "^24.7.1"
 
 jmespath@0.15.0:
   version "0.15.0"
@@ -7980,6 +7988,13 @@ react-native-status-bar-height@^2.2.0:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/react-native-status-bar-height/-/react-native-status-bar-height-2.3.1.tgz#b92ce9112c2367290847ac11284d9d84a6330169"
   integrity sha512-m9nGKYfFn6ljF1abafzF5cFaD9JCzXwj7kNE9CuF+g0TgtItH70eY2uHaCV9moENTftqd5XIS3Cx0mf4WfistA==
+
+react-native-testing-library@^1.7.0:
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-testing-library/-/react-native-testing-library-1.7.0.tgz#8b53d5361faaa276bf67cd0e50dab1d2e26754ad"
+  integrity sha512-aciXmBjZ8GXbkgwBTyXUBSUBqYyIa/m+mZM3ZqU44pfeu+LihuvpljucSQaUutbUEywKb2sgEJWeS8GwEBa09w==
+  dependencies:
+    pretty-format "^24.0.0"
 
 react-native-typography@^1.4.0:
   version "1.4.0"
