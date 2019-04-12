@@ -1,3 +1,13 @@
+# [0.15.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.15.0-beta.0...v0.15.0-beta.1) (2019-04-12)
+
+
+### 🐛 Bug Fixes
+
+* **ios:** Fixed iOS Popping Stack over Showing Side Menu ([605c7b7](https://github.com/WarriorBeat/WarriorBeatApp/commit/605c7b7))
+* **sentry:** Fixed Sentry Linking ([#71](https://github.com/WarriorBeat/WarriorBeatApp/issues/71)) ([95f8702](https://github.com/WarriorBeat/WarriorBeatApp/commit/95f8702))
+
+
+
 # [0.15.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0...v0.15.0-beta.0) (2019-04-08)
 
 
