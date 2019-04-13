@@ -91,7 +91,7 @@ class Poll extends React.Component {
         />
         <View style={styles.header}>
           <AnimatedText style={{ opacity }} Type="footnote" Weight="black" Color="ios_blue">
-            {poll.createdOn}
+            {poll.createdOn.toUpperCase()}
           </AnimatedText>
           <AnimatedText style={{ opacity }} Type="title" Color="primaryDark" Weight="semibold">
             {poll.question}
