@@ -25,12 +25,6 @@ function registerScreens() {
     store,
   )
   Navigation.registerComponentWithRedux(
-    "FeedView",
-    () => apolloProviderHOC(require("screens").FeedView),
-    Provider,
-    store,
-  )
-  Navigation.registerComponentWithRedux(
     "Post.Article",
     () => apolloProviderHOC(require("components/Post").Article),
     Provider,
