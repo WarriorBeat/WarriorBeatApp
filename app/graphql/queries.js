@@ -157,3 +157,12 @@ export const authorGet = gql`
     }
   }
 `
+
+export const userGet = gql`
+  query userGet($id: ID!) {
+    userGet(id: $id) {
+      id
+      username
+    }
+  }
+`
