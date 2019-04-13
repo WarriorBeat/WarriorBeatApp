@@ -1,34 +1,31 @@
-# [0.15.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.15.0-beta.0...v0.15.0-beta.1) (2019-04-12)
-
-
-### 🐛 Bug Fixes
-
-* **ios:** Fixed iOS Popping Stack over Showing Side Menu ([605c7b7](https://github.com/WarriorBeat/WarriorBeatApp/commit/605c7b7))
-* **sentry:** Fixed Sentry Linking ([#71](https://github.com/WarriorBeat/WarriorBeatApp/issues/71)) ([95f8702](https://github.com/WarriorBeat/WarriorBeatApp/commit/95f8702))
-
-
-
-# [0.15.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0...v0.15.0-beta.0) (2019-04-08)
+# [0.15.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0...v0.15.0) (2019-04-13)
 
 
 ### ✨ Features
 
-* **gql:** Updated Author Screen with GraphQL Api ([#70](https://github.com/WarriorBeat/WarriorBeatApp/issues/70)) ([30af5ce](https://github.com/WarriorBeat/WarriorBeatApp/commit/30af5ce))
-* Removed Deprecated MediaStore ([9b1334d](https://github.com/WarriorBeat/WarriorBeatApp/commit/9b1334d))
-* **gql:** Implemented Posts/Articles with GraphQL Api ([#68](https://github.com/WarriorBeat/WarriorBeatApp/issues/68)) ([125ae1a](https://github.com/WarriorBeat/WarriorBeatApp/commit/125ae1a))
+* **auth:** Updated UserStore with AppSync/GQL Integrations ([#72](https://github.com/WarriorBeat/WarriorBeatApp/issues/72)) ([f7c4a6a](https://github.com/WarriorBeat/WarriorBeatApp/commit/f7c4a6a))
+* **gql:** Updated Author Screen with GraphQL Api ([#70](https://github.com/WarriorBeat/WarriorBeatApp/issues/70)) ([13cf59f](https://github.com/WarriorBeat/WarriorBeatApp/commit/13cf59f))
+* Removed Deprecated MediaStore ([de08242](https://github.com/WarriorBeat/WarriorBeatApp/commit/de08242))
+* **gql:** Implemented Posts/Articles with GraphQL Api ([#68](https://github.com/WarriorBeat/WarriorBeatApp/issues/68)) ([9acbc29](https://github.com/WarriorBeat/WarriorBeatApp/commit/9acbc29))
 
 
 ### 🐛 Bug Fixes
 
-* Remove Orphaned FeedView Screen ([d0e599a](https://github.com/WarriorBeat/WarriorBeatApp/commit/d0e599a))
-* Removed Deprecated CategoryStore ([6d71326](https://github.com/WarriorBeat/WarriorBeatApp/commit/6d71326))
-* Removed Deprecated Post/Author Stores ([a06b5c8](https://github.com/WarriorBeat/WarriorBeatApp/commit/a06b5c8))
-* **types:** Fixed GenericFeed not using Poll PropType ([ab112dd](https://github.com/WarriorBeat/WarriorBeatApp/commit/ab112dd))
+* **poll:** Fixed Non-Uppercase Date on Poll ([b2f9aec](https://github.com/WarriorBeat/WarriorBeatApp/commit/b2f9aec))
+* Remove Orphaned FeedView Screen ([a5174e6](https://github.com/WarriorBeat/WarriorBeatApp/commit/a5174e6))
+* Removed Deprecated API from UserStore ([8532a31](https://github.com/WarriorBeat/WarriorBeatApp/commit/8532a31))
+* Removed Deprecated CategoryStore ([dea68ef](https://github.com/WarriorBeat/WarriorBeatApp/commit/dea68ef))
+* Removed Deprecated Post/Author Stores ([f4b1bd1](https://github.com/WarriorBeat/WarriorBeatApp/commit/f4b1bd1))
+* Removed Deprecated Rest API Client Module ([6bc5192](https://github.com/WarriorBeat/WarriorBeatApp/commit/6bc5192))
+* Removed Orphaned FeedView Nav Code ([0bc9034](https://github.com/WarriorBeat/WarriorBeatApp/commit/0bc9034))
+* **ios:** Fixed iOS Popping Stack over Showing Side Menu ([9967685](https://github.com/WarriorBeat/WarriorBeatApp/commit/9967685))
+* **sentry:** Fixed Sentry Linking ([#71](https://github.com/WarriorBeat/WarriorBeatApp/issues/71)) ([9003bd6](https://github.com/WarriorBeat/WarriorBeatApp/commit/9003bd6))
+* **types:** Fixed GenericFeed not using Poll PropType ([e5b74ae](https://github.com/WarriorBeat/WarriorBeatApp/commit/e5b74ae))
 
 
 ### 📚 Documentation
 
-* Removed Chore commit type from Changelog ([a5e48cf](https://github.com/WarriorBeat/WarriorBeatApp/commit/a5e48cf))
+* Removed Chore commit type from Changelog ([9e3b94a](https://github.com/WarriorBeat/WarriorBeatApp/commit/9e3b94a))
 
 
 
