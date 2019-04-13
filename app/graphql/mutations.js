@@ -20,4 +20,10 @@ export const pollAddVote = gql`
   }
 `
 
-export default pollAddVote
+export const userCreate = gql`
+  mutation userCreate($input: UserInput!) {
+    userCreate(input: $input) {
+      id
+    }
+  }
+`
