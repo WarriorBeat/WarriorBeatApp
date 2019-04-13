@@ -7,29 +7,29 @@
 import React, { Component } from "react"
 import { Rehydrated } from "aws-appsync-react"
 import { ApolloProvider } from "react-apollo"
-import AWSAppSyncClient from "aws-appsync"
+import AWSAppSyncClient, { AUTH_TYPE } from "aws-appsync"
+import { Auth } from "aws-amplify"
 import awsExports from "../../aws-exports"
 
-const client = new AWSAppSyncClient({
+export const client = new AWSAppSyncClient({
   url: awsExports.aws_appsync_graphqlEndpoint,
   region: awsExports.aws_appsync_region,
   auth: {
-    type: awsExports.aws_appsync_authenticationType,
-    apiKey: awsExports.aws_appsync_apiKey,
+    type: AUTH_TYPE.AWS_IAM,
+    credentials: () => Auth.currentCredentials(),
   },
 })
 
-const apolloProviderHOC = WrappedComponent =>
-  class Parent extends Component {
-    render() {
-      return (
-        <ApolloProvider client={client}>
-          <Rehydrated>
-            <WrappedComponent {...this.props} />
-          </Rehydrated>
-        </ApolloProvider>
-      )
-    }
+const apolloProviderHOC = WrappedComponent => class Parent extends Component {
+  render() {
+    return (
+      <ApolloProvider client={client}>
+        <Rehydrated>
+          <WrappedComponent {...this.props} />
+        </Rehydrated>
+      </ApolloProvider>
+    )
   }
+}
 
 export default apolloProviderHOC

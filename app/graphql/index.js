@@ -36,6 +36,42 @@ const pollQueries = {
   },
 }
 
+const pollMutations = {
+  poll: {
+    pollAddVote: graphqlMutation(mutate.pollAddVote, query.pollList, "Poll"),
+  },
+}
+
+const userMutations = {
+  user: {
+    userCreate: graphqlMutation(
+      mutate.userCreate,
+      id => ({
+        query: query.userGet,
+        variables: { id },
+      }),
+      "User",
+    ),
+  },
+}
+
+const userQueries = {
+  user: {
+    userGet: graphql(query.userGet, {
+      options: ({ id }) => ({
+        fetchPolicy: "cache-and-network",
+        variables: {
+          id,
+        },
+      }),
+      props: ({ data }) => ({
+        loading: data.loading,
+        user: data.userGet ? data.userGet : {},
+      }),
+    }),
+  },
+}
+
 const categoryQueries = {
   category: {
     categoryList: graphql(query.categoryList, {
@@ -113,12 +149,12 @@ export const queries = {
   ...categoryQueries,
   ...articleQueries,
   ...authorQueries,
+  ...userQueries,
 }
 
 export const mutations = {
-  poll: {
-    pollAddVote: graphqlMutation(mutate.pollAddVote, query.pollList, "Poll"),
-  },
+  ...pollMutations,
+  ...userMutations,
 }
 
 /*
