@@ -27,8 +27,6 @@ export class User {
 }
 
 export class UserStore {
-  resourceClient
-
   deviceId
 
   @observable
@@ -43,10 +41,9 @@ export class UserStore {
   @observable
   errorMessage = null
 
-  constructor(rootStore, resourceClient) {
+  constructor(rootStore) {
     this.rootStore = rootStore
     this.client = this.rootStore.client
-    this.resourceClient = resourceClient
     this.deviceId = this.rootStore.uiStore.device.id
     this.loadUser()
   }
