@@ -51,19 +51,6 @@ export const toggleMenu = ({ menu = "PrimaryNavMenu", status = false } = {}) => 
   })
 }
 
-// Push new view of Posts
-export const viewPosts = (componentId, categoryId = null) => {
-  Navigation.push(componentId, {
-    component: {
-      name: "FeedView",
-      passProps: {
-        categoryId,
-      },
-    },
-  })
-  toggleMenu()
-}
-
 // Return to Home Screen
 export const returnHome = () => {
   Navigation.popTo("HomeScreen")
