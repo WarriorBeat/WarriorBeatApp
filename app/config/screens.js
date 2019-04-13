@@ -3,10 +3,10 @@
 import { Navigation } from "react-native-navigation"
 import Provider from "lib/RNNProvider"
 import RootStore from "stores/rootStore"
-import apolloProviderHOC from "./ApolloProviderHOC"
+import apolloProviderHOC, { client } from "./ApolloProviderHOC"
 
 function registerScreens() {
-  const rootStore = new RootStore()
+  const rootStore = new RootStore(client)
   const store = {
     rootStore,
     uiStore: rootStore.uiStore,

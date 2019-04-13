@@ -5,72 +5,24 @@
  */
 
 import {
-  observable, flow, computed, reaction, action,
+  observable, flow, computed, action,
 } from "mobx"
 import { Auth } from "aws-amplify"
-import _ from "lodash"
+import { userCreate } from "graphql/mutations"
+import { userGet } from "graphql/queries"
 
 export class User {
   id = null
 
-  autoSave = false
-
   store = null
-
-  saveHandler = null
-
-  @observable
-  subscriptions = []
-
-  @observable
-  likedPosts = []
-
-  @observable
-  votedPolls = []
 
   constructor(store, id) {
     this.store = store
     this.id = id
-    this.saveHandler = reaction(
-      () => this.asJson,
-      (json) => {
-        if (this.autoSave) {
-          this.store.resourceClient.patch(this.id, json)
-        }
-      },
-    )
-  }
-
-  @computed
-  get asJson() {
-    return {
-      userId: this.id,
-      subscriptions: this.subscriptions,
-      liked_posts: this.liked_posts,
-      voted_polls: this.voted_polls,
-    }
   }
 
   updateFromJson(json) {
-    this.autoSave = false
-    this.subscriptions = json.subscriptions
-    this.likedPosts = json.liked_posts
-    this.votedPolls = json.voted_polls
-    this.autoSave = true
-  }
-
-  @action.bound
-  subscribe(authorId) {
-    const subList = [...this.subscriptions]
-    subList.push(authorId)
-    this.subscriptions = _.union(subList, this.subscriptions)
-    return authorId
-  }
-
-  @action.bound
-  unsubscribe(authorId) {
-    this.subscriptions = this.subscriptions.filter(s => s !== authorId)
-    return authorId
+    this.username = json.username
   }
 }
 
@@ -93,6 +45,7 @@ export class UserStore {
 
   constructor(rootStore, resourceClient) {
     this.rootStore = rootStore
+    this.client = this.rootStore.client
     this.resourceClient = resourceClient
     this.deviceId = this.rootStore.uiStore.device.id
     this.loadUser()
@@ -102,11 +55,14 @@ export class UserStore {
   loadUser = flow(function* (cognito = null) {
     this.state = "pending"
     const session = cognito === null ? yield this.retrieveUser() : cognito
-    if (session) {
-      let user = yield this.resourceClient.get(session.username)
-      if (!user) {
-        user = yield this.resourceClient.post({ userId: session.username })
-      }
+    if (session.username) {
+      const { data } = yield this.client.query({
+        query: userGet,
+        variables: {
+          id: session.username,
+        },
+      })
+      const user = data.userGet
       this.updateUser(user)
       this.isAuthed = true
     }
@@ -117,10 +73,10 @@ export class UserStore {
     let user = false
     try {
       user = yield Auth.currentAuthenticatedUser()
-      return user
     } catch (e) {
-      return false
+      user = yield Auth.currentCredentials()
     }
+    return user
   })
 
   @action
@@ -152,8 +108,14 @@ export class UserStore {
       user = yield Auth.signUp({
         username,
         password,
-        attributes: {
-          email,
+      })
+      this.client.mutate({
+        mutation: userCreate,
+        variables: {
+          input: {
+            id: user.userSub,
+            username,
+          },
         },
       })
     } catch (err) {
