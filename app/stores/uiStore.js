@@ -128,7 +128,7 @@ class UIStore {
       },
     }
     if (options) {
-      child.options = options
+      child.component.options = options
     }
     return child
   }
