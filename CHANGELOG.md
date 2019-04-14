@@ -1,3 +1,12 @@
+# [0.16.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0-beta.0...v0.16.0-beta.1) (2019-04-14)
+
+
+### 🐛 Bug Fixes
+
+* **hotfix:** Native Base Assets Clash with Vector-Icons ([#77](https://github.com/WarriorBeat/WarriorBeatApp/issues/77)) ([15cacf0](https://github.com/WarriorBeat/WarriorBeatApp/commit/15cacf0))
+
+
+
 # [0.16.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.15.0...v0.16.0-beta.0) (2019-04-14)
 
 
