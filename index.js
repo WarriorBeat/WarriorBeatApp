@@ -35,9 +35,25 @@ Navigation.events().registerAppLaunchedListener(() => {
   })
   Navigation.setRoot({
     root: {
-      component: {
-        name: "Initializing",
-        id: "Initializing",
+      sideMenu: {
+        left: {
+          component: {
+            name: "NavMenu",
+            id: "PrimaryNavMenu",
+          },
+        },
+        center: {
+          stack: {
+            children: [
+              {
+                component: {
+                  name: "Initializing",
+                  id: "Initializing",
+                },
+              },
+            ],
+          },
+        },
       },
     },
   })

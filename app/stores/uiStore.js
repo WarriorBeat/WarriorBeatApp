@@ -118,15 +118,19 @@ class UIStore {
     this.watchHistory = true
   }
 
-  makeChild = (component, props = {}) => {
+  makeChild = (component, props = {}, options) => {
     const { name, id } = component
-    return {
+    const child = {
       component: {
         name,
         id,
         passProps: props,
       },
     }
+    if (options) {
+      child.component.options = options
+    }
+    return child
   }
 
   @action
@@ -164,8 +168,8 @@ class UIStore {
   goTo(name) {
     const component = this.resolveComponent(this.currentStack)
     const toComponent = this.resolveComponent(name)
-    const { type, active, id } = component
-    if (active && type === "screen" && id !== "Initializing") {
+    const { type, active } = component
+    if (active && type === "screen") {
       this.dismissAll()
       return Navigation.popTo(toComponent.id)
     }
@@ -183,7 +187,7 @@ class UIStore {
   }
 
   @action
-  push(name, viewId, props = {}, onTo = this.currentStack) {
+  push(name, viewId, props = {}, onTo = this.currentStack, options = null) {
     let component = this.resolveComponent(name)
     if (component.isView) {
       component = this.generateComponent(component, viewId)
@@ -191,7 +195,7 @@ class UIStore {
     if (component.type === "modal") {
       return this.toggle(component.id, null, props)
     }
-    const child = this.makeChild(component, props)
+    const child = this.makeChild(component, props, options)
     return Navigation.push(onTo, child)
   }
 
