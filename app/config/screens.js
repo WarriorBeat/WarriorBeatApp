@@ -5,13 +5,14 @@ import Provider from "lib/RNNProvider"
 import RootStore from "stores/rootStore"
 import apolloProviderHOC, { client } from "./ApolloProviderHOC"
 
+export const rootStore = new RootStore(client)
+const store = {
+  rootStore,
+  uiStore: rootStore.uiStore,
+  userStore: rootStore.userStore,
+}
+
 function registerScreens() {
-  const rootStore = new RootStore(client)
-  const store = {
-    rootStore,
-    uiStore: rootStore.uiStore,
-    userStore: rootStore.userStore,
-  }
   Navigation.registerComponentWithRedux(
     "Home",
     () => apolloProviderHOC(require("screens").Home),
