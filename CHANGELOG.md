@@ -1,3 +1,23 @@
+# [0.16.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.15.0...v0.16.0-beta.0) (2019-04-14)
+
+
+### ✨ Features
+
+* **auth:** Added Unauthenticated User Handling ([#73](https://github.com/WarriorBeat/WarriorBeatApp/issues/73)) ([813727b](https://github.com/WarriorBeat/WarriorBeatApp/commit/813727b))
+* **auth:** Prevent Multiple Poll Votes from the Same User ([#74](https://github.com/WarriorBeat/WarriorBeatApp/issues/74)) ([5954e3b](https://github.com/WarriorBeat/WarriorBeatApp/commit/5954e3b))
+* **splash:** Added Animated Splash Screen ([#76](https://github.com/WarriorBeat/WarriorBeatApp/issues/76)) ([87edb6a](https://github.com/WarriorBeat/WarriorBeatApp/commit/87edb6a))
+* Updated RN-render-html and others ([9ecfd17](https://github.com/WarriorBeat/WarriorBeatApp/commit/9ecfd17))
+
+
+### 🐛 Bug Fixes
+
+* **ui:** Fixed App from rotating to Landscape Mode ([44c60f0](https://github.com/WarriorBeat/WarriorBeatApp/commit/44c60f0))
+* Fixed Circular Dependency in NavMenu ([b9eff0c](https://github.com/WarriorBeat/WarriorBeatApp/commit/b9eff0c))
+* **build:** RN-xcode script not being called on iOS build ([ae3a3e8](https://github.com/WarriorBeat/WarriorBeatApp/commit/ae3a3e8))
+* **uiStore:** Fixed app going home before user loaded ([617d92d](https://github.com/WarriorBeat/WarriorBeatApp/commit/617d92d))
+
+
+
 # [0.15.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.14.0...v0.15.0) (2019-04-13)
 
 
