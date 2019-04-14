@@ -10,7 +10,7 @@ import { View } from "react-native"
 import brandMedia from "config/assets"
 import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
-import { SideMenu, MenuButton } from "./index"
+import SideMenu, { MenuButton } from "./SideMenu"
 
 @inject("userStore", "uiStore")
 @observer
