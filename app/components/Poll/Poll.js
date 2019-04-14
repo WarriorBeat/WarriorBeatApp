@@ -33,6 +33,14 @@ class Poll extends React.Component {
   }
 
   componentDidMount() {
+    const { poll } = this.props
+    if (poll.hasVoted) {
+      const {
+        hasVoted: { id },
+      } = poll
+      this.hasVoted = true
+      this.activeId = id
+    }
     this.animate()
   }
 
