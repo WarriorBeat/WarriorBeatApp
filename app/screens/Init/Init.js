@@ -28,7 +28,30 @@ class Initializing extends React.Component {
         values: ["News", "Sports"],
       },
     }
-    uiStore.push("Home", null, homeProps, "Initializing")
+    const animation = {
+      animations: {
+        push: {
+          waitForRender: true,
+          content: {
+            alpha: {
+              from: 0.1,
+              to: 1,
+              duration: 600,
+              startDelay: 0,
+              interpolation: "accelerate",
+            },
+            y: {
+              from: 600,
+              to: 0,
+              duration: 500,
+              startDelay: 0,
+              interpolation: "accelerate",
+            },
+          },
+        },
+      },
+    }
+    uiStore.push("Home", null, homeProps, "Initializing", animation)
   }
 
   render() {
