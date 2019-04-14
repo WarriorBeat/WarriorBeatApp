@@ -49,31 +49,57 @@ export class UserStore {
   }
 
   @action
-  loadUser = flow(function* (cognito = null) {
+  loadUser = flow(function* () {
     this.state = "pending"
-    const session = cognito === null ? yield this.retrieveUser() : cognito
-    if (session.username) {
+    yield* this.retrieveSession()
+    if (this.isAuthed) {
+      const user = yield this.retrieveUser()
+      this.updateUser(user)
+      return this.resolve()
+    }
+    const guest = yield this.obtainGuestSession()
+    this.updateUser(guest)
+    return this.resolve()
+  })
+
+  retrieveSession = flow(function* () {
+    let session = false
+    try {
+      session = yield Auth.currentAuthenticatedUser()
+      this.isAuthed = true
+    } catch (e) {
+      session = yield Auth.currentCredentials()
+    }
+    return session
+  })
+
+  obtainGuestSession = flow(function* () {
+    let user = yield this.retrieveUser()
+    if (!user) {
       const { identityId } = yield Auth.currentCredentials()
-      const { data } = yield this.client.query({
-        query: userGet,
+      const { data } = yield this.client.mutate({
+        mutation: userCreate,
         variables: {
-          id: identityId,
+          input: {
+            id: identityId,
+          },
         },
       })
-      const user = data.userGet
-      this.updateUser(user)
-      this.isAuthed = true
+      user = data.userCreate
     }
-    this.state = "ready"
+    return user
   })
 
   retrieveUser = flow(function* () {
-    let user = false
-    try {
-      user = yield Auth.currentAuthenticatedUser()
-    } catch (e) {
-      user = yield Auth.currentCredentials()
-    }
+    const { identityId } = yield Auth.currentCredentials()
+    const { data } = yield this.client.query({
+      query: userGet,
+      fetchPolicy: "network-only",
+      variables: {
+        id: identityId,
+      },
+    })
+    const user = data.userGet
     return user
   })
 
@@ -100,6 +126,7 @@ export class UserStore {
               id: identityId,
               username: user.username,
               email,
+              authenticated: true,
             },
           },
         })
@@ -174,7 +201,6 @@ export class UserStore {
     this.state = "pending"
     const user = yield Auth.signOut({ global: true })
     this.user = null
-    this.cognito = null
     this.isAuthed = false
     this.state = "ready"
     return user
