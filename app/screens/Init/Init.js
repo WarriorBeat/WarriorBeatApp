@@ -22,7 +22,13 @@ class Initializing extends React.Component {
     const { uiStore, userStore } = this.props
     await when(() => userStore.ready)
     uiStore.state = "ready"
-    uiStore.goTo("Home")
+    const homeProps = {
+      categorySortOrder: {
+        key: "name",
+        values: ["News", "Sports"],
+      },
+    }
+    uiStore.push("Home", null, homeProps, "Initializing")
   }
 
   render() {
