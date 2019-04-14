@@ -22,6 +22,9 @@ registerScreens()
 // Start RN Navigation
 Navigation.events().registerAppLaunchedListener(() => {
   Navigation.setDefaultOptions({
+    layout: {
+      orientation: ["portrait"],
+    },
     topBar: {
       visible: false,
       animate: false,
