@@ -25,6 +25,7 @@
     "loglevel": "^1.6.1",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
+    "native-base": "^2.12.1",
     "prop-types": "^15.6.2",
     "react": "16.8.4",
     "react-apollo": "^2.5.2",
