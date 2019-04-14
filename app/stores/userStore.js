@@ -53,10 +53,11 @@ export class UserStore {
     this.state = "pending"
     const session = cognito === null ? yield this.retrieveUser() : cognito
     if (session.username) {
+      const { identityId } = yield Auth.currentCredentials()
       const { data } = yield this.client.query({
         query: userGet,
         variables: {
-          id: session.username,
+          id: identityId,
         },
       })
       const user = data.userGet
@@ -79,17 +80,30 @@ export class UserStore {
   @action
   updateUser(json) {
     if (!this.user) {
-      this.user = new User(this, json.userId)
+      this.user = new User(this, json.id)
     }
     this.user.updateFromJson(json)
   }
 
   @action
-  authenticateUser = flow(function* (email, password) {
+  authenticateUser = flow(function* (email, password, createUser = false) {
     this.state = "pending"
     let user = null
     try {
       user = yield Auth.signIn(email, password)
+      if (createUser) {
+        const { identityId } = yield Auth.currentCredentials()
+        this.client.mutate({
+          mutation: userCreate,
+          variables: {
+            input: {
+              id: identityId,
+              username: user.username,
+              email,
+            },
+          },
+        })
+      }
       return this.loadUser(user)
     } catch (err) {
       return this.handleError(err)
@@ -105,15 +119,6 @@ export class UserStore {
       user = yield Auth.signUp({
         username,
         password,
-      })
-      this.client.mutate({
-        mutation: userCreate,
-        variables: {
-          input: {
-            id: user.userSub,
-            username,
-          },
-        },
       })
     } catch (err) {
       return this.handleError(err)
@@ -134,7 +139,7 @@ export class UserStore {
         return this.handleError(err)
       }
     }
-    this.authenticateUser(email, password)
+    this.authenticateUser(email, password, true)
     return user
   })
 
