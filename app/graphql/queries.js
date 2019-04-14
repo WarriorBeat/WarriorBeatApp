@@ -7,7 +7,7 @@
 import gql from "graphql-tag"
 
 export const pollList = gql`
-  query pollList {
+  query pollList($userId: ID!) {
     pollList {
       items {
         id
@@ -16,6 +16,10 @@ export const pollList = gql`
         isOpen
         lastUpdated
         totalVotes
+        hasVoted(userId: $userId) {
+          id
+          text
+        }
         options {
           id
           text
@@ -27,7 +31,7 @@ export const pollList = gql`
 `
 
 export const pollGet = gql`
-  query pollGet($id: ID!) {
+  query pollGet($id: ID!, $userId: ID!) {
     pollGet(id: $id) {
       id
       question
@@ -35,6 +39,10 @@ export const pollGet = gql`
       isOpen
       lastUpdated
       totalVotes
+      hasVoted(userId: $userId) {
+        id
+        text
+      }
       options {
         id
         text

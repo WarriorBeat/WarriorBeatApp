@@ -7,15 +7,21 @@
 import { graphql } from "react-apollo"
 import { graphqlMutation } from "aws-appsync-react"
 import { PropTypes as types } from "prop-types"
+import { rootStore } from "config/screens"
 import * as query from "./queries"
 import * as mutate from "./mutations"
+
+const { userStore } = rootStore
 
 const pollQueries = {
   poll: {
     pollList: graphql(query.pollList, {
-      options: {
+      options: () => ({
         fetchPolicy: "cache-and-network",
-      },
+        variables: {
+          userId: userStore.userId,
+        },
+      }),
       props: ({ data }) => ({
         loading: data.loading,
         polls: data.pollList ? data.pollList.items : [],
@@ -26,6 +32,7 @@ const pollQueries = {
         fetchPolicy: "network-only",
         variables: {
           id: pollId,
+          userId: userStore.userId,
         },
       }),
       props: ({ data }) => ({
