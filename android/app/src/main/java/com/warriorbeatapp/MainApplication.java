@@ -10,7 +10,6 @@ import io.sentry.RNSentryPackage;
 import com.microsoft.appcenter.reactnative.crashes.AppCenterReactNativeCrashesPackage;
 import com.microsoft.appcenter.reactnative.analytics.AppCenterReactNativeAnalyticsPackage;
 import com.microsoft.appcenter.reactnative.appcenter.AppCenterReactNativePackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.amazonaws.RNAWSCognitoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -55,8 +54,7 @@ public class MainApplication extends NavigationApplication {
             new RNSentryPackage(),
             new AppCenterReactNativeCrashesPackage(MainApplication.this, getResources().getString(R.string.appCenterCrashes_whenToSendCrashes)),
             new AppCenterReactNativeAnalyticsPackage(MainApplication.this, getResources().getString(R.string.appCenterAnalytics_whenToEnableAnalytics)),
-            new AppCenterReactNativePackage(MainApplication.this),
-            new VectorIconsPackage(), new RNAWSCognitoPackage(), new LinearGradientPackage());
+            new AppCenterReactNativePackage(MainApplication.this), new RNAWSCognitoPackage(), new LinearGradientPackage());
   }
 
   @Override
