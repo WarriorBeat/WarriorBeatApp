@@ -266,6 +266,12 @@ class UIStore {
     const ios = this.devicePlatform === "ios"
     return ios
   }
+
+  @computed
+  get ready() {
+    const state = this.state === "ready"
+    return state
+  }
 }
 
 export default UIStore

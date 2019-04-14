@@ -3,6 +3,7 @@
 import React from "react"
 import { View, Text, StyleSheet } from "react-native"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
+import { when } from "mobx"
 
 const styles = StyleSheet.create({
   welcome: {
@@ -15,11 +16,13 @@ const styles = StyleSheet.create({
   },
 })
 
-@inject("uiStore")
+@inject("uiStore", "userStore")
 @observer
 class Initializing extends React.Component {
-  componentDidMount() {
-    const { uiStore } = this.props
+  async componentDidMount() {
+    const { uiStore, userStore } = this.props
+    await when(() => userStore.ready)
+    uiStore.state = "ready"
     uiStore.goTo("Home")
   }
 
@@ -34,6 +37,7 @@ class Initializing extends React.Component {
 
 Initializing.wrappedComponent.propTypes = {
   uiStore: MobxTypes.observableObject.isRequired,
+  userStore: MobxTypes.observableObject.isRequired,
 }
 
 export default Initializing

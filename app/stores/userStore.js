@@ -279,4 +279,15 @@ export class UserStore {
   get profile() {
     return this.user
   }
+
+  @computed
+  get userId() {
+    return this.user.id
+  }
+
+  @computed
+  get ready() {
+    const state = this.state === "ready"
+    return state
+  }
 }
