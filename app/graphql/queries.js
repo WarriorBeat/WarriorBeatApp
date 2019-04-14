@@ -163,6 +163,7 @@ export const userGet = gql`
     userGet(id: $id) {
       id
       username
+      email
     }
   }
 `

@@ -24,6 +24,8 @@ export const userCreate = gql`
   mutation userCreate($input: UserInput!) {
     userCreate(input: $input) {
       id
+      username
+      email
     }
   }
 `
