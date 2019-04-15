@@ -40,6 +40,7 @@ release() {
     VERSION=$1
     SENTRY_ENV=$2
     DIST=$3
+    DSYM_FILE="$SENTRY_ARTIFACTS/warriorbeatapp.app.dSYM.zip"
 
     # Associate commits
     sentry-cli releases set-commits --auto "$VERSION"
@@ -53,6 +54,7 @@ release() {
       Version: ${VERSION}
       Dist: ${DIST}
       Artifacts: ${SENTRY_ARTIFACTS}
+      DSYM: ${DSYM_FILE}
     -------------------------------
     "
     printf "$sentry_output"
@@ -61,6 +63,9 @@ release() {
     --strip-common-prefix \
     --rewrite "$SENTRY_ARTIFACTS" \
     --validate
+
+    # DSYM File
+    sentry-cli upload-dif -p "$PROJECT_SLUG" "$DSYM_FILE"
 
     # Set Environment
     sentry-cli releases deploys "$VERSION" new -e "$SENTRY_ENV"
