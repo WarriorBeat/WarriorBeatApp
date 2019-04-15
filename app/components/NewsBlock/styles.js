@@ -11,6 +11,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen"
 
+export const BLOCK_HEIGHT = hp("24%")
+
 const styles = StyleSheet.create({
   block: {
     marginVertical: hp("1.75%"),
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     elevation: 8,
   },
   full_container: {
-    height: hp("24%"),
+    height: BLOCK_HEIGHT,
     marginTop: hp("2%"),
   },
   image_container: {
