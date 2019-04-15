@@ -87,34 +87,6 @@ platform :android do
     end
   end
 
-  desc "Upload Android Artifacts to Sentry"
-  lane :upload_artifacts do |options|
-    parsed_options = {
-      :sentry_id => handleEnvAndOptions(
-        ENV["SENTRY_APP_ID"],
-        options[:sentry_id],
-        true,
-        AND_APP_ID
-      )
-    }
-    bundle_artifact = File.join(DIST_DIR, "index.android.bundle")
-    bundle_map = File.join(DIST_DIR, "index.android.bundle.map")
-    UI.important("Uploading Android Build Artifacts to Sentry...")
-    sentry_upload_file(
-      version: AND_VERSION,
-      app_identifier: parsed_options[:sentry_id],
-      file: bundle_artifact,
-      dist: AND_BUILD_NUMBER
-    )
-    sentry_upload_sourcemap(
-      version: AND_VERSION,
-      app_identifier: parsed_options[:sentry_id],
-      sourcemap: bundle_map,
-      dist: AND_BUILD_NUMBER,
-      rewrite: true
-    )
-    UI.success("Android Build Artifacts Uploaded.")
-  end
 
 
   # Clears existing build folders, prevents file duplicate bug
@@ -353,12 +325,6 @@ platform :android do
         options[:apk],
         true,
       ),
-      :sentry_id => handleEnvAndOptions(
-        ENV['SENTRY_APP_ID'],
-        options[:sentry_id],
-        true,
-        AND_APP_ID
-      )
     }
     UI.header("Android Deploy")
     UI.important("
@@ -367,7 +333,6 @@ platform :android do
     APK => #{parsed_options[:apk]}
     RELEASE => #{parsed_options[:sentry_id]}
     ")
-    upload_artifacts(skip_before:true, skip_after:true, sentry_id:parsed_options[:sentry_id])
     appcenter_upload(
       apk: parsed_options[:apk],
       should_clip: false,
