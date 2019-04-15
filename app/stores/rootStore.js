@@ -4,7 +4,7 @@
  *  stores
  */
 
-import { UserStore, UIStore } from "."
+import { UserStore, UIStore, HomeStore } from "."
 
 export default class RootStore {
   constructor(client) {
@@ -12,5 +12,6 @@ export default class RootStore {
 
     this.uiStore = new UIStore(this)
     this.userStore = new UserStore(this)
+    this.homeStore = new HomeStore(this)
   }
 }

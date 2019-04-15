@@ -12,11 +12,11 @@ import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import SideMenu, { MenuButton } from "./SideMenu"
 
-@inject("userStore", "uiStore")
+@inject("userStore", "uiStore", "homeStore")
 @observer
 class NavMenu extends React.Component {
   render() {
-    const { userStore, uiStore } = this.props
+    const { userStore, uiStore, homeStore } = this.props
     return (
       <SideMenu
         headerImage={brandMedia.warrior_head}
@@ -30,7 +30,7 @@ class NavMenu extends React.Component {
       >
         <MenuButton
           onPress={() => {
-            uiStore.homeState.activeSlide = 0
+            homeStore.activeSlide = 0
             uiStore.goTo("Home")
           }}
           title="News"
@@ -57,6 +57,7 @@ class NavMenu extends React.Component {
 NavMenu.wrappedComponent.propTypes = {
   userStore: MobxTypes.observableObject.isRequired,
   uiStore: MobxTypes.observableObject.isRequired,
+  homeStore: MobxTypes.observableObject.isRequired,
 }
 
 export default NavMenu

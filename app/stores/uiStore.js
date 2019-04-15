@@ -29,11 +29,6 @@ class UIStore {
   devicePlatform = Platform.OS
 
   @observable
-  homeState = {
-    activeSlide: 0,
-  }
-
-  @observable
   components = [
     {
       active: true,

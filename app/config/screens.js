@@ -10,6 +10,7 @@ const store = {
   rootStore,
   uiStore: rootStore.uiStore,
   userStore: rootStore.userStore,
+  homeStore: rootStore.homeStore,
 }
 
 function registerScreens() {

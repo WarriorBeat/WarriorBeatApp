@@ -23,21 +23,9 @@ import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 
-@inject("uiStore")
+@inject("uiStore", "homeStore")
 @observer
 class Home extends React.Component {
-  @computed
-  get activeSlide() {
-    const { uiStore } = this.props
-    return uiStore.homeState.activeSlide
-  }
-
-  set activeSlide(val) {
-    const { uiStore } = this.props
-    uiStore.homeState.activeSlide = val
-    return this.activeSlide
-  }
-
   @observable
   slideHeight = {}
 
@@ -48,15 +36,8 @@ class Home extends React.Component {
     super(props)
     enableLayoutAnimations()
     this.iconScale = new Animated.Value(0)
-    const { uiStore } = this.props
-    this.activeReaction = reaction(
-      () => uiStore.homeState.activeSlide,
-      (index) => {
-        if (uiStore.currentStack !== "HomeScreen") {
-          this._updateSlideIndex(index)
-        }
-      },
-    )
+    const { homeStore } = this.props
+    homeStore.activeSlideHandler = index => this._updateSlideIndex(index)
   }
 
   _renderHeader = () => (
@@ -107,7 +88,8 @@ class Home extends React.Component {
   )
 
   _renderTab = ({ item, index }) => {
-    const btnWeight = index === this.activeSlide || index === 0 ? "bold" : "regular"
+    const { homeStore } = this.props
+    const btnWeight = index === homeStore.activeSlide || index === 0 ? "bold" : "regular"
     return (
       <View style={styles.tab_item}>
         <Button
@@ -129,12 +111,12 @@ class Home extends React.Component {
     )
   }
 
-  _renderPagination(categories) {
+  _renderPagination(categories, activeSlide) {
     return (
       <Pagination
         containerStyle={styles.pagination}
         dotsLength={categories.length}
-        activeDotIndex={this.activeSlide}
+        activeDotIndex={activeSlide}
         carouselRef={this._carousel}
         renderDots={() => (
           <Carousel
@@ -152,13 +134,14 @@ class Home extends React.Component {
   }
 
   _updateSlideIndex = (index) => {
+    const { homeStore } = this.props
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
-    this.activeSlide = index
+    homeStore.activeSlide = index
     this._pager.snapToItem(index)
     this._carousel.snapToItem(index)
   }
 
-  _renderCarousel = categories => (
+  _renderCarousel = (categories, activeSlide) => (
     <Carousel
       ref={(c) => {
         this._carousel = c
@@ -169,11 +152,14 @@ class Home extends React.Component {
       {...carousel.feed}
       onSnapToItem={index => this._updateSlideIndex(index)}
       firstItem={this.activeSlide}
+      firstItem={activeSlide}
     />
   )
 
   render() {
-    const { uiStore, categories, loading } = this.props
+    const {
+      uiStore, categories, loading, homeStore,
+    } = this.props
     const iconStyle = navIconStyles(this.headerVisible)
     const iconScale = this.iconScale.interpolate({
       inputRange: [0, 1],
@@ -213,8 +199,8 @@ class Home extends React.Component {
           </View>
         )}
       >
-        {!loading ? this._renderPagination(categories) : null}
-        {!loading ? this._renderCarousel(categories) : null}
+        {!loading ? this._renderPagination(categories, homeStore.activeSlide) : null}
+        {!loading ? this._renderCarousel(categories, homeStore.activeSlide) : null}
       </ParallaxScrollView>
     )
   }
@@ -222,6 +208,7 @@ class Home extends React.Component {
 
 Home.wrappedComponent.propTypes = {
   uiStore: MobxTypes.observableObject.isRequired,
+  homeStore: MobxTypes.observableObject.isRequired,
 }
 
 Home.propTypes = {
