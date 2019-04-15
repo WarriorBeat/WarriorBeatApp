@@ -1,3 +1,24 @@
+# [0.16.0-beta.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0-beta.1...v0.16.0-beta.2) (2019-04-15)
+
+
+### ✨ Features
+
+* SideMenu News Button Returns to News View on HomeScreen ([99f6ca6](https://github.com/WarriorBeat/WarriorBeatApp/commit/99f6ca6))
+
+
+### 🐛 Bug Fixes
+
+* **iOS:** Fixed Splash Screen Icon on iOS ([8f9dd75](https://github.com/WarriorBeat/WarriorBeatApp/commit/8f9dd75))
+
+
+### 🛠 Builds
+
+* **fastlane:** Added Missing ARTIFACT_DSYM Constant ([9b1a110](https://github.com/WarriorBeat/WarriorBeatApp/commit/9b1a110))
+* **fastlane:** Updated Fastlane and Plugins ([ff91fbc](https://github.com/WarriorBeat/WarriorBeatApp/commit/ff91fbc))
+* Fixed Sentry Sourcemaps (Removed Broken SentryPlugin) ([#78](https://github.com/WarriorBeat/WarriorBeatApp/issues/78)) ([bc675ab](https://github.com/WarriorBeat/WarriorBeatApp/commit/bc675ab))
+
+
+
 # [0.16.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0-beta.0...v0.16.0-beta.1) (2019-04-14)
 
 
