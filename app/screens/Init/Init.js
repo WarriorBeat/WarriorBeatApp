@@ -62,7 +62,7 @@ class Initializing extends React.Component {
             <Image
               source={brandMedia.warrior_head}
               style={styles.image}
-              resizeMode={Image.resizeMode.center}
+              resizeMode={Image.resizeMode.contain}
             />
           </Row>
           <Row style={styles.loaderCol}>
