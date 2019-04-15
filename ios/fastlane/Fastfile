@@ -39,6 +39,9 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 # App Center
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
 
+# Build Artifacts
+ARTIFACT_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
+
 # Version Constants
 VERSION = get_version_number(
   xcodeproj: PROJECT_PATH,
