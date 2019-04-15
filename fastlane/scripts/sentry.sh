@@ -46,10 +46,21 @@ release() {
 
     # Upload Sourcemaps
     PROJECT_SLUG="${SENTRY_VALS[2]}"
-    sentry-cli releases -p "$PROJECT_SLUG" \ 
-    files "$VERSION" \ 
-    upload-sourcemaps --dist "$DIST" --strip-common-prefix \ 
-    --rewrite "$SENTRY_ARTIFACTS" --validate
+    sentry_output="
+    -------------------------------
+    Uploading Sourcemaps:
+      Project Slug: ${PROJECT_SLUG}
+      Version: ${VERSION}
+      Dist: ${DIST}
+      Artifacts: ${SENTRY_ARTIFACTS}
+    -------------------------------
+    "
+    printf "$sentry_output"
+    sentry-cli releases -p "$PROJECT_SLUG" files "$VERSION" upload-sourcemaps \
+    --dist "$DIST" \
+    --strip-common-prefix \
+    --rewrite "$SENTRY_ARTIFACTS" \
+    --validate
 
     # Set Environment
     sentry-cli releases deploys "$VERSION" new -e "$SENTRY_ENV"
@@ -62,6 +73,6 @@ for arg in "$@"
 do
     case $arg in
         "load" ) load;;
-        "release" ) release "$2" "$3";;
+        "release" ) release "$2" "$3" "$4";;
     esac
 done
