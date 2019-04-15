@@ -49,11 +49,6 @@ Reset App Icons/Edited Files
 fastlane ios certificates
 ```
 Update Match Certificates
-### ios upload_artifacts
-```
-fastlane ios upload_artifacts
-```
-Upload iOS Artifacts to Sentry
 ### ios dev
 ```
 fastlane ios dev
@@ -73,11 +68,6 @@ Release IPA on App Center
 ----
 
 ## Android
-### android upload_artifacts
-```
-fastlane android upload_artifacts
-```
-Upload Android Artifacts to Sentry
 ### android test
 ```
 fastlane android test

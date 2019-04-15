@@ -13,6 +13,8 @@ SENTRY_FILES=($SENTRY_IOS $SENTRY_AND)
 SENTRY_KEYS=("defaults.url" "defaults.org" "defaults.project" "auth.token" "cli.executable")
 SENTRY_VALS=("https://sentry.io/" "warriorbeat" "warriorbeatapp" $SENTRY_AUTH_TOKEN "node_modules/@sentry/cli/bin/sentry-cli")
 
+SENTRY_ARTIFACTS="$ROOT/dist"
+
 # Injects Sentry Properties from Environment
 load() {
     printf "Injecting Sentry Properties...\n"
@@ -37,13 +39,21 @@ release() {
     # Get Args
     VERSION=$1
     SENTRY_ENV=$2
+    DIST=$3
 
     # Associate commits
     sentry-cli releases set-commits --auto "$VERSION"
-    sentry-cli releases list  --no-abbrev
+
+    # Upload Sourcemaps
+    PROJECT_SLUG="${SENTRY_VALS[2]}"
+    sentry-cli releases -p "$PROJECT_SLUG" \ 
+    files "$VERSION" \ 
+    upload-sourcemaps --dist "$DIST" --strip-common-prefix \ 
+    --rewrite "$SENTRY_ARTIFACTS" --validate
 
     # Set Environment
     sentry-cli releases deploys "$VERSION" new -e "$SENTRY_ENV"
+    sentry-cli releases list --no-abbrev
     printf "Sentry Release Ready to Finalize\n"
 }
 

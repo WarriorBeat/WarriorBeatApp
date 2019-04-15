@@ -19,7 +19,6 @@ DISPLAY_NAME = "WarriorBeat".freeze
 # Paths
 BUILT_PRODUCTS_PATH = "#{IOS_PATH}/Build/Build/Products".freeze
 INFO_PLIST_PATH = "#{IOS_PATH}/warriorbeatapp/Info.plist".freeze
-ART_BUNDLE_PATH = "#{IOS_PATH}/bundle".freeze
 
 # Dev
 DEV_PRODUCT = "#{DISPLAY_NAME}-dev.app".freeze
@@ -39,11 +38,6 @@ RELEASE_SCHEME = "#{PROJECT_NAME}".freeze
 
 # App Center
 APPCENTER_APP_NAME = "WarriorBeatApp-1"
-
-# Build Artifacts
-ARTIFACT_DSYM = File.join(ROOT, "#{PROJECT_NAME}.app.dSYM.zip")
-ARTIFACT_BUNDLE = File.join(ART_BUNDLE_PATH, "main.jsbundle")
-ARTIFACT_BUNDLE_MAP = File.join(ART_BUNDLE_PATH, "main.jsbundle.map")
 
 # Version Constants
 VERSION = get_version_number(
@@ -101,53 +95,6 @@ platform :ios do
   lane :certificates do
     match(app_identifier: [DEV_ID, STAGE_ID, APP_ID])
   end
-
-  desc "Upload iOS Artifacts to Sentry"
-  lane :upload_artifacts do |options|
-    parsed_options = {
-      :dsym => handleEnvAndOptions(
-        ENV["IOS_DSYM_OUTPUT"],
-        options[:dsym],
-        true,
-        ARTIFACT_DSYM
-      ),
-      :sentry_id => handleEnvAndOptions(
-        ENV["SENTRY_APP_ID"],
-        options[:sentry_id],
-        true,
-        APP_ID
-      ),
-    }
-
-    UI.important("Uploading iOS Build Artifacts to Sentry...")
-    sentry_upload_dsym(
-      dsym_path: parsed_options[:dsym],
-      info_plist: INFO_PLIST_PATH
-    )
-    UI.important("Generating Bundle for Sentry...")
-    FileUtils.rm(ARTIFACT_BUNDLE) if File.exists?(ARTIFACT_BUNDLE)
-    FileUtils.rm(ARTIFACT_BUNDLE_MAP) if File.exists?(ARTIFACT_BUNDLE_MAP)
-    Dir.mkdir(ART_BUNDLE_PATH) unless File.directory?(ART_BUNDLE_PATH)
-    yarn(
-      command: "ios:bundle",
-      package_path: PACKAGE_JSON
-    )
-    sentry_upload_file(
-      version: VERSION,
-      app_identifier: parsed_options[:sentry_id],
-      file: ARTIFACT_BUNDLE,
-      dist: BUILD_NUMBER
-    )
-    sentry_upload_sourcemap(
-      version: VERSION,
-      app_identifier: parsed_options[:sentry_id],
-      sourcemap: ARTIFACT_BUNDLE_MAP,
-      dist: BUILD_NUMBER,
-      rewrite: true
-    )
-    UI.success("iOS Build Artifacts Uploaded.")
-  end
-
 
   desc "iOS Dev Build"
   lane :dev do |options|
@@ -363,15 +310,8 @@ platform :ios do
         true,
         ARTIFACT_DSYM
       ),
-      :sentry_id => handleEnvAndOptions(
-        ENV["SENTRY_APP_ID"],
-        options[:sentry_id],
-        true,
-        APP_ID
-      ),
     }
     UI.header("iOS Deploy")
-    upload_artifacts(skip_before:true, skip_after: true, dsym: parsed_options[:dsym], sentry_id:parsed_options[:sentry_id])
     UI.important("
     
     Releasing IPA on AppCenter...
