@@ -28,7 +28,14 @@ class NavMenu extends React.Component {
           </View>
         )}
       >
-        <MenuButton onPress={() => uiStore.goTo("Home")} title="News" icon={icons.news} />
+        <MenuButton
+          onPress={() => {
+            uiStore.homeState.activeSlide = 0
+            uiStore.goTo("Home")
+          }}
+          title="News"
+          icon={icons.news}
+        />
         <MenuButton title="My Feed" icon={icons.home} requiresAuth={userStore.authed} />
         <MenuButton
           title="Logout"
