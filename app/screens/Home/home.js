@@ -14,7 +14,7 @@ import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
 import { inject, observer, PropTypes as MobxTypes } from "mobx-react/native"
-import { observable } from "mobx"
+import { observable, computed, reaction } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import { compose } from "react-apollo"
@@ -26,8 +26,17 @@ const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
 @inject("uiStore")
 @observer
 class Home extends React.Component {
-  @observable
-  activeSlide
+  @computed
+  get activeSlide() {
+    const { uiStore } = this.props
+    return uiStore.homeState.activeSlide
+  }
+
+  set activeSlide(val) {
+    const { uiStore } = this.props
+    uiStore.homeState.activeSlide = val
+    return this.activeSlide
+  }
 
   @observable
   slideHeight = {}
@@ -35,10 +44,19 @@ class Home extends React.Component {
   @observable
   headerVisible = true
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     enableLayoutAnimations()
     this.iconScale = new Animated.Value(0)
+    const { uiStore } = this.props
+    this.activeReaction = reaction(
+      () => uiStore.homeState.activeSlide,
+      (index) => {
+        if (uiStore.currentStack !== "HomeScreen") {
+          this._updateSlideIndex(index)
+        }
+      },
+    )
   }
 
   _renderHeader = () => (
@@ -150,7 +168,7 @@ class Home extends React.Component {
       containerCustomStyle={styles.carouselContainer}
       {...carousel.feed}
       onSnapToItem={index => this._updateSlideIndex(index)}
-      slideStyle={{ height: this.slideHeight[this.activeSlide] }}
+      firstItem={this.activeSlide}
     />
   )
 
