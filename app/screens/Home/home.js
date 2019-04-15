@@ -14,11 +14,12 @@ import { Button, Icon } from "react-native-elements"
 import GenericFeed from "components/GenericFeed"
 import Text from "components/Text"
 import { inject, observer, PropTypes as MobxTypes } from "mobx-react/native"
-import { observable, computed, reaction } from "mobx"
+import { observable } from "mobx"
 import ParallaxScrollView from "react-native-parallax-scroll-view"
 import Carousel, { Pagination } from "react-native-snap-carousel"
 import { compose } from "react-apollo"
 import { queries, PropTypes as gqlTypes } from "graphql"
+import { BLOCK_HEIGHT } from "components/NewsBlock/styles"
 import { styles, carousel, navIconStyles } from "./styles"
 
 const AnimatedScrollView = Animated.createAnimatedComponent(ScrollView)
@@ -38,6 +39,13 @@ class Home extends React.Component {
     this.iconScale = new Animated.Value(0)
     const { homeStore } = this.props
     homeStore.activeSlideHandler = index => this._updateSlideIndex(index)
+  }
+
+  componentDidUpdate = () => {
+    const { homeStore, loading } = this.props
+    if (!loading && !homeStore.ready) {
+      homeStore.resolve()
+    }
   }
 
   _renderHeader = () => (
@@ -68,15 +76,14 @@ class Home extends React.Component {
   }
 
   _updateHeight = (event, index) => {
+    const { homeStore } = this.props
     let { height } = event.nativeEvent.layout
-    const values = Object.values(this.slideHeight)
-    if (values.length >= 1 && height <= 100) {
-      height = values.reduce(
-        (prev, curr) => (Math.abs(curr - height) < Math.abs(prev - height) ? curr : prev),
-      )
-    }
-    if (this.slideHeight[index] !== height) {
-      this.slideHeight[index] = height * 1.1
+    if (homeStore.ready && height > BLOCK_HEIGHT * 1.5) {
+      const numBlocks = Math.ceil(height / BLOCK_HEIGHT)
+      height = BLOCK_HEIGHT * numBlocks
+      if (this.slideHeight[index] !== height) {
+        this.slideHeight[index] = height
+      }
     }
     return this.slideHeight
   }
@@ -151,7 +158,7 @@ class Home extends React.Component {
       containerCustomStyle={styles.carouselContainer}
       {...carousel.feed}
       onSnapToItem={index => this._updateSlideIndex(index)}
-      firstItem={this.activeSlide}
+      slideStyle={{ height: this.slideHeight[activeSlide] }}
       firstItem={activeSlide}
     />
   )
