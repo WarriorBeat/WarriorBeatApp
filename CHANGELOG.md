@@ -1,3 +1,25 @@
+# [0.16.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0-beta.2...v0.16.0) (2019-04-16)
+
+
+### ✨ Features
+
+* **home:** Created HomeStore for handling Home Screen Data ([98c196c](https://github.com/WarriorBeat/WarriorBeatApp/commit/98c196c))
+
+
+### 🐛 Bug Fixes
+
+* **home:** Fixed Issues with Dynamic Height on HomeScreen ([2698b46](https://github.com/WarriorBeat/WarriorBeatApp/commit/2698b46))
+
+
+### 🛠 Builds
+
+* **fastlane:** Fixed Gen Release Notes Script ([d1c82f3](https://github.com/WarriorBeat/WarriorBeatApp/commit/d1c82f3))
+* Removed Old Appcenter Build Script ([8f65144](https://github.com/WarriorBeat/WarriorBeatApp/commit/8f65144))
+* **travis:** Added DSYM Upload to sentry.sh ([e83e26c](https://github.com/WarriorBeat/WarriorBeatApp/commit/e83e26c))
+* **travis:** Fixed Missing Arg and Bad Whitespace in sentry.sh ([4d15938](https://github.com/WarriorBeat/WarriorBeatApp/commit/4d15938))
+
+
+
 # [0.16.0-beta.2](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0-beta.1...v0.16.0-beta.2) (2019-04-15)
 
 
