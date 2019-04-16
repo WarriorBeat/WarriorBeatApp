@@ -2,7 +2,9 @@
 
 # Generates Releases notes from changelog
 NOTES="`pwd`/notes.md"
-rm "$NOTES"
+if [ -f "$NOTES" ]; then
+	rm "$NOTES"
+fi
 npx conventional-changelog -p metahub -i "$NOTES" -s -r 2
 RELEASE_NOTES=`cat "$NOTES"`
 rm "$NOTES"
