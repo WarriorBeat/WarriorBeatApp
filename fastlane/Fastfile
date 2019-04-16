@@ -140,7 +140,7 @@ end
 
 desc("Retrieve Release notes from Changelog")
 private_lane :getReleaseNotes do
-  notes = sh("#{CHANGELOG_SH} #{CHANGELOG_PATH}")
+  notes = sh("#{CHANGELOG_SH}")
 end
 
 desc("Finalize release on Sentry")
