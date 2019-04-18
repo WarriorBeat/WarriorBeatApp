@@ -51,3 +51,23 @@ export function getNumberWithOrdinal(n) {
   const v = n % 100
   return n + (s[(v - 20) % 10] || s[v] || s[0])
 }
+/**
+ * Returns Nested Object Property with String
+ * @see http://blog.nicohaemhouts.com/2015/08/03/accessing-nested-javascript-objects-with-string-key/
+ *
+ * @param {object} theObject - Object to reduce
+ * @param {string} path - Key to Find
+ * @param {string=} separator - Notational Seperator
+ * @returns Object value at path
+ */
+export const getNested = (theObject, path, separator = ".") => {
+  try {
+    return path
+      .replace("[", separator)
+      .replace("]", "")
+      .split(separator)
+      .reduce((obj, property) => obj[property], theObject)
+  } catch (err) {
+    return undefined
+  }
+}

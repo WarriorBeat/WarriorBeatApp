@@ -13,6 +13,12 @@ import { hexToRGB } from "./utils"
 // Export Hex to RGB
 export const rgba = hexToRGB
 
+// Soft Colors
+const softWhite = "#F2F4F6"
+export const softColors = {
+  white: softWhite,
+}
+
 // Basic and Brand Colors
 const black = "#000"
 const transparent = "transparent"
@@ -28,12 +34,9 @@ export const colors = {
   black,
   white: materialColors.whitePrimary,
   transparent,
-}
-
-// Soft Colors
-const softWhite = "#F2F4F6"
-export const softColors = {
-  white: softWhite,
+  soft: {
+    ...softColors,
+  },
 }
 
 // Font Styles
