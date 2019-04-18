@@ -5,5 +5,7 @@
  */
 
 import Text from "./Text"
+import * as Typo from "./Typography"
 
+export { Typo }
 export default Text
