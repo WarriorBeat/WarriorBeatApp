@@ -22,8 +22,7 @@ class Text extends React.Component {
 
   handleColor = () => {
     const { Color } = this.props
-    let fontColor = Color ? color[Color] : null
-    fontColor = fontColor || Colors.color(Color)
+    const fontColor = Color ? Colors.color(Color) : color[Color]
     return fontColor
   }
 
