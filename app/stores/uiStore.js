@@ -196,6 +196,7 @@ class UIStore {
       return this.toggle(component.id, null, props)
     }
     const child = this.makeChild(component, props, options)
+    this.dismissAll()
     return Navigation.push(onTo, child)
   }
 
