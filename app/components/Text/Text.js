@@ -8,6 +8,7 @@ import React from "react"
 import { Text as RenderText } from "react-native"
 import PropTypes from "prop-types"
 import { colors as genericColors } from "config/styles"
+import { Colors } from "components/styles"
 import {
   weight, color, decoration, type,
 } from "./styles"
@@ -21,7 +22,8 @@ class Text extends React.Component {
 
   handleColor = () => {
     const { Color } = this.props
-    const fontColor = Color ? color[Color] : {}
+    let fontColor = Color ? color[Color] : null
+    fontColor = fontColor || Colors.color(Color)
     return fontColor
   }
 
