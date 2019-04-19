@@ -57,6 +57,12 @@ function registerScreens() {
     Provider,
     store,
   )
+  Navigation.registerComponentWithRedux(
+    "Meta.AboutUs",
+    () => apolloProviderHOC(require("screens/Meta").AboutUs),
+    Provider,
+    store,
+  )
 }
 
 export default registerScreens
