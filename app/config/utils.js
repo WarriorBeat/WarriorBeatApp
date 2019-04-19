@@ -4,7 +4,7 @@
  * Config
  */
 
-import { Platform, UIManager } from "react-native"
+import { Platform, UIManager, Linking } from "react-native"
 
 /**
  * Enables Layout Animations on Android
@@ -69,5 +69,16 @@ export const getNested = (theObject, path, separator = ".") => {
       .reduce((obj, property) => obj[property], theObject)
   } catch (err) {
     return undefined
+  }
+}
+/**
+ * Open URL in External Browser
+ *
+ * @param {string} url
+ */
+export const openLink = async (url) => {
+  const supported = await Linking.canOpenURL(url)
+  if (supported) {
+    Linking.openURL(url)
   }
 }

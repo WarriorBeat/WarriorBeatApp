@@ -5,6 +5,7 @@
  */
 
 import Logo from "./Logo"
+import Social from "./Social"
 
 export default Logo
-export { Logo }
+export { Logo, Social }
