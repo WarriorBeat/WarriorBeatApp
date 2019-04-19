@@ -20,41 +20,46 @@ const styles = StyleSheet.create({
   },
 })
 
-export const Header = ({ children, Color }) => (
+export const Header = ({ children, Color, Content }) => (
   <Text Weight="semibold" Color={Color}>
-    {children}
+    {Content || children}
   </Text>
 )
 
-export const Body = ({ Color, children }) => (
+export const Title = ({ children, Color, Content }) => (
+  <Text Weight="semibold" Type="title" Color={Color}>
+    {Content || children}
+  </Text>
+)
+
+export const Body = ({ Color, children, Content }) => (
   <Text fontSize={16} Color={Color} Type="body">
-    {children}
+    {Content || children}
   </Text>
 )
 
-export const HTMLBody = (props) => {
-  const { content } = props
-  return <HTML html={content} baseFontStyle={styles.html} />
-}
+export const HTMLBody = ({ Content }) => <HTML html={Content} baseFontStyle={styles.html} />
 
 Header.propTypes = {
   children: PropTypes.node.isRequired,
   Color: PropTypes.string,
+  Content: PropTypes.string,
 }
 
 Header.defaultProps = {
   Color: "black",
+  Content: null,
 }
 
-Body.propTypes = {
-  children: PropTypes.node.isRequired,
-  Color: PropTypes.string,
-}
+Title.propTypes = Header.propTypes
+Title.defaultProps = Header.defaultProps
 
+Body.propTypes = Header.propTypes
 Body.defaultProps = {
   Color: "blackPrimary",
+  Content: null,
 }
 
 HTMLBody.propTypes = {
-  content: HTML.propTypes.html.isRequired,
+  Content: HTML.propTypes.html.isRequired,
 }
