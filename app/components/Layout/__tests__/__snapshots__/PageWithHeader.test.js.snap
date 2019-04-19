@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+Object {
+  "output": <MockedProvider
+    addTypename={false}
+  >
+    <Provider
+      rootStore={
+        RootStore {
+          "client": undefined,
+          "homeStore": HomeStore {
+            "activeSlide": 0,
+            "activeSlideHandler": [Function],
+            "activeSlideReaction": [Function],
+            "rootStore": [Circular],
+            "state": "pending",
+            "uiStore": UIStore {
+              "dismissAll": [MockFunction],
+              "generateComponent": [MockFunction],
+              "goBack": [MockFunction],
+              "goTo": [MockFunction],
+              "push": [MockFunction],
+              "resolveComponent": [MockFunction],
+              "toggle": [MockFunction],
+              "toggleModal": [MockFunction],
+              "updateComponent": [MockFunction],
+              "updateHistory": [MockFunction],
+            },
+          },
+          "uiStore": UIStore {
+            "dismissAll": [MockFunction],
+            "generateComponent": [MockFunction],
+            "goBack": [MockFunction],
+            "goTo": [MockFunction],
+            "push": [MockFunction],
+            "resolveComponent": [MockFunction],
+            "toggle": [MockFunction],
+            "toggleModal": [MockFunction],
+            "updateComponent": [MockFunction],
+            "updateHistory": [MockFunction],
+          },
+          "userStore": UserStore {
+            "checkAuth": [MockFunction],
+            "handleError": [MockFunction],
+            "isSubbed": [MockFunction],
+            "resolve": [MockFunction],
+            "toggleSubscribe": [MockFunction],
+            "updateUser": [MockFunction],
+          },
+        }
+      }
+      uiStore={
+        UIStore {
+          "dismissAll": [MockFunction],
+          "generateComponent": [MockFunction],
+          "goBack": [MockFunction],
+          "goTo": [MockFunction],
+          "push": [MockFunction],
+          "resolveComponent": [MockFunction],
+          "toggle": [MockFunction],
+          "toggleModal": [MockFunction],
+          "updateComponent": [MockFunction],
+          "updateHistory": [MockFunction],
+        }
+      }
+      userStore={
+        UserStore {
+          "checkAuth": [MockFunction],
+          "handleError": [MockFunction],
+          "isSubbed": [MockFunction],
+          "resolve": [MockFunction],
+          "toggleSubscribe": [MockFunction],
+          "updateUser": [MockFunction],
+        }
+      }
+    >
+      <inject-PageWithHeader-with-uiStore
+        backgroundColor="#F2F4F6"
+        containerStyle={Object {}}
+        title="Header"
+      />
+    </Provider>
+  </MockedProvider>,
+}
+`;

@@ -1,0 +1,105 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should be centered with padding 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "row",
+    }
+  }
+>
+  <View
+    center="center"
+    hPad="0%"
+    justify="center"
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 0,
+        "paddingVertical": 0,
+      }
+    }
+    vPad="0%"
+  />
+  <View
+    center={null}
+    hPad="2%"
+    justify="center"
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+        "paddingHorizontal": 15,
+        "paddingVertical": 26.5,
+      }
+    }
+    vPad="2%"
+  />
+  <View
+    center="center"
+    hPad="0%"
+    justify="flex-start"
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "flex-start",
+        "paddingHorizontal": 0,
+        "paddingVertical": 0,
+      }
+    }
+    vPad="0%"
+  />
+  <View
+    center={null}
+    hPad="2%"
+    justify="center"
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "center",
+        "paddingHorizontal": 15,
+        "paddingVertical": 26.5,
+      }
+    }
+    vPad="2%"
+  />
+</View>
+`;
+
+exports[`should render correctly 1`] = `
+Object {
+  "output": <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <Row
+      center={null}
+      hPad="0%"
+      justify="center"
+      style={Object {}}
+      vPad="0%"
+    />
+    <Col
+      center={null}
+      hPad="0%"
+      justify="center"
+      style={Object {}}
+      vPad="0%"
+    />
+  </View>,
+}
+`;

@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render HTML correctly 1`] = `
+<View
+  style={Object {}}
+>
+  <Text
+    allowFontScaling={true}
+    selectable={false}
+    style={
+      Array [
+        Object {
+          "marginBottom": 16,
+          "marginTop": 16,
+        },
+        Object {},
+        Object {},
+      ]
+    }
+  >
+    <Text
+      allowFontScaling={true}
+      selectable={false}
+      style={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    >
+      <Text
+        allowFontScaling={true}
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "rgba(0,0,0,0.87)",
+            "fontFamily": "System",
+            "fontSize": 16,
+            "fontWeight": "400",
+            "letterSpacing": -0.408,
+            "lineHeight": 22,
+            "marginBottom": 16,
+            "marginTop": 16,
+          }
+        }
+      >
+        Hello!
+      </Text>
+    </Text>
+  </Text>
+</View>
+`;
+
+exports[`should render correctly 1`] = `
+<View>
+  <Text
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "#000",
+        "fontFamily": "System",
+        "fontSize": undefined,
+        "fontStyle": "normal",
+        "fontWeight": "600",
+        "includeFontPadding": true,
+        "textTransform": undefined,
+      }
+    }
+  >
+    Hello!
+  </Text>
+  <Text
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "color": "rgba(0,0,0,0.87)",
+        "fontFamily": "System",
+        "fontSize": 16,
+        "fontStyle": "normal",
+        "fontWeight": "400",
+        "includeFontPadding": true,
+        "letterSpacing": -0.408,
+        "lineHeight": 22,
+        "textTransform": undefined,
+      }
+    }
+  >
+    Hello!
+  </Text>
+</View>
+`;
