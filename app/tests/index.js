@@ -1,0 +1,32 @@
+/**
+ * __tests__/index.js
+ * Testing Environment
+ * tests
+ */
+/* eslint-disable */
+jest.autoMockOff()
+
+import React from "react"
+import RootStore from "stores/rootStore"
+import { MockedProvider } from "react-apollo/test-utils"
+import { Provider as MobxProvider } from "mobx-react/native"
+
+global.fetch = require("node-fetch")
+
+jest.mock("stores/userStore")
+jest.mock("stores/uiStore")
+export const rootStore = new RootStore()
+
+export const store = {
+  rootStore,
+  uiStore: rootStore.uiStore,
+  userStore: rootStore.userStore,
+}
+
+const Providers = ({ mocks, children }) => (
+  <MockedProvider mocks={mocks} addTypename={false}>
+    <MobxProvider {...store}>{children}</MobxProvider>
+  </MockedProvider>
+)
+
+export default Providers
