@@ -22,7 +22,7 @@ class NavMenu extends React.Component {
         headerImage={brandMedia.warrior_head}
         footer={(
           <View>
-            <MenuButton isFooter title="About Us" />
+            <MenuButton onPress={() => uiStore.push("Meta.AboutUs")} isFooter title="About Us" />
             <MenuButton isFooter title="Meet the Staff" />
             <MenuButton isFooter title="Social" />
           </View>

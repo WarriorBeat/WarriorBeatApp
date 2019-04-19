@@ -97,6 +97,9 @@
     "setupFiles": [
       "./app/tests/index.js"
     ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-native-firebase|react-native-google-signin|react-native-fbsdk|native-base|native-base-shoutem-theme|@shoutem/theme|@shoutem/animation|@shoutem/ui|tcomb-form-native)"
+    ],
     "roots": [
       ".",
       "./app",

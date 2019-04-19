@@ -21,6 +21,7 @@ class Initializing extends React.Component {
   async componentDidMount() {
     const { uiStore, userStore } = this.props
     await when(() => userStore.ready)
+    uiStore.preload()
     uiStore.state = "ready"
     const homeProps = {
       categorySortOrder: {
