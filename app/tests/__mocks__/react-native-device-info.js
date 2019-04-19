@@ -1,11 +1,8 @@
 /**
- * __tests__/environ.js
- * Component Test
- * tests
+ * __mocks__/react-native-device-info.js
+ * mocks
  */
 /* eslint-disable */
-
-// React Native Device Info
 jest.doMock("react-native-device-info", () => ({
   getUniqueID: jest.fn(),
 }))
