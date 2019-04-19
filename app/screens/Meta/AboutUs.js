@@ -5,7 +5,7 @@
  */
 
 import React from "react"
-import { PageWithHeader, Row } from "components/Layout"
+import { PageWithHeader, Row, Col } from "components/Layout"
 import { Typo } from "components/Text"
 import { Logo, Social } from "components/Generic"
 import { Divider } from "react-native-elements"
@@ -20,18 +20,20 @@ class AboutUs extends React.Component {
     const meta = uiStore.metaData.about
     return (
       <PageWithHeader title="About Us">
-        <Row center="center" vPad="3%">
-          <Logo />
-        </Row>
-        <Row hPad="2%" center="center">
-          <Typo.HTMLBody content={meta.content} />
-        </Row>
-        <Row hPad="20%" vPad="1%">
-          <Divider style={Position.flex} />
-        </Row>
-        <Row center="center" justify="space-around" vPad="2%">
-          <Social />
-        </Row>
+        <Col>
+          <Row center="center" vPad="3%">
+            <Logo />
+          </Row>
+          <Row hPad="2%" center="center">
+            <Typo.HTMLBody Content={meta.content} />
+          </Row>
+          <Row hPad="20%" vPad="1%">
+            <Divider style={Position.flex} />
+          </Row>
+          <Row center="center" justify="space-around" vPad="2%">
+            <Social />
+          </Row>
+        </Col>
       </PageWithHeader>
     )
   }

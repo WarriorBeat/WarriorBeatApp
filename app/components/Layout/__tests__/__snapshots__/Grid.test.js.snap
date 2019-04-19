@@ -12,66 +12,86 @@ exports[`should be centered with padding 1`] = `
   <View
     center="center"
     hPad="0%"
+    height="100%"
     justify="center"
     style={
       Object {
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "height": 1334,
         "justifyContent": "center",
         "paddingHorizontal": 0,
         "paddingVertical": 0,
+        "width": 750,
       }
     }
     vPad="0%"
+    width="100%"
   />
   <View
     center={null}
     hPad="2%"
+    height="100%"
     justify="center"
     style={
       Object {
         "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
+        "flexWrap": "nowrap",
+        "height": 1334,
         "justifyContent": "center",
         "paddingHorizontal": 15,
         "paddingVertical": 26.5,
+        "width": 750,
       }
     }
     vPad="2%"
+    width="100%"
   />
   <View
     center="center"
     hPad="0%"
+    height="100%"
     justify="flex-start"
     style={
       Object {
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "column",
+        "flexWrap": "nowrap",
+        "height": 1334,
         "justifyContent": "flex-start",
         "paddingHorizontal": 0,
         "paddingVertical": 0,
+        "width": 750,
       }
     }
     vPad="0%"
+    width="100%"
   />
   <View
     center={null}
     hPad="2%"
+    height="100%"
     justify="center"
     style={
       Object {
         "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "column",
+        "flexWrap": "nowrap",
+        "height": 1334,
         "justifyContent": "center",
         "paddingHorizontal": 15,
         "paddingVertical": 26.5,
+        "width": 750,
       }
     }
     vPad="2%"
+    width="100%"
   />
 </View>
 `;
@@ -89,16 +109,20 @@ Object {
     <Row
       center={null}
       hPad="0%"
+      height="100%"
       justify="center"
       style={Object {}}
       vPad="0%"
+      width="100%"
     />
     <Col
       center={null}
       hPad="0%"
+      height="100%"
       justify="center"
       style={Object {}}
       vPad="0%"
+      width="100%"
     />
   </View>,
 }
