@@ -78,6 +78,7 @@ matrix:
         - travis_retry bundle install
       script:
         - bundle exec fastlane travis
+        - travis_retry yarn test --verbose
         - bundle exec fastlane android stage badge:true clean:false install:false forRelease:true injectSentry:true simulator:false
       after_failure:
         - bundle exec fastlane fasttest
@@ -120,6 +121,7 @@ matrix:
         - travis_retry bundle install
       script:
         - fastlane travis
+        - travis_retry yarn test --verbose
         - fastlane ios stage clean:false badge:true install:false forRelease:true simulator:false injectSentry:true
       after_failure:
         - fastlane fasttest
