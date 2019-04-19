@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+Object {
+  "output": Array [
+    <SocialButton
+      onPress={[Function]}
+      type="twitter"
+      url="https://twitter.com/thewarriorbeat"
+    />,
+    <SocialButton
+      onPress={[Function]}
+      type="instagram"
+      url="https://www.instagram.com/thewarriorbeat/"
+    />,
+    <SocialButton
+      onPress={[Function]}
+      type="wordpress"
+      url="https://ogwarriorbeat.com/"
+    />,
+  ],
+}
+`;

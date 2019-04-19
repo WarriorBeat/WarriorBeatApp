@@ -9,7 +9,7 @@ import Image from "react-native-fast-image"
 import brandMedia from "config/assets"
 import { ViewPropTypes, StyleSheet } from "react-native"
 import { Shape } from "components/styles"
-import { PropTypes } from "mobx-react/native"
+import { PropTypes } from "prop-types"
 
 const Logo = (props) => {
   const { style, resize, size } = props
@@ -19,7 +19,7 @@ const Logo = (props) => {
 
 Logo.propTypes = {
   style: ViewPropTypes.style,
-  resize: Image.propTypes.resizeMode,
+  resize: PropTypes.string,
   size: PropTypes.string,
 }
 

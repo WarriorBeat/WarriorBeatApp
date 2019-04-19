@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+Object {
+  "output": <ForwardRef
+    resizeMode="contain"
+    source={
+      Object {
+        "testUri": "../../../app/assets/brand/main.jpg",
+      }
+    }
+    style={
+      Object {
+        "borderRadius": 112.5,
+        "height": 225,
+        "width": 225,
+      }
+    }
+  />,
+}
+`;
