@@ -175,3 +175,12 @@ export const userGet = gql`
     }
   }
 `
+
+export const metaGet = gql`
+  query metaGet($key: String!) {
+    metaGet(key: $key) {
+      key
+      content
+    }
+  }
+`
