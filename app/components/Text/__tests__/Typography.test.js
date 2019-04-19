@@ -14,13 +14,13 @@ test("should render correctly", () => {
   const tree = render(
     <View>
       <Typo.Header>Hello!</Typo.Header>
-      <Typo.Body>Hello!</Typo.Body>
+      <Typo.Body Content="Hello!" />
     </View>,
   )
   expect(tree).toMatchSnapshot()
 })
 
 test("should render HTML correctly", () => {
-  const tree = render(<Typo.HTMLBody content="<p>Hello!</p>" />)
+  const tree = render(<Typo.HTMLBody Content="<p>Hello!</p>" />)
   expect(tree).toMatchSnapshot()
 })

@@ -15,10 +15,14 @@ import { Typo } from "components/Text"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import { Colors } from "components/styles"
 import { StyleSheet, ViewPropTypes } from "react-native"
+import { Grid } from "react-native-easy-grid"
 
 const styles = ({ backgroundColor }) => StyleSheet.create({
   default: {
     ...Colors.bgColor(backgroundColor),
+  },
+  grid: {
+    alignItems: "flex-end",
   },
 })
 
@@ -45,7 +49,9 @@ class PageWithHeader extends React.Component {
             </Title>
           </Body>
         </Header>
-        <Content>{children}</Content>
+        <Content>
+          <Grid style={styles.grid}>{children}</Grid>
+        </Content>
       </Container>
     )
   }

@@ -7,16 +7,19 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { Col as GCol, Row as GRow } from "react-native-easy-grid"
-import { Position } from "components/styles"
+import { Position, Shape } from "components/styles"
 import { StyleSheet, ViewPropTypes } from "react-native"
 
 const styles = ({
-  center, vPad, hPad, justify,
+  center, vPad, hPad, justify, wrap, width, height,
 }) => StyleSheet.create({
   default: {
     ...Position.center(center, justify),
     ...Position.paddingV(vPad),
     ...Position.paddingH(hPad),
+    ...Shape.width(width),
+    ...Shape.height(height),
+    flexWrap: wrap ? "wrap" : "nowrap",
   },
 })
 
@@ -45,6 +48,8 @@ const GridTypes = {
   hPad: PropTypes.string,
   vPad: PropTypes.string,
   justify: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
 }
 
 const GridDefault = {
@@ -53,6 +58,8 @@ const GridDefault = {
   hPad: "0%",
   vPad: "0%",
   justify: "center",
+  height: "100%",
+  width: "100%",
 }
 
 Row.propTypes = {
