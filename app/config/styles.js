@@ -146,3 +146,16 @@ export const icons = {
     type: "material-community",
   },
 }
+
+// Social Information
+export const social = {
+  twitter: {
+    url: "https://twitter.com/thewarriorbeat",
+  },
+  instagram: {
+    url: "https://www.instagram.com/thewarriorbeat/",
+  },
+  wordpress: {
+    url: "https://ogwarriorbeat.com/",
+  },
+}
