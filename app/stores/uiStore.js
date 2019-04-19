@@ -12,6 +12,7 @@ import DeviceInfo from "react-native-device-info"
 import * as navAction from "actions/navigation"
 import { Dimensions, Platform } from "react-native"
 import _ from "lodash"
+import { metaGet } from "graphql/queries"
 
 class UIStore {
   @observable.struct
@@ -23,6 +24,11 @@ class UIStore {
   @observable.struct
   device = {
     id: DeviceInfo.getUniqueID(),
+  }
+
+  @observable.struct
+  metaData = {
+    about: null,
   }
 
   @observable.struct
@@ -75,6 +81,13 @@ class UIStore {
       isView: true,
       type: "screen",
     },
+    {
+      active: false,
+      name: "Meta.AboutUs",
+      id: "MetaAboutUs",
+      isView: true,
+      type: "screen",
+    },
   ]
 
   @observable
@@ -92,6 +105,7 @@ class UIStore {
 
   constructor(rootStore) {
     this.rootStore = rootStore
+    this.client = this.rootStore.client
     this.historyHandler = reaction(
       () => this.currentStack,
       (currentStack) => {
@@ -249,6 +263,23 @@ class UIStore {
     }
     component.active = state
     return component
+  }
+
+  @action
+  preload = async () => {
+    // Meta Information
+    await this.client.hydrated()
+    const metaKeys = Object.keys(this.metaData)
+    metaKeys.map(async (key) => {
+      const resp = await this.client.query({
+        query: metaGet,
+        variables: {
+          key,
+        },
+      })
+      const { data } = resp
+      this.metaData[key] = data.metaGet
+    })
   }
 
   @computed
