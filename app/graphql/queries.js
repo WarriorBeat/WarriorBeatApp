@@ -180,19 +180,6 @@ export const authorList = gql`
           id
           url
         }
-        posts {
-          id
-          title
-          createdOn(format: "MMM dd yyyy")
-          categories {
-            id
-            name
-          }
-          coverImage {
-            id
-            url
-          }
-        }
       }
     }
   }
