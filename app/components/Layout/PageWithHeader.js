@@ -7,7 +7,7 @@
 import React from "react"
 import { PropTypes } from "prop-types"
 import {
-  Header, Content, Container, Left, Body, Title,
+  Header, Content, Container, Left, Body, Title, Right,
 } from "native-base"
 import { Icon } from "react-native-elements"
 import { icons } from "config/styles"
@@ -48,6 +48,7 @@ class PageWithHeader extends React.Component {
               <Typo.Header>{title}</Typo.Header>
             </Title>
           </Body>
+          <Right />
         </Header>
         <Content>
           <Grid style={styles.grid}>{children}</Grid>

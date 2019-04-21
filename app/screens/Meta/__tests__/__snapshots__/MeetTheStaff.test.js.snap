@@ -138,6 +138,17 @@ exports[`should render correctly 1`] = `
           </Text>
         </Text>
       </View>
+      <View
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "alignSelf": "center",
+            "flex": 1,
+            "flexDirection": "row",
+            "justifyContent": "flex-end",
+          }
+        }
+      />
     </View>
   </View>
   <RCTScrollView
