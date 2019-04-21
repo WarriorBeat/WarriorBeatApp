@@ -16,11 +16,14 @@ import { Typo } from "components/Text"
 const styles = StyleSheet.create({
   image: {
     ...Shape.rect("30%", "26%", 6),
+  },
+  touch: {
     elevation: 7,
     shadowOffset: { width: 5, height: 5 },
     shadowColor: Colors.get("ios.gray"),
     shadowOpacity: 0.5,
     shadowRadius: 10,
+    borderRadius: 6,
   },
 })
 
@@ -34,6 +37,7 @@ const AuthorCard = inject("uiStore")(
       <Row height="20%" width="100%" vPad="2%" vMargin="5%">
         <Col center="end">
           <TouchableHighlight
+            style={styles.touch}
             underlayColor="#fff"
             onPress={() => uiStore.push("Author.Profile", id, { author })}
           >

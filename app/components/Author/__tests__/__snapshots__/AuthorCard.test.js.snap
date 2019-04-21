@@ -62,7 +62,19 @@ exports[`should render correctly 1`] = `
       onResponderTerminate={[Function]}
       onResponderTerminationRequest={[Function]}
       onStartShouldSetResponder={[Function]}
-      style={null}
+      style={
+        Object {
+          "borderRadius": 6,
+          "elevation": 7,
+          "shadowColor": "#8E8E93",
+          "shadowOffset": Object {
+            "height": 5,
+            "width": 5,
+          },
+          "shadowOpacity": 0.5,
+          "shadowRadius": 10,
+        }
+      }
     >
       <View
         style={
@@ -72,15 +84,7 @@ exports[`should render correctly 1`] = `
             },
             Object {
               "borderRadius": 6,
-              "elevation": 7,
               "height": 347,
-              "shadowColor": "#8E8E93",
-              "shadowOffset": Object {
-                "height": 5,
-                "width": 5,
-              },
-              "shadowOpacity": 0.5,
-              "shadowRadius": 10,
               "width": 225,
             },
           ]
