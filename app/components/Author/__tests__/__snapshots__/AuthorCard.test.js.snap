@@ -1,0 +1,224 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<View
+  center={null}
+  hMargin="0%"
+  hPad="0%"
+  height="20%"
+  justify="center"
+  size={null}
+  style={
+    Object {
+      "alignItems": "flex-start",
+      "flex": 0,
+      "flexDirection": "row",
+      "flexWrap": "nowrap",
+      "height": 267,
+      "justifyContent": "center",
+      "marginHorizontal": 0,
+      "marginVertical": 66.5,
+      "paddingHorizontal": 0,
+      "paddingVertical": 26.5,
+      "width": 750,
+    }
+  }
+  vMargin="5%"
+  vPad="2%"
+  width="100%"
+>
+  <View
+    center="end"
+    hMargin="0%"
+    hPad="0%"
+    height={null}
+    justify="center"
+    size={null}
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexWrap": "nowrap",
+        "height": undefined,
+        "justifyContent": "center",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
+        "paddingHorizontal": 0,
+        "paddingVertical": 0,
+        "width": undefined,
+      }
+    }
+    vMargin="0%"
+    vPad="0%"
+    width={null}
+  >
+    <View
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={null}
+    >
+      <View
+        style={
+          Array [
+            Object {
+              "overflow": "hidden",
+            },
+            Object {
+              "borderRadius": 6,
+              "elevation": 7,
+              "height": 347,
+              "shadowColor": "#8E8E93",
+              "shadowOffset": Object {
+                "height": 5,
+                "width": 5,
+              },
+              "shadowOpacity": 0.5,
+              "shadowRadius": 10,
+              "width": 225,
+            },
+          ]
+        }
+      >
+        <FastImageView
+          resizeMode="cover"
+          source={
+            Object {
+              "uri": "https://s3.amazonaws.com/warriorbeat-graphql-media-dev/media/a816ba91-1b34-45d8-b9ea-774e58c9583e_d52b98fd-09f2-4ede-a1af-062a06e46d43.jpeg",
+            }
+          }
+          style={
+            Object {
+              "bottom": 0,
+              "left": 0,
+              "position": "absolute",
+              "right": 0,
+              "top": 0,
+            }
+          }
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    center={null}
+    hMargin="0%"
+    hPad="4.5%"
+    height={null}
+    justify="center"
+    size={null}
+    style={
+      Object {
+        "alignItems": "flex-start",
+        "flex": 1,
+        "flexDirection": "column",
+        "flexWrap": "nowrap",
+        "height": undefined,
+        "justifyContent": "center",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
+        "paddingHorizontal": 34,
+        "paddingVertical": 0,
+        "width": undefined,
+      }
+    }
+    vMargin="0%"
+    vPad="0%"
+    width={null}
+  >
+    <View
+      center="center"
+      hMargin="0%"
+      hPad="4%"
+      height={null}
+      justify="flex-start"
+      size={2}
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 2,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "height": undefined,
+          "justifyContent": "flex-start",
+          "marginHorizontal": 0,
+          "marginVertical": 0,
+          "paddingHorizontal": 30,
+          "paddingVertical": 0,
+          "width": 375,
+        }
+      }
+      vMargin="0%"
+      vPad="0%"
+      width="50%"
+    >
+      <Text
+        style={
+          Object {
+            "backgroundColor": "transparent",
+            "color": "#000000",
+            "fontFamily": "System",
+            "fontSize": 22,
+            "fontStyle": "normal",
+            "fontWeight": "900",
+            "includeFontPadding": true,
+            "letterSpacing": 0.34375,
+            "lineHeight": 28,
+            "textTransform": "uppercase",
+          }
+        }
+      >
+        Myles
+Hudson
+      </Text>
+    </View>
+    <View
+      center={null}
+      hMargin="0%"
+      hPad="4%"
+      height={null}
+      justify="center"
+      size={1}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flex": 1,
+          "flexDirection": "row",
+          "flexWrap": "nowrap",
+          "height": undefined,
+          "justifyContent": "center",
+          "marginHorizontal": 0,
+          "marginVertical": 0,
+          "paddingHorizontal": 30,
+          "paddingVertical": 0,
+          "width": undefined,
+        }
+      }
+      vMargin="0%"
+      vPad="0%"
+      width={null}
+    >
+      <Text
+        style={
+          Object {
+            "color": "#007AFF",
+            "fontSize": undefined,
+            "fontStyle": "normal",
+            "fontWeight": "900",
+            "includeFontPadding": true,
+            "textTransform": undefined,
+          }
+        }
+      >
+        Lead Designer
+      </Text>
+    </View>
+  </View>
+</View>
+`;
