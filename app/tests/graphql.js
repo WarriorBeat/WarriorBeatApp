@@ -18,3 +18,16 @@ export const authorGet = {
     },
   },
 }
+
+export const authorList = {
+  request: {
+    query: query.authorList,
+  },
+  result: {
+    data: {
+      authorList: {
+        items: [Data.author(), Data.author(), Data.author()],
+      },
+    },
+  },
+}
