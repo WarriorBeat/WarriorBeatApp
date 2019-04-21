@@ -6,15 +6,27 @@
 /* eslint-disable */
 
 import React from "react"
-import { shallow } from "react-native-testing-library"
+import { render, fireEvent } from "react-native-testing-library"
 import PageWithHeader from "../PageWithHeader"
-import Providers from "tests"
+import Providers, { store } from "tests"
+import { Icon } from "react-native-elements"
 
 test("should render correctly", () => {
-  const tree = shallow(
+  const tree = render(
     <Providers>
       <PageWithHeader title="Header" />
     </Providers>,
   )
   expect(tree).toMatchSnapshot()
+})
+
+test("back arrow should return", () => {
+  const { getByType } = render(
+    <Providers>
+      <PageWithHeader title="Header" />
+    </Providers>,
+  )
+  const arrow = getByType(Icon)
+  fireEvent(arrow, "press")
+  expect(store.uiStore.goBack).toHaveBeenCalled()
 })

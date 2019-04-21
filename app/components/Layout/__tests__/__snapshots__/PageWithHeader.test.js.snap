@@ -1,86 +1,205 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render correctly 1`] = `
-Object {
-  "output": <MockedProvider
-    addTypename={false}
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#fff",
+        "flex": 1,
+        "height": 1334,
+      },
+      Object {
+        "backgroundColor": undefined,
+      },
+      Object {},
+    ]
+  }
+>
+  <View
+    onLayout={[Function]}
   >
-    <Provider
-      rootStore={
-        RootStore {
-          "client": undefined,
-          "homeStore": HomeStore {
-            "activeSlide": 0,
-            "activeSlideHandler": [Function],
-            "activeSlideReaction": [Function],
-            "rootStore": [Circular],
-            "state": "pending",
-            "uiStore": UIStore {
-              "dismissAll": [MockFunction],
-              "generateComponent": [MockFunction],
-              "goBack": [MockFunction],
-              "goTo": [MockFunction],
-              "push": [MockFunction],
-              "resolveComponent": [MockFunction],
-              "toggle": [MockFunction],
-              "toggleModal": [MockFunction],
-              "updateComponent": [MockFunction],
-              "updateHistory": [MockFunction],
-            },
-          },
-          "uiStore": UIStore {
-            "dismissAll": [MockFunction],
-            "generateComponent": [MockFunction],
-            "goBack": [MockFunction],
-            "goTo": [MockFunction],
-            "push": [MockFunction],
-            "resolveComponent": [MockFunction],
-            "toggle": [MockFunction],
-            "toggleModal": [MockFunction],
-            "updateComponent": [MockFunction],
-            "updateHistory": [MockFunction],
-          },
-          "userStore": UserStore {
-            "checkAuth": [MockFunction],
-            "handleError": [MockFunction],
-            "isSubbed": [MockFunction],
-            "resolve": [MockFunction],
-            "toggleSubscribe": [MockFunction],
-            "updateUser": [MockFunction],
-          },
+    <View
+      style={
+        Object {
+          "backgroundColor": "transparent",
+          "borderBottomColor": "transparent",
+          "borderBottomWidth": 0.5,
+          "elevation": 0,
+          "flexDirection": "row",
+          "height": 64,
+          "justifyContent": "center",
+          "left": 0,
+          "paddingLeft": 6,
+          "paddingRight": 10,
+          "paddingTop": 18,
+          "right": 0,
+          "shadowColor": null,
+          "shadowOffset": null,
+          "shadowOpacity": null,
+          "shadowRadius": null,
+          "top": 0,
         }
       }
-      uiStore={
-        UIStore {
-          "dismissAll": [MockFunction],
-          "generateComponent": [MockFunction],
-          "goBack": [MockFunction],
-          "goTo": [MockFunction],
-          "push": [MockFunction],
-          "resolveComponent": [MockFunction],
-          "toggle": [MockFunction],
-          "toggleModal": [MockFunction],
-          "updateComponent": [MockFunction],
-          "updateHistory": [MockFunction],
-        }
-      }
-      userStore={
-        UserStore {
-          "checkAuth": [MockFunction],
-          "handleError": [MockFunction],
-          "isSubbed": [MockFunction],
-          "resolve": [MockFunction],
-          "toggleSubscribe": [MockFunction],
-          "updateUser": [MockFunction],
-        }
-      }
+      transparent={true}
     >
-      <inject-PageWithHeader-with-uiStore
-        backgroundColor="#F2F4F6"
-        containerStyle={Object {}}
-        title="Header"
+      <View
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "alignSelf": "center",
+            "flex": 1,
+          }
+        }
+      >
+        <View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "backgroundColor": "transparent",
+                "justifyContent": "center",
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": "#000",
+                    "fontSize": 24,
+                  },
+                  Object {
+                    "backgroundColor": "transparent",
+                  },
+                  Object {
+                    "fontFamily": "Ionicons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              testID="iconIcon"
+            >
+              
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "alignSelf": "center",
+            "flex": 1,
+          }
+        }
+      >
+        <Text
+          numberOfLines={1}
+          style={
+            Object {
+              "color": "#000",
+              "fontFamily": "System",
+              "fontSize": 17,
+              "fontWeight": "700",
+              "marginLeft": undefined,
+              "paddingLeft": 4,
+              "paddingTop": 1,
+              "textAlign": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "backgroundColor": "transparent",
+                "color": "#000000",
+                "fontFamily": "System",
+                "fontSize": undefined,
+                "fontStyle": "normal",
+                "fontWeight": "700",
+                "includeFontPadding": true,
+                "textTransform": undefined,
+              }
+            }
+          >
+            Header
+          </Text>
+        </Text>
+      </View>
+    </View>
+  </View>
+  <RCTScrollView
+    automaticallyAdjustContentInsets={false}
+    contentContainerStyle={
+      Array [
+        Object {
+          "padding": undefined,
+        },
+        undefined,
+      ]
+    }
+    contentInset={
+      Object {
+        "bottom": 0,
+      }
+    }
+    enableAutomaticScroll={true}
+    enableOnAndroid={false}
+    enableResetScrollToCoords={true}
+    extraHeight={75}
+    extraScrollHeight={0}
+    getScrollResponder={[Function]}
+    handleOnScroll={[Function]}
+    keyboardDismissMode="interactive"
+    keyboardOpeningTime={250}
+    keyboardShouldPersistTaps="handled"
+    keyboardSpace={0}
+    onScroll={[Function]}
+    resetKeyboardSpace={[Function]}
+    resetScrollToCoords={
+      Object {
+        "x": 0,
+        "y": 0,
+      }
+    }
+    scrollEventThrottle={1}
+    scrollForExtraHeightOnAndroid={[Function]}
+    scrollIntoView={[Function]}
+    scrollToEnd={[Function]}
+    scrollToFocusedInput={[Function]}
+    scrollToPosition={[Function]}
+    showsVerticalScrollIndicator={true}
+    style={
+      Object {
+        "backgroundColor": "transparent",
+        "flex": 1,
+      }
+    }
+    update={[Function]}
+    viewIsInsideTabBar={false}
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+          }
+        }
       />
-    </Provider>
-  </MockedProvider>,
-}
+    </View>
+  </RCTScrollView>
+</View>
 `;
