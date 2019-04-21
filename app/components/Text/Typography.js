@@ -20,14 +20,26 @@ const styles = StyleSheet.create({
   },
 })
 
-export const Header = ({ children, Color, Content }) => (
-  <Text Weight="semibold" Color={Color}>
+export const Header = ({ children, Color, Content }, props) => (
+  <Text Weight="bold" Color={Color} {...props}>
     {Content || children}
   </Text>
 )
 
-export const Title = ({ children, Color, Content }) => (
-  <Text Weight="semibold" Type="title" Color={Color}>
+export const Title = ({ children, Color, Content }, props) => (
+  <Text Weight="semibold" Type="title" Color={Color} {...props}>
+    {Content || children}
+  </Text>
+)
+
+export const TitleBlack = ({ children, Color, Content }, props) => (
+  <Text Weight="black" Type="titlesm" Color={Color} Uppercase {...props}>
+    {Content || children}
+  </Text>
+)
+
+export const SubtitleBlack = ({ children, Color, Content }) => (
+  <Text Weight="black" Type="footer" Color={Color}>
     {Content || children}
   </Text>
 )
@@ -47,12 +59,24 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  Color: "black",
+  Color: "ios.black",
   Content: null,
 }
 
 Title.propTypes = Header.propTypes
 Title.defaultProps = Header.defaultProps
+
+TitleBlack.propTypes = Header.propTypes
+TitleBlack.defaultProps = {
+  Content: null,
+  Color: "ios.black",
+}
+
+SubtitleBlack.propTypes = Header.propTypes
+SubtitleBlack.defaultProps = {
+  Content: null,
+  Color: "ios.blue",
+}
 
 Body.propTypes = Header.propTypes
 Body.defaultProps = {
