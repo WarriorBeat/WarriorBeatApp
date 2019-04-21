@@ -57,11 +57,11 @@ exports[`should render correctly 1`] = `
     style={
       Object {
         "backgroundColor": "transparent",
-        "color": "#000",
+        "color": "#000000",
         "fontFamily": "System",
         "fontSize": undefined,
         "fontStyle": "normal",
-        "fontWeight": "600",
+        "fontWeight": "700",
         "includeFontPadding": true,
         "textTransform": undefined,
       }

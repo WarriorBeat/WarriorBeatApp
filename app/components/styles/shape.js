@@ -22,3 +22,9 @@ export const circle = size => ({
   height: wp(size),
   borderRadius: wp(size) / 2,
 })
+
+export const rect = (widthPercent, heightPercent, radius) => ({
+  ...width(widthPercent),
+  ...height(heightPercent),
+  borderRadius: radius || 0,
+})

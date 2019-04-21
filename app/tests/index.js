@@ -10,6 +10,8 @@ import React from "react"
 import RootStore from "stores/rootStore"
 import { MockedProvider } from "react-apollo/test-utils"
 import { Provider as MobxProvider } from "mobx-react/native"
+import * as gqlMock from "./graphql"
+import * as Data from "./data"
 
 global.fetch = require("node-fetch")
 
@@ -30,3 +32,4 @@ const Providers = ({ mocks, children }) => (
 )
 
 export default Providers
+export { gqlMock, Data }

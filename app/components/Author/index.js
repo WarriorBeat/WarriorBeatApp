@@ -10,7 +10,14 @@ import AuthorInfo from "./AuthorInfo"
 import AuthorSubscribe from "./AuthorSubscribe"
 import AuthorStats from "./AuthorStats"
 import AuthorPosts from "./AuthorPosts"
+import AuthorCard from "./AuthorCard"
 
 export {
-  AuthorSummary, AuthorAvatar, AuthorInfo, AuthorSubscribe, AuthorStats, AuthorPosts,
+  AuthorSummary,
+  AuthorAvatar,
+  AuthorInfo,
+  AuthorSubscribe,
+  AuthorStats,
+  AuthorPosts,
+  AuthorCard,
 }

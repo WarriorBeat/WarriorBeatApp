@@ -11,87 +11,107 @@ exports[`should be centered with padding 1`] = `
 >
   <View
     center="center"
+    hMargin="0%"
     hPad="0%"
-    height="100%"
+    height={null}
     justify="center"
+    size={null}
     style={
       Object {
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
         "flexWrap": "nowrap",
-        "height": 1334,
+        "height": undefined,
         "justifyContent": "center",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
         "paddingHorizontal": 0,
         "paddingVertical": 0,
-        "width": 750,
+        "width": undefined,
       }
     }
+    vMargin="0%"
     vPad="0%"
-    width="100%"
+    width={null}
   />
   <View
     center={null}
+    hMargin="0%"
     hPad="2%"
-    height="100%"
+    height={null}
     justify="center"
+    size={null}
     style={
       Object {
         "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "row",
         "flexWrap": "nowrap",
-        "height": 1334,
+        "height": undefined,
         "justifyContent": "center",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
         "paddingHorizontal": 15,
         "paddingVertical": 26.5,
-        "width": 750,
+        "width": undefined,
       }
     }
+    vMargin="0%"
     vPad="2%"
-    width="100%"
+    width={null}
   />
   <View
     center="center"
+    hMargin="0%"
     hPad="0%"
-    height="100%"
+    height={null}
     justify="flex-start"
+    size={null}
     style={
       Object {
         "alignItems": "center",
         "flex": 1,
         "flexDirection": "column",
         "flexWrap": "nowrap",
-        "height": 1334,
+        "height": undefined,
         "justifyContent": "flex-start",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
         "paddingHorizontal": 0,
         "paddingVertical": 0,
-        "width": 750,
+        "width": undefined,
       }
     }
+    vMargin="0%"
     vPad="0%"
-    width="100%"
+    width={null}
   />
   <View
     center={null}
+    hMargin="0%"
     hPad="2%"
-    height="100%"
+    height={null}
     justify="center"
+    size={null}
     style={
       Object {
         "alignItems": "flex-start",
         "flex": 1,
         "flexDirection": "column",
         "flexWrap": "nowrap",
-        "height": 1334,
+        "height": undefined,
         "justifyContent": "center",
+        "marginHorizontal": 0,
+        "marginVertical": 0,
         "paddingHorizontal": 15,
         "paddingVertical": 26.5,
-        "width": 750,
+        "width": undefined,
       }
     }
+    vMargin="0%"
     vPad="2%"
-    width="100%"
+    width={null}
   />
 </View>
 `;
@@ -108,21 +128,27 @@ Object {
   >
     <Row
       center={null}
+      hMargin="0%"
       hPad="0%"
-      height="100%"
+      height={null}
       justify="center"
+      size={null}
       style={Object {}}
+      vMargin="0%"
       vPad="0%"
-      width="100%"
+      width={null}
     />
     <Col
       center={null}
+      hMargin="0%"
       hPad="0%"
-      height="100%"
+      height={null}
       justify="center"
+      size={null}
       style={Object {}}
+      vMargin="0%"
       vPad="0%"
-      width="100%"
+      width={null}
     />
   </View>,
 }

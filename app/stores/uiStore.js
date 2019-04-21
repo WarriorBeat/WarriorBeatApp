@@ -85,7 +85,12 @@ class UIStore {
       active: false,
       name: "Meta.AboutUs",
       id: "MetaAboutUs",
-      isView: true,
+      type: "screen",
+    },
+    {
+      active: false,
+      name: "Meta.MeetTheStaff",
+      id: "MetaMeetTheStaff",
       type: "screen",
     },
   ]

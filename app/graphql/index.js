@@ -148,6 +148,15 @@ const authorQueries = {
         author: data.authorGet ? data.authorGet : {},
       }),
     }),
+    authorList: graphql(query.authorList, {
+      options: {
+        fetchPolicy: "cache-and-network",
+      },
+      props: ({ data }) => ({
+        loading: data.loading,
+        authors: data.authorList ? data.authorList.items : [],
+      }),
+    }),
   },
 }
 
