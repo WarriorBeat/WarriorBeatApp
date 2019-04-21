@@ -134,7 +134,7 @@ exports[`should render correctly 1`] = `
               }
             }
           >
-            Header
+            Meet the Staff
           </Text>
         </Text>
       </View>
@@ -198,7 +198,62 @@ exports[`should render correctly 1`] = `
             "flexDirection": "row",
           }
         }
-      />
+      >
+        <View
+          center={null}
+          hMargin="0%"
+          hPad="0%"
+          height={null}
+          justify="center"
+          size={null}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "column",
+              "flexWrap": "nowrap",
+              "height": undefined,
+              "justifyContent": "center",
+              "marginHorizontal": 0,
+              "marginVertical": 0,
+              "paddingHorizontal": 0,
+              "paddingVertical": 0,
+              "width": undefined,
+            }
+          }
+          vMargin="0%"
+          vPad="0%"
+          width={null}
+        >
+          <View
+            center={null}
+            hMargin="0%"
+            hPad="0%"
+            height={null}
+            justify="center"
+            size={null}
+            style={
+              Object {
+                "alignItems": "flex-start",
+                "flex": 1,
+                "flexDirection": "row",
+                "flexWrap": "wrap",
+                "height": undefined,
+                "justifyContent": "center",
+                "marginHorizontal": 0,
+                "marginVertical": 0,
+                "paddingHorizontal": 0,
+                "paddingVertical": 0,
+                "width": undefined,
+              }
+            }
+            vMargin="0%"
+            vPad="0%"
+            width={null}
+            wrap={true}
+          />
+        </View>
+      </View>
     </View>
   </RCTScrollView>
 </View>

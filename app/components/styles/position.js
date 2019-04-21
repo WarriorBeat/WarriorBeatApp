@@ -13,12 +13,20 @@ export const flex = {
   flex: 1,
 }
 
-export const paddingV = percent => ({
+export const vPadding = percent => ({
   paddingVertical: hp(percent),
 })
 
-export const paddingH = percent => ({
+export const hPadding = percent => ({
   paddingHorizontal: wp(percent),
+})
+
+export const vMargin = percent => ({
+  marginVertical: hp(percent),
+})
+
+export const hMargin = percent => ({
+  marginHorizontal: wp(percent),
 })
 
 export const center = (pos, justify) => {

@@ -21,7 +21,7 @@ class AboutUs extends React.Component {
     return (
       <PageWithHeader title="About Us">
         <Col>
-          <Row center="center" vPad="3%">
+          <Row center="center" vPad="3%" width="100%">
             <Logo />
           </Row>
           <Row hPad="2%" center="center">
@@ -30,7 +30,7 @@ class AboutUs extends React.Component {
           <Row hPad="20%" vPad="1%">
             <Divider style={Position.flex} />
           </Row>
-          <Row center="center" justify="space-around" vPad="2%">
+          <Row center="center" justify="space-around" vPad="2%" width="100%">
             <Social />
           </Row>
         </Col>

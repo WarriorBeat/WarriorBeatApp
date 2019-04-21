@@ -5,6 +5,6 @@
  */
 
 import AboutUs from "./AboutUs"
+import MeetTheStaff from "./MeetTheStaff"
 
-export default AboutUs
-export { AboutUs }
+export { AboutUs, MeetTheStaff }
