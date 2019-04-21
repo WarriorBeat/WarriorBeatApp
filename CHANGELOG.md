@@ -1,4 +1,4 @@
-# [0.17.0-beta.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0...v0.17.0-beta.0) (2019-04-19)
+# [0.17.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0...v0.17.0-beta.1) (2019-04-21)
 
 
 ### ✨ Features
@@ -6,6 +6,8 @@
 * **Grid:** Added Grid Layout Components ([5d911e0](https://github.com/WarriorBeat/WarriorBeatApp/commit/5d911e0))
 * **Layout:** Added PageWithHeader Component Layout ([12ab0dd](https://github.com/WarriorBeat/WarriorBeatApp/commit/12ab0dd))
 * **Logo:** Added Generic Logo Component ([88943b0](https://github.com/WarriorBeat/WarriorBeatApp/commit/88943b0))
+* **meta:** Added About Us Screen ([#84](https://github.com/WarriorBeat/WarriorBeatApp/issues/84)) ([c6b1eff](https://github.com/WarriorBeat/WarriorBeatApp/commit/c6b1eff))
+* **meta:** Meet the Staff Page ([#85](https://github.com/WarriorBeat/WarriorBeatApp/issues/85)) ([2672498](https://github.com/WarriorBeat/WarriorBeatApp/commit/2672498))
 * **social:** Added Social Component for Linking Social Media  ([#83](https://github.com/WarriorBeat/WarriorBeatApp/issues/83)) ([99b6d09](https://github.com/WarriorBeat/WarriorBeatApp/commit/99b6d09))
 * **style:** Organized Modules for Component Styles ([#81](https://github.com/WarriorBeat/WarriorBeatApp/issues/81)) ([41fa131](https://github.com/WarriorBeat/WarriorBeatApp/commit/41fa131))
 * **Text:** Added Typography Module to Text Component ([80e9cc8](https://github.com/WarriorBeat/WarriorBeatApp/commit/80e9cc8))
@@ -13,13 +15,16 @@
 
 ### 🐛 Bug Fixes
 
+* **grid:** Fixed Grid Layout Issues ([d54011b](https://github.com/WarriorBeat/WarriorBeatApp/commit/d54011b))
+* **header:** Fixed Header Title Positioning ([61b7bed](https://github.com/WarriorBeat/WarriorBeatApp/commit/61b7bed))
 * **Text:** Fixed Color Prop Occasionally Being Ignored ([ad90564](https://github.com/WarriorBeat/WarriorBeatApp/commit/ad90564))
+* **Text:** Fixed Typography Content Prop ([aaa922d](https://github.com/WarriorBeat/WarriorBeatApp/commit/aaa922d))
 * **uiStore:** Fixed Menus not Closing on Pushed Screen ([4fc7566](https://github.com/WarriorBeat/WarriorBeatApp/commit/4fc7566))
 
 
 ### 🛠 Builds
 
-* **travis:** Execute Jest Tests during Travis Build ([fc04d12](https://github.com/WarriorBeat/WarriorBeatApp/commit/fc04d12))
+* **travis:** Execute Jest Tests during Travis Build ([6e0648a](https://github.com/WarriorBeat/WarriorBeatApp/commit/6e0648a))
 * Fixed Possible Bash Error with GetReleaseNotes ([f246036](https://github.com/WarriorBeat/WarriorBeatApp/commit/f246036))
 
 
