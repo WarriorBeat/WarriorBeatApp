@@ -11,22 +11,29 @@ import { Position, Shape } from "components/styles"
 import { StyleSheet, ViewPropTypes } from "react-native"
 
 const styles = ({
-  center, vPad, hPad, justify, wrap, width, height,
+  center, vPad, hPad, justify, wrap, width, height, size,
 }) => StyleSheet.create({
   default: {
     ...Position.center(center, justify),
     ...Position.paddingV(vPad),
     ...Position.paddingH(hPad),
-    ...Shape.width(width),
-    ...Shape.height(height),
+    width: width ? Shape.width(width).width : undefined,
+    height: height ? Shape.height(height).height : undefined,
     flexWrap: wrap ? "wrap" : "nowrap",
+  },
+  row: {
+    flex: size || (height ? 0 : 1),
+  },
+  col: {
+    flex: size || (width ? 0 : 1),
   },
 })
 
 export const Row = (props) => {
   const { children, style } = props
+  const compStyle = styles(props)
   return (
-    <GRow {...props} style={[styles(props).default, style]}>
+    <GRow {...props} style={[compStyle.default, compStyle.row, style]}>
       {children}
     </GRow>
   )
@@ -34,8 +41,9 @@ export const Row = (props) => {
 
 export const Col = (props) => {
   const { children, style } = props
+  const compStyle = styles(props)
   return (
-    <GCol {...props} style={[styles(props).default, style]}>
+    <GCol {...props} style={[compStyle.default, compStyle.col, style]}>
       {children}
     </GCol>
   )
@@ -58,8 +66,8 @@ const GridDefault = {
   hPad: "0%",
   vPad: "0%",
   justify: "center",
-  height: "100%",
-  width: "100%",
+  height: null,
+  width: null,
 }
 
 Row.propTypes = {
