@@ -23,7 +23,7 @@ class NavMenu extends React.Component {
         footer={(
           <View>
             <MenuButton onPress={() => uiStore.push("Meta.AboutUs")} isFooter title="About Us" />
-            <MenuButton isFooter title="Meet the Staff" />
+            <MenuButton onPress={() => uiStore.push("Meta.MeetTheStaff")} isFooter title="Meet the Staff" />
             <MenuButton isFooter title="Social" />
           </View>
         )}

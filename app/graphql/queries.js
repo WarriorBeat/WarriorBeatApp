@@ -166,6 +166,38 @@ export const authorGet = gql`
   }
 `
 
+export const authorList = gql`
+  query authorList {
+    authorList {
+      items {
+        id
+        name
+        title
+        bio
+        staffYear
+        gradeYear
+        profileImage {
+          id
+          url
+        }
+        posts {
+          id
+          title
+          createdOn(format: "MMM dd yyyy")
+          categories {
+            id
+            name
+          }
+          coverImage {
+            id
+            url
+          }
+        }
+      }
+    }
+  }
+`
+
 export const userGet = gql`
   query userGet($id: ID!) {
     userGet(id: $id) {
