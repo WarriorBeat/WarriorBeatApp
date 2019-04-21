@@ -20,7 +20,9 @@ class MeetTheStaff extends React.Component {
     return (
       <PageWithHeader title="Meet the Staff">
         <Col>
-          <Row wrap>{loading ? null : authors.map(a => <AuthorCard author={a} />)}</Row>
+          <Row width="100%" wrap>
+            {loading ? null : authors.map(a => <AuthorCard author={a} />)}
+          </Row>
         </Col>
       </PageWithHeader>
     )

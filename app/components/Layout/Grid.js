@@ -11,12 +11,14 @@ import { Position, Shape } from "components/styles"
 import { StyleSheet, ViewPropTypes } from "react-native"
 
 const styles = ({
-  center, vPad, hPad, justify, wrap, width, height, size,
+  center, vPad, hPad, justify, wrap, width, height, size, vMargin, hMargin,
 }) => StyleSheet.create({
   default: {
     ...Position.center(center, justify),
-    ...Position.paddingV(vPad),
-    ...Position.paddingH(hPad),
+    ...Position.vPadding(vPad),
+    ...Position.hPadding(hPad),
+    ...Position.hMargin(hMargin),
+    ...Position.vMargin(vMargin),
     width: width ? Shape.width(width).width : undefined,
     height: height ? Shape.height(height).height : undefined,
     flexWrap: wrap ? "wrap" : "nowrap",
@@ -58,6 +60,9 @@ const GridTypes = {
   justify: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  size: PropTypes.number,
+  vMargin: PropTypes.string,
+  hMargin: PropTypes.string,
 }
 
 const GridDefault = {
@@ -68,6 +73,9 @@ const GridDefault = {
   justify: "center",
   height: null,
   width: null,
+  size: null,
+  hMargin: "0%",
+  vMargin: "0%",
 }
 
 Row.propTypes = {
