@@ -1,0 +1,886 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+<BVLinearGradient
+  colors={
+    Array [
+      4281150765,
+      4281940281,
+    ]
+  }
+  endPoint={
+    Object {
+      "x": 1,
+      "y": 0.25,
+    }
+  }
+  locations={
+    Array [
+      0.2,
+      0.3,
+    ]
+  }
+  startPoint={
+    Object {
+      "x": 0.5,
+      "y": 1,
+    }
+  }
+  style={
+    Object {
+      "color": "transparent",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+      }
+    }
+  >
+    <View
+      center={null}
+      hMargin="0%"
+      hPad="0%"
+      height="100%"
+      justify="center"
+      size={null}
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flex": 1,
+          "flexDirection": "column",
+          "flexWrap": "nowrap",
+          "height": 1334,
+          "justifyContent": "center",
+          "marginHorizontal": 0,
+          "marginVertical": 0,
+          "paddingHorizontal": 0,
+          "paddingVertical": 0,
+          "width": undefined,
+        }
+      }
+      vMargin="0%"
+      vPad="0%"
+      width={null}
+    >
+      <View
+        center={null}
+        hMargin="0%"
+        hPad="2.5%"
+        height={null}
+        justify="flex-start"
+        size={null}
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "height": undefined,
+            "justifyContent": "flex-start",
+            "marginHorizontal": 0,
+            "marginVertical": 0,
+            "paddingHorizontal": 19,
+            "paddingVertical": 73.5,
+            "width": 750,
+          }
+        }
+        vMargin="0%"
+        vPad="5.5%"
+        width="100%"
+      >
+        <View
+          style={
+            Array [
+              Object {
+                "overflow": "hidden",
+              },
+              Object {
+                "borderRadius": 150,
+                "height": 300,
+                "width": 300,
+              },
+            ]
+          }
+        >
+          <FastImageView
+            resizeMode="contain"
+            source={
+              Object {
+                "testUri": "../../../app/assets/brand/main.jpg",
+              }
+            }
+            style={
+              Object {
+                "bottom": 0,
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              }
+            }
+          />
+        </View>
+      </View>
+      <View
+        center={null}
+        hMargin="0%"
+        hPad="3%"
+        height={null}
+        justify="center"
+        size={null}
+        style={
+          Object {
+            "alignItems": "flex-start",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "height": undefined,
+            "justifyContent": "center",
+            "marginHorizontal": 0,
+            "marginVertical": 0,
+            "paddingHorizontal": 22.5,
+            "paddingVertical": 0,
+            "width": 750,
+          }
+        }
+        vMargin="0%"
+        vPad="0%"
+        width="100%"
+      >
+        <View
+          center={null}
+          hMargin="0%"
+          hPad="0%"
+          height={null}
+          justify="center"
+          size={null}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "column",
+              "flexWrap": "nowrap",
+              "height": undefined,
+              "justifyContent": "center",
+              "marginHorizontal": 0,
+              "marginVertical": 0,
+              "paddingHorizontal": 0,
+              "paddingVertical": 0,
+              "width": undefined,
+            }
+          }
+          vMargin="0%"
+          vPad="0%"
+          width={null}
+        >
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "flex-start",
+                "backgroundColor": null,
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 0,
+                "flexDirection": "row",
+                "height": 60,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": null,
+                "shadowOffset": null,
+                "shadowOpacity": null,
+                "shadowRadius": null,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#f4f4f4",
+                      "fontSize": 24,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "paddingTop": 2,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              type="FontAwesome"
+            >
+              
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#f4f4f4",
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "rgba(255,255,255,1)",
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              uppercase={false}
+            >
+              News
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "flex-start",
+                "backgroundColor": null,
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 0,
+                "flexDirection": "row",
+                "height": 60,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": null,
+                "shadowOffset": null,
+                "shadowOpacity": null,
+                "shadowRadius": null,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#f4f4f4",
+                      "fontSize": 24,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "paddingTop": 2,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "Entypo",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              type="Entypo"
+            >
+              
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#f4f4f4",
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "rgba(255,255,255,1)",
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              uppercase={false}
+            >
+              My Feed
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "flex-start",
+                "backgroundColor": null,
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 0,
+                "flexDirection": "row",
+                "height": 60,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": null,
+                "shadowOffset": null,
+                "shadowOpacity": null,
+                "shadowRadius": null,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#f4f4f4",
+                      "fontSize": 24,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "paddingTop": 2,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "Material Design Icons",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              type="MaterialCommunityIcons"
+            >
+              
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#f4f4f4",
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "rgba(255,255,255,1)",
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              uppercase={false}
+            >
+              Logout
+            </Text>
+          </View>
+          <View
+            accessible={true}
+            isTVSelectable={true}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "alignItems": "center",
+                "alignSelf": "flex-start",
+                "backgroundColor": null,
+                "borderBottomWidth": null,
+                "borderColor": "#007aff",
+                "borderLeftWidth": null,
+                "borderRadius": 5,
+                "borderRightWidth": null,
+                "borderTopWidth": null,
+                "borderWidth": undefined,
+                "elevation": 0,
+                "flexDirection": "row",
+                "height": 60,
+                "justifyContent": "space-between",
+                "opacity": 1,
+                "paddingBottom": 6,
+                "paddingTop": 6,
+                "shadowColor": null,
+                "shadowOffset": null,
+                "shadowOpacity": null,
+                "shadowRadius": null,
+              }
+            }
+          >
+            <Text
+              allowFontScaling={false}
+              style={
+                Array [
+                  Object {
+                    "color": undefined,
+                    "fontSize": 12,
+                  },
+                  Array [
+                    Object {
+                      "color": "#000",
+                      "fontSize": 30,
+                    },
+                    Object {
+                      "color": "#f4f4f4",
+                      "fontSize": 24,
+                      "marginLeft": 16,
+                      "marginRight": 0,
+                      "paddingTop": 2,
+                    },
+                  ],
+                  Object {
+                    "fontFamily": "FontAwesome",
+                    "fontStyle": "normal",
+                    "fontWeight": "normal",
+                  },
+                  Object {},
+                ]
+              }
+              type="FontAwesome"
+            >
+              
+            </Text>
+            <Text
+              style={
+                Array [
+                  Object {
+                    "backgroundColor": "transparent",
+                    "color": "#f4f4f4",
+                    "fontFamily": "System",
+                    "fontSize": 22,
+                    "marginLeft": 0,
+                    "marginRight": 0,
+                    "paddingLeft": 16,
+                    "paddingRight": 16,
+                  },
+                  Object {
+                    "color": "rgba(255,255,255,1)",
+                    "fontWeight": "bold",
+                  },
+                ]
+              }
+              uppercase={false}
+            >
+              Login / Signup
+            </Text>
+          </View>
+        </View>
+      </View>
+      <View
+        center="end"
+        hMargin="0%"
+        hPad="0%"
+        height={null}
+        justify="center"
+        size={null}
+        style={
+          Object {
+            "alignItems": "flex-end",
+            "flex": 1,
+            "flexDirection": "row",
+            "flexWrap": "nowrap",
+            "height": undefined,
+            "justifyContent": "center",
+            "marginHorizontal": 0,
+            "marginVertical": 0,
+            "paddingHorizontal": 0,
+            "paddingVertical": 0,
+            "width": 750,
+          }
+        }
+        vMargin="0%"
+        vPad="0%"
+        width="100%"
+      >
+        <View
+          center={null}
+          hMargin="0%"
+          hPad="0%"
+          height={null}
+          justify="center"
+          size={null}
+          style={
+            Object {
+              "alignItems": "flex-start",
+              "flex": 1,
+              "flexDirection": "column",
+              "flexWrap": "nowrap",
+              "height": undefined,
+              "justifyContent": "center",
+              "marginHorizontal": 0,
+              "marginVertical": 0,
+              "paddingHorizontal": 0,
+              "paddingVertical": 0,
+              "width": undefined,
+            }
+          }
+          vMargin="0%"
+          vPad="0%"
+          width={null}
+        >
+          <View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "flex-start",
+                  "backgroundColor": null,
+                  "borderBottomWidth": null,
+                  "borderColor": "#007aff",
+                  "borderLeftWidth": null,
+                  "borderRadius": 5,
+                  "borderRightWidth": null,
+                  "borderTopWidth": null,
+                  "borderWidth": undefined,
+                  "elevation": 0,
+                  "flexDirection": "row",
+                  "height": 45,
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 6,
+                  "paddingTop": 6,
+                  "shadowColor": null,
+                  "shadowOffset": null,
+                  "shadowOpacity": null,
+                  "shadowRadius": null,
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Array [
+                      Object {
+                        "color": "#000",
+                        "fontSize": 30,
+                      },
+                      Object {
+                        "color": "#f4f4f4",
+                        "fontSize": 24,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "paddingTop": 2,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#f4f4f4",
+                      "fontFamily": "System",
+                      "fontSize": 22,
+                      "marginLeft": 0,
+                      "marginRight": 0,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "color": "rgba(255,255,255,0.70)",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    },
+                  ]
+                }
+                uppercase={false}
+              >
+                About Us
+              </Text>
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "flex-start",
+                  "backgroundColor": null,
+                  "borderBottomWidth": null,
+                  "borderColor": "#007aff",
+                  "borderLeftWidth": null,
+                  "borderRadius": 5,
+                  "borderRightWidth": null,
+                  "borderTopWidth": null,
+                  "borderWidth": undefined,
+                  "elevation": 0,
+                  "flexDirection": "row",
+                  "height": 45,
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 6,
+                  "paddingTop": 6,
+                  "shadowColor": null,
+                  "shadowOffset": null,
+                  "shadowOpacity": null,
+                  "shadowRadius": null,
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Array [
+                      Object {
+                        "color": "#000",
+                        "fontSize": 30,
+                      },
+                      Object {
+                        "color": "#f4f4f4",
+                        "fontSize": 24,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "paddingTop": 2,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#f4f4f4",
+                      "fontFamily": "System",
+                      "fontSize": 22,
+                      "marginLeft": 0,
+                      "marginRight": 0,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "color": "rgba(255,255,255,0.70)",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    },
+                  ]
+                }
+                uppercase={false}
+              >
+                Meet the Staff
+              </Text>
+            </View>
+            <View
+              accessible={true}
+              isTVSelectable={true}
+              onResponderGrant={[Function]}
+              onResponderMove={[Function]}
+              onResponderRelease={[Function]}
+              onResponderTerminate={[Function]}
+              onResponderTerminationRequest={[Function]}
+              onStartShouldSetResponder={[Function]}
+              style={
+                Object {
+                  "alignItems": "center",
+                  "alignSelf": "flex-start",
+                  "backgroundColor": null,
+                  "borderBottomWidth": null,
+                  "borderColor": "#007aff",
+                  "borderLeftWidth": null,
+                  "borderRadius": 5,
+                  "borderRightWidth": null,
+                  "borderTopWidth": null,
+                  "borderWidth": undefined,
+                  "elevation": 0,
+                  "flexDirection": "row",
+                  "height": 45,
+                  "justifyContent": "space-between",
+                  "opacity": 1,
+                  "paddingBottom": 6,
+                  "paddingTop": 6,
+                  "shadowColor": null,
+                  "shadowOffset": null,
+                  "shadowOpacity": null,
+                  "shadowRadius": null,
+                }
+              }
+            >
+              <Text
+                allowFontScaling={false}
+                style={
+                  Array [
+                    Object {
+                      "color": undefined,
+                      "fontSize": 12,
+                    },
+                    Array [
+                      Object {
+                        "color": "#000",
+                        "fontSize": 30,
+                      },
+                      Object {
+                        "color": "#f4f4f4",
+                        "fontSize": 24,
+                        "marginLeft": 16,
+                        "marginRight": 0,
+                        "paddingTop": 2,
+                      },
+                    ],
+                    Object {
+                      "fontFamily": "Ionicons",
+                      "fontStyle": "normal",
+                      "fontWeight": "normal",
+                    },
+                    Object {},
+                  ]
+                }
+              >
+                
+              </Text>
+              <Text
+                style={
+                  Array [
+                    Object {
+                      "backgroundColor": "transparent",
+                      "color": "#f4f4f4",
+                      "fontFamily": "System",
+                      "fontSize": 22,
+                      "marginLeft": 0,
+                      "marginRight": 0,
+                      "paddingLeft": 16,
+                      "paddingRight": 16,
+                    },
+                    Object {
+                      "color": "rgba(255,255,255,0.70)",
+                      "fontSize": 16,
+                      "fontWeight": "bold",
+                    },
+                  ]
+                }
+                uppercase={false}
+              >
+                Social
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</BVLinearGradient>
+`;

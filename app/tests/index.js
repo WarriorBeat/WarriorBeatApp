@@ -17,12 +17,14 @@ global.fetch = require("node-fetch")
 
 jest.mock("stores/userStore")
 jest.mock("stores/uiStore")
+jest.mock("stores/component/homeStore")
 export const rootStore = new RootStore()
 
 export const store = {
   rootStore,
   uiStore: rootStore.uiStore,
   userStore: rootStore.userStore,
+  homeStore: rootStore.homeStore,
 }
 
 const Providers = ({ mocks, children }) => (
