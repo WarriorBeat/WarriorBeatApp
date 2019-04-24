@@ -1,9 +1,7 @@
 /**
  * NavMenu.js
  * NavMenu Component
- *
- * Primary Navigation Menu
- * Main File
+ * components/Menu
  */
 import React from "react"
 import { View } from "react-native"

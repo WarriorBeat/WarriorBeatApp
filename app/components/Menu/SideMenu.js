@@ -1,7 +1,7 @@
 /**
  * SideMenu.js
  * SideMenu Component
- * Main File
+ * components/Menu
  */
 
 import React from "react"
