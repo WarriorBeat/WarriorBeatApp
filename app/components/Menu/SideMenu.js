@@ -5,35 +5,11 @@
  */
 
 import React from "react"
-import { View, Text } from "react-native"
+import { View } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
-import { Button } from "react-native-elements"
 import { PropTypes } from "prop-types"
 import Image from "react-native-fast-image"
 import sideMenu from "./styles"
-
-export const MenuButton = (props) => {
-  const {
-    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle, requiresAuth,
-  } = props
-  let btnTitleStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
-  btnTitleStyle = isFooter ? sideMenu.buttonFooterText : btnTitleStyle
-
-  const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
-  if (requiresAuth !== false || requiresAuth === undefined) {
-    return (
-      <Button
-        type="clear"
-        titleStyle={{ ...btnTitleStyle, ...titleStyle }}
-        buttonStyle={{ ...btnStyle, ...buttonStyle }}
-        title={title}
-        icon={{ ...icon, color: "white" }}
-        onPress={onPress}
-      />
-    )
-  }
-  return null
-}
 
 const SideMenu = (props) => {
   const {
@@ -63,27 +39,6 @@ const SideMenu = (props) => {
       </View>
     </LinearGradient>
   )
-}
-
-MenuButton.propTypes = {
-  isHeader: PropTypes.bool,
-  isFooter: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-  icon: PropTypes.objectOf(PropTypes.string),
-  onPress: PropTypes.func,
-  buttonStyle: Text.propTypes.style,
-  titleStyle: Text.propTypes.style,
-  requiresAuth: PropTypes.bool,
-}
-
-MenuButton.defaultProps = {
-  isHeader: false,
-  isFooter: false,
-  icon: {},
-  onPress: () => {},
-  buttonStyle: {},
-  titleStyle: {},
-  requiresAuth: null,
 }
 
 SideMenu.propTypes = {

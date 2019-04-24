@@ -10,7 +10,8 @@ import { View } from "react-native"
 import brandMedia from "config/assets"
 import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
-import SideMenu, { MenuButton } from "./SideMenu"
+import SideMenu from "./SideMenu"
+import MenuButton from "./MenuButton"
 
 @inject("userStore", "uiStore", "homeStore")
 @observer
@@ -23,7 +24,11 @@ class NavMenu extends React.Component {
         footer={(
           <View>
             <MenuButton onPress={() => uiStore.push("Meta.AboutUs")} isFooter title="About Us" />
-            <MenuButton onPress={() => uiStore.push("Meta.MeetTheStaff")} isFooter title="Meet the Staff" />
+            <MenuButton
+              onPress={() => uiStore.push("Meta.MeetTheStaff")}
+              isFooter
+              title="Meet the Staff"
+            />
             <MenuButton isFooter title="Social" />
           </View>
         )}

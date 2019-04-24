@@ -4,7 +4,8 @@
  * Index Exports
  */
 
-import SideMenu, { MenuButton } from "./SideMenu"
+import SideMenu from "./SideMenu"
+import MenuButton from "./MenuButton"
 import NavMenu from "./NavMenu"
 
 export { SideMenu, MenuButton }
