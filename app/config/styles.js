@@ -71,11 +71,11 @@ export const getNavConstants = async () => {
 export const icons = {
   home: {
     name: "home",
-    type: "Entypo",
+    type: "entypo",
   },
   news: {
     name: "newspaper-o",
-    type: "FontAwesome",
+    type: "font-awesome",
   },
   sports: {
     name: "football",
@@ -131,7 +131,7 @@ export const icons = {
   },
   user: {
     name: "user",
-    type: "FontAwesome",
+    type: "font-awesome",
   },
   check: {
     name: "check",

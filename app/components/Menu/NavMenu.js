@@ -5,7 +5,6 @@
  */
 import React from "react"
 import { View } from "react-native"
-import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import SideMenu from "./SideMenu"
 import { HeaderButton, FooterButton } from "./MenuButton"
@@ -35,19 +34,23 @@ class NavMenu extends React.Component {
             uiStore.goTo("Home")
           }}
           title="News"
-          icon={{ ...icons.news }}
+          icon={{ name: "newspaper-o", type: "FontAwesome" }}
         />
-        <HeaderButton title="My Feed" icon={icons.home} requiresAuth={userStore.authed} />
+        <HeaderButton
+          title="My Feed"
+          icon={{ name: "home", type: "Entypo" }}
+          requiresAuth={userStore.authed}
+        />
         <HeaderButton
           title="Logout"
-          icon={icons.logout}
+          icon={{ name: "logout", type: "MaterialCommunityIcons" }}
           requiresAuth={userStore.authed}
           onPress={() => userStore.logout()}
         />
         <HeaderButton
           onPress={() => uiStore.toggle("Account.Authenticator")}
           title="Login / Signup"
-          icon={icons.user}
+          icon={{ name: "user", type: "FontAwesome" }}
           requiresAuth={!userStore.authed}
         />
       </SideMenu>
