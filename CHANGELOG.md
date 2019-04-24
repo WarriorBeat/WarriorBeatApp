@@ -1,37 +1,40 @@
-# [0.17.0-beta.1](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0...v0.17.0-beta.1) (2019-04-21)
+# [0.17.0](https://github.com/WarriorBeat/WarriorBeatApp/compare/v0.16.0...v0.17.0) (2019-04-24)
 
 
 ### ✨ Features
 
-* **Grid:** Added Grid Layout Components ([5d911e0](https://github.com/WarriorBeat/WarriorBeatApp/commit/5d911e0))
-* **Layout:** Added PageWithHeader Component Layout ([12ab0dd](https://github.com/WarriorBeat/WarriorBeatApp/commit/12ab0dd))
-* **Logo:** Added Generic Logo Component ([88943b0](https://github.com/WarriorBeat/WarriorBeatApp/commit/88943b0))
-* **meta:** Added About Us Screen ([#84](https://github.com/WarriorBeat/WarriorBeatApp/issues/84)) ([c6b1eff](https://github.com/WarriorBeat/WarriorBeatApp/commit/c6b1eff))
-* **meta:** Meet the Staff Page ([#85](https://github.com/WarriorBeat/WarriorBeatApp/issues/85)) ([2672498](https://github.com/WarriorBeat/WarriorBeatApp/commit/2672498))
-* **social:** Added Social Component for Linking Social Media  ([#83](https://github.com/WarriorBeat/WarriorBeatApp/issues/83)) ([99b6d09](https://github.com/WarriorBeat/WarriorBeatApp/commit/99b6d09))
-* **style:** Organized Modules for Component Styles ([#81](https://github.com/WarriorBeat/WarriorBeatApp/issues/81)) ([41fa131](https://github.com/WarriorBeat/WarriorBeatApp/commit/41fa131))
-* **Text:** Added Typography Module to Text Component ([80e9cc8](https://github.com/WarriorBeat/WarriorBeatApp/commit/80e9cc8))
+* **Grid:** Added Grid Layout Components ([b4d423c](https://github.com/WarriorBeat/WarriorBeatApp/commit/b4d423c))
+* **Layout:** Added PageWithHeader Component Layout ([94f27dd](https://github.com/WarriorBeat/WarriorBeatApp/commit/94f27dd))
+* **Logo:** Added Generic Logo Component ([e684438](https://github.com/WarriorBeat/WarriorBeatApp/commit/e684438))
+* **meta:** Added About Us Screen ([#84](https://github.com/WarriorBeat/WarriorBeatApp/issues/84)) ([803f0d9](https://github.com/WarriorBeat/WarriorBeatApp/commit/803f0d9))
+* **meta:** Meet the Staff Page ([#85](https://github.com/WarriorBeat/WarriorBeatApp/issues/85)) ([afdae6f](https://github.com/WarriorBeat/WarriorBeatApp/commit/afdae6f))
+* **nav:** Added Social Icons to NavMenu ([#88](https://github.com/WarriorBeat/WarriorBeatApp/issues/88)) ([f9c5f6d](https://github.com/WarriorBeat/WarriorBeatApp/commit/f9c5f6d))
+* **nav:** Refactored NavMenu with New Layout Components ([#87](https://github.com/WarriorBeat/WarriorBeatApp/issues/87)) ([7716557](https://github.com/WarriorBeat/WarriorBeatApp/commit/7716557))
+* **social:** Added Social Component for Linking Social Media  ([#83](https://github.com/WarriorBeat/WarriorBeatApp/issues/83)) ([4cef590](https://github.com/WarriorBeat/WarriorBeatApp/commit/4cef590))
+* **style:** Organized Modules for Component Styles ([#81](https://github.com/WarriorBeat/WarriorBeatApp/issues/81)) ([92e8696](https://github.com/WarriorBeat/WarriorBeatApp/commit/92e8696))
+* **Text:** Added Typography Module to Text Component ([e22127c](https://github.com/WarriorBeat/WarriorBeatApp/commit/e22127c))
 
 
 ### 🐛 Bug Fixes
 
-* **grid:** Fixed Grid Layout Issues ([d54011b](https://github.com/WarriorBeat/WarriorBeatApp/commit/d54011b))
-* **header:** Fixed Header Title Positioning ([61b7bed](https://github.com/WarriorBeat/WarriorBeatApp/commit/61b7bed))
-* **Text:** Fixed Color Prop Occasionally Being Ignored ([ad90564](https://github.com/WarriorBeat/WarriorBeatApp/commit/ad90564))
-* **Text:** Fixed Typography Content Prop ([aaa922d](https://github.com/WarriorBeat/WarriorBeatApp/commit/aaa922d))
-* **uiStore:** Fixed Menus not Closing on Pushed Screen ([4fc7566](https://github.com/WarriorBeat/WarriorBeatApp/commit/4fc7566))
+* **grid:** Fixed Grid Layout Issues ([3df770c](https://github.com/WarriorBeat/WarriorBeatApp/commit/3df770c))
+* **header:** Fixed Header Title Positioning ([2871d06](https://github.com/WarriorBeat/WarriorBeatApp/commit/2871d06))
+* **iOS:** Fixed MeetTheStaff Title Bar on iOS ([402e45e](https://github.com/WarriorBeat/WarriorBeatApp/commit/402e45e))
+* **Text:** Fixed Color Prop Occasionally Being Ignored ([59d070f](https://github.com/WarriorBeat/WarriorBeatApp/commit/59d070f))
+* **Text:** Fixed Typography Content Prop ([d082117](https://github.com/WarriorBeat/WarriorBeatApp/commit/d082117))
+* **uiStore:** Fixed Menus not Closing on Pushed Screen ([16c9135](https://github.com/WarriorBeat/WarriorBeatApp/commit/16c9135))
 
 
 ### 🛠 Builds
 
-* **travis:** Execute Jest Tests during Travis Build ([6e0648a](https://github.com/WarriorBeat/WarriorBeatApp/commit/6e0648a))
-* Fixed Possible Bash Error with GetReleaseNotes ([f246036](https://github.com/WarriorBeat/WarriorBeatApp/commit/f246036))
+* **travis:** Execute Jest Tests during Travis Build ([bb307c9](https://github.com/WarriorBeat/WarriorBeatApp/commit/bb307c9))
+* Fixed Possible Bash Error with GetReleaseNotes ([1cc7b1f](https://github.com/WarriorBeat/WarriorBeatApp/commit/1cc7b1f))
 
 
 ### 🚨 Tests
 
-* **layout:** Added Tests for Layout Components ([d161590](https://github.com/WarriorBeat/WarriorBeatApp/commit/d161590))
-* Properly Setup Testing Env and Mocks ([#82](https://github.com/WarriorBeat/WarriorBeatApp/issues/82)) ([c90c46d](https://github.com/WarriorBeat/WarriorBeatApp/commit/c90c46d))
+* **layout:** Added Tests for Layout Components ([d3dd4d0](https://github.com/WarriorBeat/WarriorBeatApp/commit/d3dd4d0))
+* Properly Setup Testing Env and Mocks ([#82](https://github.com/WarriorBeat/WarriorBeatApp/issues/82)) ([9aa06a3](https://github.com/WarriorBeat/WarriorBeatApp/commit/9aa06a3))
 
 
 
