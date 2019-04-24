@@ -6,52 +6,57 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { Button } from "react-native-elements"
-import { ViewPropTypes } from "react-native"
-import sideMenu from "./styles"
+import { Button, Text, Icon } from "native-base"
+import { ViewPropTypes, StyleSheet } from "react-native"
+import { Colors } from "components/styles"
+import { observer } from "mobx-react/native"
 
-const MenuButton = (props) => {
-  const {
-    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle, requiresAuth,
-  } = props
-  let btnTitleStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
-  btnTitleStyle = isFooter ? sideMenu.buttonFooterText : btnTitleStyle
+const styles = StyleSheet.create({
+  header: {
+    ...Colors.color("whitePrimary"),
+    fontWeight: "bold",
+  },
+  footer: {
+    ...Colors.color("whiteSecondary"),
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+})
 
-  const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
+const MenuButton = observer(({
+  requiresAuth, icon, title, textStyle, onPress, large,
+}) => {
   if (requiresAuth !== false || requiresAuth === undefined) {
     return (
-      <Button
-        type="clear"
-        titleStyle={{ ...btnTitleStyle, ...titleStyle }}
-        buttonStyle={{ ...btnStyle, ...buttonStyle }}
-        title={title}
-        icon={{ ...icon, color: "white" }}
-        onPress={onPress}
-      />
+      <Button large={large} iconLeft transparent light onPress={onPress}>
+        <Icon {...icon} />
+        <Text uppercase={false} style={textStyle}>
+          {title}
+        </Text>
+      </Button>
     )
   }
   return null
-}
+})
+
+const HeaderButton = props => <MenuButton large textStyle={styles.header} {...props} />
+
+const FooterButton = props => <MenuButton textStyle={styles.footer} {...props} />
 
 MenuButton.propTypes = {
-  isHeader: PropTypes.bool,
-  isFooter: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+  title: PropTypes.string.isRequired,
   icon: PropTypes.objectOf(PropTypes.string),
   onPress: PropTypes.func,
-  buttonStyle: ViewPropTypes.style,
-  titleStyle: ViewPropTypes.style,
+  textStyle: ViewPropTypes.style,
   requiresAuth: ViewPropTypes.bool,
 }
 
 MenuButton.defaultProps = {
-  isHeader: false,
-  isFooter: false,
   icon: {},
   onPress: () => {},
-  buttonStyle: {},
-  titleStyle: {},
+  textStyle: {},
   requiresAuth: null,
 }
 
+export { HeaderButton, FooterButton }
 export default MenuButton

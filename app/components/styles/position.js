@@ -21,12 +21,22 @@ export const hPadding = percent => ({
   paddingHorizontal: wp(percent),
 })
 
+export const padding = (horz, vert) => ({
+  ...hPadding(horz),
+  ...vPadding(vert || horz),
+})
+
 export const vMargin = percent => ({
   marginVertical: hp(percent),
 })
 
 export const hMargin = percent => ({
   marginHorizontal: wp(percent),
+})
+
+export const margin = (horz, vert) => ({
+  ...hMargin(horz),
+  ...vMargin(vert || horz),
 })
 
 export const center = (pos, justify) => {
