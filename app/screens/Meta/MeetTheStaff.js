@@ -17,7 +17,7 @@ class MeetTheStaff extends React.Component {
   render() {
     const { loading, authors } = this.props
     return (
-      <PageWithHeader title="Meet the Staff">
+      <PageWithHeader title="Staff">
         <Col>
           <Row wrap>{loading ? null : authors.map(a => <AuthorCard author={a} />)}</Row>
         </Col>

@@ -134,7 +134,7 @@ exports[`should render correctly 1`] = `
               }
             }
           >
-            Meet the Staff
+            Staff
           </Text>
         </Text>
       </View>
