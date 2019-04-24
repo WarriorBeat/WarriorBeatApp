@@ -1,102 +1,63 @@
 /**
  * SideMenu.js
  * SideMenu Component
- * Main File
+ * components/Menu
  */
 
 import React from "react"
-import { View, Text } from "react-native"
+import { StyleSheet } from "react-native"
 import LinearGradient from "react-native-linear-gradient"
-import { Button } from "react-native-elements"
 import { PropTypes } from "prop-types"
-import Image from "react-native-fast-image"
-import sideMenu from "./styles"
+import { Grid, Row, Col } from "components/Layout"
+import { Logo } from "components/Generic"
+import { observer } from "mobx-react/native"
+import { Colors } from "components/styles"
 
-export const MenuButton = (props) => {
-  const {
-    isHeader, isFooter, title, icon, onPress, buttonStyle, titleStyle, requiresAuth,
-  } = props
-  let btnTitleStyle = isHeader ? sideMenu.buttonHeaderText : sideMenu.buttonText
-  btnTitleStyle = isFooter ? sideMenu.buttonFooterText : btnTitleStyle
-
-  const btnStyle = isFooter ? sideMenu.buttonSecondary : sideMenu.button
-  if (requiresAuth !== false || requiresAuth === undefined) {
-    return (
-      <Button
-        type="clear"
-        titleStyle={{ ...btnTitleStyle, ...titleStyle }}
-        buttonStyle={{ ...btnStyle, ...buttonStyle }}
-        title={title}
-        icon={{ ...icon, color: "white" }}
-        onPress={onPress}
-      />
-    )
-  }
-  return null
-}
+const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+    ...Colors.color("transparent"),
+  },
+})
 
 const SideMenu = (props) => {
-  const {
-    headerImage, header, footer, children,
-  } = props
+  const { logo, footer, children } = props
   return (
     <LinearGradient
-      style={sideMenu.container}
+      style={styles.gradient}
       colors={["#2d2d2d", "#393939"]}
       locations={[0.2, 0.3]}
       start={{ x: 0.5, y: 1.0 }}
       end={{ x: 1, y: 0.25 }}
     >
-      <View style={sideMenu.container}>
-        {headerImage ? (
-          <Image
-            source={headerImage}
-            style={sideMenu.image}
-            resizeMode={Image.resizeMode.contain}
-          />
-        ) : (
-          undefined
-        )}
-        <View style={sideMenu.container_content}>{children}</View>
-        <View style={sideMenu.header_container}>{header}</View>
-        <View style={sideMenu.footer_container}>{footer}</View>
-      </View>
+      <Grid>
+        <Col height="100%">
+          <Row width="100%" justify="flex-start" hPad="2.5%" vPad="5.5%">
+            {logo ? <Logo size="40%" /> : null}
+          </Row>
+          <Row width="100%" hPad="3%">
+            <Col>{children}</Col>
+          </Row>
+          <Row width="100%" center="end">
+            <Col>{footer}</Col>
+          </Row>
+        </Col>
+      </Grid>
     </LinearGradient>
   )
 }
 
-MenuButton.propTypes = {
-  isHeader: PropTypes.bool,
-  isFooter: PropTypes.bool,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
-  icon: PropTypes.objectOf(PropTypes.string),
-  onPress: PropTypes.func,
-  buttonStyle: Text.propTypes.style,
-  titleStyle: Text.propTypes.style,
-  requiresAuth: PropTypes.bool,
-}
-
-MenuButton.defaultProps = {
-  isHeader: false,
-  isFooter: false,
-  icon: {},
-  onPress: () => {},
-  buttonStyle: {},
-  titleStyle: {},
-  requiresAuth: null,
-}
-
 SideMenu.propTypes = {
-  headerImage: PropTypes.oneOfType([PropTypes.bool, PropTypes.node]),
+  logo: PropTypes.bool,
   header: PropTypes.node,
   footer: PropTypes.node,
   children: PropTypes.node.isRequired,
 }
 
 SideMenu.defaultProps = {
-  headerImage: false,
+  logo: false,
   header: null,
   footer: null,
 }
 
-export default SideMenu
+export default observer(SideMenu)

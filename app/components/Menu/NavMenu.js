@@ -1,16 +1,13 @@
 /**
  * NavMenu.js
  * NavMenu Component
- *
- * Primary Navigation Menu
- * Main File
+ * components/Menu
  */
 import React from "react"
 import { View } from "react-native"
-import brandMedia from "config/assets"
-import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
-import SideMenu, { MenuButton } from "./SideMenu"
+import SideMenu from "./SideMenu"
+import { HeaderButton, FooterButton } from "./MenuButton"
 
 @inject("userStore", "uiStore", "homeStore")
 @observer
@@ -19,34 +16,41 @@ class NavMenu extends React.Component {
     const { userStore, uiStore, homeStore } = this.props
     return (
       <SideMenu
-        headerImage={brandMedia.warrior_head}
+        logo
         footer={(
           <View>
-            <MenuButton onPress={() => uiStore.push("Meta.AboutUs")} isFooter title="About Us" />
-            <MenuButton onPress={() => uiStore.push("Meta.MeetTheStaff")} isFooter title="Meet the Staff" />
-            <MenuButton isFooter title="Social" />
+            <FooterButton onPress={() => uiStore.push("Meta.AboutUs")} title="About Us" />
+            <FooterButton
+              onPress={() => uiStore.push("Meta.MeetTheStaff")}
+              title="Meet the Staff"
+            />
+            <FooterButton title="Social" />
           </View>
         )}
       >
-        <MenuButton
+        <HeaderButton
           onPress={() => {
             homeStore.activeSlide = 0
             uiStore.goTo("Home")
           }}
           title="News"
-          icon={icons.news}
+          icon={{ name: "newspaper-o", type: "FontAwesome" }}
         />
-        <MenuButton title="My Feed" icon={icons.home} requiresAuth={userStore.authed} />
-        <MenuButton
+        <HeaderButton
+          title="My Feed"
+          icon={{ name: "home", type: "Entypo" }}
+          requiresAuth={userStore.authed}
+        />
+        <HeaderButton
           title="Logout"
-          icon={icons.logout}
+          icon={{ name: "logout", type: "MaterialCommunityIcons" }}
           requiresAuth={userStore.authed}
           onPress={() => userStore.logout()}
         />
-        <MenuButton
+        <HeaderButton
           onPress={() => uiStore.toggle("Account.Authenticator")}
           title="Login / Signup"
-          icon={icons.user}
+          icon={{ name: "user", type: "FontAwesome" }}
           requiresAuth={!userStore.authed}
         />
       </SideMenu>
