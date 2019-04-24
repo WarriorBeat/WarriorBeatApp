@@ -175,34 +175,7 @@ exports[`should render correctly 1`] = `
         vMargin="0%"
         vPad="0%"
         width="100%"
-      >
-        <View
-          center={null}
-          hMargin="0%"
-          hPad="0%"
-          height={null}
-          justify="center"
-          size={null}
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flex": 1,
-              "flexDirection": "column",
-              "flexWrap": "nowrap",
-              "height": undefined,
-              "justifyContent": "center",
-              "marginHorizontal": 0,
-              "marginVertical": 0,
-              "paddingHorizontal": 0,
-              "paddingVertical": 0,
-              "width": undefined,
-            }
-          }
-          vMargin="0%"
-          vPad="0%"
-          width={null}
-        />
-      </View>
+      />
     </View>
   </View>
 </BVLinearGradient>
@@ -417,36 +390,9 @@ exports[`should render with header, footer, logo 1`] = `
         vPad="0%"
         width="100%"
       >
-        <View
-          center={null}
-          hMargin="0%"
-          hPad="0%"
-          height={null}
-          justify="center"
-          size={null}
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flex": 1,
-              "flexDirection": "column",
-              "flexWrap": "nowrap",
-              "height": undefined,
-              "justifyContent": "center",
-              "marginHorizontal": 0,
-              "marginVertical": 0,
-              "paddingHorizontal": 0,
-              "paddingVertical": 0,
-              "width": undefined,
-            }
-          }
-          vMargin="0%"
-          vPad="0%"
-          width={null}
-        >
-          <Text>
-            Hi
-          </Text>
-        </View>
+        <Text>
+          Hi
+        </Text>
       </View>
     </View>
   </View>
@@ -661,34 +607,7 @@ exports[`should render with logo 1`] = `
         vMargin="0%"
         vPad="0%"
         width="100%"
-      >
-        <View
-          center={null}
-          hMargin="0%"
-          hPad="0%"
-          height={null}
-          justify="center"
-          size={null}
-          style={
-            Object {
-              "alignItems": "flex-start",
-              "flex": 1,
-              "flexDirection": "column",
-              "flexWrap": "nowrap",
-              "height": undefined,
-              "justifyContent": "center",
-              "marginHorizontal": 0,
-              "marginVertical": 0,
-              "paddingHorizontal": 0,
-              "paddingVertical": 0,
-              "width": undefined,
-            }
-          }
-          vMargin="0%"
-          vPad="0%"
-          width={null}
-        />
-      </View>
+      />
     </View>
   </View>
 </BVLinearGradient>

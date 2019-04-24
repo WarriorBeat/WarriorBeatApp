@@ -39,7 +39,7 @@ const SideMenu = (props) => {
             <Col>{children}</Col>
           </Row>
           <Row width="100%" center="end">
-            <Col>{footer}</Col>
+            {footer}
           </Row>
         </Col>
       </Grid>
