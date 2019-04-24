@@ -7,7 +7,6 @@
  */
 import React from "react"
 import { View } from "react-native"
-import brandMedia from "config/assets"
 import { icons } from "config/styles"
 import { observer, inject, PropTypes as MobxTypes } from "mobx-react/native"
 import SideMenu from "./SideMenu"
@@ -20,7 +19,7 @@ class NavMenu extends React.Component {
     const { userStore, uiStore, homeStore } = this.props
     return (
       <SideMenu
-        headerImage={brandMedia.warrior_head}
+        logo
         footer={(
           <View>
             <MenuButton onPress={() => uiStore.push("Meta.AboutUs")} isFooter title="About Us" />
