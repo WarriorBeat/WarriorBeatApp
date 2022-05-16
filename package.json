@@ -84,7 +84,7 @@
     "eslint-plugin-react-native": "^3.5.0",
     "jest": "24.7.1",
     "metro-react-native-babel-preset": "0.51.0",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.7",
     "prettier-eslint": "^8.8.2",
     "react-native-schemes-manager": "^2.0.0",
     "react-native-testing-library": "^1.7.0",
